@@ -1,5 +1,6 @@
 use std::env;
 
+// injects schema version into the build environment
 fn main() {
     let version = env::var("CARGO_PKG_VERSION").unwrap();
     let parts: Vec<&str> = version.split('.').collect();
