@@ -24,10 +24,13 @@ impl NetworksRegistry {
         RegistryVersion::Exact(version).get_url()
     }
 
+    pub fn from_json(json: &str) -> Result<Self, Error> {
+        Ok(json.parse()?)
+    }
+
     pub fn from_file<P: AsRef<std::path::Path>>(path: P) -> Result<Self, Error> {
         let contents = std::fs::read_to_string(path)?;
-        let registry = contents.parse()?;
-        Ok(registry)
+        Self::from_json(&contents)
     }
 
     #[cfg(feature = "fetch")]
@@ -88,7 +91,7 @@ mod tests {
             ]
         }"#;
 
-        let registry: NetworksRegistry = registry_json.parse().unwrap();
+        let registry = NetworksRegistry::from_json(registry_json).expect("Failed to parse registry");
 
         assert_eq!(registry.networks.len(), 1);
 
