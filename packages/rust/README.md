@@ -15,12 +15,12 @@ networks-registry = "0.1.0"
 ### Basic Usage
 
 ```rust
-use networks_registry::{NetworksRegistry, get_network_by_id};
+use networks_registry::NetworksRegistry;
 fn main() {
     // Parse registry from JSON
     let registry: NetworksRegistry = serde_json::from_str(json_str).unwrap();
     // Get a specific network
-    if let Some(network) = get_network_by_id(&registry, "mainnet") {
+    if let Some(network) = registry.get_network_by_id("mainnet") {
         println!("Found network: {}", network.name);
     }
 }

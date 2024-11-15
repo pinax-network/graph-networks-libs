@@ -1,56 +1,44 @@
 mod types;
+mod version;
+mod error;
 
+pub use error::*;
 pub use types::*;
+pub use version::*;
 
-const REGISTRY_BASE_URL: &str = "https://registry.thegraph.com";
-const SCHEMA_VERSION: &str = env!("CARGO_PKG_VERSION_MAJOR_MINOR");
+use error::Error;
+use std::fs;
+use std::path::Path;
 
-/// Registry URL variants for different versioning needs
-#[derive(Debug, Clone, Copy)]
-pub enum RegistryVersion<'a> {
-    /// Latest compatible version (v{major}.{minor}.x)
-    Latest,
-    /// Specific version (e.g., v0.5.3)
-    Exact(&'a str),
-}
+impl NetworksRegistry {
 
-impl<'a> RegistryVersion<'a> {
-    fn to_url(&self) -> String {
-        match self {
-            RegistryVersion::Latest => {
-                format!("{}/TheGraphNetworksRegistry_v{}_x.json", REGISTRY_BASE_URL, SCHEMA_VERSION)
-            }
-            RegistryVersion::Exact(version) => {
-                let is_valid = version.starts_with('v')
-                    && version[1..].chars().filter(|&c| c != '.').all(|c| c.is_ascii_digit())
-                    && version.matches('.').count() == 2;
-                if !is_valid {
-                    panic!("Version must match pattern 'v0.1.2', got: {}", version);
-                }
-                format!("{}/TheGraphNetworksRegistry_{}.json", REGISTRY_BASE_URL, version.replace('.', "_"))
-            }
-        }
+    pub fn from_file<P: AsRef<Path>>(path: P) -> Result<Self, Error> {
+        let contents = fs::read_to_string(path)?;
+        let registry = serde_json::from_str(&contents)?;
+        Ok(registry)
     }
-}
 
-/// Helper function to get the registry URL based on version requirements
-pub fn get_registry_url(version: RegistryVersion) -> String {
-    version.to_url()
-}
+    #[cfg(feature = "fetch")]
+    pub async fn from_version(version: RegistryVersion<'_>) -> Result<Self, Error> {
+        let url = get_registry_url(version);
+        let response = reqwest::get(&url).await?;
+        let registry = response.json().await?;
+        Ok(registry)
+    }
 
-/// Helper function to get a network by its ID
-pub fn get_network_by_id<'a>(registry: &'a NetworksRegistry, id: &str) -> Option<&'a NetworkElement> {
-    registry.networks.iter().find(|network| network.id == id)
-}
+    pub fn get_network_by_id<'a>(&'a self, id: &str) -> Option<&'a NetworkElement> {
+        self.networks.iter().find(|network| network.id == id)
+    }
 
-#[cfg(feature = "fetch")]
-/// Fetch the registry from a specific version
-///
-/// This function is only available when the "fetch" feature is enabled
-pub async fn fetch_registry(version: RegistryVersion<'_>) -> Result<NetworksRegistry, reqwest::Error> {
-    let url = version.to_url();
-    let client = reqwest::Client::new();
-    client.get(url).send().await?.json().await
+    pub fn get_network_by_alias<'a>(&'a self, alias: &str) -> Option<&'a NetworkElement> {
+        self.networks
+            .iter()
+            .find(|network| network
+                .aliases
+                .as_ref()
+                .map_or(false, |aliases| aliases.contains(&alias.to_string()))
+            )
+    }
 }
 
 #[cfg(test)]
@@ -58,22 +46,59 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_registry_urls() {
-        assert_eq!(
-            get_registry_url(RegistryVersion::Latest),
-            format!("{}/TheGraphNetworksRegistry_v{}_x.json", REGISTRY_BASE_URL, SCHEMA_VERSION)
-        );
+    fn test_get_network() {
+        let registry_json = r#"{
+            "$schema": "https://registry.thegraph.com/TheGraphNetworksRegistrySchema_v0_5.json",
+            "version": "0.5.0",
+            "title": "Test Registry",
+            "description": "Test Registry",
+            "updatedAt": "2025-01-01T00:00:00Z",
+            "networks": [
+                {
+                    "id": "mainnet",
+                    "fullName": "Ethereum Mainnet",
+                    "shortName": "Ethereum",
+                    "caip2Id": "eip155:1",
+                    "networkType": "mainnet",
+                    "aliases": ["ethereum", "eth"],
+                    "issuanceRewards": true,
+                    "services": {}
+                }
+            ]
+        }"#;
 
-        assert_eq!(
-            get_registry_url(RegistryVersion::Exact("v0.5.3")),
-            format!("{}/TheGraphNetworksRegistry_v0_5_3.json", REGISTRY_BASE_URL)
-        );
+        let registry: NetworksRegistry = serde_json::from_str(registry_json).unwrap();
+
+        let network = registry.get_network_by_alias("eth");
+        assert!(network.is_some());
+        assert_eq!(network.unwrap().id, "mainnet");
+
+        let network = registry.get_network_by_alias("ethereum");
+        assert!(network.is_some());
+        assert_eq!(network.unwrap().id, "mainnet");
+
+        let network = registry.get_network_by_alias("nonexistent");
+        assert!(network.is_none());
+
+        let network = registry.get_network_by_id("mainnet");
+        assert!(network.is_some());
+        assert_eq!(network.unwrap().id, "mainnet");
     }
 
     #[cfg(feature = "fetch")]
     #[tokio::test]
     async fn test_fetch_registry() {
-        let result = fetch_registry(RegistryVersion::Latest).await;
+        let result = NetworksRegistry::from_version(RegistryVersion::Latest).await;
+        assert!(result.is_ok());
+
+        let registry = result.unwrap();
+        assert!(!registry.networks.is_empty());
+    }
+
+    #[cfg(feature = "fetch")]
+    #[tokio::test]
+    async fn test_fetch_registry_exact_version() {
+        let result = NetworksRegistry::from_version(RegistryVersion::Exact("v0.5.0")).await;
         assert!(result.is_ok());
 
         let registry = result.unwrap();

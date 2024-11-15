@@ -1,11 +1,11 @@
 [package]
-name = "networks-registry"
+name = "graph-networks"
 version = "0.5.0"
 edition = "2021"
 description = "The Graph Networks Registry types and helpers"
 license = "MIT"
-repository = "https://github.com/your-username/networks-registry-libs"
-documentation = "https://docs.rs/networks-registry"
+repository = "https://github.com/YaroShkvorets/networks-registry-libs"
+documentation = "https://docs.rs/graph-networks"
 readme = "README.md"
 
 [dependencies]
