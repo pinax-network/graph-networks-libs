@@ -6,5 +6,5 @@ dist
 bun.lockb
 temp-schema.json
 
-packages/rust/target
-packages/rust/Cargo.lock
+packages/rust/**/target
+Cargo.lock

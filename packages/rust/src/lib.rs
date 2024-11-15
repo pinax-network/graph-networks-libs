@@ -2,11 +2,10 @@ mod types;
 mod version;
 mod error;
 
-pub use error::*;
+pub use error::Error;
 pub use types::*;
 pub use version::*;
 
-use error::Error;
 use std::fs;
 use std::path::Path;
 
