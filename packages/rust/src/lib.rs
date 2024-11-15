@@ -24,7 +24,17 @@ impl NetworksRegistry {
     }
 
     #[cfg(feature = "fetch")]
-    pub async fn from_version(version: RegistryVersion<'_>) -> Result<Self, Error> {
+    pub async fn from_latest_version() -> Result<Self, Error> {
+        Self::fetch_version(RegistryVersion::Latest).await
+    }
+
+    #[cfg(feature = "fetch")]
+    pub async fn from_exact_version(version: &str) -> Result<Self, Error> {
+        Self::fetch_version(RegistryVersion::Exact(version)).await
+    }
+
+    #[cfg(feature = "fetch")]
+    async fn fetch_version(version: RegistryVersion<'_>) -> Result<Self, Error> {
         let url = get_registry_url(version);
         let response = reqwest::get(&url).await?;
         let registry = response.json().await?;
@@ -72,7 +82,9 @@ mod tests {
             ]
         }"#;
 
-        let registry: NetworksRegistry = serde_json::from_str(registry_json).unwrap();
+        let registry: NetworksRegistry = registry_json.parse().unwrap();
+
+        assert_eq!(registry.networks.len(), 1);
 
         let network = registry.get_network_by_alias("eth");
         assert!(network.is_some());
@@ -93,7 +105,7 @@ mod tests {
     #[cfg(feature = "fetch")]
     #[tokio::test]
     async fn test_fetch_registry() {
-        let result = NetworksRegistry::from_version(RegistryVersion::Latest).await;
+        let result = NetworksRegistry::from_latest_version().await;
         assert!(result.is_ok());
 
         let registry = result.unwrap();
@@ -103,7 +115,7 @@ mod tests {
     #[cfg(feature = "fetch")]
     #[tokio::test]
     async fn test_fetch_registry_exact_version() {
-        let result = NetworksRegistry::from_version(RegistryVersion::Exact("v0.5.0")).await;
+        let result = NetworksRegistry::from_exact_version("v0.5.0").await;
         assert!(result.is_ok());
 
         let registry = result.unwrap();
