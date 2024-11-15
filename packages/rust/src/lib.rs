@@ -6,14 +6,20 @@ pub use error::Error;
 pub use types::*;
 pub use version::*;
 
-use std::fs;
-use std::path::Path;
+impl std::str::FromStr for NetworksRegistry {
+    type Err = Error;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        let registry = serde_json::from_str(s)?;
+        Ok(registry)
+    }
+}
 
 impl NetworksRegistry {
 
-    pub fn from_file<P: AsRef<Path>>(path: P) -> Result<Self, Error> {
-        let contents = fs::read_to_string(path)?;
-        let registry = serde_json::from_str(&contents)?;
+    pub fn from_file<P: AsRef<std::path::Path>>(path: P) -> Result<Self, Error> {
+        let contents = std::fs::read_to_string(path)?;
+        let registry = contents.parse()?;
         Ok(registry)
     }
 
