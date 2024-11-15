@@ -1,0 +1,22 @@
+[package]
+name = "networks-registry"
+version = "0.5.0"
+edition = "2021"
+description = "The Graph Networks Registry types and helpers"
+license = "MIT"
+repository = "https://github.com/your-username/networks-registry-libs"
+documentation = "https://docs.rs/networks-registry"
+readme = "README.md"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+reqwest = { version = "0.11", features = ["json"], optional = true }
+tokio = { version = "1.0", features = ["full"], optional = true }
+
+[features]
+default = ["fetch"]
+fetch = ["reqwest", "tokio"]
+
+[dev-dependencies]
+tokio = { version = "1.0", features = ["full", "test-util"] }
