@@ -1,4 +1,3 @@
-
 use std::io;
 
 // Add this error type at the top of the file

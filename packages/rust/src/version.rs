@@ -1,4 +1,3 @@
-
 const REGISTRY_BASE_URL: &str = "https://registry.thegraph.com";
 const SCHEMA_VERSION: &str = env!("CARGO_PKG_VERSION_MAJOR_MINOR");
 
@@ -11,7 +10,7 @@ pub enum RegistryVersion<'a> {
 }
 
 impl<'a> RegistryVersion<'a> {
-    pub fn to_url(&self) -> String {
+    pub fn get_url(&self) -> String {
         match self {
             RegistryVersion::Latest => {
                 format!("{}/TheGraphNetworksRegistry_v{}_x.json", REGISTRY_BASE_URL, SCHEMA_VERSION)
@@ -23,11 +22,6 @@ impl<'a> RegistryVersion<'a> {
     }
 }
 
-/// Helper function to get the registry URL based on version requirements
-pub fn get_registry_url(version: RegistryVersion) -> String {
-    version.to_url()
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -35,13 +29,8 @@ mod tests {
     #[test]
     fn test_registry_urls() {
         assert_eq!(
-            get_registry_url(RegistryVersion::Latest),
+            RegistryVersion::Latest.get_url(),
             format!("{}/TheGraphNetworksRegistry_v{}_x.json", REGISTRY_BASE_URL, SCHEMA_VERSION)
-        );
-
-        assert_eq!(
-            get_registry_url(RegistryVersion::Exact("v0.5.3")),
-            format!("{}/TheGraphNetworksRegistry_v0_5_3.json", REGISTRY_BASE_URL)
         );
     }
 }

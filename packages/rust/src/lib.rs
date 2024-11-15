@@ -1,10 +1,11 @@
+mod error;
 mod types;
 mod version;
-mod error;
 
 pub use error::Error;
 pub use types::*;
-pub use version::*;
+
+use version::*;
 
 impl std::str::FromStr for NetworksRegistry {
     type Err = Error;
@@ -16,6 +17,12 @@ impl std::str::FromStr for NetworksRegistry {
 }
 
 impl NetworksRegistry {
+    pub fn get_latest_version_url() -> String {
+        RegistryVersion::Latest.get_url()
+    }
+    pub fn get_exact_version_url(version: &str) -> String {
+        RegistryVersion::Exact(version).get_url()
+    }
 
     pub fn from_file<P: AsRef<std::path::Path>>(path: P) -> Result<Self, Error> {
         let contents = std::fs::read_to_string(path)?;
@@ -25,17 +32,17 @@ impl NetworksRegistry {
 
     #[cfg(feature = "fetch")]
     pub async fn from_latest_version() -> Result<Self, Error> {
-        Self::fetch_version(RegistryVersion::Latest).await
+        Self::from_version(RegistryVersion::Latest).await
     }
 
     #[cfg(feature = "fetch")]
     pub async fn from_exact_version(version: &str) -> Result<Self, Error> {
-        Self::fetch_version(RegistryVersion::Exact(version)).await
+        Self::from_version(RegistryVersion::Exact(version)).await
     }
 
     #[cfg(feature = "fetch")]
-    async fn fetch_version(version: RegistryVersion<'_>) -> Result<Self, Error> {
-        let url = get_registry_url(version);
+    async fn from_version(version: RegistryVersion<'_>) -> Result<Self, Error> {
+        let url = version.get_url();
         let response = reqwest::get(&url).await?;
         let registry = response.json().await?;
         Ok(registry)
@@ -46,13 +53,12 @@ impl NetworksRegistry {
     }
 
     pub fn get_network_by_alias<'a>(&'a self, alias: &str) -> Option<&'a NetworkElement> {
-        self.networks
-            .iter()
-            .find(|network| network
+        self.networks.iter().find(|network| {
+            network
                 .aliases
                 .as_ref()
                 .map_or(false, |aliases| aliases.contains(&alias.to_string()))
-            )
+        })
     }
 }
 
@@ -104,7 +110,7 @@ mod tests {
 
     #[cfg(feature = "fetch")]
     #[tokio::test]
-    async fn test_fetch_registry() {
+    async fn test_from_registry() {
         let result = NetworksRegistry::from_latest_version().await;
         assert!(result.is_ok());
 
@@ -114,7 +120,7 @@ mod tests {
 
     #[cfg(feature = "fetch")]
     #[tokio::test]
-    async fn test_fetch_registry_exact_version() {
+    async fn test_from_registry_exact_version() {
         let result = NetworksRegistry::from_exact_version("v0.5.0").await;
         assert!(result.is_ok());
 

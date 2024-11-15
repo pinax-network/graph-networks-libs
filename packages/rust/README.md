@@ -1,47 +1,59 @@
 # Networks Registry
 
-Rust types and helpers for working with The Graph Networks Registry.
+Rust types and helpers for working with [The Graph Networks Registry](https://github.com/graphprotocol/networks-registry).
 
 ## Usage
+If you want to always get up-to-date registry, make sure to use the latest version of the crate.
 
-Add this to your `Cargo.toml`:
-
+`Cargo.toml`:
 ```toml
-toml
 [dependencies]
-networks-registry = "0.1.0"
+graph-networks = "0.5.0"
 ```
 
-### Basic Usage
+### Reading from a local file
+
+To read the registry from a local file
 
 ```rust
-use networks_registry::NetworksRegistry;
+use graph_networks::NetworksRegistry;
 fn main() {
-    // Parse registry from JSON
-    let registry: NetworksRegistry = serde_json::from_str(json_str).unwrap();
-    // Get a specific network
+    // Parse registry from JSON file
+    let registry = NetworksRegistry::from_file("TheGraphNetworksRegistry_v0_5_3.json")
+        .expect("Failed to parse registry");
+
     if let Some(network) = registry.get_network_by_id("mainnet") {
-        println!("Found network: {}", network.name);
+        println!("Found mainnet: {:?}", network);
     }
 }
+
 ```
 
-### Fetching Registry (requires "fetch" feature)
+
+### Fetching the latest registry
+
+To fetch the latest registry version from the official source
+
 
 ```rust
-use networks_registry::fetch_registry;
+use graph_networks::NetworksRegistry;
 
 #[tokio::main]
 async fn main() {
-    let registry = fetch_registry().await.unwrap();
+    let registry = NetworksRegistry::from_latest_version()
+        .await
+        .expect("Failed to fetch registry");
     println!("Loaded {} networks", registry.networks.len());
 }
 ```
 
 ## Features
 
-- `fetch` - Enables the `fetch_registry()` function using reqwest (enabled by default)
+- `fetch` - Enables remote registry fetching functionality using reqwest (enabled by default)
 
-## License
+If you don't need to fetch the registry from the network, you can turn off the `fetch` feature in your `Cargo.toml`:
 
-MIT
+```toml
+[dependencies]
+graph-networks = { version = "0.5.0", default-features = false }
+```
