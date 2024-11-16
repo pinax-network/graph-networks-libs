@@ -1,15 +1,43 @@
 {
   "name": "@pinax/graph-networks-ts",
   "version": "0.5.0",
+  "description": "TypeScript types and helpers for working with The Graph Networks Registry",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsc",
-    "test": "bun test"
+    "test": "bun test",
+    "prepublishOnly": "bun run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YaroShkvorets/networks-registry-libs.git"
+  },
+  "keywords": [
+    "graph",
+    "blockchain",
+    "registry",
+    "firehose",
+    "substreams",
+    "subgraph",
+    "ethereum"
+  ],
+  "author": "Yaro Shkvorets <yaro@pinax.network>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/YaroShkvorets/networks-registry-libs/issues"
+  },
+  "homepage": "https://github.com/YaroShkvorets/networks-registry-libs#readme",
+  "publishConfig": {
+    "access": "public"
   },
   "devDependencies": {
     "typescript": "^5.0.0",
-    "bun-types": "latest"
+    "bun-types": "1"
   }
 }
