@@ -1,13 +1,13 @@
 // To parse this data:
 //
-//   import { Convert, NetworksRegistry } from "./file";
+//   import { Convert, NetworksRegistryElement } from "./file";
 //
-//   const networksRegistry = Convert.toNetworksRegistry(json);
+//   const networksRegistryElement = Convert.toNetworksRegistryElement(json);
 //
 // These functions will throw an error if the JSON doesn't
 // match the expected interface, even if the JSON is valid.
 
-export interface NetworksRegistry {
+export interface NetworksRegistryElement {
     /**
      * Reference to this schema file
      */
@@ -272,12 +272,12 @@ export enum Provider {
 // Converts JSON strings to/from your types
 // and asserts the results of JSON.parse at runtime
 export class Convert {
-    public static toNetworksRegistry(json: string): NetworksRegistry {
-        return cast(JSON.parse(json), r("NetworksRegistry"));
+    public static toNetworksRegistryElement(json: string): NetworksRegistryElement {
+        return cast(JSON.parse(json), r("NetworksRegistryElement"));
     }
 
-    public static networksRegistryToJson(value: NetworksRegistry): string {
-        return JSON.stringify(uncast(value, r("NetworksRegistry")), null, 2);
+    public static networksRegistryElementToJson(value: NetworksRegistryElement): string {
+        return JSON.stringify(uncast(value, r("NetworksRegistryElement")), null, 2);
     }
 }
 
@@ -434,7 +434,7 @@ function r(name: string) {
 }
 
 const typeMap: any = {
-    "NetworksRegistry": o([
+    "NetworksRegistryElement": o([
         { json: "$schema", js: "$schema", typ: "" },
         { json: "description", js: "description", typ: "" },
         { json: "networks", js: "networks", typ: a(r("NetworkElement")) },

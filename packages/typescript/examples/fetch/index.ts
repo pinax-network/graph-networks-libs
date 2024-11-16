@@ -1,14 +1,13 @@
-import { NetworksRegistryClient } from "@pinax/graph-networks-ts";
+import { NetworksRegistry } from "@pinax/graph-networks-ts";
 
 async function main() {
   // Fetch latest registry
-  const url = NetworksRegistryClient.getLatestVersionUrl();
+  const url = NetworksRegistry.getLatestVersionUrl();
   console.log("Fetching latest registry: ", url);
-  const registry = await NetworksRegistryClient.fromLatestVersion();
+  const registry = await NetworksRegistry.fromLatestVersion();
 
   console.log("Successfully loaded", registry.networks.length, "networks");
 
-  // Get network by ID
   const mainnet = registry.getNetworkById("mainnet");
   if (mainnet) {
     console.log("Found mainnet:", mainnet.fullName);

@@ -7,9 +7,9 @@
   ],
   "scripts": {
     "generate:prepare": "curl -o temp-schema.json https://registry.thegraph.com/TheGraphNetworksRegistrySchema_v0_5.json",
-    "generate:typescript": "bun quicktype -s schema temp-schema.json --lang typescript --top-level NetworksRegistry --out packages/typescript/src/types.ts",
+    "generate:typescript": "bun quicktype -s schema temp-schema.json --lang typescript --top-level NetworksRegistryElement --out packages/typescript/src/types.ts",
     "generate:rust": "bun quicktype -s schema temp-schema.json --lang rust --top-level NetworksRegistry --density normal --visibility public --derive-debug --derive-clone --out packages/rust/src/types.rs",
-    "generate:go": "bun quicktype -s schema temp-schema.json --lang go --top-level NetworksRegistry --package registry --out packages/go/types.go",
+    "generate:go": "bun quicktype -s schema temp-schema.json --lang go --top-level NetworksRegistry --package registry --out packages/golang/types.go",
     "generate:cleanup": "rm temp-schema.json",
     "generate": "bun generate:prepare && bun generate:typescript && bun generate:rust && bun generate:go && bun generate:cleanup",
     "build": "bun run build:ts",

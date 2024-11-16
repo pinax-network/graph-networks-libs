@@ -11,7 +11,7 @@
 //     let model: NetworksRegistry = serde_json::from_str(&json).unwrap();
 // }
 
-use serde::{Deserialize, Serialize};
+use serde::{Serialize, Deserialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
