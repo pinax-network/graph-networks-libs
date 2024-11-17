@@ -1,4 +1,4 @@
-import { NetworksRegistry } from "@pinax/graph-networks-ts";
+import { NetworksRegistry } from "@pinax/graph-networks-registry";
 
 async function main() {
   // Fetch latest registry

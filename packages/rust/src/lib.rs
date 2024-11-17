@@ -7,7 +7,7 @@
 //! # Example
 //!
 //! ```
-//! use networks_registry::NetworksRegistry;
+//! use graph_networks_registry::NetworksRegistry;
 //!
 //! # async fn example() -> Result<(), Box<dyn std::error::Error>> {
 //! // Load the latest registry from online source

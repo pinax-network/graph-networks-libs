@@ -7,6 +7,6 @@
         "start": "bun run index.ts"
     },
     "dependencies": {
-        "@pinax/graph-networks-ts": "file:../../"
+        "@pinax/graph-networks-registry": "file:../../"
     }
 }
