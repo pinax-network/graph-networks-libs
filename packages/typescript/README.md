@@ -51,7 +51,7 @@ if (ethereum) {
 ```
 
 
-For complete type definitions, see the [types.ts](https://github.com/YaroShkvorets/networks-registry-libs/blob/main/packages/typescript/src/types.ts) file.
+For complete type definitions, see the [types.ts](https://github.com/YaroShkvorets/graph-networks-libs/blob/main/packages/typescript/src/types.ts) file.
 
 ### Basic Example
 

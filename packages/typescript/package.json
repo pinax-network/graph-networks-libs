@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/YaroShkvorets/networks-registry-libs.git"
+    "url": "git+https://github.com/YaroShkvorets/graph-networks-libs.git"
   },
   "keywords": [
     "graph",
@@ -30,9 +30,9 @@
   "author": "Yaro Shkvorets <yaro@pinax.network>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/YaroShkvorets/networks-registry-libs/issues"
+    "url": "https://github.com/YaroShkvorets/graph-networks-libs/issues"
   },
-  "homepage": "https://github.com/YaroShkvorets/networks-registry-libs#readme",
+  "homepage": "https://github.com/YaroShkvorets/graph-networks-libs#readme",
   "publishConfig": {
     "access": "public"
   },

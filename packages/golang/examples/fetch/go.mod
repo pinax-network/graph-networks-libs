@@ -2,6 +2,6 @@ module example
 
 go 1.22.0
 
-replace github.com/graphprotocol/networks-registry-libs/packages/golang => ../../pkg/
+replace github.com/YaroShkvorets/graph-networks-libs/packages/golang => ../../lib/
 
-require github.com/graphprotocol/networks-registry-libs/packages/golang v0.0.0-00010101000000-000000000000
+require github.com/YaroShkvorets/graph-networks-libs/packages/golang v0.5.0

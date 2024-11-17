@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	registry "github.com/graphprotocol/networks-registry-libs/packages/golang"
+	registry "github.com/YaroShkvorets/graph-networks-libs/packages/golang/lib"
 )
 
 func main() {
