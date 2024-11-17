@@ -14,7 +14,7 @@ const registryBaseURL = "https://registry.thegraph.com"
 // It constructs the URL using the major and minor version numbers from the current package version.
 // The URL follows the pattern: https://registry.thegraph.com/TheGraphNetworksRegistry_v{major}_{minor}_x.json
 func GetLatestVersionUrl() string {
-	major, minor := GetMajorMinor()
+	major, minor := getMajorMinor()
 	return fmt.Sprintf("%s/TheGraphNetworksRegistry_v%s_%s_x.json", registryBaseURL, major, minor)
 }
 
@@ -113,4 +113,12 @@ func (r *NetworksRegistry) GetNetworkByAlias(alias string) *NetworkElement {
 		}
 	}
 	return nil
+}
+
+func getMajorMinor() (string, string) {
+	parts := strings.Split(Version, ".")
+	if len(parts) < 2 {
+		panic("invalid version format: version must include major and minor numbers (x.y.z)")
+	}
+	return parts[0], parts[1]
 }
