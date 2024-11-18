@@ -28,6 +28,7 @@
         "https://eth.rpc.pinax.network/v1/{PINAX_API_KEY}",
         "https://mainnet.infura.io/v3/{INFURA_API_KEY}"
       ],
+      "asdf": 123,
       "apiUrls": [
         {
           "url": "https://api.etherscan.io/api",

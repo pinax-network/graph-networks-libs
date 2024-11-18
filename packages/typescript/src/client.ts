@@ -40,7 +40,8 @@ export class NetworksRegistry {
   }
   /**
    * Fetches and loads the latest version of the networks registry.
-   * Uses the version from package.json to determine the latest compatible registry URL.
+   * Uses the library version to determine the latest compatible registry URL.
+   * Library version 0.5.x will use the latest registry version 0.5.y even if 0.6.z is available
    *
    * @returns Promise that resolves to a new NetworksRegistry instance
    * @throws Error if the registry fetch fails
@@ -93,10 +94,11 @@ export class NetworksRegistry {
    *
    * @param json - The JSON string containing registry data
    * @returns A new NetworksRegistry instance
-   * @throws Error if the JSON is invalid or doesn't match the expected schema
+   * @throws Error if the JSON is invalid
    */
   static fromJson(json: string): NetworksRegistry {
-    const networksRegistry = Convert.toNetworksRegistryElement(json);
+    const parsedData = JSON.parse(json);
+    const networksRegistry = parsedData as NetworksRegistryElement;
     return new NetworksRegistry(networksRegistry);
   }
 

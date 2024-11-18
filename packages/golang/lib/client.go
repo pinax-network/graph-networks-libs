@@ -26,8 +26,8 @@ func GetExactVersionUrl(version string) string {
 	return fmt.Sprintf("%s/TheGraphNetworksRegistry_v%s.json", registryBaseURL, versionPath)
 }
 
-// FromLatestVersion fetches and loads the latest version of the networks registry.
-// It determines the URL for the latest compatible version and loads the registry from it.
+// FromLatestVersion fetches and loads the latest compatibversion of the networks registry.
+// Library version 0.5.x will use the latest registry version 0.5.y even if 0.6.z is available
 // Returns a pointer to NetworksRegistry and any error encountered during fetching or parsing.
 func FromLatestVersion() (*NetworksRegistry, error) {
 	url := GetLatestVersionUrl()
