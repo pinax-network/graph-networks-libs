@@ -35,7 +35,9 @@ func main() {
 
 ## API Reference
 
-### Functions
+See reference on [pkg.go.dev](https://pkg.go.dev/github.com/pinax-network/graph-networks-libs/packages/golang/lib)
+
+### Constructors
 
 - `FromLatestVersion() (*NetworksRegistry, error)` - Fetches the latest compatible version of the registry (recommended)
 - `FromExactVersion(version string) (*NetworksRegistry, error)` - Fetches a specific version

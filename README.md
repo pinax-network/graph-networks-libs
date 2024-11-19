@@ -30,4 +30,4 @@ if there are errors when running the script, find and fix them manually.
 
 - `npm publish` for TypeScript
 - `cargo publish` for Rust
-- `./packages/golang/release.sh` for Go
+- `./release.sh` for Go
