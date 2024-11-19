@@ -5,7 +5,7 @@ Go types and helpers for working with [The Graph Networks Registry](https://gith
 ## Installation
 
 ```bash
-go get github.com/pinax-network/graph-networks-libs/packages/golang
+go get github.com/pinax-network/graph-networks-libs@v0.6.0
 ```
 
 
