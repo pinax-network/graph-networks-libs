@@ -28,6 +28,6 @@ if there are errors when running the script, find and fix them manually.
 
 ## Publishing new versions
 
-- `npm publish --access public` for TypeScript
+- `npm publish` for TypeScript
 - `cargo publish` for Rust
-- `git tag vX.Y.Z && git push --tags` for Go
+- `./packages/golang/release.sh` for Go

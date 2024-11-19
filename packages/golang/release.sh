@@ -8,7 +8,7 @@ if [[ -n $(git status -s) ]]; then
 fi
 
 # 2. Get version from version.go
-VERSION=$(grep -o 'const Version = "[^"]*"' pkg/version.go | cut -d'"' -f2)
+VERSION=$(grep -o 'const Version = "[^"]*"' lib/version.go | cut -d'"' -f2)
 if [[ -z "$VERSION" ]]; then
     echo "Error: Could not extract version from version.go"
     exit 1
