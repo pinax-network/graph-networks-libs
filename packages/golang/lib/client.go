@@ -84,9 +84,9 @@ func FromFile(path string) (*NetworksRegistry, error) {
 }
 
 // GetNetworkById finds a network by its unique identifier.
-// It takes a network ID string and returns the matching NetworkElement if found.
+// It takes a network ID string and returns the matching Network if found.
 // Returns nil if no network with the given ID exists in the registry.
-func (r *NetworksRegistry) GetNetworkById(id string) *NetworkElement {
+func (r *NetworksRegistry) GetNetworkById(id string) *Network {
 	for i := range r.Networks {
 		if r.Networks[i].ID == id {
 			return &r.Networks[i]
@@ -97,8 +97,8 @@ func (r *NetworksRegistry) GetNetworkById(id string) *NetworkElement {
 
 // GetNetworkByAlias finds a network by its ID or one of its aliases.
 // It takes an alias string and checks both network IDs and alias lists.
-// Returns the first matching NetworkElement or nil if no match is found.
-func (r *NetworksRegistry) GetNetworkByAlias(alias string) *NetworkElement {
+// Returns the first matching Network or nil if no match is found.
+func (r *NetworksRegistry) GetNetworkByAlias(alias string) *Network {
 	for i := range r.Networks {
 		network := &r.Networks[i]
 		if network.ID == alias {

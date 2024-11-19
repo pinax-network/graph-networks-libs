@@ -21,79 +21,84 @@ func (r *NetworksRegistry) Marshal() ([]byte, error) {
 }
 
 type NetworksRegistry struct {
-	// Reference to this schema file                    
-	Schema                             string           `json:"$schema"`
-	Description                        string           `json:"description"`
-	// List of networks                                 
-	Networks                           []NetworkElement `json:"networks"`
-	Title                              string           `json:"title"`
-	// Date and time of the last update                 
-	UpdatedAt                          time.Time        `json:"updatedAt"`
-	// Version of the registry                          
-	Version                            string           `json:"version"`
+	// Reference to this schema file             
+	Schema                             string    `json:"$schema"`
+	Description                        string    `json:"description"`
+	// List of networks                          
+	Networks                           []Network `json:"networks"`
+	Title                              string    `json:"title"`
+	// Date and time of the last update          
+	UpdatedAt                          time.Time `json:"updatedAt"`
+	// Version of the registry                   
+	Version                            string    `json:"version"`
 }
 
-type NetworkElement struct {
-	// [optional] List of possible aliases for the chain id, i.e. ethereum, eth, mainnet,                      
+type Network struct {
+	// [optional] List of possible aliases for the network id, e.g. ethereum, eth, mainnet,                    
 	// eth-mainnet                                                                                             
 	Aliases                                                                                   []string         `json:"aliases,omitempty"`
-	// List of API URLs for the chain, i.e. https://api.etherscan.io/api. Use {CUSTOM_API_KEY}                 
-	// as a placeholder for a private API key                                                                  
+	// List of API URLs for the network, i.e. Etherescan-like API to get ABI. Use                              
+	// {CUSTOM_API_KEY} as a placeholder for a private API key                                                 
 	APIUrls                                                                                   []APIURL         `json:"apiUrls,omitempty"`
-	// CAIP-2 Chain ID, i.e. eip155:1, bip122:000000000019d6689c085ae165831e93                                 
+	// CAIP-2 Chain ID, e.g. eip155:1, bip122:000000000019d6689c085ae165831e93                                 
 	Caip2ID                                                                                   string           `json:"caip2Id"`
 	// URL to the chain documentation                                                                          
 	DocsURL                                                                                   *string          `json:"docsUrl,omitempty"`
 	// URLs for the block explorers                                                                            
 	ExplorerUrls                                                                              []string         `json:"explorerUrls,omitempty"`
 	// Firehose block information                                                                              
-	Firehose                                                                                  *FirehoseClass   `json:"firehose,omitempty"`
-	// Display name of the network, i.e. Ethereum Mainnet, Bitcoin Testnet                                     
+	Firehose                                                                                  *Firehose        `json:"firehose,omitempty"`
+	// Display name of the network, e.g. Ethereum Mainnet, Bitcoin Testnet                                     
 	FullName                                                                                  string           `json:"fullName"`
+	// Genesis block information                                                                               
 	Genesis                                                                                   *Genesis         `json:"genesis,omitempty"`
+	// Graph Node specific configuration information                                                           
 	GraphNode                                                                                 *GraphNode       `json:"graphNode,omitempty"`
-	// Icons for the chain                                                                                     
+	// Icons for the network                                                                                   
 	Icon                                                                                      *Icon            `json:"icon,omitempty"`
-	// Established name of the chain on the Graph network, i.e. mainnet, btc, arweave-mainnet,                 
-	// near-testnet                                                                                            
+	// Established name of the network in The Graph ecosystem, e.g. mainnet, btc,                              
+	// arweave-mainnet, near-testnet                                                                           
 	ID                                                                                        string           `json:"id"`
-	// Documentation to run indexer components for the chain                                                   
+	// Documentation to run indexer components for this network                                                
 	IndexerDocsUrls                                                                           []IndexerDocsURL `json:"indexerDocsUrls,omitempty"`
 	// Issuance rewards on the Graph Network for this chain                                                    
 	IssuanceRewards                                                                           bool             `json:"issuanceRewards"`
 	// Symbol of the native token                                                                              
 	NativeToken                                                                               *string          `json:"nativeToken,omitempty"`
-	// Whether the chain is a mainnet/testnet/devnet                                                           
+	// Whether the network is a mainnet/testnet/devnet                                                         
 	NetworkType                                                                               NetworkType      `json:"networkType"`
+	// Relations to other networks in the registry                                                             
 	Relations                                                                                 []Relation       `json:"relations,omitempty"`
 	// List of RPC URLs for the chain. Use {CUSTOM_API_KEY} as a placeholder for a private API                 
 	// key                                                                                                     
 	RPCUrls                                                                                   []string         `json:"rpcUrls,omitempty"`
-	// Second display name of the network, i.e. Sepolia, Nova                                                  
+	// Second display name of the network, e.g. Sepolia, Nova                                                  
 	SecondName                                                                                *string          `json:"secondName,omitempty"`
-	// Providers support for the chain by providers                                                            
+	// Services available for the network in the ecosystem                                                     
 	Services                                                                                  Services         `json:"services"`
-	// Short display name of the network, i.e. Ethereum, BNB                                                   
+	// Short display name of the network, e.g. Ethereum, BNB                                                   
 	ShortName                                                                                 string           `json:"shortName"`
 }
 
 type APIURL struct {
-	Kind APIURLKind `json:"kind"`
-	URL  string     `json:"url"`
+	// Kind of API           
+	Kind          APIURLKind `json:"kind"`
+	URL           string     `json:"url"`
 }
 
 // Firehose block information
-type FirehoseClass struct {
-	// Block type, i.e. sf.ethereum.type.v2.Block                                                             
+type Firehose struct {
+	// Block type, e.g. sf.ethereum.type.v2.Block                                                             
 	BlockType                                                                                   string        `json:"blockType"`
-	// Protobuf definitions on buf.build, i.e. https://buf.build/streamingfast/firehose-ethereum              
+	// Protobuf definitions on buf.build, e.g. https://buf.build/streamingfast/firehose-ethereum              
 	BufURL                                                                                      string        `json:"bufUrl"`
-	// Bytes encoding, i.e. hex, 0xhex, base58                                                                
+	// Bytes encoding, e.g. hex, 0xhex, base58                                                                
 	BytesEncoding                                                                               BytesEncoding `json:"bytesEncoding"`
-	// [optional] Whether supports extended block model if EVM chain                                          
+	// [optional] Whether there is support for extended EVM block model                                       
 	EvmExtendedModel                                                                            *bool         `json:"evmExtendedModel,omitempty"`
 }
 
+// Genesis block information
 type Genesis struct {
 	// Hash of the genesis block either in 0x-prefixed hex or base58       
 	Hash                                                            string `json:"hash"`
@@ -101,12 +106,13 @@ type Genesis struct {
 	Height                                                          int64  `json:"height"`
 }
 
+// Graph Node specific configuration information
 type GraphNode struct {
-	// [optional] Protocol name in graph-node, i.e. ethereum, near, arweave          
+	// [optional] Protocol name in graph-node, e.g. ethereum, near, arweave          
 	Protocol                                                               *Protocol `json:"protocol,omitempty"`
 }
 
-// Icons for the chain
+// Icons for the network
 type Icon struct {
 	// Web3Icons icon - see https://github.com/0xa3k5/web3icons           
 	Web3Icons                                                  *Web3Icons `json:"web3Icons,omitempty"`
@@ -114,37 +120,39 @@ type Icon struct {
 
 // Web3Icons icon - see https://github.com/0xa3k5/web3icons
 type Web3Icons struct {
+	// Web3Icons icon ID                                                   
 	Name                                                          string   `json:"name"`
 	// Variants of the icon, if none specified - all are available         
 	Variants                                                      []string `json:"variants,omitempty"`
 }
 
 type IndexerDocsURL struct {
-	Hint *string            `json:"hint,omitempty"`
-	Kind IndexerDocsURLKind `json:"kind"`
-	URL  string             `json:"url"`
+	// Docs description, e.g. Arbitrum 101                                                        
+	Description                                                                           *string `json:"description,omitempty"`
+	// URL to the documentation, e.g. https://docs.infradao.com/archive-nodes-101/arbitrum        
+	URL                                                                                   string  `json:"url"`
 }
 
 type Relation struct {
 	// Kind of relation                                                  
 	Kind                                                    RelationKind `json:"kind"`
-	// Id of the related network, i.e. mainnet, near-mainnet             
+	// ID of the related network, e.g. mainnet, near-mainnet             
 	Network                                                 string       `json:"network"`
 }
 
-// Providers support for the chain by providers
+// Services available for the network in the ecosystem
 type Services struct {
-	Firehose   []FirehoseElement `json:"firehose,omitempty"`
-	Sps        []FirehoseElement `json:"sps,omitempty"`
-	Subgraphs  []FirehoseElement `json:"subgraphs,omitempty"`
-	Substreams []FirehoseElement `json:"substreams,omitempty"`
+	// Firehose gRPC URLs, e.g. eth.firehose.pinax.network:443                                         
+	Firehose                                                                                  []string `json:"firehose,omitempty"`
+	// Substreams-based subgraphs studio deployment URLs, e.g. https://api.thegraph.com/deploy         
+	Sps                                                                                       []string `json:"sps,omitempty"`
+	// Subgraph studio deployment URLs, e.g. https://api.thegraph.com/deploy                           
+	Subgraphs                                                                                 []string `json:"subgraphs,omitempty"`
+	// Substreams gRPC URLs, e.g. eth.substreams.pinax.network:443                                     
+	Substreams                                                                                []string `json:"substreams,omitempty"`
 }
 
-type FirehoseElement struct {
-	Provider Provider `json:"provider"`
-	URL      *string  `json:"url,omitempty"`
-}
-
+// Kind of API
 type APIURLKind string
 
 const (
@@ -155,35 +163,30 @@ const (
 	Subscan     APIURLKind = "subscan"
 )
 
-// Bytes encoding, i.e. hex, 0xhex, base58
+// Bytes encoding, e.g. hex, 0xhex, base58
 type BytesEncoding string
 
 const (
-	Base58   BytesEncoding = "base58"
-	Hex      BytesEncoding = "hex"
-	The0Xhex BytesEncoding = "0xhex"
+	Base58             BytesEncoding = "base58"
+	Base64             BytesEncoding = "base64"
+	BytesEncodingOther BytesEncoding = "other"
+	Hex                BytesEncoding = "hex"
+	The0Xhex           BytesEncoding = "0xhex"
 )
 
-// [optional] Protocol name in graph-node, i.e. ethereum, near, arweave
+// [optional] Protocol name in graph-node, e.g. ethereum, near, arweave
 type Protocol string
 
 const (
-	Arweave  Protocol = "arweave"
-	Cosmos   Protocol = "cosmos"
-	Ethereum Protocol = "ethereum"
-	Near     Protocol = "near"
-	Starknet Protocol = "starknet"
+	Arweave       Protocol = "arweave"
+	Cosmos        Protocol = "cosmos"
+	Ethereum      Protocol = "ethereum"
+	Near          Protocol = "near"
+	ProtocolOther Protocol = "other"
+	Starknet      Protocol = "starknet"
 )
 
-type IndexerDocsURLKind string
-
-const (
-	Firehose    IndexerDocsURLKind = "firehose"
-	FluffyOther IndexerDocsURLKind = "other"
-	RPC         IndexerDocsURLKind = "rpc"
-)
-
-// Whether the chain is a mainnet/testnet/devnet
+// Whether the network is a mainnet/testnet/devnet
 type NetworkType string
 
 const (
@@ -196,22 +199,11 @@ const (
 type RelationKind string
 
 const (
-	BeaconOf       RelationKind = "beaconOf"
-	EvmOf          RelationKind = "evmOf"
-	ForkedFrom     RelationKind = "forkedFrom"
-	L2Of           RelationKind = "l2Of"
-	ShardOf        RelationKind = "shardOf"
-	TentacledOther RelationKind = "other"
-	TestnetOf      RelationKind = "testnetOf"
-)
-
-type Provider string
-
-const (
-	EN            Provider = "e&n"
-	Graphops      Provider = "graphops"
-	Messari       Provider = "messari"
-	Pinax         Provider = "pinax"
-	Semiotic      Provider = "semiotic"
-	Streamingfast Provider = "streamingfast"
+	BeaconOf    RelationKind = "beaconOf"
+	EvmOf       RelationKind = "evmOf"
+	FluffyOther RelationKind = "other"
+	ForkedFrom  RelationKind = "forkedFrom"
+	L2Of        RelationKind = "l2Of"
+	ShardOf     RelationKind = "shardOf"
+	TestnetOf   RelationKind = "testnetOf"
 )

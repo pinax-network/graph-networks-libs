@@ -9,7 +9,7 @@ import (
 
 func main() {
     // Load from local file
-    reg, err := registry.FromFile("../../../../registry/TheGraphNetworksRegistry.json")
+    reg, err := registry.FromFile("../../../../sample/TheGraphNetworksRegistry.json")
     if err != nil {
         log.Fatalf("Failed to load registry: %v", err)
     }

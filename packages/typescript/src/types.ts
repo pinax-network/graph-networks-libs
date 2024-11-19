@@ -16,7 +16,7 @@ export interface NetworksRegistryElement {
     /**
      * List of networks
      */
-    networks: NetworkElement[];
+    networks: Network[];
     title:    string;
     /**
      * Date and time of the last update
@@ -28,19 +28,19 @@ export interface NetworksRegistryElement {
     version: string;
 }
 
-export interface NetworkElement {
+export interface Network {
     /**
-     * [optional] List of possible aliases for the chain id, i.e. ethereum, eth, mainnet,
+     * [optional] List of possible aliases for the network id, e.g. ethereum, eth, mainnet,
      * eth-mainnet
      */
     aliases?: string[];
     /**
-     * List of API URLs for the chain, i.e. https://api.etherscan.io/api. Use {CUSTOM_API_KEY}
-     * as a placeholder for a private API key
+     * List of API URLs for the network, i.e. Etherescan-like API to get ABI. Use
+     * {CUSTOM_API_KEY} as a placeholder for a private API key
      */
     apiUrls?: APIURL[];
     /**
-     * CAIP-2 Chain ID, i.e. eip155:1, bip122:000000000019d6689c085ae165831e93
+     * CAIP-2 Chain ID, e.g. eip155:1, bip122:000000000019d6689c085ae165831e93
      */
     caip2Id: string;
     /**
@@ -56,22 +56,28 @@ export interface NetworkElement {
      */
     firehose?: Firehose;
     /**
-     * Display name of the network, i.e. Ethereum Mainnet, Bitcoin Testnet
+     * Display name of the network, e.g. Ethereum Mainnet, Bitcoin Testnet
      */
-    fullName:   string;
-    genesis?:   Genesis;
+    fullName: string;
+    /**
+     * Genesis block information
+     */
+    genesis?: Genesis;
+    /**
+     * Graph Node specific configuration information
+     */
     graphNode?: GraphNode;
     /**
-     * Icons for the chain
+     * Icons for the network
      */
     icon?: Icon;
     /**
-     * Established name of the chain on the Graph network, i.e. mainnet, btc, arweave-mainnet,
-     * near-testnet
+     * Established name of the network in The Graph ecosystem, e.g. mainnet, btc,
+     * arweave-mainnet, near-testnet
      */
     id: string;
     /**
-     * Documentation to run indexer components for the chain
+     * Documentation to run indexer components for this network
      */
     indexerDocsUrls?: IndexerDocsURL[];
     /**
@@ -83,34 +89,43 @@ export interface NetworkElement {
      */
     nativeToken?: string;
     /**
-     * Whether the chain is a mainnet/testnet/devnet
+     * Whether the network is a mainnet/testnet/devnet
      */
     networkType: NetworkType;
-    relations?:  Relation[];
+    /**
+     * Relations to other networks in the registry
+     */
+    relations?: Relation[];
     /**
      * List of RPC URLs for the chain. Use {CUSTOM_API_KEY} as a placeholder for a private API
      * key
      */
     rpcUrls?: string[];
     /**
-     * Second display name of the network, i.e. Sepolia, Nova
+     * Second display name of the network, e.g. Sepolia, Nova
      */
     secondName?: string;
     /**
-     * Providers support for the chain by providers
+     * Services available for the network in the ecosystem
      */
     services: Services;
     /**
-     * Short display name of the network, i.e. Ethereum, BNB
+     * Short display name of the network, e.g. Ethereum, BNB
      */
     shortName: string;
 }
 
 export interface APIURL {
+    /**
+     * Kind of API
+     */
     kind: APIURLKind;
     url:  string;
 }
 
+/**
+ * Kind of API
+ */
 export enum APIURLKind {
     Blockscout = "blockscout",
     Etherscan = "etherscan",
@@ -124,32 +139,37 @@ export enum APIURLKind {
  */
 export interface Firehose {
     /**
-     * Block type, i.e. sf.ethereum.type.v2.Block
+     * Block type, e.g. sf.ethereum.type.v2.Block
      */
     blockType: string;
     /**
-     * Protobuf definitions on buf.build, i.e. https://buf.build/streamingfast/firehose-ethereum
+     * Protobuf definitions on buf.build, e.g. https://buf.build/streamingfast/firehose-ethereum
      */
     bufUrl: string;
     /**
-     * Bytes encoding, i.e. hex, 0xhex, base58
+     * Bytes encoding, e.g. hex, 0xhex, base58
      */
     bytesEncoding: BytesEncoding;
     /**
-     * [optional] Whether supports extended block model if EVM chain
+     * [optional] Whether there is support for extended EVM block model
      */
     evmExtendedModel?: boolean;
 }
 
 /**
- * Bytes encoding, i.e. hex, 0xhex, base58
+ * Bytes encoding, e.g. hex, 0xhex, base58
  */
 export enum BytesEncoding {
     Base58 = "base58",
+    Base64 = "base64",
     Hex = "hex",
+    Other = "other",
     The0Xhex = "0xhex",
 }
 
+/**
+ * Genesis block information
+ */
 export interface Genesis {
     /**
      * Hash of the genesis block either in 0x-prefixed hex or base58
@@ -161,26 +181,30 @@ export interface Genesis {
     height: number;
 }
 
+/**
+ * Graph Node specific configuration information
+ */
 export interface GraphNode {
     /**
-     * [optional] Protocol name in graph-node, i.e. ethereum, near, arweave
+     * [optional] Protocol name in graph-node, e.g. ethereum, near, arweave
      */
     protocol?: Protocol;
 }
 
 /**
- * [optional] Protocol name in graph-node, i.e. ethereum, near, arweave
+ * [optional] Protocol name in graph-node, e.g. ethereum, near, arweave
  */
 export enum Protocol {
     Arweave = "arweave",
     Cosmos = "cosmos",
     Ethereum = "ethereum",
     Near = "near",
+    Other = "other",
     Starknet = "starknet",
 }
 
 /**
- * Icons for the chain
+ * Icons for the network
  */
 export interface Icon {
     /**
@@ -193,6 +217,9 @@ export interface Icon {
  * Web3Icons icon - see https://github.com/0xa3k5/web3icons
  */
 export interface Web3Icons {
+    /**
+     * Web3Icons icon ID
+     */
     name: string;
     /**
      * Variants of the icon, if none specified - all are available
@@ -201,19 +228,18 @@ export interface Web3Icons {
 }
 
 export interface IndexerDocsURL {
-    hint?: string;
-    kind:  IndexerDocsURLKind;
-    url:   string;
-}
-
-export enum IndexerDocsURLKind {
-    Firehose = "firehose",
-    Other = "other",
-    RPC = "rpc",
+    /**
+     * Docs description, e.g. Arbitrum 101
+     */
+    description?: string;
+    /**
+     * URL to the documentation, e.g. https://docs.infradao.com/archive-nodes-101/arbitrum
+     */
+    url: string;
 }
 
 /**
- * Whether the chain is a mainnet/testnet/devnet
+ * Whether the network is a mainnet/testnet/devnet
  */
 export enum NetworkType {
     Devnet = "devnet",
@@ -227,7 +253,7 @@ export interface Relation {
      */
     kind: RelationKind;
     /**
-     * Id of the related network, i.e. mainnet, near-mainnet
+     * ID of the related network, e.g. mainnet, near-mainnet
      */
     network: string;
 }
@@ -246,27 +272,25 @@ export enum RelationKind {
 }
 
 /**
- * Providers support for the chain by providers
+ * Services available for the network in the ecosystem
  */
 export interface Services {
-    firehose?:   FirehoseElement[];
-    sps?:        FirehoseElement[];
-    subgraphs?:  FirehoseElement[];
-    substreams?: FirehoseElement[];
-}
-
-export interface FirehoseElement {
-    provider: Provider;
-    url?:     string;
-}
-
-export enum Provider {
-    EN = "e&n",
-    Graphops = "graphops",
-    Messari = "messari",
-    Pinax = "pinax",
-    Semiotic = "semiotic",
-    Streamingfast = "streamingfast",
+    /**
+     * Firehose gRPC URLs, e.g. eth.firehose.pinax.network:443
+     */
+    firehose?: string[];
+    /**
+     * Substreams-based subgraphs studio deployment URLs, e.g. https://api.thegraph.com/deploy
+     */
+    sps?: string[];
+    /**
+     * Subgraph studio deployment URLs, e.g. https://api.thegraph.com/deploy
+     */
+    subgraphs?: string[];
+    /**
+     * Substreams gRPC URLs, e.g. eth.substreams.pinax.network:443
+     */
+    substreams?: string[];
 }
 
 // Converts JSON strings to/from your types
@@ -437,12 +461,12 @@ const typeMap: any = {
     "NetworksRegistryElement": o([
         { json: "$schema", js: "$schema", typ: "" },
         { json: "description", js: "description", typ: "" },
-        { json: "networks", js: "networks", typ: a(r("NetworkElement")) },
+        { json: "networks", js: "networks", typ: a(r("Network")) },
         { json: "title", js: "title", typ: "" },
         { json: "updatedAt", js: "updatedAt", typ: Date },
         { json: "version", js: "version", typ: "" },
     ], false),
-    "NetworkElement": o([
+    "Network": o([
         { json: "aliases", js: "aliases", typ: u(undefined, a("")) },
         { json: "apiUrls", js: "apiUrls", typ: u(undefined, a(r("APIURL"))) },
         { json: "caip2Id", js: "caip2Id", typ: "" },
@@ -489,8 +513,7 @@ const typeMap: any = {
         { json: "variants", js: "variants", typ: u(undefined, a("")) },
     ], false),
     "IndexerDocsURL": o([
-        { json: "hint", js: "hint", typ: u(undefined, "") },
-        { json: "kind", js: "kind", typ: r("IndexerDocsURLKind") },
+        { json: "description", js: "description", typ: u(undefined, "") },
         { json: "url", js: "url", typ: "" },
     ], false),
     "Relation": o([
@@ -498,14 +521,10 @@ const typeMap: any = {
         { json: "network", js: "network", typ: "" },
     ], false),
     "Services": o([
-        { json: "firehose", js: "firehose", typ: u(undefined, a(r("FirehoseElement"))) },
-        { json: "sps", js: "sps", typ: u(undefined, a(r("FirehoseElement"))) },
-        { json: "subgraphs", js: "subgraphs", typ: u(undefined, a(r("FirehoseElement"))) },
-        { json: "substreams", js: "substreams", typ: u(undefined, a(r("FirehoseElement"))) },
-    ], false),
-    "FirehoseElement": o([
-        { json: "provider", js: "provider", typ: r("Provider") },
-        { json: "url", js: "url", typ: u(undefined, "") },
+        { json: "firehose", js: "firehose", typ: u(undefined, a("")) },
+        { json: "sps", js: "sps", typ: u(undefined, a("")) },
+        { json: "subgraphs", js: "subgraphs", typ: u(undefined, a("")) },
+        { json: "substreams", js: "substreams", typ: u(undefined, a("")) },
     ], false),
     "APIURLKind": [
         "blockscout",
@@ -516,7 +535,9 @@ const typeMap: any = {
     ],
     "BytesEncoding": [
         "base58",
+        "base64",
         "hex",
+        "other",
         "0xhex",
     ],
     "Protocol": [
@@ -524,12 +545,8 @@ const typeMap: any = {
         "cosmos",
         "ethereum",
         "near",
-        "starknet",
-    ],
-    "IndexerDocsURLKind": [
-        "firehose",
         "other",
-        "rpc",
+        "starknet",
     ],
     "NetworkType": [
         "devnet",
@@ -544,13 +561,5 @@ const typeMap: any = {
         "other",
         "shardOf",
         "testnetOf",
-    ],
-    "Provider": [
-        "e&n",
-        "graphops",
-        "messari",
-        "pinax",
-        "semiotic",
-        "streamingfast",
     ],
 };

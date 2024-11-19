@@ -1,5 +1,5 @@
 import { readFileSync } from "fs";
-import { type NetworksRegistryElement, type NetworkElement, Convert } from "./types";
+import { type NetworksRegistryElement, type Network } from "./types";
 import { version as packageVersion } from "../package.json";
 
 const REGISTRY_BASE_URL = "https://registry.thegraph.com";
@@ -19,7 +19,7 @@ export class NetworksRegistry {
    * Gets all networks in the registry.
    * @returns Array of all network elements
    */
-  get networks(): NetworkElement[] {
+  get networks(): Network[] {
     return this.registry.networks;
   }
 
@@ -146,7 +146,7 @@ export class NetworksRegistry {
    * const mainnet = registry.getNetworkById("mainnet");
    * ```
    */
-  getNetworkById(id: string): NetworkElement | undefined {
+  getNetworkById(id: string): Network | undefined {
     return this.registry.networks.find((network) => network.id === id);
   }
 
@@ -161,7 +161,7 @@ export class NetworksRegistry {
    * const ethereum = registry.getNetworkByAlias("eth");
    * ```
    */
-  getNetworkByAlias(alias: string): NetworkElement | undefined {
+  getNetworkByAlias(alias: string): Network | undefined {
     return this.registry.networks.find((network) => network.id === alias || network.aliases?.includes(alias));
   }
 }

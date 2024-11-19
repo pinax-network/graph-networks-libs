@@ -47,5 +47,5 @@ func main() {
 
 ### Methods
 
-- `GetNetworkById(id string) *NetworkElement` - Finds a network by ID
-- `GetNetworkByAlias(alias string) *NetworkElement` - Finds a network by ID or alias
+- `GetNetworkById(id string) *Network` - Finds a network by ID
+- `GetNetworkByAlias(alias string) *Network` - Finds a network by ID or alias

@@ -1,7 +1,7 @@
 import { NetworksRegistry } from "@pinax/graph-networks-registry";
 
 // Read from local file
-const registry = NetworksRegistry.fromFile("../../../../registry/TheGraphNetworksRegistry.json");
+const registry = NetworksRegistry.fromFile("../../../../sample/TheGraphNetworksRegistry.json");
 
 console.log("Successfully loaded", registry.networks.length, "networks");
 

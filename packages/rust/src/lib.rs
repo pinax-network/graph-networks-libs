@@ -21,7 +21,7 @@
 //!
 //! # Additional Types
 //!
-//! - [`NetworkElement`] - Individual network configuration
+//! - [`Network`] - Individual network configuration
 
 mod client;
 mod error;

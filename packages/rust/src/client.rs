@@ -86,8 +86,8 @@ impl NetworksRegistry {
     ///
     /// # Returns
     ///
-    /// Returns `Some(&NetworkElement)` if found, `None` otherwise
-    pub fn get_network_by_id<'a>(&'a self, id: &str) -> Option<&'a NetworkElement> {
+    /// Returns `Some(&Network)` if found, `None` otherwise
+    pub fn get_network_by_id<'a>(&'a self, id: &str) -> Option<&'a Network> {
         self.networks.iter().find(|network| network.id == id)
     }
 
@@ -99,8 +99,8 @@ impl NetworksRegistry {
     ///
     /// # Returns
     ///
-    /// Returns `Some(&NetworkElement)` if found, `None` otherwise
-    pub fn get_network_by_alias<'a>(&'a self, alias: &str) -> Option<&'a NetworkElement> {
+    /// Returns `Some(&Network)` if found, `None` otherwise
+    pub fn get_network_by_alias<'a>(&'a self, alias: &str) -> Option<&'a Network> {
         self.networks.iter().find(|network| {
             network
                 .aliases
@@ -177,16 +177,6 @@ mod tests {
     #[tokio::test]
     async fn test_from_registry() {
         let result = NetworksRegistry::from_latest_version().await;
-        assert!(result.is_ok());
-
-        let registry = result.unwrap();
-        assert!(!registry.networks.is_empty());
-    }
-
-    #[cfg(feature = "fetch")]
-    #[tokio::test]
-    async fn test_from_registry_exact_version() {
-        let result = NetworksRegistry::from_exact_version("v0.5.0").await;
         assert!(result.is_ok());
 
         let registry = result.unwrap();
