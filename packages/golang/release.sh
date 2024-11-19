@@ -16,8 +16,9 @@ fi
 
 # 3. Show latest tag and confirm new version
 LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "no previous tags")
+NEW_TAG="packages/golang/v$VERSION"
 echo "Latest released version: $LATEST_TAG"
-echo "Preparing to release version: v$VERSION"
+echo "Preparing to release version: $NEW_TAG"
 read -p "Do you want to continue? (y/N) " -n 1 -r
 echo
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -26,13 +27,12 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
 fi
 
 # 4. Create git tag
-TAG="v$VERSION"
-echo "Creating git tag: $TAG"
-git tag -a "$TAG" -m "Release $TAG"
+echo "Creating git tag: $NEW_TAG"
+git tag -a "$NEW_TAG" -m "Release $NEW_TAG"
 
 # 5. Push to remote
 echo "Pushing tag to remote..."
-git push origin "$TAG"
+git push origin "$NEW_TAG"
 
-echo "Release $TAG completed successfully!"
-echo "The package can now be used with: go get github.com/pinax-network/graph-networks-libs@$TAG"
+echo "Release $NEW_TAG completed successfully!"
+echo "The package can now be used with: go get github.com/pinax-network/graph-networks-libs/$NEW_TAG"
