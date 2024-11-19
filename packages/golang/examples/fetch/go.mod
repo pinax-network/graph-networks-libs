@@ -2,6 +2,6 @@ module example
 
 go 1.22.0
 
-replace github.com/YaroShkvorets/graph-networks-libs/packages/golang => ../../
+replace github.com/pinax-network/graph-networks-libs/packages/golang => ../../
 
-require github.com/YaroShkvorets/graph-networks-libs/packages/golang v0.5.0
+require github.com/pinax-network/graph-networks-libs/packages/golang v0.6.0

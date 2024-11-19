@@ -20,23 +20,21 @@ npm install @pinax/graph-networks-ts
 
 ```typescript
 import { NetworksRegistry } from '@pinax/graph-networks-ts';
-// Load from latest version
+// Load from latest version. Always compatible. Make sure you update the package to get the latest data.
 const registry = await NetworksRegistry.fromLatestVersion();
-// Load from specific version
-const registry = await NetworksRegistry.fromExactVersion('0.5.0');
-// Load from URL
-const registry = await NetworksRegistry.fromUrl('https://example.com/registry.json');
-// Load from local file
-const registry = NetworksRegistry.fromFile('./registry.json');
-// Load from JSON string
+// Load from specific version. Might throw if schema is not compatible.
+const registry = await NetworksRegistry.fromExactVersion('0.6.0');
+// Load from URL. Might throw if schema is not compatible.
+const registry = await NetworksRegistry.fromUrl('https://registry.thegraph.com/TheGraphNetworksRegistry.json');
+// Load from local file. Might throw if file is not found or schema is not compatible.
+const registry = NetworksRegistry.fromFile('./TheGraphNetworksRegistry.json');
+// Load from JSON string. Might throw if schema is not compatible.
 const registry = NetworksRegistry.fromJson(jsonString);
 ```
 
 ### Working with Networks
 
 ```typescript
-// Get all networks
-const networks = registry.networks;
 // Find network by ID
 const mainnet = registry.getNetworkById('mainnet');
 if (mainnet) {
@@ -50,19 +48,4 @@ if (ethereum) {
 }
 ```
 
-
-For complete type definitions, see the [types.ts](https://github.com/YaroShkvorets/graph-networks-libs/blob/main/packages/typescript/src/types.ts) file.
-
-### Basic Example
-
-```typescript
-import { NetworksRegistry } from '@pinax/graph-networks-ts';
-const registry = await NetworksRegistry.fromLatestVersion();
-// Get network information
-const mainnet = registry.getNetworkById('mainnet');
-if (mainnet) {
-    console.log(`Network: ${mainnet.fullName}`);
-    console.log(`CAIP-2 ID: ${mainnet.caip2Id}`);
-    console.log(`RPC URLs: ${mainnet.rpcUrls?.join(', ')}`);
-}
-```
+For complete type definitions, see the [types.ts](https://github.com/pinax-network/graph-networks-libs/blob/main/packages/typescript/src/types.ts) file.

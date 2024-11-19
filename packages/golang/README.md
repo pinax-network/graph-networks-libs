@@ -5,7 +5,7 @@ Go types and helpers for working with [The Graph Networks Registry](https://gith
 ## Installation
 
 ```bash
-go get github.com/YaroShkvorets/graph-networks-libs/packages/golang
+go get github.com/pinax-network/graph-networks-libs/packages/golang
 ```
 
 
@@ -16,7 +16,7 @@ package main
 import (
     "fmt"
     "log"
-    registry "github.com/YaroShkvorets/graph-networks-libs/packages/golang/lib"
+    registry "github.com/pinax-network/graph-networks-libs/packages/golang/lib"
 )
 
 func main() {

@@ -35,4 +35,4 @@ echo "Pushing tag to remote..."
 git push origin "$TAG"
 
 echo "Release $TAG completed successfully!"
-echo "The package can now be used with: go get github.com/YaroShkvorets/graph-networks-libs/packages/golang@$TAG"
+echo "The package can now be used with: go get github.com/pinax-network/graph-networks-libs/packages/golang@$TAG"

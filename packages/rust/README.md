@@ -8,7 +8,7 @@ If you want to always get up-to-date registry, make sure to use the latest versi
 `Cargo.toml`:
 ```toml
 [dependencies]
-graph-networks = "0.5.0"
+graph-networks = "0.6.0"
 ```
 
 ### Reading from a local file
@@ -55,5 +55,5 @@ If you don't need to fetch the registry from the network, you can turn off the `
 
 ```toml
 [dependencies]
-graph-networks = { version = "0.5.0", default-features = false }
+graph-networks = { version = "0.6.0", default-features = false }
 ```

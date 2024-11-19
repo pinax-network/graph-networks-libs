@@ -4,8 +4,8 @@ import { join } from "path";
 
 describe("NetworksRegistry", () => {
   const testRegistryJson = {
-    $schema: "https://registry.thegraph.com/TheGraphNetworksRegistrySchema_v0_5.json",
-    version: "0.5.0",
+    $schema: "https://registry.thegraph.com/TheGraphNetworksRegistrySchema_v0_6.json",
+    version: "0.6.0",
     title: "Test Registry",
     description: "Test Registry",
     updatedAt: "2025-01-01T00:00:00Z",
@@ -27,7 +27,7 @@ describe("NetworksRegistry", () => {
     test("should parse registry from JSON string", () => {
       const registry = NetworksRegistry.fromJson(JSON.stringify(testRegistryJson));
       expect(registry.networks.length).toBe(1);
-      expect(registry.version).toBe("0.5.0");
+      expect(registry.version).toBe("0.6.0");
     });
 
     test("should load registry from file", () => {
