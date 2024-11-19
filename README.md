@@ -14,7 +14,9 @@ This will:
 - pull the latest schema from [registry.thegraph.com](https://registry.thegraph.com),
 - inject new version into libraries
 - generate the types for all libraries using [quicktype](https://quicktype.io)
-- run tests
+- run tests and examples with the new schema
+
+if there are errors when running the script, find and fix them manually.
 
 ## Versioning
 
@@ -26,4 +28,6 @@ This will:
 
 ## Publishing new versions
 
-TODO: add instructions
+- `npm publish --access public` for TypeScript
+- `cargo publish` for Rust
+- `git tag vX.Y.Z && git push --tags` for Go

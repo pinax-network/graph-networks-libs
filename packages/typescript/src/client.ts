@@ -1,8 +1,14 @@
-import { readFileSync } from "fs";
 import { type NetworksRegistryElement, type Network } from "./types";
-import { version as packageVersion } from "../package.json";
+import { version as packageVersion } from "./version";
 
 const REGISTRY_BASE_URL = "https://registry.thegraph.com";
+
+let readFileSync: ((path: string, encoding: string) => string) | undefined;
+try {
+  // Only import fs in Node.js environment
+  const fs = require("fs");
+  readFileSync = fs.readFileSync;
+} catch {}
 
 /**
  * Client for interacting with The Graph Networks Registry.
@@ -110,6 +116,9 @@ export class NetworksRegistry {
    * @throws Error if the file cannot be read or contains invalid data
    */
   static fromFile(path: string): NetworksRegistry {
+    if (!readFileSync) {
+      throw new Error("File system operations are not supported in this environment");
+    }
     const contents = readFileSync(path, "utf-8");
     return NetworksRegistry.fromJson(contents);
   }

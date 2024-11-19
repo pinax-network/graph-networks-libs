@@ -21,10 +21,11 @@ SCHEMA_VERSION=$(echo "$SCHEMA_URL" | grep -o 'v[0-9]\+_[0-9]\+' | tr '_' '.')
 MAJOR_MINOR_VERSION=${SCHEMA_VERSION#v}  # Remove the 'v' prefix
 echo "Detected schema version: $MAJOR_MINOR_VERSION"
 
-# Update TypeScript package.json
+# Update version in TypeScript lib
 echo "Updating TypeScript package version..."
 jq ".version = \"$MAJOR_MINOR_VERSION.0\"" packages/typescript/package.json > temp.json
 mv temp.json packages/typescript/package.json
+echo "export const version = \"$MAJOR_MINOR_VERSION.0\";" > packages/typescript/src/version.ts
 
 # Update Rust Cargo.toml
 echo "Updating Rust package version..."
@@ -71,7 +72,7 @@ rm sample/Network.json
 
 # Run examples
 cd packages/typescript/examples/local
-bun install
+bun install --no-save
 bun run start
 cd ../../../..
 
