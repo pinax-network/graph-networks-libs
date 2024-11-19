@@ -8,7 +8,7 @@ If you want to always get up-to-date registry, make sure to use the latest versi
 `Cargo.toml`:
 ```toml
 [dependencies]
-graph-networks = "0.6.0"
+graph-networks-registry = "0.6.1"
 ```
 
 ### Reading from a local file
@@ -16,10 +16,10 @@ graph-networks = "0.6.0"
 To read the registry from a local file
 
 ```rust
-use graph_networks::NetworksRegistry;
+use graph_networks_registry::NetworksRegistry;
 fn main() {
     // Parse registry from JSON file
-    let registry = NetworksRegistry::from_file("TheGraphNetworksRegistry_v0_5_3.json")
+    let registry = NetworksRegistry::from_file("TheGraphNetworksRegistry_v0_6_0.json")
         .expect("Failed to parse registry");
 
     if let Some(network) = registry.get_network_by_id("mainnet") {
@@ -36,7 +36,7 @@ To fetch the latest registry version from the official source
 
 
 ```rust
-use graph_networks::NetworksRegistry;
+use graph_networks_registry::NetworksRegistry;
 
 #[tokio::main]
 async fn main() {
@@ -55,5 +55,5 @@ If you don't need to fetch the registry from the network, you can turn off the `
 
 ```toml
 [dependencies]
-graph-networks = { version = "0.6.0", default-features = false }
+graph-networks-registry = { version = "0.6.0", default-features = false }
 ```
