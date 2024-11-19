@@ -1,6 +1,8 @@
 #!/bin/bash
 
-set -e  # Exit on any error
+# this script is used to generate the types for the registry when the registry schema is updated
+
+set -e
 
 # return to the original directory on error or script exit
 CWD=$(pwd)

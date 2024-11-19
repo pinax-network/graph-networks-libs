@@ -1,6 +1,6 @@
 # The Graph Networks Registry Libraries
 
-Libraries for working with [The Graph Networks Registry](https://github.com/graphprotocol/networks-registry).
+Libraries to work with [The Graph Networks Registry](https://github.com/graphprotocol/networks-registry).
 
 - [TypeScript](./packages/typescript)
 - [Rust](./packages/rust)
@@ -16,7 +16,7 @@ This will:
 - generate the types for all libraries using [quicktype](https://quicktype.io)
 - run tests and examples with the new schema
 
-if there are errors when running the script, find and fix them manually.
+If there are errors when running the script, find and fix them manually.
 
 ## Versioning
 
