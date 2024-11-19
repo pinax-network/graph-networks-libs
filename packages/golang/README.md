@@ -2,14 +2,12 @@
 
 Go types and helpers for working with [The Graph Networks Registry](https://github.com/graphprotocol/networks-registry).
 
-## Installation
-
-```bash
-go get github.com/pinax-network/graph-networks-libs@v0.6.0
-```
-
 
 ## Usage
+
+```bash
+$ go get github.com/pinax-network/graph-networks-libs/packages/golang@latest
+```
 
 ```go
 package main
@@ -39,7 +37,7 @@ func main() {
 
 ### Functions
 
-- `FromLatestVersion() (*NetworksRegistry, error)` - Fetches the latest version of the registry
+- `FromLatestVersion() (*NetworksRegistry, error)` - Fetches the latest compatible version of the registry (recommended)
 - `FromExactVersion(version string) (*NetworksRegistry, error)` - Fetches a specific version
 - `FromFile(path string) (*NetworksRegistry, error)` - Loads from a local JSON file
 - `FromJSON(data []byte) (*NetworksRegistry, error)` - Parses from JSON bytes
