@@ -1,11 +1,13 @@
-# @pinax/graph-networks-ts
+# The Graph Networks Registry Typescript Library
+
+[![npm version](https://badge.fury.io/js/%40pinax%2Fgraph-networks-registry.svg)](https://www.npmjs.com/package/@pinax/graph-networks-registry) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 TypeScript types and helpers for working with [The Graph Networks Registry](https://github.com/graphprotocol/networks-registry).
 
 ## Installation
 
 ```bash
-npm install @pinax/graph-networks-ts
+npm install @pinax/graph-networks-registry
 ```
 
 ## Features
@@ -19,7 +21,7 @@ npm install @pinax/graph-networks-ts
 ### Loading the Registry
 
 ```typescript
-import { NetworksRegistry } from '@pinax/graph-networks-ts';
+import { NetworksRegistry } from '@pinax/graph-networks-registry';
 // Load from latest version. Always compatible. Make sure you update the package to get the latest data.
 const registry = await NetworksRegistry.fromLatestVersion();
 // Load from specific version. Might throw if schema is not compatible.

@@ -1,4 +1,6 @@
-# Networks Registry
+# The Graph Networks Registry Rust Library
+
+[![Crates.io](https://img.shields.io/crates/v/graph-networks-registry.svg)](https://crates.io/crates/graph-networks-registry) [![Docs.rs](https://docs.rs/graph-networks-registry/badge.svg)](https://docs.rs/graph-networks-registry) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Rust types and helpers for working with [The Graph Networks Registry](https://github.com/graphprotocol/networks-registry).
 
