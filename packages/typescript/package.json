@@ -11,8 +11,9 @@
   ],
   "scripts": {
     "build": "tsc",
+    "clean": "rm -rf dist",
     "test": "bun test",
-    "prepublishOnly": "bun run build"
+    "prepublishOnly": "bun run clean && bun run build"
   },
   "repository": {
     "type": "git",
