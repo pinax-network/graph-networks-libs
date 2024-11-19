@@ -8,7 +8,7 @@ repository = "https://github.com/pinax-network/graph-networks-libs"
 documentation = "https://docs.rs/graph-networks-registry"
 authors = ["Yaro Shkvorets <yaro@pinax.network>"]
 keywords = ["graph", "blockchain", "firehose", "substreams", "subgraph"]
-categories = ["blockchain", "api-bindings"]
+categories = ["cryptography::cryptocurrencies", "api-bindings"]
 readme = "README.md"
 
 [dependencies]
