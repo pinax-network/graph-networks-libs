@@ -1,4 +1,4 @@
-import { type NetworksRegistryElement, type Network } from "./types";
+import { type NetworksRegistryInner, type Network } from "./types";
 import { version as packageVersion } from "./version";
 
 const REGISTRY_BASE_URL = "https://registry.thegraph.com";
@@ -19,7 +19,7 @@ export class NetworksRegistry {
    * Creates a new NetworksRegistry instance.
    * @param registry - The parsed NetworksRegistry data
    */
-  constructor(private registry: NetworksRegistryElement) {}
+  constructor(private registry: NetworksRegistryInner) {}
 
   /**
    * Gets all networks in the registry.
@@ -104,7 +104,7 @@ export class NetworksRegistry {
    */
   static fromJson(json: string): NetworksRegistry {
     const parsedData = JSON.parse(json);
-    const networksRegistry = parsedData as NetworksRegistryElement;
+    const networksRegistry = parsedData as NetworksRegistryInner;
     return new NetworksRegistry(networksRegistry);
   }
 

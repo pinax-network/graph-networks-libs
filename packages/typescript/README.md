@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/%40pinax%2Fgraph-networks-registry.svg)](https://www.npmjs.com/package/@pinax/graph-networks-registry) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-TypeScript types and helpers for working with [The Graph Networks Registry](https://github.com/graphprotocol/networks-registry).
+TypeScript types and helpers for [The Graph Networks Registry](https://github.com/graphprotocol/networks-registry).
 
 ## Installation
 

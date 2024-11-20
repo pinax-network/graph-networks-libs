@@ -43,7 +43,7 @@ EOF
 
 # Generate types for each language
 echo "Generating TypeScript types..."
-npx quicktype -s schema sample/Network.json --lang typescript --top-level NetworksRegistryElement --out packages/typescript/src/types.ts
+npx quicktype -s schema sample/Network.json --lang typescript --top-level NetworksRegistryInner --out packages/typescript/src/types.ts
 
 echo "Generating Rust types..."
 npx quicktype -s schema sample/Network.json --lang rust --top-level NetworksRegistry --density normal --visibility public --derive-debug --derive-clone --out packages/rust/src/types.rs
