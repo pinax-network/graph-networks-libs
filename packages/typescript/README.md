@@ -12,27 +12,27 @@ Documentation available [here](https://pinax-network.github.io/graph-networks-li
 npm install @pinax/graph-networks-registry
 ```
 
-## Features
-
-- Type-safe interfaces for The Graph Networks Registry
-- Helper methods to load registry data from various sources
-- Network lookup by ID and alias
-
 ## Usage
 
 ### Loading the Registry
 
 ```typescript
 import { NetworksRegistry } from '@pinax/graph-networks-registry';
-// Load from latest version. Always compatible. Make sure you update the package to get the latest data.
+
+// Load from the latest compatible registry JSON at registry.thegraph.com
 const registry = await NetworksRegistry.fromLatestVersion();
-// Load from specific version. Might throw if schema is not compatible.
+
+// Load from specific version tag at registry.thegraph.com
 const registry = await NetworksRegistry.fromExactVersion('0.6.0');
-// Load from URL. Might throw if schema is not compatible.
+const registry = await NetworksRegistry.fromExactVersion('0.6.x');
+
+// Load from URL
 const registry = await NetworksRegistry.fromUrl('https://registry.thegraph.com/TheGraphNetworksRegistry.json');
-// Load from local file. Might throw if file is not found or schema is not compatible.
+
+// Load from local file
 const registry = NetworksRegistry.fromFile('./TheGraphNetworksRegistry.json');
-// Load from JSON string. Might throw if schema is not compatible.
+
+// Load from JSON string
 const registry = NetworksRegistry.fromJson(jsonString);
 ```
 
@@ -46,8 +46,8 @@ if (mainnet) {
     console.log(mainnet.caip2Id); // "eip155:1"
 }
 // Find network by alias
-const ethereum = registry.getNetworkByAlias('eth');
-if (ethereum) {
-    console.log(ethereum.fullName); // "Ethereum Mainnet"
+const mainnet = registry.getNetworkByAlias('eth');
+if (mainnet) {
+    console.log(mainnet.fullName); // "Ethereum Mainnet"
 }
 ```

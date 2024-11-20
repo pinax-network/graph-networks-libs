@@ -36,7 +36,7 @@ fn main() {
 
 ### Fetching the latest registry
 
-To fetch the latest registry version from the official source
+To fetch the latest compatible registry version from registry.thegraph.com
 
 
 ```rust
@@ -59,5 +59,5 @@ If you don't need to fetch the registry from the network, you can turn off the `
 
 ```toml
 [dependencies]
-graph-networks-registry = { version = "0.6.0", default-features = false }
+graph-networks-registry = { version = "0.6.1", default-features = false }
 ```

@@ -12,6 +12,7 @@ Documentation available [here](https://pkg.go.dev/github.com/pinax-network/graph
 $ go get github.com/pinax-network/graph-networks-libs/packages/golang@latest
 ```
 
+### Fetching the latest registry
 ```go
 package main
 import (
@@ -21,7 +22,7 @@ import (
 )
 
 func main() {
-    // Fetch the latest compatible version of the registry
+    // Fetch the latest compatible version of the registry from registry.thegraph.com
     reg, err := registry.FromLatestVersion()
     if err != nil {
         log.Fatalf("Failed to fetch registry: %v", err)
@@ -33,6 +34,24 @@ func main() {
     if mainnet := reg.GetNetworkById("mainnet"); mainnet != nil {
         fmt.Printf("Found mainnet: %s\n", mainnet.FullName)
     }
+}
+```
+
+### Fetching from a local file
+```go
+package main
+import (
+    "fmt"
+    "log"
+    registry "github.com/pinax-network/graph-networks-libs/packages/golang/lib"
+)
+
+func main() {
+    reg, err := registry.FromFile("TheGraphNetworksRegistry_v0_6_0.json")
+    if err != nil {
+        log.Fatalf("Failed to load registry: %v", err)
+    }
+    fmt.Printf("Successfully loaded %d networks\n", len(reg.Networks))
 }
 ```
 
