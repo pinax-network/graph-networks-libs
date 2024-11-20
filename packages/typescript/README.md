@@ -1,8 +1,10 @@
 # The Graph Networks Registry Typescript Library
 
-[![npm version](https://badge.fury.io/js/%40pinax%2Fgraph-networks-registry.svg)](https://www.npmjs.com/package/@pinax/graph-networks-registry) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://badge.fury.io/js/%40pinax%2Fgraph-networks-registry.svg)](https://www.npmjs.com/package/@pinax/graph-networks-registry) [![Documentation](https://img.shields.io/badge/docs-TypeDoc-blue)](https://pinax-network.github.io/graph-networks-libs/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 TypeScript types and helpers for [The Graph Networks Registry](https://github.com/graphprotocol/networks-registry).
+
+Documentation available [here](https://pinax-network.github.io/graph-networks-libs/).
 
 ## Installation
 
@@ -49,5 +51,3 @@ if (ethereum) {
     console.log(ethereum.fullName); // "Ethereum Mainnet"
 }
 ```
-
-For complete type definitions, see the [types.ts](https://github.com/pinax-network/graph-networks-libs/blob/main/packages/typescript/src/types.ts) file.

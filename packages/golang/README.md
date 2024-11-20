@@ -4,6 +4,7 @@
 
 Go types and helpers for working with [The Graph Networks Registry](https://github.com/graphprotocol/networks-registry).
 
+Documentation available [here](https://pkg.go.dev/github.com/pinax-network/graph-networks-libs/packages/golang/lib).
 
 ## Usage
 

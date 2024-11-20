@@ -4,6 +4,8 @@
 
 Rust types and helpers for working with [The Graph Networks Registry](https://github.com/graphprotocol/networks-registry).
 
+Documentation available [here](https://docs.rs/graph-networks-registry).
+
 ## Usage
 If you want to always get up-to-date registry, make sure to use the latest version of the crate.
 
