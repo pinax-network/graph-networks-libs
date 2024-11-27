@@ -130,7 +130,7 @@ export class NetworksRegistry {
    * @returns The URL string for the latest version
    */
   static getLatestVersionUrl(): string {
-    const [major, minor] = packageVersion.split(".");
+    const [major, minor] = schemaVersion.split(".");
     return `${REGISTRY_BASE_URL}/TheGraphNetworksRegistry_v${major}_${minor}_x.json`;
   }
 

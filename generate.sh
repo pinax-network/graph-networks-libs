@@ -27,7 +27,7 @@ echo "Detected schema version: $MAJOR_MINOR_VERSION"
 echo "Updating TypeScript package version..."
 jq ".version = \"$MAJOR_MINOR_VERSION.0\"" packages/typescript/package.json > temp.json
 mv temp.json packages/typescript/package.json
-echo "export const version = \"$MAJOR_MINOR_VERSION.0\";" > packages/typescript/src/version.ts
+echo "export const schemaVersion = \"$MAJOR_MINOR_VERSION\";" > packages/typescript/src/version.ts
 
 # Update Rust Cargo.toml
 echo "Updating Rust package version..."
