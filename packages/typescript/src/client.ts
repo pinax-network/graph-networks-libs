@@ -1,5 +1,5 @@
-import { type NetworksRegistryInner, type Network } from "./types";
-import { version as packageVersion } from "./version";
+import { type NetworksRegistryInner, type Network } from "./types.js";
+import { schemaVersion } from "./version.js";
 
 const REGISTRY_BASE_URL = "https://registry.thegraph.com";
 
