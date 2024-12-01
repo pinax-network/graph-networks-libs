@@ -2,6 +2,7 @@ import { type NetworksRegistryInner, type Network } from "./types.js";
 import { schemaVersion } from "./version.js";
 
 const REGISTRY_BASE_URL = "https://registry.thegraph.com";
+const FALLBACK_BASE_URL = "https://raw.githubusercontent.com/graphprotocol/networks-registry/refs/heads/main/public";
 
 let readFileSync: ((path: string, encoding: string) => string) | undefined;
 try {
@@ -44,8 +45,22 @@ export class NetworksRegistry {
   get updatedAt(): Date {
     return new Date(this.registry.updatedAt);
   }
+
   /**
-   * Fetches and loads the latest version of the networks registry.
+   * Attempts to fetch the registry from a given URL, returns null if fetch fails
+   * @internal
+   */
+  private static async tryFetchRegistry(url: string): Promise<NetworksRegistry | null> {
+    try {
+      return await NetworksRegistry.fromUrl(url);
+    } catch {
+      return null;
+    }
+  }
+
+  /**
+   * Fetches and loads the latest version of the networks registry. First tries to fetch from
+   * the primary registry URL at registry.thegraph.com, then falls back to the fallback URL at GitHub
    * Uses the library version to determine the latest compatible registry URL.
    * Library version 0.5.x will use the latest registry version 0.5.y even if 0.6.z is available
    *
@@ -58,12 +73,20 @@ export class NetworksRegistry {
    * ```
    */
   static async fromLatestVersion(): Promise<NetworksRegistry> {
-    const url = NetworksRegistry.getLatestVersionUrl();
-    return NetworksRegistry.fromUrl(url);
+    const primaryUrl = NetworksRegistry.getLatestVersionUrl();
+    const primaryRegistry = await NetworksRegistry.tryFetchRegistry(primaryUrl);
+    if (primaryRegistry) return primaryRegistry;
+
+    const fallbackUrl = NetworksRegistry.getLatestVersionFallbackUrl();
+    const fallbackRegistry = await NetworksRegistry.tryFetchRegistry(fallbackUrl);
+    if (fallbackRegistry) return fallbackRegistry;
+
+    throw new Error(`Failed to fetch registry from ${primaryUrl}`);
   }
 
   /**
-   * Fetches and loads a specific version of the networks registry.
+   * Fetches and loads a specific version of the networks registry. First tries to fetch from
+   * the primary registry URL at registry.thegraph.com, then falls back to the fallback URL at GitHub
    *
    * @param version - The exact version to fetch (e.g. "0.5.0")
    * @returns Promise that resolves to a new NetworksRegistry instance
@@ -75,8 +98,15 @@ export class NetworksRegistry {
    * ```
    */
   static async fromExactVersion(version: string): Promise<NetworksRegistry> {
-    const url = NetworksRegistry.getExactVersionUrl(version);
-    return NetworksRegistry.fromUrl(url);
+    const primaryUrl = NetworksRegistry.getExactVersionUrl(version);
+    const primaryRegistry = await NetworksRegistry.tryFetchRegistry(primaryUrl);
+    if (primaryRegistry) return primaryRegistry;
+
+    const fallbackUrl = NetworksRegistry.getExactVersionFallbackUrl(version);
+    const fallbackRegistry = await NetworksRegistry.tryFetchRegistry(fallbackUrl);
+    if (fallbackRegistry) return fallbackRegistry;
+
+    throw new Error(`Failed to fetch registry from ${primaryUrl}`);
   }
 
   /**
@@ -135,6 +165,17 @@ export class NetworksRegistry {
   }
 
   /**
+   * Gets the URL for the latest compatible version of the registry at GitHub.
+   * Uses the major and minor version from package.json.
+   *
+   * @returns The URL string for the latest version
+   */
+  static getLatestVersionFallbackUrl(): string {
+    const [major, minor] = schemaVersion.split(".");
+    return `${FALLBACK_BASE_URL}/TheGraphNetworksRegistry_v${major}_${minor}_x.json`;
+  }
+
+  /**
    * Gets the URL for a specific version of the registry.
    *
    * @param version - The exact version (e.g. "0.5.0")
@@ -142,6 +183,16 @@ export class NetworksRegistry {
    */
   static getExactVersionUrl(version: string): string {
     return `${REGISTRY_BASE_URL}/TheGraphNetworksRegistry_v${version.replace(/\./g, "_")}.json`;
+  }
+
+  /**
+   * Gets the URL for a specific version of the registry at GitHub.
+   *
+   * @param version - The exact version (e.g. "0.5.0")
+   * @returns The URL string for the specified version
+   */
+  static getExactVersionFallbackUrl(version: string): string {
+    return `${FALLBACK_BASE_URL}/TheGraphNetworksRegistry_v${version.replace(/\./g, "_")}.json`;
   }
 
   /**

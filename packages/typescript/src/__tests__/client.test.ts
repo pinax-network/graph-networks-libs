@@ -1,5 +1,6 @@
 import { NetworksRegistry } from "../client";
-import { readFileSync } from "fs";
+import { schemaVersion } from "../version";
+import { version as packageVersion } from "../../package.json";
 import { join } from "path";
 
 describe("NetworksRegistry", () => {
@@ -73,14 +74,29 @@ describe("NetworksRegistry", () => {
   });
 
   describe("version URLs", () => {
+    const [major, minor] = schemaVersion.split(".");
+    const [major2, minor2] = packageVersion.split(".");
+
+    test("version should match package version", () => {
+      expect(major).toBe(major2);
+      expect(minor).toBe(minor2);
+    });
+
     test("should generate correct latest version URL", () => {
       const url = NetworksRegistry.getLatestVersionUrl();
-      expect(url).toMatch(/TheGraphNetworksRegistry_v\d+_\d+_x\.json$/);
+      expect(url).toBe(`https://registry.thegraph.com/TheGraphNetworksRegistry_v${major}_${minor}_x.json`);
     });
 
     test("should generate correct exact version URL", () => {
       const url = NetworksRegistry.getExactVersionUrl("1.2.3");
       expect(url).toBe("https://registry.thegraph.com/TheGraphNetworksRegistry_v1_2_3.json");
+    });
+
+    test("should generate correct latest version fallback URL", () => {
+      const url = NetworksRegistry.getLatestVersionFallbackUrl();
+      expect(url).toBe(
+        `https://raw.githubusercontent.com/graphprotocol/networks-registry/refs/heads/main/public/TheGraphNetworksRegistry_v${major}_${minor}_x.json`
+      );
     });
   });
 });
