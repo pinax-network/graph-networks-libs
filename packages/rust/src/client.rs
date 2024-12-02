@@ -257,5 +257,95 @@ mod tests {
             primary_mock.assert();
             fallback_mock.assert();
         }
+
+        #[tokio::test]
+        async fn test_http_errors() {
+            let mut primary_server = Server::new_async().await;
+            let mut fallback_server = Server::new_async().await;
+            let registry_path = format!("/TheGraphNetworksRegistry_v{}_x.json", SCHEMA_VERSION);
+
+            // Setup mock servers
+            set_base_urls(&primary_server.url(), &fallback_server.url());
+
+            // Test Case 1: Invalid JSON response
+            let primary_mock = primary_server
+                .mock("GET", registry_path.as_str())
+                .with_status(200)
+                .with_body("{invalid_json")
+                .create_async()
+                .await;
+
+            let result = NetworksRegistry::from_latest_version().await;
+            assert!(matches!(result, Err(Error::Parse(_))));
+            primary_mock.assert();
+
+            // Test Case 2: HTTP 404 on both servers
+            let primary_mock = primary_server
+                .mock("GET", registry_path.as_str())
+                .with_status(404)
+                .create_async()
+                .await;
+
+            let fallback_mock = fallback_server
+                .mock("GET", registry_path.as_str())
+                .with_status(404)
+                .create_async()
+                .await;
+
+            let result = NetworksRegistry::from_latest_version().await;
+            assert!(matches!(result, Err(Error::Http(_))));
+            primary_mock.assert();
+            fallback_mock.assert();
+
+            // Test Case 3: Empty response
+            let primary_mock = primary_server
+                .mock("GET", registry_path.as_str())
+                .with_status(200)
+                .with_body("")
+                .create_async()
+                .await;
+
+            let result = NetworksRegistry::from_latest_version().await;
+            assert!(matches!(result, Err(Error::Parse(_))));
+            primary_mock.assert();
+
+            // Test Case 4: Valid JSON but invalid schema
+            let invalid_schema_json = r#"{
+                "$schema": "https://registry.thegraph.com/TheGraphNetworksRegistrySchema_vx_x.json",
+                "version": "x.x.x",
+                "title": "Test Registry",
+                "description": "Test Registry",
+                "updatedAt": "2025-01-01T00:00:00Z",
+                "networks": "not_an_array"
+            }"#;
+
+            let primary_mock = primary_server
+                .mock("GET", registry_path.as_str())
+                .with_status(200)
+                .with_body(invalid_schema_json)
+                .create_async()
+                .await;
+
+            let result = NetworksRegistry::from_latest_version().await;
+            assert!(matches!(result, Err(Error::Parse(_))));
+            primary_mock.assert();
+
+            // Test Case 5: Connection refused (HTTP IO error)
+            set_base_urls("http://localhost:1", "invalid_url");
+
+            let result = NetworksRegistry::from_latest_version().await;
+            assert!(matches!(result, Err(Error::Http(_))));
+        }
+
+        #[test]
+        fn test_io_errors() {
+            // Test non-existent file
+            let result = NetworksRegistry::from_file("/non/existent/path.json");
+            assert!(matches!(result, Err(Error::Io(_))));
+
+            // Test directory instead of file
+            let result = NetworksRegistry::from_file("/tmp");
+            assert!(matches!(result, Err(Error::Io(_))));
+        }
     }
 }
