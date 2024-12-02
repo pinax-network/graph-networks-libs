@@ -117,13 +117,22 @@ impl NetworksRegistry {
     ///
     /// # Errors
     ///
-    /// Returns an error if the network request fails or the response contains invalid data
+    /// Returns an error if both primary and fallback requests fail
     #[cfg(feature = "fetch")]
     async fn from_version<'a>(version: RegistryVersion<'a>) -> Result<Self, Error> {
-        let url = version.get_url();
-        let response = reqwest::get(&url).await?;
-        let text = response.text().await?;
-        Self::from_json(&text)
+        let primary_url = version.get_primary_url();
+        match reqwest::get(&primary_url).await {
+            Ok(response) => {
+                let text = response.text().await?;
+                return Self::from_json(&text);
+            }
+            Err(err) => {
+                let fallback_url = version.get_fallback_url();
+                let response = reqwest::get(&fallback_url).await.map_err(|_| err)?;
+                let text = response.text().await?;
+                Self::from_json(&text)
+            }
+        }
     }
 }
 
