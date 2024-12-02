@@ -21,3 +21,6 @@ thiserror = "2.0"
 [features]
 default = ["fetch"]
 fetch = ["reqwest", "tokio"]
+
+[dev-dependencies]
+mockito = "1.2"

@@ -109,28 +109,23 @@ impl NetworksRegistry {
         })
     }
 
-    /// Internal helper method to fetch a NetworksRegistry from a specified version
-    ///
-    /// # Arguments
-    ///
-    /// * `version` - The RegistryVersion enum specifying which version to fetch
-    ///
-    /// # Errors
-    ///
-    /// Returns an error if both primary and fallback requests fail
+    #[cfg(feature = "fetch")]
+    async fn fetch_registry(url: &str) -> Result<Self, Error> {
+        let response = reqwest::get(url).await?;
+        if !response.status().is_success() {
+            return Err(Error::Http(response.error_for_status().unwrap_err()));
+        }
+        let text = response.text().await?;
+        Ok(Self::from_json(&text)?)
+    }
+
     #[cfg(feature = "fetch")]
     async fn from_version<'a>(version: RegistryVersion<'a>) -> Result<Self, Error> {
-        let primary_url = version.get_primary_url();
-        match reqwest::get(&primary_url).await {
-            Ok(response) => {
-                let text = response.text().await?;
-                return Self::from_json(&text);
-            }
-            Err(err) => {
+        match Self::fetch_registry(&version.get_primary_url()).await {
+            Ok(registry) => Ok(registry),
+            Err(primary_err) => {
                 let fallback_url = version.get_fallback_url();
-                let response = reqwest::get(&fallback_url).await.map_err(|_| err)?;
-                let text = response.text().await?;
-                Self::from_json(&text)
+                Self::fetch_registry(&fallback_url).await.map_err(|_| primary_err)
             }
         }
     }
@@ -140,29 +135,29 @@ impl NetworksRegistry {
 mod tests {
     use super::*;
 
+    const REGISTRY_JSON: &str = r#"{
+        "$schema": "https://registry.thegraph.com/TheGraphNetworksRegistrySchema_vx_x.json",
+        "version": "x.x.x",
+        "title": "Test Registry",
+        "description": "Test Registry",
+        "updatedAt": "2025-01-01T00:00:00Z",
+        "networks": [
+            {
+                "id": "mainnet",
+                "fullName": "Ethereum Mainnet",
+                "shortName": "Ethereum",
+                "caip2Id": "eip155:1",
+                "networkType": "mainnet",
+                "aliases": ["ethereum", "eth"],
+                "issuanceRewards": true,
+                "services": {}
+            }
+        ]
+    }"#;
+
     #[test]
     fn test_get_network() {
-        let registry_json = r#"{
-            "$schema": "https://registry.thegraph.com/TheGraphNetworksRegistrySchema_v0_5.json",
-            "version": "0.5.0",
-            "title": "Test Registry",
-            "description": "Test Registry",
-            "updatedAt": "2025-01-01T00:00:00Z",
-            "networks": [
-                {
-                    "id": "mainnet",
-                    "fullName": "Ethereum Mainnet",
-                    "shortName": "Ethereum",
-                    "caip2Id": "eip155:1",
-                    "networkType": "mainnet",
-                    "aliases": ["ethereum", "eth"],
-                    "issuanceRewards": true,
-                    "services": {}
-                }
-            ]
-        }"#;
-
-        let registry = NetworksRegistry::from_json(registry_json).expect("Failed to parse registry");
+        let registry = NetworksRegistry::from_json(REGISTRY_JSON).expect("Failed to parse registry");
 
         assert_eq!(registry.networks.len(), 1);
 
@@ -183,12 +178,84 @@ mod tests {
     }
 
     #[cfg(feature = "fetch")]
-    #[tokio::test]
-    async fn test_from_registry() {
-        let result = NetworksRegistry::from_latest_version().await;
-        assert!(result.is_ok());
+    mod fetch_tests {
+        use super::*;
+        use crate::version::{set_base_urls, SCHEMA_VERSION};
+        use mockito::Server;
 
-        let registry = result.unwrap();
-        assert!(!registry.networks.is_empty());
+        #[tokio::test]
+        async fn test_fallback_with_mock_server() {
+            let registry_path = format!("/TheGraphNetworksRegistry_v{}_x.json", SCHEMA_VERSION);
+
+            // Create two mock servers for primary and fallback URLs
+            let mut primary_server = Server::new_async().await;
+            let mut fallback_server = Server::new_async().await;
+
+            // Set up the mock servers
+            set_base_urls(&primary_server.url(), &fallback_server.url());
+
+            // Test Case 1: Primary succeeds
+            let primary_mock = primary_server
+                .mock("GET", registry_path.as_str())
+                .with_status(200)
+                .with_body(REGISTRY_JSON)
+                .create_async()
+                .await;
+
+            let fallback_mock = fallback_server
+                .mock("GET", registry_path.as_str())
+                .with_status(200)
+                .expect(0)
+                .with_body(REGISTRY_JSON)
+                .create_async()
+                .await;
+
+            let result = NetworksRegistry::from_latest_version().await;
+            assert!(result.is_ok(), "Should succeed with primary URL");
+            let registry = result.unwrap();
+            assert!(registry.get_network_by_id("mainnet").is_some());
+            primary_mock.assert();
+            fallback_mock.assert();
+
+            // Test Case 2: Primary fails, fallback succeeds
+            let primary_mock = primary_server
+                .mock("GET", registry_path.as_str())
+                .with_status(500)
+                .create_async()
+                .await;
+
+            let fallback_mock = fallback_server
+                .mock("GET", registry_path.as_str())
+                .with_status(200)
+                .with_body(REGISTRY_JSON)
+                .create_async()
+                .await;
+
+            let result = NetworksRegistry::from_latest_version().await;
+            assert!(result.is_ok(), "Should succeed using fallback URL");
+            let registry = result.unwrap();
+            assert!(registry.get_network_by_id("mainnet").is_some());
+            primary_mock.assert();
+            fallback_mock.assert();
+
+            // Test Case 3: Both primary and fallback fail
+            let primary_mock = primary_server
+                .mock("GET", registry_path.as_str())
+                .with_status(200)
+                .with_body("bye")
+                .create_async()
+                .await;
+
+            let fallback_mock = fallback_server
+                .mock("GET", registry_path.as_str())
+                .with_status(404)
+                .create_async()
+                .await;
+
+            let result = NetworksRegistry::from_latest_version().await;
+            assert!(result.is_err(), "Should fail when both URLs fail");
+            primary_mock.assert();
+            fallback_mock.assert();
+        }
     }
 }
