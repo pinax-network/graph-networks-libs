@@ -1,6 +1,6 @@
 # The Graph Networks Registry Go Library
 
-[![Go Package](https://pkg.go.dev/badge/github.com/pinax-network/graph-networks-libs/packages/golang.svg)](https://pkg.go.dev/github.com/pinax-network/graph-networks-libs/packages/golang) [![Go Package](https://img.shields.io/github/v/tag/pinax-network/graph-networks-libs?filter=packages/golang/*&label=go%20package&sort=semver)](https://pkg.go.dev/github.com/pinax-network/graph-networks-libs/packages/golang/lib) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Go Module](https://img.shields.io/github/v/tag/pinax-network/graph-networks-libs?filter=packages/golang/*&label=go%20module&sort=semver)](https://pkg.go.dev/github.com/pinax-network/graph-networks-libs/packages/golang/lib) [![Go Package](https://pkg.go.dev/badge/github.com/pinax-network/graph-networks-libs/packages/golang.svg)](https://pkg.go.dev/github.com/pinax-network/graph-networks-libs/packages/golang) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Go types and helpers for working with [The Graph Networks Registry](https://github.com/graphprotocol/networks-registry).
 

@@ -1,5 +1,7 @@
 # The Graph Networks Registry Libraries
 
+[![npm version](https://badge.fury.io/js/%40pinax%2Fgraph-networks-registry.svg)](https://www.npmjs.com/package/@pinax/graph-networks-registry) [![Crates.io](https://img.shields.io/crates/v/graph-networks-registry.svg?label=crates.io%20crate)](https://crates.io/crates/graph-networks-registry) [![Go Module](https://img.shields.io/github/v/tag/pinax-network/graph-networks-libs?filter=packages/golang/*&label=go%20module&sort=semver)](https://pkg.go.dev/github.com/pinax-network/graph-networks-libs/packages/golang/lib)
+
 Libraries to work with [The Graph Networks Registry](https://github.com/graphprotocol/networks-registry).
 
 - [TypeScript](./packages/typescript)
