@@ -12,6 +12,9 @@ async function main() {
   if (mainnet) {
     console.log("Found mainnet:", mainnet.fullName);
   }
+
+  const apis = registry.getApiUrls("mainnet");
+  console.log("API URLs:", apis);
 }
 
 main().catch(console.error);
