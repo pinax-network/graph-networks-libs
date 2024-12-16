@@ -39,6 +39,12 @@ describe("NetworksRegistry", () => {
             url: "https://blockscout.com/eth/mainnet/api",
           },
         ],
+        rpcUrls: [
+          "https://ethereum.publicnode.com",
+          "https://eth.llamarpc.com",
+          "https://mainnet.infura.io/v3/{INFURA_API_KEY}",
+          "https://eth-mainnet.g.alchemy.com/v2/{ALCHEMY_API_KEY}",
+        ],
       },
     ],
   };
@@ -204,6 +210,74 @@ describe("NetworksRegistry", () => {
       );
 
       const urls = registryWithoutApis.getApiUrls("mainnet");
+      expect(urls).toEqual([]);
+    });
+  });
+
+  describe("RPC URLs", () => {
+    let originalEnv: NodeJS.ProcessEnv;
+    const registry = NetworksRegistry.fromJson(JSON.stringify(testRegistryJson));
+
+    beforeEach(() => {
+      originalEnv = process.env;
+      process.env = { ...originalEnv };
+    });
+
+    afterEach(() => {
+      process.env = originalEnv;
+    });
+
+    test("should get all RPC URLs", () => {
+      process.env.INFURA_API_KEY = "test-key-1";
+      process.env.ALCHEMY_API_KEY = "test-key-2";
+
+      const urls = registry.getRpcUrls("mainnet");
+      expect(urls).toHaveLength(4);
+      expect(urls).toContain("https://ethereum.publicnode.com");
+      expect(urls).toContain("https://eth.llamarpc.com");
+      expect(urls).toContain("https://mainnet.infura.io/v3/test-key-1");
+      expect(urls).toContain("https://eth-mainnet.g.alchemy.com/v2/test-key-2");
+    });
+
+    test("should omit RPC URLs with missing environment variables", () => {
+      process.env.INFURA_API_KEY = "test-key-1";
+      // ALCHEMY_API_KEY is not set
+
+      const urls = registry.getRpcUrls("ethereum");
+      expect(urls).toHaveLength(3);
+      expect(urls).toContain("https://ethereum.publicnode.com");
+      expect(urls).toContain("https://eth.llamarpc.com");
+      expect(urls).toContain("https://mainnet.infura.io/v3/test-key-1");
+      expect(urls).not.toContain(expect.stringContaining("alchemy"));
+    });
+
+    test("should return empty array for non-existent network", () => {
+      const urls = registry.getRpcUrls("nonexistent");
+      expect(urls).toEqual([]);
+    });
+
+    test("should find network by alias", () => {
+      process.env.INFURA_API_KEY = "test-key-1";
+
+      const urls = registry.getRpcUrls("mainnet");
+      expect(urls.length).toBeGreaterThan(0);
+      expect(urls).toContain("https://mainnet.infura.io/v3/test-key-1");
+    });
+
+    test("should return empty array for network without RPC URLs", () => {
+      const registryWithoutRpc = NetworksRegistry.fromJson(
+        JSON.stringify({
+          ...testRegistryJson,
+          networks: [
+            {
+              ...testRegistryJson.networks[0],
+              rpcUrls: undefined,
+            },
+          ],
+        })
+      );
+
+      const urls = registryWithoutRpc.getRpcUrls("mainnet");
       expect(urls).toEqual([]);
     });
   });

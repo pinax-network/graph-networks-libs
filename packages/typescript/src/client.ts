@@ -253,4 +253,25 @@ export class NetworksRegistry {
       .map(({ url }) => applyEnvVars(url))
       .filter(Boolean);
   }
+
+  /**
+   * Gets RPC URLs for a network with environment variables applied.
+   * Environment variable placeholders in the format {VARIABLE_NAME} will be replaced with
+   * actual environment variable values. URLs that reference non-existent environment
+   * variables will be omitted from the result.
+   *
+   * @param networkId - The network ID or alias
+   * @returns Array of RPC URLs with environment variables applied
+   *
+   * @example
+   * ```typescript
+   * // Get all RPC URLs for ethereum mainnet
+   * const rpcUrls = registry.getRpcUrls("mainnet");
+   * ```
+   */
+  getRpcUrls(networkId: string): string[] {
+    const urls = this.getNetworkById(networkId)?.rpcUrls ?? this.getNetworkByAlias(networkId)?.rpcUrls ?? [];
+
+    return urls.map((url) => applyEnvVars(url)).filter(Boolean);
+  }
 }
