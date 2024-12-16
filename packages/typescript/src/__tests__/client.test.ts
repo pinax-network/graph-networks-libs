@@ -2,6 +2,7 @@ import { NetworksRegistry } from "../client";
 import { schemaVersion } from "../version";
 import { version as packageVersion } from "../../package.json";
 import { join } from "path";
+import { APIURLKind } from "../types";
 
 describe("NetworksRegistry", () => {
   const testRegistryJson = {
@@ -20,6 +21,30 @@ describe("NetworksRegistry", () => {
         aliases: ["ethereum", "eth"],
         issuanceRewards: true,
         services: {},
+        apiUrls: [
+          {
+            kind: "etherscan",
+            url: "https://api.etherscan.io/api",
+          },
+          {
+            kind: "etherscan",
+            url: "https://api.etherscan.io/api?apikey={ETHERSCAN_API_KEY}",
+          },
+          {
+            kind: "ethplorer",
+            url: "https://api.ethplorer.io/{ETHPLORER_API_KEY}",
+          },
+          {
+            kind: "blockscout",
+            url: "https://blockscout.com/eth/mainnet/api",
+          },
+        ],
+        rpcUrls: [
+          "https://ethereum.publicnode.com",
+          "https://eth.llamarpc.com",
+          "https://mainnet.infura.io/v3/{INFURA_API_KEY}",
+          "https://eth-mainnet.g.alchemy.com/v2/{ALCHEMY_API_KEY}",
+        ],
       },
     ],
   };
@@ -97,6 +122,163 @@ describe("NetworksRegistry", () => {
       expect(url).toBe(
         `https://raw.githubusercontent.com/graphprotocol/networks-registry/refs/heads/main/public/TheGraphNetworksRegistry_v${major}_${minor}_x.json`
       );
+    });
+  });
+
+  describe("API URLs", () => {
+    let originalEnv: NodeJS.ProcessEnv;
+    const registry = NetworksRegistry.fromJson(JSON.stringify(testRegistryJson));
+
+    beforeEach(() => {
+      originalEnv = process.env;
+      process.env = { ...originalEnv };
+    });
+
+    afterEach(() => {
+      process.env = originalEnv;
+    });
+
+    test("should get all API URLs when no kind specified", () => {
+      process.env.ETHERSCAN_API_KEY = "test-key-1";
+      process.env.ETHPLORER_API_KEY = "test-key-2";
+
+      const urls = registry.getApiUrls("mainnet");
+      expect(urls).toHaveLength(4);
+      expect(urls).toContain("https://api.etherscan.io/api");
+      expect(urls).toContain("https://api.etherscan.io/api?apikey=test-key-1");
+      expect(urls).toContain("https://api.ethplorer.io/test-key-2");
+      expect(urls).toContain("https://blockscout.com/eth/mainnet/api");
+    });
+
+    test("should filter URLs by kind", () => {
+      process.env.ETHERSCAN_API_KEY = "test-key-1";
+
+      const urls = registry.getApiUrls("eth", [APIURLKind.Etherscan]);
+      expect(urls).toHaveLength(2);
+      expect(urls[0]).toBe("https://api.etherscan.io/api");
+      expect(urls[1]).toBe("https://api.etherscan.io/api?apikey=test-key-1");
+    });
+
+    test("should filter URLs by kind", () => {
+      process.env.ETHERSCAN_API_KEY = "test-key-1";
+
+      const urls = registry.getApiUrls("ethereum", [APIURLKind.Etherscan, APIURLKind.Ethplorer]);
+      expect(urls).toHaveLength(2);
+      expect(urls[0]).toBe("https://api.etherscan.io/api");
+      expect(urls[1]).toBe("https://api.etherscan.io/api?apikey=test-key-1");
+    });
+
+    test("should filter URLs by kind", () => {
+      process.env.ETHERSCAN_API_KEY = "test-key-1";
+      process.env.ETHPLORER_API_KEY = "test-key-2";
+
+      const urls = registry.getApiUrls("mainnet", [APIURLKind.Etherscan, APIURLKind.Ethplorer]);
+      expect(urls).toHaveLength(3);
+      expect(urls[0]).toBe("https://api.etherscan.io/api");
+      expect(urls[1]).toBe("https://api.etherscan.io/api?apikey=test-key-1");
+      expect(urls[2]).toBe("https://api.ethplorer.io/test-key-2");
+    });
+
+    test("should omit URLs with missing environment variables", () => {
+      delete process.env.ETHERSCAN_API_KEY;
+      process.env.ETHPLORER_API_KEY = "test-key-2";
+
+      const urls = registry.getApiUrls("mainnet");
+      expect(urls).toHaveLength(3);
+      expect(urls).toContain("https://api.etherscan.io/api");
+      expect(urls).toContain("https://api.ethplorer.io/test-key-2");
+      expect(urls).toContain("https://blockscout.com/eth/mainnet/api");
+      expect(urls).not.toContain(expect.stringContaining("etherscan"));
+    });
+
+    test("should return empty array for non-existent network", () => {
+      const urls = registry.getApiUrls("nonexistent");
+      expect(urls).toEqual([]);
+    });
+
+    test("should return empty array for network without API URLs", () => {
+      const registryWithoutApis = NetworksRegistry.fromJson(
+        JSON.stringify({
+          ...testRegistryJson,
+          networks: [
+            {
+              ...testRegistryJson.networks[0],
+              apiUrls: undefined,
+            },
+          ],
+        })
+      );
+
+      const urls = registryWithoutApis.getApiUrls("mainnet");
+      expect(urls).toEqual([]);
+    });
+  });
+
+  describe("RPC URLs", () => {
+    let originalEnv: NodeJS.ProcessEnv;
+    const registry = NetworksRegistry.fromJson(JSON.stringify(testRegistryJson));
+
+    beforeEach(() => {
+      originalEnv = process.env;
+      process.env = { ...originalEnv };
+    });
+
+    afterEach(() => {
+      process.env = originalEnv;
+    });
+
+    test("should get all RPC URLs", () => {
+      process.env.INFURA_API_KEY = "test-key-1";
+      process.env.ALCHEMY_API_KEY = "test-key-2";
+
+      const urls = registry.getRpcUrls("mainnet");
+      expect(urls).toHaveLength(4);
+      expect(urls).toContain("https://ethereum.publicnode.com");
+      expect(urls).toContain("https://eth.llamarpc.com");
+      expect(urls).toContain("https://mainnet.infura.io/v3/test-key-1");
+      expect(urls).toContain("https://eth-mainnet.g.alchemy.com/v2/test-key-2");
+    });
+
+    test("should omit RPC URLs with missing environment variables", () => {
+      process.env.INFURA_API_KEY = "test-key-1";
+      // ALCHEMY_API_KEY is not set
+
+      const urls = registry.getRpcUrls("ethereum");
+      expect(urls).toHaveLength(3);
+      expect(urls).toContain("https://ethereum.publicnode.com");
+      expect(urls).toContain("https://eth.llamarpc.com");
+      expect(urls).toContain("https://mainnet.infura.io/v3/test-key-1");
+      expect(urls).not.toContain(expect.stringContaining("alchemy"));
+    });
+
+    test("should return empty array for non-existent network", () => {
+      const urls = registry.getRpcUrls("nonexistent");
+      expect(urls).toEqual([]);
+    });
+
+    test("should find network by alias", () => {
+      process.env.INFURA_API_KEY = "test-key-1";
+
+      const urls = registry.getRpcUrls("mainnet");
+      expect(urls.length).toBeGreaterThan(0);
+      expect(urls).toContain("https://mainnet.infura.io/v3/test-key-1");
+    });
+
+    test("should return empty array for network without RPC URLs", () => {
+      const registryWithoutRpc = NetworksRegistry.fromJson(
+        JSON.stringify({
+          ...testRegistryJson,
+          networks: [
+            {
+              ...testRegistryJson.networks[0],
+              rpcUrls: undefined,
+            },
+          ],
+        })
+      );
+
+      const urls = registryWithoutRpc.getRpcUrls("mainnet");
+      expect(urls).toEqual([]);
     });
   });
 });

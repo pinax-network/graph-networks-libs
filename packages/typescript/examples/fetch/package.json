@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "bun run index.ts"
+    "start": "PINAX_API_KEY=YOUR_API_KEY bun run index.ts"
   },
   "dependencies": {
     "@pinax/graph-networks-registry": "file:../.."

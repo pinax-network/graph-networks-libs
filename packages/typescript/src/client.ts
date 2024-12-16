@@ -1,4 +1,5 @@
-import { type NetworksRegistryInner, type Network } from "./types.js";
+import { type NetworksRegistryInner, type Network, type APIURLKind } from "./types.js";
+import { applyEnvVars } from "./env.js";
 import { schemaVersion } from "./version.js";
 
 const REGISTRY_BASE_URL = "https://registry.thegraph.com";
@@ -223,5 +224,54 @@ export class NetworksRegistry {
    */
   getNetworkByAlias(alias: string): Network | undefined {
     return this.registry.networks.find((network) => network.id === alias || network.aliases?.includes(alias));
+  }
+
+  /**
+   * Gets API URLs for a network, filtered by kind and with environment variables applied.
+   * Environment variable placeholders in the format {VARIABLE_NAME} will be replaced with
+   * actual environment variable values. URLs that reference non-existent environment
+   * variables will be omitted from the result.
+   *
+   * @param networkId - The network ID or alias
+   * @param kinds - Optional array of API URL kinds to filter by. If not provided or empty, returns all kinds
+   * @returns Array of API URLs with environment variables applied
+   *
+   * @example
+   * ```typescript
+   * // Get all Etherscan API URLs
+   * const etherscanUrls = registry.getApiUrls("mainnet", [APIURLKind.Etherscan]);
+   *
+   * // Get all API URLs for the network
+   * const allUrls = registry.getApiUrls("mainnet");
+   * ```
+   */
+  getApiUrls(networkId: string, kinds: APIURLKind[] = []): string[] {
+    const apis = this.getNetworkById(networkId)?.apiUrls ?? this.getNetworkByAlias(networkId)?.apiUrls ?? [];
+
+    return apis
+      .filter(({ kind }) => kinds.length === 0 || kinds.includes(kind))
+      .map(({ url }) => applyEnvVars(url))
+      .filter(Boolean);
+  }
+
+  /**
+   * Gets RPC URLs for a network with environment variables applied.
+   * Environment variable placeholders in the format {VARIABLE_NAME} will be replaced with
+   * actual environment variable values. URLs that reference non-existent environment
+   * variables will be omitted from the result.
+   *
+   * @param networkId - The network ID or alias
+   * @returns Array of RPC URLs with environment variables applied
+   *
+   * @example
+   * ```typescript
+   * // Get all RPC URLs for ethereum mainnet
+   * const rpcUrls = registry.getRpcUrls("mainnet");
+   * ```
+   */
+  getRpcUrls(networkId: string): string[] {
+    const urls = this.getNetworkById(networkId)?.rpcUrls ?? this.getNetworkByAlias(networkId)?.rpcUrls ?? [];
+
+    return urls.map((url) => applyEnvVars(url)).filter(Boolean);
   }
 }
