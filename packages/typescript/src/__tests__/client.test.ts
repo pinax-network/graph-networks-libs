@@ -147,7 +147,7 @@ describe("NetworksRegistry", () => {
     test("should filter URLs by kind", () => {
       process.env.ETHERSCAN_API_KEY = "test-key-1";
 
-      const urls = registry.getApiUrls("mainnet", [APIURLKind.Etherscan]);
+      const urls = registry.getApiUrls("eth", [APIURLKind.Etherscan]);
       expect(urls).toHaveLength(2);
       expect(urls[0]).toBe("https://api.etherscan.io/api");
       expect(urls[1]).toBe("https://api.etherscan.io/api?apikey=test-key-1");
@@ -156,7 +156,7 @@ describe("NetworksRegistry", () => {
     test("should filter URLs by kind", () => {
       process.env.ETHERSCAN_API_KEY = "test-key-1";
 
-      const urls = registry.getApiUrls("mainnet", [APIURLKind.Etherscan, APIURLKind.Ethplorer]);
+      const urls = registry.getApiUrls("ethereum", [APIURLKind.Etherscan, APIURLKind.Ethplorer]);
       expect(urls).toHaveLength(2);
       expect(urls[0]).toBe("https://api.etherscan.io/api");
       expect(urls[1]).toBe("https://api.etherscan.io/api?apikey=test-key-1");

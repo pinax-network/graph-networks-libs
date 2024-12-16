@@ -1,4 +1,5 @@
 import { type NetworksRegistryInner, type Network, type APIURLKind } from "./types.js";
+import { applyEnvVars } from "./env.js";
 import { schemaVersion } from "./version.js";
 
 const REGISTRY_BASE_URL = "https://registry.thegraph.com";
@@ -231,7 +232,7 @@ export class NetworksRegistry {
    * actual environment variable values. URLs that reference non-existent environment
    * variables will be omitted from the result.
    *
-   * @param network - The network ID or alias
+   * @param networkId - The network ID or alias
    * @param kinds - Optional array of API URL kinds to filter by. If not provided or empty, returns all kinds
    * @returns Array of API URLs with environment variables applied
    *
@@ -245,22 +246,11 @@ export class NetworksRegistry {
    * ```
    */
   getApiUrls(networkId: string, kinds: APIURLKind[] = []): string[] {
-    const apis = this.getNetworkById(networkId)?.apiUrls ?? [];
+    const apis = this.getNetworkById(networkId)?.apiUrls ?? this.getNetworkByAlias(networkId)?.apiUrls ?? [];
 
     return apis
       .filter(({ kind }) => kinds.length === 0 || kinds.includes(kind))
-      .map(({ url }) => {
-        const envVars = url.match(/\{([^}]+)\}/g);
-        if (!envVars) return url;
-        for (const envVar of envVars) {
-          const value = process?.env?.[envVar.slice(1, -1)];
-          if (!value) {
-            return "";
-          }
-          url = url.replace(envVar, value);
-        }
-        return url;
-      })
+      .map(({ url }) => applyEnvVars(url))
       .filter(Boolean);
   }
 }
