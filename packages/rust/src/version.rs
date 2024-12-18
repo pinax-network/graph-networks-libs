@@ -2,7 +2,7 @@ use std::cell::RefCell;
 use std::thread_local;
 
 thread_local! {
-    static REGISTRY_BASE_URL: RefCell<String> = RefCell::new("https://registry.thegraph.com".to_string());
+    static REGISTRY_BASE_URL: RefCell<String> = RefCell::new("https://networks-registry.thegraph.com".to_string());
     static FALLBACK_BASE_URL: RefCell<String> = RefCell::new("https://raw.githubusercontent.com/graphprotocol/networks-registry/refs/heads/main/public".to_string());
 }
 

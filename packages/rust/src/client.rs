@@ -136,7 +136,7 @@ mod tests {
     use super::*;
 
     const REGISTRY_JSON: &str = r#"{
-        "$schema": "https://registry.thegraph.com/TheGraphNetworksRegistrySchema_vx_x.json",
+        "$schema": "https://networks-registry.thegraph.com/TheGraphNetworksRegistrySchema_vx_x.json",
         "version": "x.x.x",
         "title": "Test Registry",
         "description": "Test Registry",
@@ -311,7 +311,7 @@ mod tests {
 
             // Test Case 4: Valid JSON but invalid schema
             let invalid_schema_json = r#"{
-                "$schema": "https://registry.thegraph.com/TheGraphNetworksRegistrySchema_vx_x.json",
+                "$schema": "https://networks-registry.thegraph.com/TheGraphNetworksRegistrySchema_vx_x.json",
                 "version": "x.x.x",
                 "title": "Test Registry",
                 "description": "Test Registry",

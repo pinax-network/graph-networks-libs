@@ -13,7 +13,7 @@ Libraries to work with [The Graph Networks Registry](https://github.com/graphpro
 
 To update the types to match new schema version, run [./generate.sh](./generate.sh).
 This will:
-- pull the latest schema from [registry.thegraph.com](https://registry.thegraph.com),
+- pull the latest schema from [networks-registry.thegraph.com](https://networks-registry.thegraph.com),
 - inject new version into libraries
 - generate the types for all libraries using [quicktype](https://quicktype.io)
 - run tests and examples with the new schema

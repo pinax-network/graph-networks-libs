@@ -2,7 +2,7 @@ import { type NetworksRegistryInner, type Network, type APIURLKind } from "./typ
 import { applyEnvVars } from "./env.js";
 import { schemaVersion } from "./version.js";
 
-const REGISTRY_BASE_URL = "https://registry.thegraph.com";
+const REGISTRY_BASE_URL = "https://networks-registry.thegraph.com";
 const FALLBACK_BASE_URL = "https://raw.githubusercontent.com/graphprotocol/networks-registry/refs/heads/main/public";
 
 let readFileSync: ((path: string, encoding: string) => string) | undefined;
@@ -61,7 +61,7 @@ export class NetworksRegistry {
 
   /**
    * Fetches and loads the latest version of the networks registry. First tries to fetch from
-   * the primary registry URL at registry.thegraph.com, then falls back to the fallback URL at GitHub
+   * the primary registry URL at networks-registry.thegraph.com, then falls back to the fallback URL at GitHub
    * Uses the library version to determine the latest compatible registry URL.
    * Library version 0.5.x will use the latest registry version 0.5.y even if 0.6.z is available
    *
@@ -87,7 +87,7 @@ export class NetworksRegistry {
 
   /**
    * Fetches and loads a specific version of the networks registry. First tries to fetch from
-   * the primary registry URL at registry.thegraph.com, then falls back to the fallback URL at GitHub
+   * the primary registry URL at networks-registry.thegraph.com, then falls back to the fallback URL at GitHub
    *
    * @param version - The exact version to fetch (e.g. "0.5.0")
    * @returns Promise that resolves to a new NetworksRegistry instance

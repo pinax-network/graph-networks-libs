@@ -6,7 +6,7 @@ import { APIURLKind } from "../types";
 
 describe("NetworksRegistry", () => {
   const testRegistryJson = {
-    $schema: "https://registry.thegraph.com/TheGraphNetworksRegistrySchema_v0_6.json",
+    $schema: "https://networks-registry.thegraph.com/TheGraphNetworksRegistrySchema_v0_6.json",
     version: "0.6.0",
     title: "Test Registry",
     description: "Test Registry",
@@ -109,12 +109,12 @@ describe("NetworksRegistry", () => {
 
     test("should generate correct latest version URL", () => {
       const url = NetworksRegistry.getLatestVersionUrl();
-      expect(url).toBe(`https://registry.thegraph.com/TheGraphNetworksRegistry_v${major}_${minor}_x.json`);
+      expect(url).toBe(`https://networks-registry.thegraph.com/TheGraphNetworksRegistry_v${major}_${minor}_x.json`);
     });
 
     test("should generate correct exact version URL", () => {
       const url = NetworksRegistry.getExactVersionUrl("1.2.3");
-      expect(url).toBe("https://registry.thegraph.com/TheGraphNetworksRegistry_v1_2_3.json");
+      expect(url).toBe("https://networks-registry.thegraph.com/TheGraphNetworksRegistry_v1_2_3.json");
     });
 
     test("should generate correct latest version fallback URL", () => {

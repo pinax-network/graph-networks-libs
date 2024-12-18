@@ -10,7 +10,7 @@ trap '[ $? -ne 0 ] && echo "❌ Failed to update the schema"; cd "$CWD";' EXIT
 
 # Pull latest registry
 echo "Fetching latest registry..."
-curl -s https://registry.thegraph.com/TheGraphNetworksRegistry.json > sample/TheGraphNetworksRegistry.json
+curl -s https://networks-registry.thegraph.com/TheGraphNetworksRegistry.json > sample/TheGraphNetworksRegistry.json
 
 # Extract and fetch schema URL
 SCHEMA_URL=$(jq -r '."$schema"' sample/TheGraphNetworksRegistry.json)

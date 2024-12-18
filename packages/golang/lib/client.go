@@ -8,11 +8,11 @@ import (
 	"strings"
 )
 
-const registryBaseURL = "https://registry.thegraph.com"
+const registryBaseURL = "https://registry.networks-registry.thegraph.com"
 
 // GetLatestVersionUrl returns the URL for the latest compatible version of the networks registry.
 // It constructs the URL using the major and minor version numbers from the current package version.
-// The URL follows the pattern: https://registry.thegraph.com/TheGraphNetworksRegistry_v{major}_{minor}_x.json
+// The URL follows the pattern: https://registry.networks-registry.thegraph.comNetworksRegistry_v{major}_{minor}_x.json
 func GetLatestVersionUrl() string {
 	major, minor := getMajorMinor()
 	return fmt.Sprintf("%s/TheGraphNetworksRegistry_v%s_%s_x.json", registryBaseURL, major, minor)
@@ -20,7 +20,7 @@ func GetLatestVersionUrl() string {
 
 // GetExactVersionUrl returns the URL for a specific version of the networks registry.
 // It takes a version string (e.g. "0.5.0") and constructs the URL
-// The URL follows the pattern: https://registry.thegraph.com/TheGraphNetworksRegistry_v{version}.json
+// The URL follows the pattern: https://registry.networks-registry.thegraph.comNetworksRegistry_v{version}.json
 func GetExactVersionUrl(version string) string {
 	versionPath := strings.ReplaceAll(version, ".", "_")
 	return fmt.Sprintf("%s/TheGraphNetworksRegistry_v%s.json", registryBaseURL, versionPath)

@@ -6,7 +6,7 @@ import (
 
 func TestNetworksRegistry(t *testing.T) {
     testRegistryJSON := `{
-        "$schema": "https://registry.thegraph.com/TheGraphNetworksRegistrySchema_v0_6.json",
+        "$schema": "https://networks-registry.thegraph.com/TheGraphNetworksRegistrySchema_v0_6.json",
         "version": "0.6.0",
         "title": "Test Registry",
         "description": "Test Registry",

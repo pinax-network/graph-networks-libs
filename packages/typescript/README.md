@@ -19,15 +19,15 @@ npm install @pinax/graph-networks-registry
 ```typescript
 import { NetworksRegistry } from '@pinax/graph-networks-registry';
 
-// Load from the latest compatible registry JSON at registry.thegraph.com
+// Load from the latest compatible registry JSON at networks-registry.thegraph.com
 const registry = await NetworksRegistry.fromLatestVersion();
 
-// Load from specific version tag at registry.thegraph.com
+// Load from specific version tag at networks-registry.thegraph.com
 const registry = await NetworksRegistry.fromExactVersion('0.6.0');
 const registry = await NetworksRegistry.fromExactVersion('0.6.x');
 
 // Load from URL
-const registry = await NetworksRegistry.fromUrl('https://registry.thegraph.com/TheGraphNetworksRegistry.json');
+const registry = await NetworksRegistry.fromUrl('https://networks-registry.thegraph.com/TheGraphNetworksRegistry.json');
 
 // Load from local file
 const registry = NetworksRegistry.fromFile('./TheGraphNetworksRegistry.json');

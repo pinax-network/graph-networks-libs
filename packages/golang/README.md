@@ -22,7 +22,7 @@ import (
 )
 
 func main() {
-    // Fetch the latest compatible version of the registry from registry.thegraph.com
+    // Fetch the latest compatible version of the registry from networks-registry.thegraph.com
     reg, err := registry.FromLatestVersion()
     if err != nil {
         log.Fatalf("Failed to fetch registry: %v", err)

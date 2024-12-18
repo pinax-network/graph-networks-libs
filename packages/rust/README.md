@@ -35,7 +35,7 @@ fn main() {
 
 ### Fetching the latest registry
 
-To fetch the latest compatible registry version from registry.thegraph.com
+To fetch the latest compatible registry version from networks-registry.thegraph.com
 
 
 ```rust
