@@ -13,3 +13,5 @@ Cargo.lock
 package-lock.json
 yarn.lock
 go.sum
+go.work
+go.work.sum
