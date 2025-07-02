@@ -201,6 +201,7 @@ export class NetworksRegistry {
    *
    * @param id - The network ID (e.g. "mainnet", "optimism")
    * @returns The network if found, undefined otherwise
+   * @deprecated Use getNetworkByGraphId instead
    *
    * @example
    * ```typescript
@@ -216,6 +217,7 @@ export class NetworksRegistry {
    *
    * @param alias - The network ID or alias (e.g. "eth" for Ethereum mainnet)
    * @returns The network if found, undefined otherwise
+   * @deprecated Use getNetworkByGraphId instead
    *
    * @example
    * ```typescript
@@ -224,6 +226,22 @@ export class NetworksRegistry {
    */
   getNetworkByAlias(alias: string): Network | undefined {
     return this.registry.networks.find((network) => network.id === alias || network.aliases?.includes(alias));
+  }
+
+  /**
+   * Finds a network by its graph ID (either its ID field or one of its aliases).
+   *
+   * @param id - The graph ID, which could be either the network's ID or one of its aliases
+   * @returns The network if found, undefined otherwise
+   *
+   * @example
+   * ```typescript
+   * const mainnet = registry.getNetworkByGraphId("mainnet");
+   * const ethereum = registry.getNetworkByGraphId("eth");
+   * ```
+   */
+  getNetworkByGraphId(id: string): Network | undefined {
+    return this.registry.networks.find((network) => network.id === id || network.aliases?.includes(id));
   }
 
   /**

@@ -8,9 +8,10 @@ async function main() {
 
   console.log("Successfully loaded", registry.networks.length, "networks");
 
-  const mainnet = registry.getNetworkById("mainnet");
+  // Using the new getNetworkByGraphId method which works with both network ID and alias
+  const mainnet = registry.getNetworkByGraphId("mainnet");
   if (mainnet) {
-    console.log("Found mainnet:", mainnet.fullName);
+    console.log("Found mainnet by graph ID:", mainnet.fullName);
   }
 
   const apis = registry.getApiUrls("mainnet");
