@@ -17,8 +17,13 @@ func main() {
 
     fmt.Printf("Successfully loaded %d networks\n", len(reg.Networks))
 
-    // Get network by ID
-    if mainnet := reg.GetNetworkById("mainnet"); mainnet != nil {
-        fmt.Printf("Found mainnet: %s\n", mainnet.FullName)
+    // Get network by graph ID (works with both network ID and alias)
+    if mainnet := reg.GetNetworkByGraphId("mainnet"); mainnet != nil {
+        fmt.Printf("Found mainnet by ID: %s\n", mainnet.FullName)
+    }
+
+    // You can also use the same method to find networks by alias
+    if ethereum := reg.GetNetworkByGraphId("eth"); ethereum != nil {
+        fmt.Printf("Found ethereum by alias: %s\n", ethereum.FullName)
     }
 }
