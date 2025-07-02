@@ -52,6 +52,17 @@ if (ethereum) {
     console.log(ethereum.fullName); // "Ethereum Mainnet"
 }
 
+// Find network by CAIP-2 chain ID
+const ethereumByChainId = registry.getNetworkByCaip2Id('eip155:1');
+if (ethereumByChainId) {
+    console.log(ethereumByChainId.fullName); // "Ethereum Mainnet"
+    console.log(ethereumByChainId.id); // "mainnet"
+}
+
+// Invalid format will produce a warning and return undefined
+const invalidNetwork = registry.getNetworkByCaip2Id('invalid-format');
+// Warning: CAIP-2 Chain ID should be in the format '[namespace]:[reference]', e.g., 'eip155:1'
+
 // Deprecated methods (will be removed in future versions)
 // Find network by ID
 // @deprecated Use getNetworkByGraphId instead

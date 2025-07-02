@@ -116,6 +116,33 @@ describe("NetworksRegistry", () => {
       const network2 = registry.getNetworkByAlias("nonexistent");
       expect(network2).toBeUndefined();
     });
+
+    test("should find network by CAIP-2 chain ID", () => {
+      const network = registry.getNetworkByCaip2Id("eip155:1");
+      expect(network).toBeDefined();
+      expect(network?.id).toBe("mainnet");
+    });
+
+    test("should return undefined for nonexistent CAIP-2 chain ID", () => {
+      const network = registry.getNetworkByCaip2Id("cosmos:cosmoshub-4");
+      expect(network).toBeUndefined();
+    });
+
+    test("should warn and return undefined for invalid CAIP-2 chain ID format", () => {
+      // Mock console.warn
+      const originalConsoleWarn = console.warn;
+      const mockConsoleWarn = jest.fn();
+      console.warn = mockConsoleWarn;
+
+      const network = registry.getNetworkByCaip2Id("invalid-format");
+      expect(network).toBeUndefined();
+      expect(mockConsoleWarn).toHaveBeenCalledWith(
+        "Warning: CAIP-2 Chain ID should be in the format '[namespace]:[reference]', e.g., 'eip155:1'"
+      );
+
+      // Restore console.warn
+      console.warn = originalConsoleWarn;
+    });
   });
 
   describe("version URLs", () => {

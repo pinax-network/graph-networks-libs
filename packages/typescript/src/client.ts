@@ -245,6 +245,26 @@ export class NetworksRegistry {
   }
 
   /**
+   * Finds a network by its CAIP-2 chain ID.
+   *
+   * @param chainId - The CAIP-2 chain ID in the format "[namespace]:[reference]" (e.g., "eip155:1")
+   * @returns The network if found, undefined otherwise
+   *
+   * @example
+   * ```typescript
+   * const ethereum = registry.getNetworkByCaip2Id("eip155:1");
+   * ```
+   */
+  getNetworkByCaip2Id(chainId: string): Network | undefined {
+    if (!chainId.includes(":")) {
+      console.warn("Warning: CAIP-2 Chain ID should be in the format '[namespace]:[reference]', e.g., 'eip155:1'");
+      return undefined;
+    }
+
+    return this.registry.networks.find((network) => network.caip2Id === chainId);
+  }
+
+  /**
    * Gets API URLs for a network, filtered by kind and with environment variables applied.
    * Environment variable placeholders in the format {VARIABLE_NAME} will be replaced with
    * actual environment variable values. URLs that reference non-existent environment
