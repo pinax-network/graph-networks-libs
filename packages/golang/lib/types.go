@@ -1,4 +1,4 @@
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
+// Code generated from JSON Schema using quicktype. DO NOT EDIT.
 // To parse and unparse this JSON data, add this code to your project and do:
 //
 //    networksRegistry, err := UnmarshalNetworksRegistry(bytes)
@@ -50,8 +50,6 @@ type Network struct {
 	Firehose                                                                                  *Firehose        `json:"firehose,omitempty"`
 	// Display name of the network, e.g. Ethereum Mainnet, Bitcoin Testnet                                     
 	FullName                                                                                  string           `json:"fullName"`
-	// Genesis block information                                                                               
-	Genesis                                                                                   *Genesis         `json:"genesis,omitempty"`
 	// Graph Node specific configuration information                                                           
 	GraphNode                                                                                 *GraphNode       `json:"graphNode,omitempty"`
 	// Icons for the network                                                                                   
@@ -78,6 +76,8 @@ type Network struct {
 	Services                                                                                  Services         `json:"services"`
 	// Short display name of the network, e.g. Ethereum, BNB                                                   
 	ShortName                                                                                 string           `json:"shortName"`
+	// Token API specific configuration information                                                            
+	TokenAPI                                                                                  *TokenAPI        `json:"tokenApi,omitempty"`
 }
 
 type APIURL struct {
@@ -88,28 +88,36 @@ type APIURL struct {
 
 // Firehose block information
 type Firehose struct {
-	// Block type, e.g. sf.ethereum.type.v2.Block                                                             
-	BlockType                                                                                   string        `json:"blockType"`
-	// Protobuf definitions on buf.build, e.g. https://buf.build/streamingfast/firehose-ethereum              
-	BufURL                                                                                      string        `json:"bufUrl"`
-	// Bytes encoding, e.g. hex, 0xhex, base58                                                                
-	BytesEncoding                                                                               BytesEncoding `json:"bytesEncoding"`
-	// [optional] Whether there is support for extended EVM block model                                       
-	EvmExtendedModel                                                                            *bool         `json:"evmExtendedModel,omitempty"`
+	// Block features supported by the network                                                                        
+	BlockFeatures                                                                               []string              `json:"blockFeatures,omitempty"`
+	// Block type, e.g. sf.ethereum.type.v2.Block                                                                     
+	BlockType                                                                                   string                `json:"blockType"`
+	// Protobuf definitions on buf.build, e.g. https://buf.build/streamingfast/firehose-ethereum                      
+	BufURL                                                                                      string                `json:"bufUrl"`
+	// Bytes encoding, e.g. hex, 0xhex, base58                                                                        
+	BytesEncoding                                                                               BytesEncoding         `json:"bytesEncoding"`
+	// [optional] Timestamp when the network was deprecated in Firehose software                                      
+	DeprecatedAt                                                                                *time.Time            `json:"deprecatedAt,omitempty"`
+	// [optional] Whether there is support for extended EVM block model                                               
+	EvmExtendedModel                                                                            *bool                 `json:"evmExtendedModel,omitempty"`
+	// First available block information                                                                              
+	FirstStreamableBlock                                                                        *FirstStreamableBlock `json:"firstStreamableBlock,omitempty"`
 }
 
-// Genesis block information
-type Genesis struct {
-	// Hash of the genesis block either in 0x-prefixed hex or base58       
-	Hash                                                            string `json:"hash"`
-	// Block height of the genesis or the first available block            
-	Height                                                          int64  `json:"height"`
+// First available block information
+type FirstStreamableBlock struct {
+	// Block height of the first streamable block. Can be different from genesis       
+	Height                                                                      int64  `json:"height"`
+	// Id of the first streamable block either in 0x-prefixed hex or base58            
+	ID                                                                          string `json:"id"`
 }
 
 // Graph Node specific configuration information
 type GraphNode struct {
-	// [optional] Protocol name in graph-node, e.g. ethereum, near, arweave          
-	Protocol                                                               *Protocol `json:"protocol,omitempty"`
+	// [optional] Timestamp when the network was deprecated in Graph Node software           
+	DeprecatedAt                                                                  *time.Time `json:"deprecatedAt,omitempty"`
+	// [optional] Protocol name in graph-node, e.g. ethereum, near, arweave                  
+	Protocol                                                                      *Protocol  `json:"protocol,omitempty"`
 }
 
 // Icons for the network
@@ -150,6 +158,17 @@ type Services struct {
 	Subgraphs                                                                                 []string `json:"subgraphs,omitempty"`
 	// Substreams gRPC URLs, e.g. eth.substreams.pinax.network:443                                     
 	Substreams                                                                                []string `json:"substreams,omitempty"`
+	// Token API URLs, e.g. https://token-api.thegraph.com                                             
+	TokenAPI                                                                                  []string `json:"tokenApi,omitempty"`
+}
+
+// Token API specific configuration information
+type TokenAPI struct {
+	// [optional] Timestamp when the network was deprecated in Token API software           
+	DeprecatedAt                                                                 *time.Time `json:"deprecatedAt,omitempty"`
+	Features                                                                     []Feature  `json:"features,omitempty"`
+	// Network ID in Token API, has to be an ID or alias of an existing network             
+	NetworkID                                                                    *string    `json:"networkId,omitempty"`
 }
 
 // Kind of API
@@ -190,6 +209,7 @@ const (
 type NetworkType string
 
 const (
+	Beacon  NetworkType = "beacon"
 	Devnet  NetworkType = "devnet"
 	Mainnet NetworkType = "mainnet"
 	Testnet NetworkType = "testnet"
@@ -205,5 +225,16 @@ const (
 	ForkedFrom  RelationKind = "forkedFrom"
 	L2Of        RelationKind = "l2Of"
 	ShardOf     RelationKind = "shardOf"
+	SvmOf       RelationKind = "svmOf"
 	TestnetOf   RelationKind = "testnetOf"
+)
+
+// List of Token API features supported
+type Feature string
+
+const (
+	Dexes        Feature = "dexes"
+	FeatureOther Feature = "other"
+	Nfts         Feature = "nfts"
+	Tokens       Feature = "tokens"
 )

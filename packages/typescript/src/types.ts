@@ -60,10 +60,6 @@ export interface Network {
      */
     fullName: string;
     /**
-     * Genesis block information
-     */
-    genesis?: Genesis;
-    /**
      * Graph Node specific configuration information
      */
     graphNode?: GraphNode;
@@ -113,6 +109,10 @@ export interface Network {
      * Short display name of the network, e.g. Ethereum, BNB
      */
     shortName: string;
+    /**
+     * Token API specific configuration information
+     */
+    tokenApi?: TokenAPI;
 }
 
 export interface APIURL {
@@ -139,6 +139,10 @@ export enum APIURLKind {
  */
 export interface Firehose {
     /**
+     * Block features supported by the network
+     */
+    blockFeatures?: string[];
+    /**
      * Block type, e.g. sf.ethereum.type.v2.Block
      */
     blockType: string;
@@ -151,9 +155,17 @@ export interface Firehose {
      */
     bytesEncoding: BytesEncoding;
     /**
+     * [optional] Timestamp when the network was deprecated in Firehose software
+     */
+    deprecatedAt?: Date;
+    /**
      * [optional] Whether there is support for extended EVM block model
      */
     evmExtendedModel?: boolean;
+    /**
+     * First available block information
+     */
+    firstStreamableBlock?: FirstStreamableBlock;
 }
 
 /**
@@ -168,23 +180,27 @@ export enum BytesEncoding {
 }
 
 /**
- * Genesis block information
+ * First available block information
  */
-export interface Genesis {
+export interface FirstStreamableBlock {
     /**
-     * Hash of the genesis block either in 0x-prefixed hex or base58
-     */
-    hash: string;
-    /**
-     * Block height of the genesis or the first available block
+     * Block height of the first streamable block. Can be different from genesis
      */
     height: number;
+    /**
+     * Id of the first streamable block either in 0x-prefixed hex or base58
+     */
+    id: string;
 }
 
 /**
  * Graph Node specific configuration information
  */
 export interface GraphNode {
+    /**
+     * [optional] Timestamp when the network was deprecated in Graph Node software
+     */
+    deprecatedAt?: Date;
     /**
      * [optional] Protocol name in graph-node, e.g. ethereum, near, arweave
      */
@@ -242,6 +258,7 @@ export interface IndexerDocsURL {
  * Whether the network is a mainnet/testnet/devnet
  */
 export enum NetworkType {
+    Beacon = "beacon",
     Devnet = "devnet",
     Mainnet = "mainnet",
     Testnet = "testnet",
@@ -268,6 +285,7 @@ export enum RelationKind {
     L2Of = "l2Of",
     Other = "other",
     ShardOf = "shardOf",
+    SvmOf = "svmOf",
     TestnetOf = "testnetOf",
 }
 
@@ -291,6 +309,35 @@ export interface Services {
      * Substreams gRPC URLs, e.g. eth.substreams.pinax.network:443
      */
     substreams?: string[];
+    /**
+     * Token API URLs, e.g. https://token-api.thegraph.com
+     */
+    tokenApi?: string[];
+}
+
+/**
+ * Token API specific configuration information
+ */
+export interface TokenAPI {
+    /**
+     * [optional] Timestamp when the network was deprecated in Token API software
+     */
+    deprecatedAt?: Date;
+    features?:     Feature[];
+    /**
+     * Network ID in Token API, has to be an ID or alias of an existing network
+     */
+    networkId?: string;
+}
+
+/**
+ * List of Token API features supported
+ */
+export enum Feature {
+    Dexes = "dexes",
+    Nfts = "nfts",
+    Other = "other",
+    Tokens = "tokens",
 }
 
 // Converts JSON strings to/from your types
@@ -474,7 +521,6 @@ const typeMap: any = {
         { json: "explorerUrls", js: "explorerUrls", typ: u(undefined, a("")) },
         { json: "firehose", js: "firehose", typ: u(undefined, r("Firehose")) },
         { json: "fullName", js: "fullName", typ: "" },
-        { json: "genesis", js: "genesis", typ: u(undefined, r("Genesis")) },
         { json: "graphNode", js: "graphNode", typ: u(undefined, r("GraphNode")) },
         { json: "icon", js: "icon", typ: u(undefined, r("Icon")) },
         { json: "id", js: "id", typ: "" },
@@ -487,22 +533,27 @@ const typeMap: any = {
         { json: "secondName", js: "secondName", typ: u(undefined, "") },
         { json: "services", js: "services", typ: r("Services") },
         { json: "shortName", js: "shortName", typ: "" },
+        { json: "tokenApi", js: "tokenApi", typ: u(undefined, r("TokenAPI")) },
     ], false),
     "APIURL": o([
         { json: "kind", js: "kind", typ: r("APIURLKind") },
         { json: "url", js: "url", typ: "" },
     ], false),
     "Firehose": o([
+        { json: "blockFeatures", js: "blockFeatures", typ: u(undefined, a("")) },
         { json: "blockType", js: "blockType", typ: "" },
         { json: "bufUrl", js: "bufUrl", typ: "" },
         { json: "bytesEncoding", js: "bytesEncoding", typ: r("BytesEncoding") },
+        { json: "deprecatedAt", js: "deprecatedAt", typ: u(undefined, Date) },
         { json: "evmExtendedModel", js: "evmExtendedModel", typ: u(undefined, true) },
+        { json: "firstStreamableBlock", js: "firstStreamableBlock", typ: u(undefined, r("FirstStreamableBlock")) },
     ], false),
-    "Genesis": o([
-        { json: "hash", js: "hash", typ: "" },
+    "FirstStreamableBlock": o([
         { json: "height", js: "height", typ: 0 },
+        { json: "id", js: "id", typ: "" },
     ], false),
     "GraphNode": o([
+        { json: "deprecatedAt", js: "deprecatedAt", typ: u(undefined, Date) },
         { json: "protocol", js: "protocol", typ: u(undefined, r("Protocol")) },
     ], false),
     "Icon": o([
@@ -525,6 +576,12 @@ const typeMap: any = {
         { json: "sps", js: "sps", typ: u(undefined, a("")) },
         { json: "subgraphs", js: "subgraphs", typ: u(undefined, a("")) },
         { json: "substreams", js: "substreams", typ: u(undefined, a("")) },
+        { json: "tokenApi", js: "tokenApi", typ: u(undefined, a("")) },
+    ], false),
+    "TokenAPI": o([
+        { json: "deprecatedAt", js: "deprecatedAt", typ: u(undefined, Date) },
+        { json: "features", js: "features", typ: u(undefined, a(r("Feature"))) },
+        { json: "networkId", js: "networkId", typ: u(undefined, "") },
     ], false),
     "APIURLKind": [
         "blockscout",
@@ -549,6 +606,7 @@ const typeMap: any = {
         "starknet",
     ],
     "NetworkType": [
+        "beacon",
         "devnet",
         "mainnet",
         "testnet",
@@ -560,6 +618,13 @@ const typeMap: any = {
         "l2Of",
         "other",
         "shardOf",
+        "svmOf",
         "testnetOf",
+    ],
+    "Feature": [
+        "dexes",
+        "nfts",
+        "other",
+        "tokens",
     ],
 };
