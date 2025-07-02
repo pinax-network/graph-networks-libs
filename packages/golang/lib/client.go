@@ -141,6 +141,27 @@ func (r *NetworksRegistry) GetNetworkByGraphId(id string) *Network {
 	return nil
 }
 
+// GetNetworkByCaip2Id finds a network by its CAIP-2 chain ID.
+// It takes a chain ID string in the format "[namespace]:[reference]" (e.g., "eip155:1")
+// and returns the matching Network if found.
+// Returns nil if no network with the given CAIP-2 ID exists in the registry.
+// If the provided chainId doesn't contain a colon, it will print a warning message
+// suggesting the correct format.
+func (r *NetworksRegistry) GetNetworkByCaip2Id(chainId string) *Network {
+	if !strings.Contains(chainId, ":") {
+		fmt.Fprintf(os.Stderr, "Warning: CAIP-2 Chain ID should be in the format '[namespace]:[reference]', e.g., 'eip155:1'\n")
+		return nil
+	}
+
+	for i := range r.Networks {
+		network := &r.Networks[i]
+		if network.Caip2ID == chainId {
+			return network
+		}
+	}
+	return nil
+}
+
 func getMajorMinor() (string, string) {
 	parts := strings.Split(Version, ".")
 	if len(parts) < 2 {

@@ -59,4 +59,24 @@ func TestNetworksRegistry(t *testing.T) {
     if network := registry.GetNetworkByAlias("eth"); network == nil {
         t.Error("Expected to find network with deprecated GetNetworkByAlias")
     }
+
+    // Test CAIP-2 ID lookup
+    if network := registry.GetNetworkByCaip2Id("eip155:1"); network == nil {
+        t.Error("Expected to find network by CAIP-2 ID 'eip155:1'")
+    }
+
+    if network := registry.GetNetworkByCaip2Id("eip155:1"); network != nil {
+        if network.ID != "mainnet" {
+            t.Errorf("Expected network ID 'mainnet', got '%s'", network.ID)
+        }
+    }
+
+    if network := registry.GetNetworkByCaip2Id("nonexistent:id"); network != nil {
+        t.Error("Expected nil for nonexistent CAIP-2 ID")
+    }
+
+    // Test format validation - this test doesn't fail the test but should print a warning
+    if network := registry.GetNetworkByCaip2Id("invalid-format"); network != nil {
+        t.Error("Expected nil for invalid CAIP-2 ID format")
+    }
 }

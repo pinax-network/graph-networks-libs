@@ -24,4 +24,10 @@ func main() {
     if ethereum := reg.GetNetworkByGraphId("eth"); ethereum != nil {
         fmt.Printf("Found ethereum by alias: %s\n", ethereum.FullName)
     }
+
+    // Get network by CAIP-2 chain ID
+    if ethereum := reg.GetNetworkByCaip2Id("eip155:1"); ethereum != nil {
+        fmt.Printf("Found ethereum by CAIP-2 ID: %s (caip2Id: %s)\n", ethereum.FullName, ethereum.Caip2ID)
+    }
+
 }
