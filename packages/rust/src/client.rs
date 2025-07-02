@@ -87,6 +87,11 @@ impl NetworksRegistry {
     /// # Returns
     ///
     /// Returns `Some(&Network)` if found, `None` otherwise
+    ///
+    /// # Deprecated
+    ///
+    /// This function is deprecated. Use `get_network_by_graph_id` instead.
+    #[deprecated(since = "0.7.0", note = "Use get_network_by_graph_id instead")]
     pub fn get_network_by_id<'a>(&'a self, id: &str) -> Option<&'a Network> {
         self.networks.iter().find(|network| network.id == id)
     }
@@ -100,6 +105,11 @@ impl NetworksRegistry {
     /// # Returns
     ///
     /// Returns `Some(&Network)` if found, `None` otherwise
+    ///
+    /// # Deprecated
+    ///
+    /// This function is deprecated. Use `get_network_by_graph_id` instead.
+    #[deprecated(since = "0.7.0", note = "Use get_network_by_graph_id instead")]
     pub fn get_network_by_alias<'a>(&'a self, alias: &str) -> Option<&'a Network> {
         self.networks.iter().find(|network| {
             network
@@ -107,6 +117,21 @@ impl NetworksRegistry {
                 .as_ref()
                 .map_or(false, |aliases| aliases.contains(&alias.to_string()))
         })
+    }
+
+    /// Looks up a network by its graph id (either its id field or one of its aliases)
+    ///
+    /// # Arguments
+    ///
+    /// * `id` - A graph id, which could be either the network's id or one of its aliases
+    ///
+    /// # Returns
+    ///
+    /// Returns `Some(&Network)` if found, `None` otherwise
+    pub fn get_network_by_graph_id<'a>(&'a self, id: &str) -> Option<&'a Network> {
+        self.networks
+            .iter()
+            .find(|network| network.id == id || network.aliases.as_ref().map_or(false, |aliases| aliases.contains(&id.to_string())))
     }
 
     #[cfg(feature = "fetch")]
@@ -175,6 +200,17 @@ mod tests {
         let network = registry.get_network_by_id("mainnet");
         assert!(network.is_some());
         assert_eq!(network.unwrap().id, "mainnet");
+
+        let network = registry.get_network_by_graph_id("mainnet");
+        assert!(network.is_some());
+        assert_eq!(network.unwrap().id, "mainnet");
+
+        let network = registry.get_network_by_graph_id("eth");
+        assert!(network.is_some());
+        assert_eq!(network.unwrap().id, "mainnet");
+
+        let network = registry.get_network_by_graph_id("nonexistent");
+        assert!(network.is_none());
     }
 
     #[cfg(feature = "fetch")]
@@ -213,7 +249,7 @@ mod tests {
             let result = NetworksRegistry::from_latest_version().await;
             assert!(result.is_ok(), "Should succeed with primary URL");
             let registry = result.unwrap();
-            assert!(registry.get_network_by_id("mainnet").is_some());
+            assert!(registry.get_network_by_graph_id("mainnet").is_some());
             primary_mock.assert();
             fallback_mock.assert();
 
@@ -234,7 +270,7 @@ mod tests {
             let result = NetworksRegistry::from_latest_version().await;
             assert!(result.is_ok(), "Should succeed using fallback URL");
             let registry = result.unwrap();
-            assert!(registry.get_network_by_id("mainnet").is_some());
+            assert!(registry.get_network_by_graph_id("mainnet").is_some());
             primary_mock.assert();
             fallback_mock.assert();
 
