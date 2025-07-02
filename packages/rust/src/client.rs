@@ -134,6 +134,31 @@ impl NetworksRegistry {
             .find(|network| network.id == id || network.aliases.as_ref().map_or(false, |aliases| aliases.contains(&id.to_string())))
     }
 
+    /// Looks up a network by its CAIP-2 chain ID
+    ///
+    /// # Arguments
+    ///
+    /// * `chain_id` - The CAIP-2 chain ID in the format "[namespace]:[reference]" (e.g., "eip155:1")
+    ///
+    /// # Returns
+    ///
+    /// Returns `Some(&Network)` if found, `None` otherwise
+    /// ```
+    pub fn get_network_by_caip2_id<'a>(&'a self, chain_id: &str) -> Option<&'a Network> {
+        // Check if the chain_id is in the correct format (contains a colon)
+        if !chain_id.contains(":") {
+            eprintln!("Warning: CAIP-2 Chain ID should be in the format '[namespace]:[reference]', e.g., 'eip155:1'");
+            return None;
+        }
+
+        for network in &self.networks {
+            if network.caip2_id == chain_id {
+                return Some(network);
+            }
+        }
+        None
+    }
+
     #[cfg(feature = "fetch")]
     async fn fetch_registry(url: &str) -> Result<Self, Error> {
         let response = reqwest::get(url).await?;

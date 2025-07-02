@@ -33,6 +33,12 @@ fn main() {
     if let Some(network) = registry.get_network_by_graph_id("eth") {
         println!("Found ethereum by alias: {:?}", network);
     }
+
+    // Find network by CAIP-2 chain ID
+    if let Some(network) = registry.get_network_by_caip2_id("eip155:1") {
+        println!("Found ethereum by CAIP-2 ID: {:?}", network);
+        println!("ID: {}, CAIP-2 ID: {}", network.id, network.caip2_id);
+    }
 }
 
 ```
