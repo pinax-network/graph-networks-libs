@@ -1,3 +1,4 @@
+import { vi, describe, test, expect, beforeEach, afterEach } from "vitest";
 import { NetworksRegistry } from "../client";
 import { schemaVersion } from "../version";
 import { version as packageVersion } from "../../package.json";
@@ -131,7 +132,7 @@ describe("NetworksRegistry", () => {
     test("should warn and return undefined for invalid CAIP-2 chain ID format", () => {
       // Mock console.warn
       const originalConsoleWarn = console.warn;
-      const mockConsoleWarn = jest.fn();
+      const mockConsoleWarn = vi.fn();
       console.warn = mockConsoleWarn;
 
       const network = registry.getNetworkByCaip2Id("invalid-format");
