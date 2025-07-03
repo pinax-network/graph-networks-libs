@@ -10,12 +10,16 @@ async function main() {
 
   // Using the new getNetworkByGraphId method which works with both network ID and alias
   const mainnet = registry.getNetworkByGraphId("mainnet");
-  if (mainnet) {
-    console.log("Found mainnet by graph ID:", mainnet.fullName);
+  if (!mainnet) {
+    throw new Error("Mainnet not found");
   }
+  console.log("Found mainnet by graph ID:", mainnet.fullName);
 
   const apis = registry.getApiUrls("mainnet");
   console.log("API URLs:", apis);
 }
 
-main().catch(console.error);
+main().catch((error) => {
+  console.error(error);
+  process.exit(1); // Exit with non-zero code on error
+});

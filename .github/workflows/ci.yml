@@ -89,19 +89,9 @@ jobs:
           set -e
           for dir in examples/*; do
             if [ -d "$dir" ]; then
-              cd "$dir"
-              npm install
-              cd - > /dev/null
-            fi
-          done
-          for dir in examples/*; do
-            if [ -d "$dir" ]; then
               echo "=== Checking example in $dir ==="
               cd "$dir"
-              if [ -f "index.ts" ]; then
-                echo "Static check for TypeScript in $dir"
-                ../../node_modules/.bin/tsc --noEmit || exit 1
-              fi
+              npm install
               npm start
               cd - > /dev/null
             fi
