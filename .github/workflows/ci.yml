@@ -69,7 +69,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: ./packages/typescript
-        run: npm ci
+        run: npm install
 
       - name: Lint
         working-directory: ./packages/typescript
@@ -85,7 +85,7 @@ jobs:
 
       - name: Check examples
         working-directory: ./packages/typescript/examples
-        run: npm ci && npm run build
+        run: npm install && npm run build
 
   golang:
     name: Golang
