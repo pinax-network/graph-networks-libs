@@ -84,8 +84,22 @@ jobs:
         run: npm run build
 
       - name: Check examples
-        working-directory: ./packages/typescript/examples
-        run: npm install && npm run build
+        working-directory: ./packages/typescript
+        run: |
+          set -e
+          for dir in examples/*; do
+            if [ -d "$dir" ]; then
+              echo "=== Checking example in $dir ==="
+              cd "$dir"
+              npm install
+              if [ -f "index.ts" ]; then
+                echo "Static check for TypeScript in $dir"
+                ../../node_modules/.bin/tsc --noEmit || exit 1
+              fi
+              npm start
+              cd - > /dev/null
+            fi
+          done
 
   golang:
     name: Golang
