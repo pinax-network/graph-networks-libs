@@ -36,7 +36,7 @@ impl NetworksRegistry {
     ///
     /// Returns an error if the JSON is invalid or doesn't match the expected format
     pub fn from_json(json: &str) -> Result<Self, Error> {
-        Ok(json.parse()?)
+        json.parse()
     }
 
     /// Creates a new NetworksRegistry by reading from a file
@@ -146,17 +146,12 @@ impl NetworksRegistry {
     /// ```
     pub fn get_network_by_caip2_id<'a>(&'a self, chain_id: &str) -> Option<&'a Network> {
         // Check if the chain_id is in the correct format (contains a colon)
-        if !chain_id.contains(":") {
+        if !chain_id.contains(':') {
             eprintln!("Warning: CAIP-2 Chain ID should be in the format '[namespace]:[reference]', e.g., 'eip155:1'");
             return None;
         }
 
-        for network in &self.networks {
-            if network.caip2_id == chain_id {
-                return Some(network);
-            }
-        }
-        None
+        self.networks.iter().find(|&network| network.caip2_id == chain_id)
     }
 
     #[cfg(feature = "fetch")]
@@ -166,11 +161,11 @@ impl NetworksRegistry {
             return Err(Error::Http(response.error_for_status().unwrap_err()));
         }
         let text = response.text().await?;
-        Ok(Self::from_json(&text)?)
+        Self::from_json(&text)
     }
 
     #[cfg(feature = "fetch")]
-    async fn from_version<'a>(version: RegistryVersion<'a>) -> Result<Self, Error> {
+    async fn from_version(version: RegistryVersion<'_>) -> Result<Self, Error> {
         match Self::fetch_registry(&version.get_primary_url()).await {
             Ok(registry) => Ok(registry),
             Err(primary_err) => {
