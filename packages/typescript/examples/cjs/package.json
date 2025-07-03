@@ -1,12 +1,18 @@
 {
     "name": "commonjs-usage-example",
     "version": "1.0.0",
-    "description": "Example of using @pinax/graph-networks-registry in a CommonJS environment",
-    "main": "index.js",
+    "description": "Example of using @pinax/graph-networks-registry in a CommonJS TypeScript environment",
+    "type": "commonjs",
+    "main": "dist/index.js",
     "scripts": {
-      "start": "node index.js"
+        "build": "tsc",
+        "start": "npm run build && node dist/index.js"
     },
     "dependencies": {
-      "@pinax/graph-networks-registry": "file:../../"
+        "@pinax/graph-networks-registry": "file:../../"
+    },
+    "devDependencies": {
+        "@types/node": "^20.19.4",
+        "typescript": "^5.0.0"
     }
-  }
+}

@@ -1,20 +1,18 @@
 import { NetworksRegistry } from "@pinax/graph-networks-registry";
 
-// Read from local file
-const registry = NetworksRegistry.fromFile("../../../../sample/TheGraphNetworksRegistry.json");
+try {
+  // Read from local file
+  const registry = NetworksRegistry.fromFile("../../../../sample/TheGraphNetworksRegistry.json");
 
-console.log("Successfully loaded", registry.networks.length, "networks");
+  console.log("Successfully loaded", registry.networks.length, "networks");
 
-// Get network by graph ID (works with both network ID and alias)
-const mainnet = registry.getNetworkByGraphId("mainnet");
-if (!mainnet) {
-  throw new Error("Mainnet not found");
+  // Get network by graph ID (works with both network ID and alias)
+  const mainnet = registry.getNetworkByGraphId("mainnet");
+  if (!mainnet) {
+    throw new Error("Mainnet not found");
+  }
+  console.log("Found mainnet by graph ID:", mainnet.fullName);
+} catch (error) {
+  console.error("Error:", error);
+  process.exit(1);
 }
-console.log("Found mainnet by graph ID:", mainnet.fullName);
-
-// Get network by graph ID using an alias
-const ethereum = registry.getNetworkByGraphId("eth");
-if (!ethereum) {
-  throw new Error("Ethereum not found");
-}
-console.log("Found ethereum by graph ID:", ethereum.fullName);
