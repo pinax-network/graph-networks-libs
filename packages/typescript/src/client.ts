@@ -10,7 +10,9 @@ try {
   // Only import fs in Node.js environment
   const fs = require("fs");
   readFileSync = fs.readFileSync;
-} catch {}
+} catch {
+  // Ignore error - fs is not available in browser environments
+}
 
 /**
  * Client for interacting with The Graph Networks Registry.
