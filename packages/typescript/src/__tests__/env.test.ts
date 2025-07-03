@@ -1,3 +1,4 @@
+import { describe, test, expect, beforeEach, afterEach } from "vitest";
 import { applyEnvVars } from "../env.js";
 
 describe("applyEnvVars", () => {

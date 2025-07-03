@@ -1,3 +1,4 @@
+import { vi, describe, test, expect, beforeEach, afterEach } from "vitest";
 import { NetworksRegistry } from "../client";
 import { schemaVersion } from "../version";
 import { version as packageVersion } from "../../package.json";
@@ -6,8 +7,8 @@ import { APIURLKind } from "../types";
 
 describe("NetworksRegistry", () => {
   const testRegistryJson = {
-    $schema: "https://networks-registry.thegraph.com/TheGraphNetworksRegistrySchema_v0_6.json",
-    version: "0.6.0",
+    $schema: "https://networks-registry.thegraph.com/TheGraphNetworksRegistrySchema_v0_7.json",
+    version: "0.7.0",
     title: "Test Registry",
     description: "Test Registry",
     updatedAt: "2025-01-01T00:00:00Z",
@@ -53,7 +54,7 @@ describe("NetworksRegistry", () => {
     test("should parse registry from JSON string", () => {
       const registry = NetworksRegistry.fromJson(JSON.stringify(testRegistryJson));
       expect(registry.networks.length).toBe(1);
-      expect(registry.version).toBe("0.6.0");
+      expect(registry.version).toBe("0.7.0");
     });
 
     test("should load registry from file", () => {
@@ -89,12 +90,59 @@ describe("NetworksRegistry", () => {
       expect(network2?.id).toBe("mainnet");
     });
 
+    test("should find network by graph ID", () => {
+      // Find by network ID
+      const network = registry.getNetworkByGraphId("mainnet");
+      expect(network).toBeDefined();
+      expect(network?.id).toBe("mainnet");
+
+      // Find by alias
+      const network2 = registry.getNetworkByGraphId("eth");
+      expect(network2).toBeDefined();
+      expect(network2?.id).toBe("mainnet");
+
+      const network3 = registry.getNetworkByGraphId("ethereum");
+      expect(network3).toBeDefined();
+      expect(network3?.id).toBe("mainnet");
+
+      // Non-existent ID
+      const network4 = registry.getNetworkByGraphId("nonexistent");
+      expect(network4).toBeUndefined();
+    });
+
     test("should return undefined for nonexistent network", () => {
       const network = registry.getNetworkById("nonexistent");
       expect(network).toBeUndefined();
 
       const network2 = registry.getNetworkByAlias("nonexistent");
       expect(network2).toBeUndefined();
+    });
+
+    test("should find network by CAIP-2 chain ID", () => {
+      const network = registry.getNetworkByCaip2Id("eip155:1");
+      expect(network).toBeDefined();
+      expect(network?.id).toBe("mainnet");
+    });
+
+    test("should return undefined for nonexistent CAIP-2 chain ID", () => {
+      const network = registry.getNetworkByCaip2Id("cosmos:cosmoshub-4");
+      expect(network).toBeUndefined();
+    });
+
+    test("should warn and return undefined for invalid CAIP-2 chain ID format", () => {
+      // Mock console.warn
+      const originalConsoleWarn = console.warn;
+      const mockConsoleWarn = vi.fn();
+      console.warn = mockConsoleWarn;
+
+      const network = registry.getNetworkByCaip2Id("invalid-format");
+      expect(network).toBeUndefined();
+      expect(mockConsoleWarn).toHaveBeenCalledWith(
+        "Warning: CAIP-2 Chain ID should be in the format '[namespace]:[reference]', e.g., 'eip155:1'"
+      );
+
+      // Restore console.warn
+      console.warn = originalConsoleWarn;
     });
   });
 

@@ -10,7 +10,9 @@ try {
   // Only import fs in Node.js environment
   const fs = require("fs");
   readFileSync = fs.readFileSync;
-} catch {}
+} catch {
+  // Ignore error - fs is not available in browser environments
+}
 
 /**
  * Client for interacting with The Graph Networks Registry.
@@ -201,6 +203,7 @@ export class NetworksRegistry {
    *
    * @param id - The network ID (e.g. "mainnet", "optimism")
    * @returns The network if found, undefined otherwise
+   * @deprecated Use getNetworkByGraphId instead
    *
    * @example
    * ```typescript
@@ -216,6 +219,7 @@ export class NetworksRegistry {
    *
    * @param alias - The network ID or alias (e.g. "eth" for Ethereum mainnet)
    * @returns The network if found, undefined otherwise
+   * @deprecated Use getNetworkByGraphId instead
    *
    * @example
    * ```typescript
@@ -224,6 +228,42 @@ export class NetworksRegistry {
    */
   getNetworkByAlias(alias: string): Network | undefined {
     return this.registry.networks.find((network) => network.id === alias || network.aliases?.includes(alias));
+  }
+
+  /**
+   * Finds a network by its graph ID (either its ID field or one of its aliases).
+   *
+   * @param id - The graph ID, which could be either the network's ID or one of its aliases
+   * @returns The network if found, undefined otherwise
+   *
+   * @example
+   * ```typescript
+   * const mainnet = registry.getNetworkByGraphId("mainnet");
+   * const ethereum = registry.getNetworkByGraphId("eth");
+   * ```
+   */
+  getNetworkByGraphId(id: string): Network | undefined {
+    return this.registry.networks.find((network) => network.id === id || network.aliases?.includes(id));
+  }
+
+  /**
+   * Finds a network by its CAIP-2 chain ID.
+   *
+   * @param chainId - The CAIP-2 chain ID in the format "[namespace]:[reference]" (e.g., "eip155:1")
+   * @returns The network if found, undefined otherwise
+   *
+   * @example
+   * ```typescript
+   * const ethereum = registry.getNetworkByCaip2Id("eip155:1");
+   * ```
+   */
+  getNetworkByCaip2Id(chainId: string): Network | undefined {
+    if (!chainId.includes(":")) {
+      console.warn("Warning: CAIP-2 Chain ID should be in the format '[namespace]:[reference]', e.g., 'eip155:1'");
+      return undefined;
+    }
+
+    return this.registry.networks.find((network) => network.caip2Id === chainId);
   }
 
   /**

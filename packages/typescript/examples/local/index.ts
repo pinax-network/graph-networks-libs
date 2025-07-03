@@ -5,14 +5,16 @@ const registry = NetworksRegistry.fromFile("../../../../sample/TheGraphNetworksR
 
 console.log("Successfully loaded", registry.networks.length, "networks");
 
-// Get network by ID
-const mainnet = registry.getNetworkById("mainnet");
-if (mainnet) {
-  console.log("Found mainnet:", mainnet.fullName);
+// Get network by graph ID (works with both network ID and alias)
+const mainnet = registry.getNetworkByGraphId("mainnet");
+if (!mainnet) {
+  throw new Error("Mainnet not found");
 }
+console.log("Found mainnet by graph ID:", mainnet.fullName);
 
-// Get network by alias
-const ethereum = registry.getNetworkByAlias("eth");
-if (ethereum) {
-  console.log("Found ethereum by alias:", ethereum.fullName);
+// Get network by graph ID using an alias
+const ethereum = registry.getNetworkByGraphId("eth");
+if (!ethereum) {
+  throw new Error("Ethereum not found");
 }
+console.log("Found ethereum by graph ID:", ethereum.fullName);

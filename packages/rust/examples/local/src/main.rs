@@ -6,10 +6,17 @@ fn main() {
 
     println!("Successfully loaded {} networks", registry.networks.len());
 
-    let network = registry.get_network_by_id("mainnet");
-    println!("Found mainnet by id: {}", network.expect("Failed to find mainnet").full_name);
+    // Using new get_network_by_graph_id method which handles both id and alias lookups
+    let network = registry.get_network_by_graph_id("mainnet");
+    println!(
+        "Querying registry for \"mainnet\" graph id: {}",
+        network.expect("Failed to find mainnet").full_name
+    );
 
-    // by alias
-    let network = registry.get_network_by_alias("ethereum");
-    println!("Found ethereum by alias: {}", network.expect("Failed to find ethereum").full_name);
+    // Using get_network_by_graph_id with an alias
+    let network = registry.get_network_by_graph_id("ethereum");
+    println!(
+        "Querying registry for \"ethereum\" graph id: {}",
+        network.expect("Failed to find ethereum").full_name
+    );
 }

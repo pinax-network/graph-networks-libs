@@ -36,7 +36,7 @@ impl NetworksRegistry {
     ///
     /// Returns an error if the JSON is invalid or doesn't match the expected format
     pub fn from_json(json: &str) -> Result<Self, Error> {
-        Ok(json.parse()?)
+        json.parse()
     }
 
     /// Creates a new NetworksRegistry by reading from a file
@@ -87,6 +87,11 @@ impl NetworksRegistry {
     /// # Returns
     ///
     /// Returns `Some(&Network)` if found, `None` otherwise
+    ///
+    /// # Deprecated
+    ///
+    /// This function is deprecated. Use `get_network_by_graph_id` instead.
+    #[deprecated(since = "0.7.0", note = "Use get_network_by_graph_id instead")]
     pub fn get_network_by_id<'a>(&'a self, id: &str) -> Option<&'a Network> {
         self.networks.iter().find(|network| network.id == id)
     }
@@ -100,6 +105,11 @@ impl NetworksRegistry {
     /// # Returns
     ///
     /// Returns `Some(&Network)` if found, `None` otherwise
+    ///
+    /// # Deprecated
+    ///
+    /// This function is deprecated. Use `get_network_by_graph_id` instead.
+    #[deprecated(since = "0.7.0", note = "Use get_network_by_graph_id instead")]
     pub fn get_network_by_alias<'a>(&'a self, alias: &str) -> Option<&'a Network> {
         self.networks.iter().find(|network| {
             network
@@ -109,6 +119,41 @@ impl NetworksRegistry {
         })
     }
 
+    /// Looks up a network by its graph id (either its id field or one of its aliases)
+    ///
+    /// # Arguments
+    ///
+    /// * `id` - A graph id, which could be either the network's id or one of its aliases
+    ///
+    /// # Returns
+    ///
+    /// Returns `Some(&Network)` if found, `None` otherwise
+    pub fn get_network_by_graph_id<'a>(&'a self, id: &str) -> Option<&'a Network> {
+        self.networks
+            .iter()
+            .find(|network| network.id == id || network.aliases.as_ref().map_or(false, |aliases| aliases.contains(&id.to_string())))
+    }
+
+    /// Looks up a network by its CAIP-2 chain ID
+    ///
+    /// # Arguments
+    ///
+    /// * `chain_id` - The CAIP-2 chain ID in the format "[namespace]:[reference]" (e.g., "eip155:1")
+    ///
+    /// # Returns
+    ///
+    /// Returns `Some(&Network)` if found, `None` otherwise
+    /// ```
+    pub fn get_network_by_caip2_id<'a>(&'a self, chain_id: &str) -> Option<&'a Network> {
+        // Check if the chain_id is in the correct format (contains a colon)
+        if !chain_id.contains(':') {
+            eprintln!("Warning: CAIP-2 Chain ID should be in the format '[namespace]:[reference]', e.g., 'eip155:1'");
+            return None;
+        }
+
+        self.networks.iter().find(|&network| network.caip2_id == chain_id)
+    }
+
     #[cfg(feature = "fetch")]
     async fn fetch_registry(url: &str) -> Result<Self, Error> {
         let response = reqwest::get(url).await?;
@@ -116,11 +161,11 @@ impl NetworksRegistry {
             return Err(Error::Http(response.error_for_status().unwrap_err()));
         }
         let text = response.text().await?;
-        Ok(Self::from_json(&text)?)
+        Self::from_json(&text)
     }
 
     #[cfg(feature = "fetch")]
-    async fn from_version<'a>(version: RegistryVersion<'a>) -> Result<Self, Error> {
+    async fn from_version(version: RegistryVersion<'_>) -> Result<Self, Error> {
         match Self::fetch_registry(&version.get_primary_url()).await {
             Ok(registry) => Ok(registry),
             Err(primary_err) => {
@@ -175,6 +220,17 @@ mod tests {
         let network = registry.get_network_by_id("mainnet");
         assert!(network.is_some());
         assert_eq!(network.unwrap().id, "mainnet");
+
+        let network = registry.get_network_by_graph_id("mainnet");
+        assert!(network.is_some());
+        assert_eq!(network.unwrap().id, "mainnet");
+
+        let network = registry.get_network_by_graph_id("eth");
+        assert!(network.is_some());
+        assert_eq!(network.unwrap().id, "mainnet");
+
+        let network = registry.get_network_by_graph_id("nonexistent");
+        assert!(network.is_none());
     }
 
     #[cfg(feature = "fetch")]
@@ -213,7 +269,7 @@ mod tests {
             let result = NetworksRegistry::from_latest_version().await;
             assert!(result.is_ok(), "Should succeed with primary URL");
             let registry = result.unwrap();
-            assert!(registry.get_network_by_id("mainnet").is_some());
+            assert!(registry.get_network_by_graph_id("mainnet").is_some());
             primary_mock.assert();
             fallback_mock.assert();
 
@@ -234,7 +290,7 @@ mod tests {
             let result = NetworksRegistry::from_latest_version().await;
             assert!(result.is_ok(), "Should succeed using fallback URL");
             let registry = result.unwrap();
-            assert!(registry.get_network_by_id("mainnet").is_some());
+            assert!(registry.get_network_by_graph_id("mainnet").is_some());
             primary_mock.assert();
             fallback_mock.assert();
 

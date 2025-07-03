@@ -4,7 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "PINAX_API_KEY=YOUR_API_KEY bun run index.ts"
+    "start": "tsc --noEmit *.ts && esbuild --bundle index.ts | node"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.5",
+    "typescript": "^5.0.0"
   },
   "dependencies": {
     "@pinax/graph-networks-registry": "file:../.."

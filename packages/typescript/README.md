@@ -23,8 +23,8 @@ import { NetworksRegistry } from '@pinax/graph-networks-registry';
 const registry = await NetworksRegistry.fromLatestVersion();
 
 // Load from specific version tag at networks-registry.thegraph.com
-const registry = await NetworksRegistry.fromExactVersion('0.6.0');
-const registry = await NetworksRegistry.fromExactVersion('0.6.x');
+const registry = await NetworksRegistry.fromExactVersion('0.7.0');
+const registry = await NetworksRegistry.fromExactVersion('0.7.x');
 
 // Load from URL
 const registry = await NetworksRegistry.fromUrl('https://networks-registry.thegraph.com/TheGraphNetworksRegistry.json');
@@ -39,15 +39,36 @@ const registry = NetworksRegistry.fromJson(jsonString);
 ### Working with Networks
 
 ```typescript
-// Find network by ID
-const mainnet = registry.getNetworkById('mainnet');
+// Find network by graph ID (works with both network ID and alias)
+const mainnet = registry.getNetworkByGraphId('mainnet');
 if (mainnet) {
     console.log(mainnet.fullName); // "Ethereum Mainnet"
     console.log(mainnet.caip2Id); // "eip155:1"
 }
-// Find network by alias
-const mainnet = registry.getNetworkByAlias('eth');
-if (mainnet) {
-    console.log(mainnet.fullName); // "Ethereum Mainnet"
+
+// You can also use an alias with getNetworkByGraphId
+const ethereum = registry.getNetworkByGraphId('eth');
+if (ethereum) {
+    console.log(ethereum.fullName); // "Ethereum Mainnet"
 }
+
+// Find network by CAIP-2 chain ID
+const ethereumByChainId = registry.getNetworkByCaip2Id('eip155:1');
+if (ethereumByChainId) {
+    console.log(ethereumByChainId.fullName); // "Ethereum Mainnet"
+    console.log(ethereumByChainId.id); // "mainnet"
+}
+
+// Invalid format will produce a warning and return undefined
+const invalidNetwork = registry.getNetworkByCaip2Id('invalid-format');
+// Warning: CAIP-2 Chain ID should be in the format '[namespace]:[reference]', e.g., 'eip155:1'
+
+// Deprecated methods (will be removed in future versions)
+// Find network by ID
+// @deprecated Use getNetworkByGraphId instead
+const mainnetById = registry.getNetworkById('mainnet');
+
+// Find network by alias
+// @deprecated Use getNetworkByGraphId instead
+const mainnetByAlias = registry.getNetworkByAlias('eth');
 ```

@@ -30,9 +30,14 @@ func main() {
 
     fmt.Printf("Successfully loaded %d networks\n", len(reg.Networks))
 
-    // Get network by ID
-    if mainnet := reg.GetNetworkById("mainnet"); mainnet != nil {
+    // Get network by graph ID (works with both network ID and alias)
+    if mainnet := reg.GetNetworkByGraphId("mainnet"); mainnet != nil {
         fmt.Printf("Found mainnet: %s\n", mainnet.FullName)
+    }
+
+    // You can also use it to find networks by alias
+    if ethereum := reg.GetNetworkByGraphId("eth"); ethereum != nil {
+        fmt.Printf("Found ethereum by alias: %s\n", ethereum.FullName)
     }
 }
 ```
@@ -47,7 +52,7 @@ import (
 )
 
 func main() {
-    reg, err := registry.FromFile("TheGraphNetworksRegistry_v0_6_0.json")
+    reg, err := registry.FromFile("TheGraphNetworksRegistry_v0_7_0.json")
     if err != nil {
         log.Fatalf("Failed to load registry: %v", err)
     }
@@ -69,5 +74,6 @@ See reference on [pkg.go.dev](https://pkg.go.dev/github.com/pinax-network/graph-
 
 ### Methods
 
-- `GetNetworkById(id string) *Network` - Finds a network by ID
-- `GetNetworkByAlias(alias string) *Network` - Finds a network by ID or alias
+- `GetNetworkByGraphId(id string) *Network` - Finds a network by ID or alias (recommended)
+- `GetNetworkById(id string) *Network` - Finds a network by ID (deprecated)
+- `GetNetworkByAlias(alias string) *Network` - Finds a network by ID or alias (deprecated)

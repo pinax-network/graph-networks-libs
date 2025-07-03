@@ -11,7 +11,7 @@ If you want to always get up-to-date registry, make sure to use the latest versi
 `Cargo.toml`:
 ```toml
 [dependencies]
-graph-networks-registry = "0.6.1"
+graph-networks-registry = "0.7.0"
 ```
 
 ### Reading from a local file
@@ -22,11 +22,22 @@ To read the registry from a local file
 use graph_networks_registry::NetworksRegistry;
 fn main() {
     // Parse registry from JSON file
-    let registry = NetworksRegistry::from_file("TheGraphNetworksRegistry_v0_6_0.json")
+    let registry = NetworksRegistry::from_file("TheGraphNetworksRegistry_v0_7_0.json")
         .expect("Failed to parse registry");
 
-    if let Some(network) = registry.get_network_by_id("mainnet") {
+    if let Some(network) = registry.get_network_by_graph_id("mainnet") {
         println!("Found mainnet: {:?}", network);
+    }
+
+    // You can also use an alias with get_network_by_graph_id
+    if let Some(network) = registry.get_network_by_graph_id("eth") {
+        println!("Found ethereum by alias: {:?}", network);
+    }
+
+    // Find network by CAIP-2 chain ID
+    if let Some(network) = registry.get_network_by_caip2_id("eip155:1") {
+        println!("Found ethereum by CAIP-2 ID: {:?}", network);
+        println!("ID: {}, CAIP-2 ID: {}", network.id, network.caip2_id);
     }
 }
 
@@ -58,5 +69,5 @@ If you don't need to fetch the registry from the network, you can turn off the `
 
 ```toml
 [dependencies]
-graph-networks-registry = { version = "0.6.1", default-features = false }
+graph-networks-registry = { version = "0.7.0", default-features = false }
 ```

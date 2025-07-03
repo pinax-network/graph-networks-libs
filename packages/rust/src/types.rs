@@ -11,7 +11,7 @@
 //     let model: NetworksRegistry = serde_json::from_str(&json).unwrap();
 // }
 
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -60,9 +60,6 @@ pub struct Network {
     /// Display name of the network, e.g. Ethereum Mainnet, Bitcoin Testnet
     pub full_name: String,
 
-    /// Genesis block information
-    pub genesis: Option<Genesis>,
-
     /// Graph Node specific configuration information
     pub graph_node: Option<GraphNode>,
 
@@ -100,6 +97,9 @@ pub struct Network {
 
     /// Short display name of the network, e.g. Ethereum, BNB
     pub short_name: String,
+
+    /// Token API specific configuration information
+    pub token_api: Option<TokenApi>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -129,6 +129,9 @@ pub enum ApiUrlKind {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Firehose {
+    /// Block features supported by the network
+    pub block_features: Option<Vec<String>>,
+
     /// Block type, e.g. sf.ethereum.type.v2.Block
     pub block_type: String,
 
@@ -138,8 +141,14 @@ pub struct Firehose {
     /// Bytes encoding, e.g. hex, 0xhex, base58
     pub bytes_encoding: BytesEncoding,
 
+    /// [optional] Timestamp when the network was deprecated in Firehose software
+    pub deprecated_at: Option<String>,
+
     /// [optional] Whether there is support for extended EVM block model
     pub evm_extended_model: Option<bool>,
+
+    /// First available block information
+    pub first_streamable_block: Option<FirstStreamableBlock>,
 }
 
 /// Bytes encoding, e.g. hex, 0xhex, base58
@@ -158,19 +167,23 @@ pub enum BytesEncoding {
     The0Xhex,
 }
 
-/// Genesis block information
+/// First available block information
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct Genesis {
-    /// Hash of the genesis block either in 0x-prefixed hex or base58
-    pub hash: String,
-
-    /// Block height of the genesis or the first available block
+pub struct FirstStreamableBlock {
+    /// Block height of the first streamable block. Can be different from genesis
     pub height: i64,
+
+    /// Id of the first streamable block either in 0x-prefixed hex or base58
+    pub id: String,
 }
 
 /// Graph Node specific configuration information
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct GraphNode {
+    /// [optional] Timestamp when the network was deprecated in Graph Node software
+    pub deprecated_at: Option<String>,
+
     /// [optional] Protocol name in graph-node, e.g. ethereum, near, arweave
     pub protocol: Option<Protocol>,
 }
@@ -223,6 +236,8 @@ pub struct IndexerDocsUrl {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum NetworkType {
+    Beacon,
+
     Devnet,
 
     Mainnet,
@@ -260,12 +275,16 @@ pub enum RelationKind {
     #[serde(rename = "shardOf")]
     ShardOf,
 
+    #[serde(rename = "svmOf")]
+    SvmOf,
+
     #[serde(rename = "testnetOf")]
     TestnetOf,
 }
 
 /// Services available for the network in the ecosystem
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct Services {
     /// Firehose gRPC URLs, e.g. eth.firehose.pinax.network:443
     pub firehose: Option<Vec<String>>,
@@ -278,4 +297,33 @@ pub struct Services {
 
     /// Substreams gRPC URLs, e.g. eth.substreams.pinax.network:443
     pub substreams: Option<Vec<String>>,
+
+    /// Token API URLs, e.g. https://token-api.thegraph.com
+    pub token_api: Option<Vec<String>>,
+}
+
+/// Token API specific configuration information
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct TokenApi {
+    /// [optional] Timestamp when the network was deprecated in Token API software
+    pub deprecated_at: Option<String>,
+
+    pub features: Option<Vec<Feature>>,
+
+    /// Network ID in Token API, has to be an ID or alias of an existing network
+    pub network_id: Option<String>,
+}
+
+/// List of Token API features supported
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum Feature {
+    Dexes,
+
+    Nfts,
+
+    Other,
+
+    Tokens,
 }
