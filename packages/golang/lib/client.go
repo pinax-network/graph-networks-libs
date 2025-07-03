@@ -8,7 +8,10 @@ import (
 	"strings"
 )
 
-const registryBaseURL = "https://networks-registry.thegraph.com"
+const (
+	registryBaseURL = "https://networks-registry.thegraph.com"
+	fallbackBaseURL = "https://raw.githubusercontent.com/graphprotocol/networks-registry/refs/heads/main/public"
+)
 
 // GetLatestVersionUrl returns the URL for the latest compatible version of the networks registry.
 // It constructs the URL using the major and minor version numbers from the current package version.
@@ -16,6 +19,13 @@ const registryBaseURL = "https://networks-registry.thegraph.com"
 func GetLatestVersionUrl() string {
 	major, minor := getMajorMinor()
 	return fmt.Sprintf("%s/TheGraphNetworksRegistry_v%s_%s_x.json", registryBaseURL, major, minor)
+}
+
+// GetLatestVersionFallbackUrl returns the fallback URL for the latest compatible version of the networks registry.
+// Used as a backup if the primary URL fails. Uses GitHub raw content URL.
+func GetLatestVersionFallbackUrl() string {
+	major, minor := getMajorMinor()
+	return fmt.Sprintf("%s/TheGraphNetworksRegistry_v%s_%s_x.json", fallbackBaseURL, major, minor)
 }
 
 // GetExactVersionUrl returns the URL for a specific version of the networks registry.
@@ -26,20 +36,57 @@ func GetExactVersionUrl(version string) string {
 	return fmt.Sprintf("%s/TheGraphNetworksRegistry_v%s.json", registryBaseURL, versionPath)
 }
 
-// FromLatestVersion fetches and loads the latest compatibversion of the networks registry.
+// GetExactVersionFallbackUrl returns the fallback URL for a specific version of the networks registry.
+// Used as a backup if the primary URL fails. Uses GitHub raw content URL.
+func GetExactVersionFallbackUrl(version string) string {
+	versionPath := strings.ReplaceAll(version, ".", "_")
+	return fmt.Sprintf("%s/TheGraphNetworksRegistry_v%s.json", fallbackBaseURL, versionPath)
+}
+
+// FromLatestVersion fetches and loads the latest compatible version of the networks registry.
+// First tries to fetch from the primary URL, then falls back to the fallback URL if the primary fails.
 // Library version 0.5.x will use the latest registry version 0.5.y even if 0.6.z is available
 // Returns a pointer to NetworksRegistry and any error encountered during fetching or parsing.
 func FromLatestVersion() (*NetworksRegistry, error) {
-	url := GetLatestVersionUrl()
-	return FromURL(url)
+	// Try primary URL first
+	primaryURL := GetLatestVersionUrl()
+	reg, err := FromURL(primaryURL)
+	if err == nil {
+		return reg, nil
+	}
+
+	// Fall back to secondary URL if primary fails
+	fallbackURL := GetLatestVersionFallbackUrl()
+	reg, err = FromURL(fallbackURL)
+	if err == nil {
+		return reg, nil
+	}
+
+	// If both fail, return the error from the primary URL
+	return nil, fmt.Errorf("failed to fetch registry from %s: %w", primaryURL, err)
 }
 
 // FromExactVersion fetches and loads a specific version of the networks registry.
+// First tries to fetch from the primary URL, then falls back to the fallback URL if the primary fails.
 // It takes a version string (e.g. "0.5.0") and loads the registry for that exact version.
 // Returns a pointer to NetworksRegistry and any error encountered during fetching or parsing.
 func FromExactVersion(version string) (*NetworksRegistry, error) {
-	url := GetExactVersionUrl(version)
-	return FromURL(url)
+	// Try primary URL first
+	primaryURL := GetExactVersionUrl(version)
+	reg, err := FromURL(primaryURL)
+	if err == nil {
+		return reg, nil
+	}
+
+	// Fall back to secondary URL if primary fails
+	fallbackURL := GetExactVersionFallbackUrl(version)
+	reg, err = FromURL(fallbackURL)
+	if err == nil {
+		return reg, nil
+	}
+
+	// If both fail, return the error from the primary URL
+	return nil, fmt.Errorf("failed to fetch registry from %s: %w", primaryURL, err)
 }
 
 // FromURL loads the networks registry from a URL.
