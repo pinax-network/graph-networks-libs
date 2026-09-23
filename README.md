@@ -16,9 +16,12 @@ This will:
 - pull the latest schema from [networks-registry.thegraph.com](https://networks-registry.thegraph.com),
 - inject new version into libraries
 - generate the types for all libraries using [quicktype](https://quicktype.io)
+- generate Go enum helpers using [go-enum](https://github.com/abice/go-enum) (see [scripts/annotate-go-enums.awk](./scripts/annotate-go-enums.awk))
 - run tests and examples with the new schema
 
 If there are errors when running the script, find and fix them manually.
+
+Requires `jq`, `npx`, `bun`, `cargo` and `go`. quicktype and go-enum versions are pinned in `generate.sh` (`QUICKTYPE_VERSION`, `GO_ENUM_VERSION`): newer quicktype versions change the generated type names and enums, which breaks the public API, so check the diff carefully before bumping them.
 
 ## Versioning
 

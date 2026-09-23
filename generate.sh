@@ -46,6 +46,7 @@ EOF
 
 # Pin quicktype: newer versions change generated type names/enums (breaking API)
 QUICKTYPE_VERSION=23.2.6
+GO_ENUM_VERSION=v0.9.5
 
 # Generate types for each language
 echo "Generating TypeScript types..."
@@ -57,7 +58,11 @@ npx -y quicktype@$QUICKTYPE_VERSION -s schema sample/Network.json --lang rust --
 
 echo "Generating Go types..."
 npx -y quicktype@$QUICKTYPE_VERSION -s schema sample/Network.json --lang go --top-level NetworksRegistry --package registry --out packages/golang/lib/types.go
+echo "Generating Go enums..."
+awk -f scripts/annotate-go-enums.awk packages/golang/lib/types.go packages/golang/lib/types.go > temp.go
+mv temp.go packages/golang/lib/types.go
 gofmt -w packages/golang/lib/types.go packages/golang/lib/version.go
+(cd packages/golang/lib && go run github.com/abice/go-enum@$GO_ENUM_VERSION -f types.go --names --values)
 
 # Run tests for each package
 echo "Running TypeScript tests..."

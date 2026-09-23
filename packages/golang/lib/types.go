@@ -180,78 +180,114 @@ type TokenAPI struct {
 }
 
 // Kind of API
+// ENUM(blockscout, etherscan, ethplorer, other, subscan)
 type APIURLKind string
 
 const (
-	Blockscout  APIURLKind = "blockscout"
-	Etherscan   APIURLKind = "etherscan"
-	Ethplorer   APIURLKind = "ethplorer"
+	// Deprecated: use APIURLKindBlockscout instead.
+	Blockscout APIURLKind = "blockscout"
+	// Deprecated: use APIURLKindEtherscan instead.
+	Etherscan APIURLKind = "etherscan"
+	// Deprecated: use APIURLKindEthplorer instead.
+	Ethplorer APIURLKind = "ethplorer"
+	// Deprecated: use APIURLKindOther instead.
 	PurpleOther APIURLKind = "other"
-	Subscan     APIURLKind = "subscan"
+	// Deprecated: use APIURLKindSubscan instead.
+	Subscan APIURLKind = "subscan"
 )
 
 // Bytes encoding, e.g. hex, 0xhex, base58
+// ENUM(base58, base64, other, hex, 0xhex)
 type BytesEncoding string
 
 const (
-	Base58             BytesEncoding = "base58"
-	Base64             BytesEncoding = "base64"
-	BytesEncodingOther BytesEncoding = "other"
-	Hex                BytesEncoding = "hex"
-	The0Xhex           BytesEncoding = "0xhex"
+	// Deprecated: use BytesEncodingBase58 instead.
+	Base58 BytesEncoding = "base58"
+	// Deprecated: use BytesEncodingBase64 instead.
+	Base64 BytesEncoding = "base64"
+	// Deprecated: use BytesEncodingHex instead.
+	Hex BytesEncoding = "hex"
+	// Deprecated: use BytesEncoding0Xhex instead.
+	The0Xhex BytesEncoding = "0xhex"
 )
 
 // [optional] Protocol name in graph-node, e.g. ethereum, near, arweave
+// ENUM(arweave, cosmos, ethereum, near, other, starknet)
 type Protocol string
 
 const (
-	Arweave       Protocol = "arweave"
-	Cosmos        Protocol = "cosmos"
-	Ethereum      Protocol = "ethereum"
-	Near          Protocol = "near"
-	ProtocolOther Protocol = "other"
-	Starknet      Protocol = "starknet"
+	// Deprecated: use ProtocolArweave instead.
+	Arweave Protocol = "arweave"
+	// Deprecated: use ProtocolCosmos instead.
+	Cosmos Protocol = "cosmos"
+	// Deprecated: use ProtocolEthereum instead.
+	Ethereum Protocol = "ethereum"
+	// Deprecated: use ProtocolNear instead.
+	Near Protocol = "near"
+	// Deprecated: use ProtocolStarknet instead.
+	Starknet Protocol = "starknet"
 )
 
 // Whether the network is a mainnet/testnet/devnet
+// ENUM(beacon, devnet, mainnet, testnet)
 type NetworkType string
 
 const (
-	Beacon  NetworkType = "beacon"
-	Devnet  NetworkType = "devnet"
+	// Deprecated: use NetworkTypeBeacon instead.
+	Beacon NetworkType = "beacon"
+	// Deprecated: use NetworkTypeDevnet instead.
+	Devnet NetworkType = "devnet"
+	// Deprecated: use NetworkTypeMainnet instead.
 	Mainnet NetworkType = "mainnet"
+	// Deprecated: use NetworkTypeTestnet instead.
 	Testnet NetworkType = "testnet"
 )
 
 // Kind of relation
+// ENUM(beaconOf, evmOf, other, forkedFrom, l2Of, shardOf, svmOf, testnetOf)
 type RelationKind string
 
 const (
-	BeaconOf    RelationKind = "beaconOf"
-	EvmOf       RelationKind = "evmOf"
+	// Deprecated: use RelationKindBeaconOf instead.
+	BeaconOf RelationKind = "beaconOf"
+	// Deprecated: use RelationKindEvmOf instead.
+	EvmOf RelationKind = "evmOf"
+	// Deprecated: use RelationKindOther instead.
 	FluffyOther RelationKind = "other"
-	ForkedFrom  RelationKind = "forkedFrom"
-	L2Of        RelationKind = "l2Of"
-	ShardOf     RelationKind = "shardOf"
-	SvmOf       RelationKind = "svmOf"
-	TestnetOf   RelationKind = "testnetOf"
+	// Deprecated: use RelationKindForkedFrom instead.
+	ForkedFrom RelationKind = "forkedFrom"
+	// Deprecated: use RelationKindL2Of instead.
+	L2Of RelationKind = "l2Of"
+	// Deprecated: use RelationKindShardOf instead.
+	ShardOf RelationKind = "shardOf"
+	// Deprecated: use RelationKindSvmOf instead.
+	SvmOf RelationKind = "svmOf"
+	// Deprecated: use RelationKindTestnetOf instead.
+	TestnetOf RelationKind = "testnetOf"
 )
 
 // Kind of Subgraph service entry
+// ENUM(backstop, gateway, studio)
 type SubgraphKind string
 
 const (
+	// Deprecated: use SubgraphKindBackstop instead.
 	Backstop SubgraphKind = "backstop"
-	Gateway  SubgraphKind = "gateway"
-	Studio   SubgraphKind = "studio"
+	// Deprecated: use SubgraphKindGateway instead.
+	Gateway SubgraphKind = "gateway"
+	// Deprecated: use SubgraphKindStudio instead.
+	Studio SubgraphKind = "studio"
 )
 
 // List of Token API features supported
+// ENUM(dexes, other, nfts, tokens)
 type Feature string
 
 const (
-	Dexes        Feature = "dexes"
-	FeatureOther Feature = "other"
-	Nfts         Feature = "nfts"
-	Tokens       Feature = "tokens"
+	// Deprecated: use FeatureDexes instead.
+	Dexes Feature = "dexes"
+	// Deprecated: use FeatureNfts instead.
+	Nfts Feature = "nfts"
+	// Deprecated: use FeatureTokens instead.
+	Tokens Feature = "tokens"
 )
