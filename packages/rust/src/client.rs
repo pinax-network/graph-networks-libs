@@ -111,12 +111,9 @@ impl NetworksRegistry {
     /// This function is deprecated. Use `get_network_by_graph_id` instead.
     #[deprecated(since = "0.7.0", note = "Use get_network_by_graph_id instead")]
     pub fn get_network_by_alias<'a>(&'a self, alias: &str) -> Option<&'a Network> {
-        self.networks.iter().find(|network| {
-            network
-                .aliases
-                .as_ref()
-                .map_or(false, |aliases| aliases.contains(&alias.to_string()))
-        })
+        self.networks
+            .iter()
+            .find(|network| network.aliases.as_ref().is_some_and(|aliases| aliases.contains(&alias.to_string())))
     }
 
     /// Looks up a network by its graph id (either its id field or one of its aliases)
@@ -131,7 +128,7 @@ impl NetworksRegistry {
     pub fn get_network_by_graph_id<'a>(&'a self, id: &str) -> Option<&'a Network> {
         self.networks
             .iter()
-            .find(|network| network.id == id || network.aliases.as_ref().map_or(false, |aliases| aliases.contains(&id.to_string())))
+            .find(|network| network.id == id || network.aliases.as_ref().is_some_and(|aliases| aliases.contains(&id.to_string())))
     }
 
     /// Looks up a network by its CAIP-2 chain ID

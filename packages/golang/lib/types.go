@@ -152,14 +152,22 @@ type Relation struct {
 type Services struct {
 	// Firehose gRPC URLs, e.g. eth.firehose.pinax.network:443
 	Firehose []string `json:"firehose,omitempty"`
-	// Substreams-based subgraphs studio deployment URLs, e.g. https://api.thegraph.com/deploy
-	Sps []string `json:"sps,omitempty"`
-	// Subgraph studio deployment URLs, e.g. https://api.thegraph.com/deploy
-	Subgraphs []string `json:"subgraphs,omitempty"`
+	// Subgraph service entries (gateway, studio, backstop)
+	Subgraphs []SubgraphsService `json:"subgraphs,omitempty"`
 	// Substreams gRPC URLs, e.g. eth.substreams.pinax.network:443
 	Substreams []string `json:"substreams,omitempty"`
 	// Token API URLs, e.g. https://token-api.thegraph.com
 	TokenAPI []string `json:"tokenApi,omitempty"`
+}
+
+type SubgraphsService struct {
+	// [optional] Human-readable description of the entry
+	Description *string `json:"description,omitempty"`
+	// Kind of Subgraph service entry
+	Kind SubgraphKind `json:"kind"`
+	// Provider identifier or URL for this entry, e.g. a gateway/studio deployment URL or a
+	// backstop provider like infradao
+	Provider string `json:"provider"`
 }
 
 // Token API specific configuration information
@@ -227,6 +235,15 @@ const (
 	ShardOf     RelationKind = "shardOf"
 	SvmOf       RelationKind = "svmOf"
 	TestnetOf   RelationKind = "testnetOf"
+)
+
+// Kind of Subgraph service entry
+type SubgraphKind string
+
+const (
+	Backstop SubgraphKind = "backstop"
+	Gateway  SubgraphKind = "gateway"
+	Studio   SubgraphKind = "studio"
 )
 
 // List of Token API features supported

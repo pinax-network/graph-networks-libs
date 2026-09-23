@@ -7,8 +7,8 @@ import { APIURLKind } from "../types";
 
 describe("NetworksRegistry", () => {
   const testRegistryJson = {
-    $schema: "https://networks-registry.thegraph.com/TheGraphNetworksRegistrySchema_v0_7.json",
-    version: "0.7.0",
+    $schema: "https://networks-registry.thegraph.com/TheGraphNetworksRegistrySchema_v0_8.json",
+    version: "0.8.0",
     title: "Test Registry",
     description: "Test Registry",
     updatedAt: "2025-01-01T00:00:00Z",
@@ -54,7 +54,7 @@ describe("NetworksRegistry", () => {
     test("should parse registry from JSON string", () => {
       const registry = NetworksRegistry.fromJson(JSON.stringify(testRegistryJson));
       expect(registry.networks.length).toBe(1);
-      expect(registry.version).toBe("0.7.0");
+      expect(registry.version).toBe("0.8.0");
     });
 
     test("should load registry from file", () => {

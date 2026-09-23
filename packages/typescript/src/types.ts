@@ -298,13 +298,9 @@ export interface Services {
      */
     firehose?: string[];
     /**
-     * Substreams-based subgraphs studio deployment URLs, e.g. https://api.thegraph.com/deploy
+     * Subgraph service entries (gateway, studio, backstop)
      */
-    sps?: string[];
-    /**
-     * Subgraph studio deployment URLs, e.g. https://api.thegraph.com/deploy
-     */
-    subgraphs?: string[];
+    subgraphs?: SubgraphsService[];
     /**
      * Substreams gRPC URLs, e.g. eth.substreams.pinax.network:443
      */
@@ -313,6 +309,31 @@ export interface Services {
      * Token API URLs, e.g. https://token-api.thegraph.com
      */
     tokenApi?: string[];
+}
+
+export interface SubgraphsService {
+    /**
+     * [optional] Human-readable description of the entry
+     */
+    description?: string;
+    /**
+     * Kind of Subgraph service entry
+     */
+    kind: SubgraphKind;
+    /**
+     * Provider identifier or URL for this entry, e.g. a gateway/studio deployment URL or a
+     * backstop provider like infradao
+     */
+    provider: string;
+}
+
+/**
+ * Kind of Subgraph service entry
+ */
+export enum SubgraphKind {
+    Backstop = "backstop",
+    Gateway = "gateway",
+    Studio = "studio",
 }
 
 /**
@@ -573,10 +594,14 @@ const typeMap: any = {
     ], false),
     "Services": o([
         { json: "firehose", js: "firehose", typ: u(undefined, a("")) },
-        { json: "sps", js: "sps", typ: u(undefined, a("")) },
-        { json: "subgraphs", js: "subgraphs", typ: u(undefined, a("")) },
+        { json: "subgraphs", js: "subgraphs", typ: u(undefined, a(r("SubgraphsService"))) },
         { json: "substreams", js: "substreams", typ: u(undefined, a("")) },
         { json: "tokenApi", js: "tokenApi", typ: u(undefined, a("")) },
+    ], false),
+    "SubgraphsService": o([
+        { json: "description", js: "description", typ: u(undefined, "") },
+        { json: "kind", js: "kind", typ: r("SubgraphKind") },
+        { json: "provider", js: "provider", typ: "" },
     ], false),
     "TokenAPI": o([
         { json: "deprecatedAt", js: "deprecatedAt", typ: u(undefined, Date) },
@@ -620,6 +645,11 @@ const typeMap: any = {
         "shardOf",
         "svmOf",
         "testnetOf",
+    ],
+    "SubgraphKind": [
+        "backstop",
+        "gateway",
+        "studio",
     ],
     "Feature": [
         "dexes",

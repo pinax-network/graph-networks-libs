@@ -1,9 +1,9 @@
 {
-  "$schema": "https://networks-registry.thegraph.com/TheGraphNetworksRegistrySchema_v0_7.json",
-  "version": "0.7.0",
+  "$schema": "https://networks-registry.thegraph.com/TheGraphNetworksRegistrySchema_v0_8.json",
+  "version": "0.8.2",
   "title": "The Graph networks registry",
   "description": "This registry was generated and validated at https://github.com/graphprotocol/networks-registry",
-  "updatedAt": "2025-07-02T19:53:42.517Z",
+  "updatedAt": "2026-09-22T19:54:19.515Z",
   "networks": [
     {
       "id": "mainnet",
@@ -23,14 +23,13 @@
         "https://etherscan.io"
       ],
       "rpcUrls": [
-        "https://ethereum-rpc.publicnode.com",
         "https://mainnet.gateway.tenderly.co",
         "https://eth.rpc.service.pinax.network",
-        "https://mainnet.infura.io/v3/{INFURA_API_KEY}"
+        "https://eth.drpc.org"
       ],
       "apiUrls": [
         {
-          "url": "https://mainnet.abi.pinax.network/api",
+          "url": "https://mainnet.abi.thegraph.com/api",
           "kind": "etherscan"
         },
         {
@@ -45,19 +44,29 @@
       "networkType": "mainnet",
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
-        "sps": [],
         "firehose": [
           "eth.firehose.pinax.network:443",
-          "mainnet.eth.streamingfast.io:443"
+          "mainnet.eth.streamingfast.io:443",
+          "eth.firehose.data.nexus:443"
         ],
         "substreams": [
           "eth.substreams.pinax.network:443",
-          "mainnet.eth.streamingfast.io:443"
+          "mainnet.eth.streamingfast.io:443",
+          "eth.substreams.data.nexus:443"
         ],
         "tokenApi": [
-          "https://token-api.thegraph.com"
+          "https://api.pinax.network"
         ]
       },
       "issuanceRewards": true,
@@ -120,12 +129,12 @@
       ],
       "rpcUrls": [
         "https://mainnet.optimism.io",
-        "https://optimism-rpc.publicnode.com",
-        "https://optimism.rpc.service.pinax.network"
+        "https://optimism.rpc.service.pinax.network",
+        "https://optimism.drpc.org"
       ],
       "apiUrls": [
         {
-          "url": "https://optimism.abi.pinax.network/api",
+          "url": "https://optimism.abi.thegraph.com/api",
           "kind": "etherscan"
         },
         {
@@ -135,19 +144,29 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
-        "sps": [],
         "firehose": [
           "mainnet.optimism.streamingfast.io:443",
-          "optimism.firehose.pinax.network:443"
+          "optimism.firehose.pinax.network:443",
+          "op.firehose.data.nexus:443"
         ],
         "substreams": [
           "mainnet.optimism.streamingfast.io:443",
-          "optimism.substreams.pinax.network:443"
+          "optimism.substreams.pinax.network:443",
+          "op.substreams.data.nexus:443"
         ],
         "tokenApi": [
-          "https://token-api.thegraph.com"
+          "https://api.pinax.network"
         ]
       },
       "networkType": "mainnet",
@@ -212,7 +231,7 @@
       ],
       "apiUrls": [
         {
-          "url": "https://gnosis.abi.pinax.network/api",
+          "url": "https://gnosis.abi.thegraph.com/api",
           "kind": "etherscan"
         },
         {
@@ -222,7 +241,16 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "networkType": "mainnet",
@@ -270,17 +298,28 @@
         "https://kairos.kaiascan.io"
       ],
       "rpcUrls": [
-        "https://public-en-kairos.node.kaia.io"
+        "https://public-en-kairos.node.kaia.io",
+        "https://klaytn-baobab.drpc.org",
+        "https://responsive-green-emerald.kaia-kairos.quiknode.pro"
       ],
       "apiUrls": [
         {
-          "url": "https://kaia-testnet.abi.pinax.network/api",
+          "url": "https://kaia-testnet.abi.thegraph.com/api",
           "kind": "etherscan"
         }
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "networkType": "testnet",
@@ -327,7 +366,9 @@
         "https://explorer.testnet.japanopenchain.org"
       ],
       "rpcUrls": [
-        "https://rpc-1.testnet.japanopenchain.org:8545"
+        "https://rpc-1.testnet.japanopenchain.org:8545",
+        "https://rpc-3.testnet.japanopenchain.org",
+        "https://rpc-2.testnet.japanopenchain.org:8545"
       ],
       "apiUrls": [
         {
@@ -337,7 +378,16 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "networkType": "testnet",
@@ -388,31 +438,34 @@
       ],
       "apiUrls": [
         {
-          "url": "https://explorer.monad-testnet.category.xyz/api",
-          "kind": "blockscout"
+          "url": "https://monad-testnet.abi.thegraph.com/api",
+          "kind": "etherscan"
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "testnet",
-      "relations": [],
+      "relations": [
+        {
+          "kind": "testnetOf",
+          "network": "monad"
+        }
+      ],
       "issuanceRewards": false,
       "nativeToken": "MON",
       "docsUrl": "https://docs.monad.xyz",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": false,
+        "evmExtendedModel": true,
         "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
-          "id": "0x1436534e54a22183ea29a2273b341cb50018ed066441ffd111cd263297caba35",
+          "id": "0x298034669ee44327d2da9744b9b2782848e2f2a6959756b7b0471b09a404f5c9",
           "height": 0
         },
         "blockFeatures": [
-          "base"
+          "extended"
         ]
       },
       "icon": {
@@ -434,11 +487,12 @@
         "protocol": "ethereum"
       },
       "explorerUrls": [
-        "https://blockscout.chiadochain.net"
+        "https://gnosis-chiado.blockscout.com"
       ],
       "rpcUrls": [
         "https://rpc.chiadochain.net",
-        "https://chiado.rpc.service.pinax.network"
+        "https://chiado.rpc.service.pinax.network",
+        "https://gnosis-chiado.drpc.org"
       ],
       "apiUrls": [
         {
@@ -448,7 +502,16 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "networkType": "testnet",
@@ -481,59 +544,6 @@
       }
     },
     {
-      "id": "clover",
-      "shortName": "CLV",
-      "fullName": "CLV Parachain",
-      "aliases": [
-        "clv-mainnet",
-        "evm-1023",
-        "clover-mainnet"
-      ],
-      "caip2Id": "eip155:1023",
-      "graphNode": {
-        "protocol": "ethereum"
-      },
-      "explorerUrls": [
-        "https://clvscan.com"
-      ],
-      "rpcUrls": [
-        "https://api-para.clv.org"
-      ],
-      "apiUrls": [
-        {
-          "url": "https://clvscan.com/api",
-          "kind": "blockscout"
-        }
-      ],
-      "networkType": "mainnet",
-      "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
-      },
-      "issuanceRewards": false,
-      "nativeToken": "CLV",
-      "docsUrl": "https://docs.clv.org",
-      "firehose": {
-        "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": false,
-        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
-        "bytesEncoding": "hex",
-        "firstStreamableBlock": {
-          "id": "0x316ead04231197413e137d371f8763cf6db84400d43749853efba5006115783b",
-          "height": 0
-        },
-        "blockFeatures": [
-          "base"
-        ]
-      },
-      "icon": {
-        "web3Icons": {
-          "name": "clover"
-        }
-      }
-    },
-    {
       "id": "metis",
       "shortName": "Metis",
       "secondName": "Andromeda",
@@ -558,7 +568,9 @@
         }
       ],
       "rpcUrls": [
-        "https://andromeda.metis.io"
+        "https://andromeda.metis.io",
+        "https://metis.drpc.org",
+        "https://metis-public.nodies.app"
       ],
       "networkType": "mainnet",
       "relations": [
@@ -568,9 +580,7 @@
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "issuanceRewards": false,
       "nativeToken": "METIS",
@@ -613,38 +623,23 @@
         }
       ],
       "explorerUrls": [
-        "https://zkevm.polygonscan.com"
+        "https://www.oklink.com/polygon-zkevm"
       ],
       "rpcUrls": [
         "https://zkevm-rpc.com",
-        "https://polygonzk.rpc.service.pinax.network"
+        "https://polygon-zkevm.drpc.org",
+        "https://1rpc.io/polygon/zkevm"
       ],
-      "apiUrls": [
-        {
-          "url": "https://polygon-zkevm.abi.pinax.network/api",
-          "kind": "etherscan"
-        },
-        {
-          "url": "https://zkevm.blockscout.com/api",
-          "kind": "blockscout"
-        }
-      ],
+      "apiUrls": [],
       "networkType": "mainnet",
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ],
-        "sps": [],
-        "firehose": [
-          "polygonzk.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "polygonzk.substreams.pinax.network:443"
-        ]
+        "subgraphs": [],
+        "firehose": [],
+        "substreams": []
       },
-      "issuanceRewards": true,
+      "issuanceRewards": false,
       "nativeToken": "ETH",
-      "docsUrl": "https://docs.polygon.technology/zkEVM",
+      "docsUrl": "https://polygon.technology/polygon-zkevm",
       "indexerDocsUrls": [
         {
           "url": "https://docs.infradao.com/archive-nodes-101/polygon-zkevm",
@@ -686,7 +681,8 @@
         "https://explorer.testnet.abs.xyz"
       ],
       "rpcUrls": [
-        "https://api.testnet.abs.xyz"
+        "https://api.testnet.abs.xyz",
+        "https://abstract-sepolia.drpc.org"
       ],
       "apiUrls": [
         {
@@ -694,18 +690,12 @@
           "kind": "etherscan"
         },
         {
-          "url": "https://api.routescan.io/v2/network/testnet/evm/11124/etherscan/api",
-          "kind": "etherscan"
-        },
-        {
-          "url": "https://abstract-testnet.abi.pinax.network/api",
+          "url": "https://abstract-testnet.abi.thegraph.com/api",
           "kind": "etherscan"
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "testnet",
       "relations": [
@@ -741,6 +731,82 @@
       }
     },
     {
+      "id": "celo-sepolia",
+      "shortName": "Celo",
+      "secondName": "Sepolia",
+      "fullName": "Celo Sepolia Testnet",
+      "aliases": [
+        "evm-11142220"
+      ],
+      "caip2Id": "eip155:11142220",
+      "networkType": "testnet",
+      "relations": [
+        {
+          "kind": "testnetOf",
+          "network": "celo"
+        },
+        {
+          "kind": "l2Of",
+          "network": "sepolia"
+        }
+      ],
+      "graphNode": {
+        "protocol": "ethereum"
+      },
+      "explorerUrls": [
+        "https://celo-sepolia.blockscout.com"
+      ],
+      "rpcUrls": [
+        "https://celosepolia.rpc.service.pinax.network",
+        "https://rpc.ankr.com/celo_sepolia"
+      ],
+      "apiUrls": [
+        {
+          "url": "https://celo-sepolia.abi.thegraph.com/api",
+          "kind": "etherscan"
+        },
+        {
+          "url": "https://celo-sepolia.blockscout.com/api",
+          "kind": "blockscout"
+        }
+      ],
+      "services": {
+        "subgraphs": [
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
+        ]
+      },
+      "issuanceRewards": false,
+      "nativeToken": "CELO",
+      "docsUrl": "https://docs.celo.org",
+      "firehose": {
+        "blockType": "sf.ethereum.type.v2.Block",
+        "evmExtendedModel": false,
+        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
+        "bytesEncoding": "hex",
+        "firstStreamableBlock": {
+          "id": "0xabcc77fb92a7ea1e7d330042d81200585d251355b33408ed1c27fb54175b1fe2",
+          "height": 0
+        },
+        "blockFeatures": [
+          "base"
+        ]
+      },
+      "icon": {
+        "web3Icons": {
+          "name": "celo"
+        }
+      }
+    },
+    {
       "id": "sepolia",
       "shortName": "Ethereum",
       "secondName": "Sepolia",
@@ -766,11 +832,11 @@
       "rpcUrls": [
         "https://sepolia.gateway.tenderly.co",
         "https://sepolia.rpc.service.pinax.network",
-        "https://sepolia.infura.io/v3/${INFURA_API_KEY}"
+        "https://eth-sepolia-testnet.api.pocket.network"
       ],
       "apiUrls": [
         {
-          "url": "https://sepolia.abi.pinax.network/api",
+          "url": "https://sepolia.abi.thegraph.com/api",
           "kind": "etherscan"
         },
         {
@@ -784,9 +850,17 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
-        "sps": [],
         "firehose": [
           "sepolia.firehose.pinax.network:443",
           "sepolia.eth.streamingfast.io:443"
@@ -796,7 +870,7 @@
           "sepolia.eth.streamingfast.io:443"
         ]
       },
-      "issuanceRewards": false,
+      "issuanceRewards": true,
       "nativeToken": "ETH",
       "docsUrl": "https://sepolia.dev",
       "firehose": {
@@ -846,11 +920,12 @@
       ],
       "rpcUrls": [
         "https://sepolia.optimism.io",
-        "https://opsepolia.rpc.service.pinax.network"
+        "https://opsepolia.rpc.service.pinax.network",
+        "https://optimism-sepolia.api.onfinality.io/public"
       ],
       "apiUrls": [
         {
-          "url": "https://optimism-sepolia.abi.pinax.network/api",
+          "url": "https://optimism-sepolia.abi.thegraph.com/api",
           "kind": "etherscan"
         },
         {
@@ -860,7 +935,16 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
         "firehose": [
           "opsepolia.firehose.pinax.network:443"
@@ -917,7 +1001,16 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "backstop",
+            "provider": "infradao",
+            "description": "InfraDAO provides backstop support for Subgraphs with 500 GRT in signal"
+          }
         ]
       },
       "networkType": "testnet",
@@ -966,7 +1059,8 @@
       ],
       "rpcUrls": [
         "https://rpc.fuse.io",
-        "https://fuse.rpc.service.pinax.network"
+        "https://fuse.drpc.org",
+        "https://fuse.api.pocket.network"
       ],
       "apiUrls": [
         {
@@ -976,18 +1070,20 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ],
-        "sps": [],
-        "firehose": [
-          "fuse.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "fuse.substreams.pinax.network:443"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "backstop",
+            "provider": "infradao",
+            "description": "InfraDAO provides backstop support for Subgraphs with 500 GRT in signal"
+          }
         ]
       },
       "networkType": "mainnet",
-      "issuanceRewards": true,
+      "issuanceRewards": false,
       "nativeToken": "FUSE",
       "docsUrl": "https://docs.fuse.io",
       "indexerDocsUrls": [
@@ -1040,7 +1136,16 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "networkType": "testnet",
@@ -1073,29 +1178,40 @@
       }
     },
     {
-      "id": "etherlink-testnet",
+      "id": "etherlink-shadownet",
       "shortName": "Etherlink",
-      "fullName": "Etherlink Testnet",
-      "aliases": [],
-      "caip2Id": "eip155:128123",
+      "fullName": "Etherlink Shadownet Testnet",
+      "aliases": [
+        "evm-127823"
+      ],
+      "caip2Id": "eip155:127823",
       "graphNode": {
         "protocol": "ethereum"
       },
       "explorerUrls": [
-        "https://testnet.explorer.etherlink.com"
+        "https://shadownet.explorer.etherlink.com"
       ],
       "rpcUrls": [
-        "https://node.ghostnet.etherlink.com"
+        "https://node.shadownet.etherlink.com"
       ],
       "apiUrls": [
         {
-          "url": "https://testnet.explorer.etherlink.com/api",
+          "url": "https://shadownet.explorer.etherlink.com/api",
           "kind": "blockscout"
         }
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "networkType": "testnet",
@@ -1114,7 +1230,7 @@
         "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
-          "id": "0x2cf11372c813c0007ef080103fc813cf26ad9a374e88d589ef536dfc3dd1fee9",
+          "id": "0x65709dcc615e0b4de1a0534d3975974b0db7f66c77e20db7ecdaf537ac8c5f3c",
           "height": 0
         },
         "blockFeatures": [
@@ -1145,27 +1261,22 @@
       ],
       "rpcUrls": [
         "https://rpc.api.moonbeam.network",
-        "https://moonbeam.rpc.service.pinax.network"
+        "https://1rpc.io/glmr",
+        "https://moonbeam.drpc.org"
       ],
       "apiUrls": [
         {
-          "url": "https://moonbeam.abi.pinax.network/api",
+          "url": "https://moonbeam.abi.thegraph.com/api",
           "kind": "etherscan"
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ],
-        "firehose": [
-          "moonbeam.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "moonbeam.substreams.pinax.network:443"
-        ]
+        "subgraphs": [],
+        "firehose": [],
+        "substreams": []
       },
       "networkType": "mainnet",
-      "issuanceRewards": true,
+      "issuanceRewards": false,
       "nativeToken": "GLMR",
       "docsUrl": "https://docs.moonbeam.network",
       "indexerDocsUrls": [
@@ -1211,25 +1322,19 @@
       ],
       "rpcUrls": [
         "https://rpc.api.moonriver.moonbeam.network",
-        "https://moonriver.rpc.service.pinax.network",
-        "https://moonriver.public.blastapi.io"
+        "https://moonriver.api.onfinality.io/public",
+        "https://moonriver.unitedbloc.com"
       ],
       "apiUrls": [
         {
-          "url": "https://moonriver.abi.pinax.network/api",
+          "url": "https://moonriver.abi.thegraph.com/api",
           "kind": "etherscan"
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ],
-        "firehose": [
-          "moonriver.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "moonriver.substreams.pinax.network:443"
-        ]
+        "subgraphs": [],
+        "firehose": [],
+        "substreams": []
       },
       "networkType": "mainnet",
       "relations": [
@@ -1277,18 +1382,18 @@
         "https://moonbase.moonscan.io"
       ],
       "rpcUrls": [
-        "https://rpc.api.moonbase.moonbeam.network"
+        "https://rpc.api.moonbase.moonbeam.network",
+        "https://moonbase-alpha.drpc.org",
+        "https://moonbeam-alpha.api.onfinality.io/public"
       ],
       "apiUrls": [
         {
-          "url": "https://moonbase.abi.pinax.network/api",
+          "url": "https://moonbase.abi.thegraph.com/api",
           "kind": "etherscan"
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "testnet",
       "relations": [
@@ -1320,66 +1425,6 @@
       }
     },
     {
-      "id": "katana-tatara",
-      "shortName": "Katana",
-      "fullName": "Katana Tatara Testnet",
-      "aliases": [
-        "evm-129399"
-      ],
-      "caip2Id": "eip155:129399",
-      "graphNode": {
-        "protocol": "ethereum"
-      },
-      "explorerUrls": [
-        "https://explorer.tatara.katana.network"
-      ],
-      "rpcUrls": [
-        "https://rpc.tatara.katanarpc.com"
-      ],
-      "apiUrls": [
-        {
-          "url": "https://explorer.tatara.katana.network/api",
-          "kind": "etherscan"
-        }
-      ],
-      "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
-      },
-      "networkType": "testnet",
-      "relations": [
-        {
-          "kind": "l2Of",
-          "network": "sepolia"
-        },
-        {
-          "kind": "testnetOf",
-          "network": "katana"
-        }
-      ],
-      "issuanceRewards": false,
-      "nativeToken": "ETH",
-      "firehose": {
-        "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": false,
-        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
-        "bytesEncoding": "hex",
-        "firstStreamableBlock": {
-          "id": "0xbca38f4936fefe65751e55b3f3f88fec27d478e283b6bb92b5268e2ffcea7716",
-          "height": 0
-        },
-        "blockFeatures": [
-          "base"
-        ]
-      },
-      "icon": {
-        "web3Icons": {
-          "name": "katana"
-        }
-      }
-    },
-    {
       "id": "unichain",
       "shortName": "Unichain",
       "fullName": "Unichain Mainnet",
@@ -1393,13 +1438,29 @@
       },
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
         "firehose": [
-          "unichain.firehose.pinax.network:443"
+          "unichain.firehose.pinax.network:443",
+          "mainnet.unichain.streamingfast.io:443",
+          "unichain.firehose.data.nexus:443"
         ],
         "substreams": [
-          "unichain.substreams.pinax.network:443"
+          "unichain.substreams.pinax.network:443",
+          "mainnet.unichain.streamingfast.io:443",
+          "unichain.substreams.data.nexus:443"
+        ],
+        "tokenApi": [
+          "https://api.pinax.network"
         ]
       },
       "networkType": "mainnet",
@@ -1419,15 +1480,16 @@
           "kind": "blockscout"
         },
         {
-          "url": "https://unichain.abi.pinax.network/api",
+          "url": "https://unichain.abi.thegraph.com/api",
           "kind": "etherscan"
         }
       ],
       "rpcUrls": [
         "https://mainnet.unichain.org",
-        "https://unichain.rpc.service.pinax.network"
+        "https://unichain.rpc.service.pinax.network",
+        "https://unichain.drpc.org"
       ],
-      "issuanceRewards": false,
+      "issuanceRewards": true,
       "nativeToken": "ETH",
       "docsUrl": "https://docs.unichain.org/docs",
       "firehose": {
@@ -1442,6 +1504,14 @@
         "blockFeatures": [
           "extended"
         ]
+      },
+      "tokenApi": {
+        "features": [
+          "tokens",
+          "dexes",
+          "nfts"
+        ],
+        "networkId": "unichain"
       },
       "icon": {
         "web3Icons": {
@@ -1478,7 +1548,8 @@
       ],
       "rpcUrls": [
         "https://sepolia.unichain.org",
-        "https://unisepolia.rpc.service.pinax.network"
+        "https://unisepolia.rpc.service.pinax.network",
+        "https://unichain-sepolia.drpc.org"
       ],
       "apiUrls": [
         {
@@ -1490,15 +1561,23 @@
           "kind": "etherscan"
         },
         {
-          "url": "https://unichain-testnet.abi.pinax.network/api",
+          "url": "https://unichain-testnet.abi.thegraph.com/api",
           "kind": "etherscan"
         }
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
-        "sps": [],
         "firehose": [
           "unisepolia.firehose.pinax.network:443"
         ],
@@ -1544,7 +1623,9 @@
         "https://explorer.aurora.dev"
       ],
       "rpcUrls": [
-        "https://mainnet.aurora.dev"
+        "https://mainnet.aurora.dev",
+        "https://1rpc.io/aurora",
+        "https://aurora.drpc.org"
       ],
       "apiUrls": [
         {
@@ -1553,9 +1634,7 @@
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "mainnet",
       "issuanceRewards": false,
@@ -1595,18 +1674,12 @@
         "https://explorer.testnet.aurora.dev"
       ],
       "rpcUrls": [
-        "https://testnet.aurora.dev"
+        "https://testnet.aurora.dev",
+        "https://aurora-testnet.drpc.org"
       ],
-      "apiUrls": [
-        {
-          "url": "https://explorer.testnet.aurora.dev/api",
-          "kind": "blockscout"
-        }
-      ],
+      "apiUrls": [],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "testnet",
       "relations": [
@@ -1658,13 +1731,26 @@
       ],
       "apiUrls": [
         {
+          "url": "https://sei-atlantic.abi.thegraph.com/api",
+          "kind": "etherscan"
+        },
+        {
           "url": "https://seitrace.com/atlantic-2/api",
           "kind": "etherscan"
         }
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "networkType": "testnet",
@@ -1687,7 +1773,7 @@
           "height": 0
         },
         "blockFeatures": [
-          "base"
+          "extended"
         ]
       },
       "icon": {
@@ -1712,9 +1798,13 @@
         "https://seitrace.com"
       ],
       "rpcUrls": [
-        "https://sei-evm-rpc.publicnode.com"
+        "https://sei-evm-rpc.stakeme.pro"
       ],
       "apiUrls": [
+        {
+          "url": "https://sei-mainnet.abi.thegraph.com/api",
+          "kind": "etherscan"
+        },
         {
           "url": "https://seitrace.com/pacific-1/api",
           "kind": "etherscan"
@@ -1722,19 +1812,22 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ],
-        "firehose": [
-          "evm-mainnet.sei.streamingfast.io:443"
-        ],
-        "substreams": [
-          "evm-mainnet.sei.streamingfast.io:443"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "networkType": "mainnet",
       "issuanceRewards": false,
       "nativeToken": "SEI",
-      "docsUrl": "https://docs.seitrace.com",
+      "docsUrl": "https://docs.sei.io",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
         "evmExtendedModel": true,
@@ -1745,7 +1838,7 @@
           "height": 79123881
         },
         "blockFeatures": [
-          "base"
+          "extended"
         ]
       },
       "icon": {
@@ -1768,16 +1861,16 @@
         "protocol": "ethereum"
       },
       "explorerUrls": [
-        "https://hashkeychain-testnet-explorer.alt.technology"
+        "https://testnet-explorer.hsk.xyz"
       ],
       "apiUrls": [
         {
-          "url": "https://hashkeychain-testnet-explorer.alt.technology/api",
-          "kind": "etherscan"
+          "url": "https://testnet-explorer.hsk.xyz/api",
+          "kind": "blockscout"
         }
       ],
       "rpcUrls": [
-        "https://hashkeychain-testnet.alt.technology"
+        "https://testnet.hsk.xyz"
       ],
       "networkType": "testnet",
       "relations": [
@@ -1791,9 +1884,7 @@
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "issuanceRewards": false,
       "nativeToken": "HSK",
@@ -1833,7 +1924,8 @@
         "https://explorer-sepolia.gravity.xyz"
       ],
       "rpcUrls": [
-        "https://rpc-sepolia.gravity.xyz"
+        "https://rpc-sepolia.gravity.xyz",
+        "https://gravity-alpha-sepolia.drpc.org"
       ],
       "apiUrls": [
         {
@@ -1842,9 +1934,7 @@
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "testnet",
       "relations": [
@@ -1862,11 +1952,11 @@
       "docsUrl": "https://docs.gravity.xyz",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": true,
+        "evmExtendedModel": false,
         "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
-          "id": "0xdf76dabe0734fed9d517027a494bc00662576d30aee9672a6fab5184e06ee8ca",
+          "id": "0x7ec91560d457d4812a727cf8f280ff15e0f74432f29d35dff9b957f597a584c2",
           "height": 0
         },
         "blockFeatures": [
@@ -1901,13 +1991,13 @@
         "https://polygonscan.com"
       ],
       "rpcUrls": [
-        "https://polygon-rpc.com",
         "https://polygon.rpc.service.pinax.network",
-        "https://rpc.ankr.com/polygon"
+        "https://polygon.drpc.org",
+        "https://rpc.satelink.network/rpc/polygon"
       ],
       "apiUrls": [
         {
-          "url": "https://polygon.abi.pinax.network/api",
+          "url": "https://polygon.abi.thegraph.com/api",
           "kind": "etherscan"
         },
         {
@@ -1918,9 +2008,17 @@
       "networkType": "mainnet",
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
-        "sps": [],
         "firehose": [
           "polygon.firehose.pinax.network:443",
           "polygon.streamingfast.io:443"
@@ -1930,7 +2028,7 @@
           "polygon.streamingfast.io:443"
         ],
         "tokenApi": [
-          "https://token-api.thegraph.com"
+          "https://api.pinax.network"
         ]
       },
       "indexerDocsUrls": [
@@ -1970,6 +2068,137 @@
       }
     },
     {
+      "id": "monad",
+      "shortName": "Monad",
+      "fullName": "Monad Mainnet",
+      "aliases": [
+        "evm-143",
+        "monad-mainnet"
+      ],
+      "caip2Id": "eip155:143",
+      "graphNode": {
+        "protocol": "ethereum"
+      },
+      "explorerUrls": [
+        "https://monadscan.com"
+      ],
+      "rpcUrls": [
+        "https://rpc-mainnet.monadinfra.com",
+        "https://infra.originstake.com/monad/evm",
+        "https://monad-mainnet.rpc.sentio.xyz"
+      ],
+      "apiUrls": [
+        {
+          "url": "https://monad.abi.thegraph.com/api",
+          "kind": "etherscan"
+        }
+      ],
+      "networkType": "mainnet",
+      "services": {
+        "subgraphs": [],
+        "firehose": [
+          "mainnet.monad.streamingfast.io:443"
+        ],
+        "substreams": [
+          "mainnet.monad.streamingfast.io:443"
+        ]
+      },
+      "issuanceRewards": false,
+      "nativeToken": "MON",
+      "docsUrl": "https://docs.monad.xyz",
+      "firehose": {
+        "blockType": "sf.ethereum.type.v2.Block",
+        "evmExtendedModel": true,
+        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
+        "bytesEncoding": "hex",
+        "firstStreamableBlock": {
+          "id": "0x76ac00ea25b983893d48fc0ddac36a9c4d605b31a5cfd440c2f9f3a06941152c",
+          "height": 1
+        },
+        "blockFeatures": [
+          "extended"
+        ]
+      },
+      "icon": {
+        "web3Icons": {
+          "name": "monad"
+        }
+      }
+    },
+    {
+      "id": "injective-evm-testnet",
+      "shortName": "Injective EVM",
+      "fullName": "Injective EVM Testnet",
+      "aliases": [
+        "evm-1439"
+      ],
+      "caip2Id": "eip155:1439",
+      "graphNode": {
+        "protocol": "ethereum"
+      },
+      "explorerUrls": [
+        "https://testnet.blockscout.injective.network"
+      ],
+      "rpcUrls": [
+        "https://k8s.testnet.json-rpc.injective.network",
+        "https://injectiveevm-testnet-rpc.polkachu.com"
+      ],
+      "apiUrls": [
+        {
+          "url": "https://testnet.blockscout-api.injective.network/api",
+          "kind": "blockscout"
+        }
+      ],
+      "services": {
+        "subgraphs": [
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "backstop",
+            "provider": "https://streamingfast.io",
+            "description": "StreamingFast provides backstop support for all InjectiveEVM Subgraphs"
+          }
+        ],
+        "substreams": [
+          "testnet.injective-evm.streamingfast.io:443"
+        ],
+        "firehose": [
+          "testnet.injective-evm.streamingfast.io:443"
+        ]
+      },
+      "networkType": "testnet",
+      "relations": [
+        {
+          "kind": "testnetOf",
+          "network": "injective-evm"
+        }
+      ],
+      "issuanceRewards": false,
+      "nativeToken": "INJ",
+      "docsUrl": "https://docs.injective.network/developers-evm/network-information",
+      "firehose": {
+        "blockType": "sf.ethereum.type.v2.Block",
+        "evmExtendedModel": true,
+        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
+        "bytesEncoding": "hex",
+        "firstStreamableBlock": {
+          "id": "0x399400eb7ad682450ac74e94489bf992bb72868977cba866ece56e777d295ba8",
+          "height": 81314400
+        },
+        "blockFeatures": [
+          "extended"
+        ]
+      },
+      "icon": {
+        "web3Icons": {
+          "name": "injective"
+        }
+      }
+    },
+    {
       "id": "sonic",
       "shortName": "Sonic",
       "fullName": "Sonic Mainnet",
@@ -1986,27 +2215,27 @@
       ],
       "rpcUrls": [
         "https://rpc.soniclabs.com",
-        "https://sonic.rpc.service.pinax.network"
+        "https://sonic.drpc.org",
+        "https://sonic.api.pocket.network"
       ],
       "apiUrls": [
         {
-          "url": "https://api.routescan.io/v2/network/mainnet/evm/146/etherscan/api",
-          "kind": "etherscan"
-        },
-        {
-          "url": "https://sonic.abi.pinax.network/api",
+          "url": "https://sonic.abi.thegraph.com/api",
           "kind": "etherscan"
         }
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ],
-        "firehose": [
-          "sonic.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "sonic.substreams.pinax.network:443"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "networkType": "mainnet",
@@ -2026,6 +2255,73 @@
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
           "id": "0x411c75a1b1c2f2f458bcf243e7743d114e0117a4233cc13d91e7efc8fe8b0f3b",
+          "height": 0
+        },
+        "blockFeatures": [
+          "base"
+        ]
+      },
+      "icon": {
+        "web3Icons": {
+          "name": "sonic"
+        }
+      }
+    },
+    {
+      "id": "sonic-testnet",
+      "shortName": "Sonic",
+      "fullName": "Sonic Testnet",
+      "aliases": [
+        "evm-14601"
+      ],
+      "caip2Id": "eip155:14601",
+      "graphNode": {
+        "protocol": "ethereum"
+      },
+      "explorerUrls": [
+        "https://testnet.sonicscan.org"
+      ],
+      "rpcUrls": [
+        "https://rpc.testnet.soniclabs.com",
+        "https://sonic-testnet-v2.drpc.org"
+      ],
+      "apiUrls": [
+        {
+          "url": "https://sonic-testnet.abi.thegraph.com/api",
+          "kind": "etherscan"
+        }
+      ],
+      "services": {
+        "subgraphs": [
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
+        ]
+      },
+      "networkType": "testnet",
+      "relations": [
+        {
+          "kind": "testnetOf",
+          "network": "sonic"
+        }
+      ],
+      "issuanceRewards": false,
+      "nativeToken": "S",
+      "docsUrl": "https://docs.soniclabs.com",
+      "firehose": {
+        "blockType": "sf.ethereum.type.v2.Block",
+        "evmExtendedModel": false,
+        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
+        "bytesEncoding": "hex",
+        "firstStreamableBlock": {
+          "id": "0xd9d01e30e455175794714d8a4a2aa3e281ec893c36e25b1c6c01947394317b50",
           "height": 0
         },
         "blockFeatures": [
@@ -2063,9 +2359,7 @@
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "mainnet",
       "issuanceRewards": false,
@@ -2073,7 +2367,7 @@
       "docsUrl": "https://docs.vana.org",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": true,
+        "evmExtendedModel": false,
         "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
@@ -2110,8 +2404,8 @@
       ],
       "apiUrls": [
         {
-          "url": "https://api.moksha.vanascan.io/api",
-          "kind": "etherscan"
+          "url": "https://moksha.vanascan.io/api",
+          "kind": "blockscout"
         }
       ],
       "networkType": "testnet",
@@ -2122,16 +2416,14 @@
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "issuanceRewards": false,
       "nativeToken": "VANA",
       "docsUrl": "https://docs.vana.org",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": true,
+        "evmExtendedModel": false,
         "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
@@ -2145,74 +2437,6 @@
       "icon": {
         "web3Icons": {
           "name": "vana"
-        }
-      }
-    },
-    {
-      "id": "jungle4-evm",
-      "shortName": "EOS EVM",
-      "secondName": "Jungle4",
-      "fullName": "EOS Jungle4 EVM Testnet",
-      "aliases": [
-        "jungle4-evm-testnet",
-        "eos-evm-testnet",
-        "evm-15557"
-      ],
-      "caip2Id": "eip155:15557",
-      "graphNode": {
-        "protocol": "ethereum"
-      },
-      "relations": [
-        {
-          "kind": "evmOf",
-          "network": "jungle4"
-        },
-        {
-          "kind": "testnetOf",
-          "network": "eos-evm"
-        }
-      ],
-      "explorerUrls": [
-        "https://explorer.testnet.evm.eosnetwork.com"
-      ],
-      "rpcUrls": [
-        "https://api.testnet.evm.eosnetwork.com",
-        "https://jungle4evm.rpc.service.pinax.network"
-      ],
-      "apiUrls": [
-        {
-          "kind": "etherscan",
-          "url": "https://explorer.testnet.evm.eosnetwork.com/api"
-        }
-      ],
-      "services": {
-        "firehose": [
-          "jungle4evm.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "jungle4evm.substreams.pinax.network:443"
-        ]
-      },
-      "networkType": "testnet",
-      "issuanceRewards": false,
-      "nativeToken": "EOS",
-      "docsUrl": "https://eosnetwork.com/eos-evm",
-      "firehose": {
-        "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": false,
-        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
-        "bytesEncoding": "hex",
-        "firstStreamableBlock": {
-          "id": "0xc6f7c5c995ae7a7567b44e9679c6654b39a957fe33daa33aee4ee96a01b2fbd5",
-          "height": 0
-        },
-        "blockFeatures": [
-          "base"
-        ]
-      },
-      "icon": {
-        "web3Icons": {
-          "name": "eos"
         }
       }
     },
@@ -2233,7 +2457,7 @@
       ],
       "rpcUrls": [
         "https://rpc.gravity.xyz",
-        "https://gravity.rpc.service.pinax.network"
+        "https://rpc.ankr.com/gravity"
       ],
       "apiUrls": [
         {
@@ -2248,15 +2472,7 @@
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ],
-        "firehose": [
-          "gravity.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "gravity.substreams.pinax.network:443"
-        ]
+        "subgraphs": []
       },
       "networkType": "mainnet",
       "issuanceRewards": false,
@@ -2264,7 +2480,7 @@
       "docsUrl": "https://docs.gravity.xyz",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": true,
+        "evmExtendedModel": false,
         "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
@@ -2307,9 +2523,7 @@
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "testnet",
       "relations": [
@@ -2323,7 +2537,7 @@
       "docsUrl": "https://docs.status.network",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": true,
+        "evmExtendedModel": false,
         "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
@@ -2333,6 +2547,11 @@
         "blockFeatures": [
           "base"
         ]
+      },
+      "icon": {
+        "web3Icons": {
+          "name": "status"
+        }
       }
     },
     {
@@ -2351,7 +2570,9 @@
         "https://explorer.harmony.one/?shard=0"
       ],
       "rpcUrls": [
-        "https://api.harmony.one/?shard=0"
+        "https://api.harmony.one/?shard=0",
+        "https://1rpc.io/one",
+        "https://harmony-0.drpc.org"
       ],
       "apiUrls": [
         {
@@ -2360,9 +2581,7 @@
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "mainnet",
       "issuanceRewards": false,
@@ -2405,28 +2624,17 @@
       ],
       "rpcUrls": [
         "https://sepolia.blast.io",
-        "https://blastsepolia.rpc.service.pinax.network"
+        "https://blast-testnet-public.nodies.app",
+        "https://blast-sepolia.drpc.org"
       ],
       "apiUrls": [
         {
-          "url": "https://blast-testnet.abi.pinax.network/api",
+          "url": "https://blast-testnet.abi.thegraph.com/api",
           "kind": "etherscan"
-        },
-        {
-          "url": "https://blast-testnet.blockscout.com/api",
-          "kind": "blockscout"
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ],
-        "firehose": [
-          "blastsepolia.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "blastsepolia.substreams.pinax.network:443"
-        ]
+        "subgraphs": []
       },
       "networkType": "testnet",
       "relations": [
@@ -2462,69 +2670,6 @@
       }
     },
     {
-      "id": "mint-sepolia",
-      "shortName": "Mint",
-      "secondName": "Sepolia",
-      "fullName": "Mint Sepolia Testnet",
-      "aliases": [
-        "mint-testnet",
-        "evm-1687"
-      ],
-      "caip2Id": "eip155:1687",
-      "graphNode": {
-        "protocol": "ethereum"
-      },
-      "explorerUrls": [
-        "https://sepolia-testnet-explorer.mintchain.io"
-      ],
-      "apiUrls": [
-        {
-          "url": "https://sepolia-testnet-explorer.mintchain.io/api",
-          "kind": "etherscan"
-        }
-      ],
-      "rpcUrls": [
-        "https://sepolia-testnet-rpc.mintchain.io"
-      ],
-      "networkType": "testnet",
-      "relations": [
-        {
-          "kind": "testnetOf",
-          "network": "mint"
-        },
-        {
-          "kind": "l2Of",
-          "network": "sepolia"
-        }
-      ],
-      "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
-      },
-      "issuanceRewards": false,
-      "nativeToken": "ETH",
-      "docsUrl": "https://docs.mintchain.io",
-      "firehose": {
-        "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": true,
-        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
-        "bytesEncoding": "hex",
-        "firstStreamableBlock": {
-          "id": "0xdf018ef6eb34f7f003e00e4980aee2c2af56e7a5a865924d18cc775c02190deb",
-          "height": 0
-        },
-        "blockFeatures": [
-          "base"
-        ]
-      },
-      "icon": {
-        "web3Icons": {
-          "name": "mint"
-        }
-      }
-    },
-    {
       "id": "manta",
       "shortName": "Manta",
       "fullName": "Manta Pacific Mainnet",
@@ -2537,7 +2682,9 @@
         "protocol": "ethereum"
       },
       "rpcUrls": [
-        "https://manta-pacific.drpc.org"
+        "https://pacific-rpc.manta.network/http",
+        "https://manta-pacific.drpc.org",
+        "https://1rpc.io/manta"
       ],
       "explorerUrls": [
         "https://pacific-explorer.manta.network"
@@ -2549,9 +2696,7 @@
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "mainnet",
       "relations": [
@@ -2583,79 +2728,6 @@
       }
     },
     {
-      "id": "holesky",
-      "shortName": "Ethereum",
-      "secondName": "Holesky",
-      "fullName": "Ethereum Holesky Testnet",
-      "aliases": [
-        "evm-17000"
-      ],
-      "caip2Id": "eip155:17000",
-      "networkType": "testnet",
-      "relations": [
-        {
-          "kind": "testnetOf",
-          "network": "mainnet"
-        }
-      ],
-      "graphNode": {
-        "protocol": "ethereum"
-      },
-      "explorerUrls": [
-        "https://holesky.etherscan.io",
-        "https://holesky.otterscan.io"
-      ],
-      "rpcUrls": [
-        "https://ethereum-holesky-rpc.publicnode.com",
-        "https://holesky.rpc.service.pinax.network"
-      ],
-      "apiUrls": [
-        {
-          "url": "https://eth-holesky.blockscout.com/api",
-          "kind": "blockscout"
-        },
-        {
-          "url": "https://holesky.abi.pinax.network/api",
-          "kind": "etherscan"
-        }
-      ],
-      "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ],
-        "sps": [],
-        "firehose": [
-          "holesky.firehose.pinax.network:443",
-          "holesky.eth.streamingfast.io:443"
-        ],
-        "substreams": [
-          "holesky.substreams.pinax.network:443",
-          "holesky.eth.streamingfast.io:443"
-        ]
-      },
-      "issuanceRewards": false,
-      "nativeToken": "ETH",
-      "docsUrl": "https://holesky.dev",
-      "firehose": {
-        "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": true,
-        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
-        "bytesEncoding": "hex",
-        "firstStreamableBlock": {
-          "id": "0xb5f7f912443c940f21fd611f12828d75b534364ed9e95ca4e307729a4661bde4",
-          "height": 0
-        },
-        "blockFeatures": [
-          "extended"
-        ]
-      },
-      "icon": {
-        "web3Icons": {
-          "name": "ethereum"
-        }
-      }
-    },
-    {
       "id": "hashkeychain",
       "shortName": "Hashkey Chain",
       "fullName": "Hashkey Chain Mainnet",
@@ -2677,7 +2749,8 @@
         }
       ],
       "rpcUrls": [
-        "https://mainnet.hsk.xyz"
+        "https://mainnet.hsk.xyz",
+        "https://hashkey.drpc.org"
       ],
       "networkType": "mainnet",
       "relations": [
@@ -2687,9 +2760,7 @@
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "issuanceRewards": false,
       "nativeToken": "HSK",
@@ -2714,123 +2785,69 @@
       }
     },
     {
-      "id": "eos-evm",
-      "shortName": "EOS EVM",
-      "fullName": "EOS EVM Network",
+      "id": "injective-evm",
+      "shortName": "Injective EVM",
+      "fullName": "Injective EVM Mainnet",
       "aliases": [
-        "eosevm",
-        "eos-evm-mainnet",
-        "evm-17777"
+        "evm-1776",
+        "injective-evm-mainnet"
       ],
-      "caip2Id": "eip155:17777",
-      "graphNode": {
-        "protocol": "ethereum"
-      },
-      "relations": [
-        {
-          "kind": "evmOf",
-          "network": "eos"
-        }
-      ],
-      "explorerUrls": [
-        "https://explorer.evm.eosnetwork.com"
-      ],
-      "rpcUrls": [
-        "https://api.evm.eosnetwork.com",
-        "https://eosevm.rpc.service.pinax.network"
-      ],
-      "apiUrls": [
-        {
-          "kind": "etherscan",
-          "url": "https://explorer.evm.eosnetwork.com/api"
-        }
-      ],
-      "services": {
-        "firehose": [
-          "eosevm.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "eosevm.substreams.pinax.network:443"
-        ]
-      },
-      "networkType": "mainnet",
-      "issuanceRewards": false,
-      "nativeToken": "EOS",
-      "docsUrl": "https://eosnetwork.com/eos-evm",
-      "firehose": {
-        "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": false,
-        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
-        "bytesEncoding": "hex",
-        "firstStreamableBlock": {
-          "id": "0x330402d1032bd515fa7f93b5ccb370bd1b6fdf54cdf009b6d46e55070aa0a1b8",
-          "height": 0
-        },
-        "blockFeatures": [
-          "base"
-        ]
-      },
-      "icon": {
-        "web3Icons": {
-          "name": "eos"
-        }
-      }
-    },
-    {
-      "id": "mint",
-      "shortName": "Mint",
-      "fullName": "Mint Mainnet",
-      "aliases": [
-        "evm-185",
-        "mint-mainnet"
-      ],
-      "caip2Id": "eip155:185",
+      "caip2Id": "eip155:1776",
       "graphNode": {
         "protocol": "ethereum"
       },
       "explorerUrls": [
-        "https://explorer.mintchain.io"
+        "https://blockscout.injective.network"
       ],
       "rpcUrls": [
-        "https://rpc.mintchain.io"
+        "https://sentry.evm-rpc.injective.network"
       ],
       "apiUrls": [
         {
-          "url": "https://explorer.mintchain.io/api",
+          "url": "https://blockscout-api.injective.network/api",
           "kind": "blockscout"
         }
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "backstop",
+            "provider": "https://streamingfast.io",
+            "description": "StreamingFast provides backstop support for all InjectiveEVM Subgraphs"
+          }
+        ],
+        "substreams": [
+          "mainnet.injective-evm.streamingfast.io:443"
+        ],
+        "firehose": [
+          "mainnet.injective-evm.streamingfast.io:443"
         ]
       },
       "networkType": "mainnet",
-      "relations": [
-        {
-          "kind": "l2Of",
-          "network": "mainnet"
-        }
-      ],
       "issuanceRewards": false,
-      "nativeToken": "ETH",
-      "docsUrl": "https://docs.mintchain.io",
+      "nativeToken": "INJ",
+      "docsUrl": "https://docs.injective.network/developers-evm/network-information",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
         "evmExtendedModel": true,
         "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
-          "id": "0x88441835ca2344ea384e6f73e3d6f921cdd304e5bd6dca15590217e3911c61a3",
-          "height": 0
+          "id": "0xdf7ca2f662e315782555113f77e2b11543b5365f424c156a0b5aa56a3ff34ce4",
+          "height": 127250000
         },
         "blockFeatures": [
-          "base"
+          "extended"
         ]
       },
       "icon": {
         "web3Icons": {
-          "name": "mint"
+          "name": "injective"
         }
       }
     },
@@ -2851,7 +2868,8 @@
       ],
       "rpcUrls": [
         "https://rpc.soneium.org",
-        "https://soneium.rpc.service.pinax.network"
+        "https://soneium.rpc.service.pinax.network",
+        "https://soneium.drpc.org"
       ],
       "apiUrls": [
         {
@@ -2867,13 +2885,24 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
         "firehose": [
-          "soneium.firehose.pinax.network:443"
+          "soneium.firehose.pinax.network:443",
+          "soneium.firehose.data.nexus:443"
         ],
         "substreams": [
-          "soneium.substreams.pinax.network:443"
+          "soneium.substreams.pinax.network:443",
+          "soneium.substreams.data.nexus:443"
         ]
       },
       "networkType": "mainnet",
@@ -2890,64 +2919,12 @@
           "height": 0
         },
         "blockFeatures": [
-          "base"
+          "extended"
         ]
       },
       "icon": {
         "web3Icons": {
           "name": "soneium"
-        }
-      }
-    },
-    {
-      "id": "expchain-testnet",
-      "shortName": "EXPchain",
-      "fullName": "EXPchain Testnet",
-      "aliases": [
-        "evm-18880"
-      ],
-      "caip2Id": "eip155:18880",
-      "graphNode": {
-        "protocol": "ethereum"
-      },
-      "explorerUrls": [
-        "https://blockscout-testnet.expchain.ai"
-      ],
-      "rpcUrls": [
-        "https://rpc1-testnet.expchain.ai"
-      ],
-      "apiUrls": [
-        {
-          "url": "https://blockscout-testnet.expchain.ai/api",
-          "kind": "blockscout"
-        }
-      ],
-      "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
-      },
-      "networkType": "testnet",
-      "relations": [],
-      "issuanceRewards": false,
-      "nativeToken": "tZKJ",
-      "docsUrl": "https://docs.polyhedra.network/expchain",
-      "firehose": {
-        "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": false,
-        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
-        "bytesEncoding": "hex",
-        "firstStreamableBlock": {
-          "id": "0xcd32fbe4844c34d8c24a50949e84a2b67bacca64a1229f248bb4c8a95c5feb75",
-          "height": 0
-        },
-        "blockFeatures": [
-          "base"
-        ]
-      },
-      "icon": {
-        "web3Icons": {
-          "name": "expchain"
         }
       }
     },
@@ -2967,18 +2944,22 @@
         "https://explorer.swellnetwork.io"
       ],
       "rpcUrls": [
-        "https://rpc.ankr.com/swell"
+        "https://rpc.ankr.com/swell",
+        "https://swell-mainnet.rpc.sentio.xyz",
+        "https://swell-mainnet.alt.technology"
       ],
       "apiUrls": [
         {
           "url": "https://explorer.swellnetwork.io/api",
           "kind": "blockscout"
+        },
+        {
+          "url": "https://swellchain.abi.thegraph.com/api",
+          "kind": "etherscan"
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "mainnet",
       "issuanceRewards": false,
@@ -2986,7 +2967,7 @@
       "docsUrl": "https://docs.swellnetwork.io",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": true,
+        "evmExtendedModel": false,
         "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
@@ -3010,6 +2991,7 @@
       "fullName": "Swellchain Sepolia Testnet",
       "aliases": [
         "swellchain-testnet",
+        "swellchain-bepolia",
         "evm-1924"
       ],
       "caip2Id": "eip155:1924",
@@ -3023,10 +3005,15 @@
         {
           "url": "https://swell-testnet-explorer.alt.technology/api",
           "kind": "blockscout"
+        },
+        {
+          "url": "https://swellchain-sepolia.abi.thegraph.com/api",
+          "kind": "etherscan"
         }
       ],
       "rpcUrls": [
-        "https://rpc.ankr.com/swell_sepolia"
+        "https://rpc.ankr.com/swell_sepolia",
+        "https://swell-testnet.drpc.org"
       ],
       "networkType": "testnet",
       "relations": [
@@ -3040,16 +3027,14 @@
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "issuanceRewards": false,
       "nativeToken": "ETH",
       "docsUrl": "https://docs.swellnetwork.io",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": true,
+        "evmExtendedModel": false,
         "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
@@ -3085,15 +3070,12 @@
       ],
       "rpcUrls": [
         "https://rpc.minato.soneium.org",
-        "https://minato.rpc.service.pinax.network"
+        "https://minato.rpc.service.pinax.network",
+        "https://soneium-minato.drpc.org"
       ],
       "apiUrls": [
         {
           "url": "https://soneium-minato.blockscout.com/api",
-          "kind": "etherscan"
-        },
-        {
-          "url": "https://api.routescan.io/v2/network/testnet/evm/1946/etherscan/api",
           "kind": "etherscan"
         }
       ],
@@ -3110,9 +3092,17 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
-        "sps": [],
         "firehose": [
           "minato.firehose.pinax.network:443"
         ],
@@ -3133,7 +3123,7 @@
           "height": 0
         },
         "blockFeatures": [
-          "base"
+          "extended"
         ]
       },
       "icon": {
@@ -3157,20 +3147,19 @@
       "explorerUrls": [
         "https://www.oklink.com/xlayer-test"
       ],
-      "rpcUrls": [
-        "https://testrpc.xlayer.tech",
-        "https://xlayertestrpc.okx.com",
-        "https://xlayertest.rpc.service.pinax.network"
-      ],
+      "rpcUrls": [],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ],
-        "firehose": [
-          "xlayertest.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "xlayertest.substreams.pinax.network:443"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "networkType": "testnet",
@@ -3186,7 +3175,7 @@
       ],
       "issuanceRewards": false,
       "nativeToken": "OKB",
-      "docsUrl": "https://www.okx.com/xlayer",
+      "docsUrl": "https://web3.okx.com/xlayer",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
         "evmExtendedModel": false,
@@ -3228,7 +3217,16 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
         "firehose": [
           "xlayer.firehose.pinax.network:443"
@@ -3246,7 +3244,7 @@
       ],
       "issuanceRewards": false,
       "nativeToken": "OKB",
-      "docsUrl": "https://www.okx.com/xlayer",
+      "docsUrl": "https://web3.okx.com/xlayer",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
         "evmExtendedModel": false,
@@ -3279,15 +3277,7 @@
         "protocol": "ethereum"
       },
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ],
-        "firehose": [
-          "ronin.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "ronin.substreams.pinax.network:443"
-        ]
+        "subgraphs": []
       },
       "networkType": "mainnet",
       "relations": [],
@@ -3295,8 +3285,8 @@
         "https://app.roninchain.com"
       ],
       "rpcUrls": [
-        "https://api.roninchain.com/rpc",
-        "https://ronin.rpc.service.pinax.network"
+        "https://ronin.drpc.org",
+        "https://ronin-mainnet.gateway.tatum.io"
       ],
       "issuanceRewards": false,
       "nativeToken": "RON",
@@ -3350,23 +3340,16 @@
         "https://opbnbscan.com"
       ],
       "rpcUrls": [
-        "https://opbnb-mainnet-rpc.bnbchain.org",
-        "https://opbnb.rpc.service.pinax.network"
+        "https://1rpc.io/opbnb",
+        "https://opbnb.drpc.org"
       ],
       "apiUrls": [
         {
-          "url": "https://bnb-op.abi.pinax.network/api",
+          "url": "https://bnb-op.abi.thegraph.com/api",
           "kind": "etherscan"
         }
       ],
-      "services": {
-        "firehose": [
-          "opbnb.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "opbnb.substreams.pinax.network:443"
-        ]
-      },
+      "services": {},
       "networkType": "mainnet",
       "issuanceRewards": false,
       "nativeToken": "BNB",
@@ -3419,9 +3402,7 @@
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "mainnet",
       "relations": [
@@ -3480,9 +3461,7 @@
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "testnet",
       "relations": [
@@ -3534,7 +3513,8 @@
       ],
       "rpcUrls": [
         "https://rpc.ankr.com/kava_evm",
-        "https://kava.rpc.service.pinax.network"
+        "https://evm.kava-rpc.com",
+        "https://kava.drpc.org"
       ],
       "networkType": "mainnet",
       "services": {},
@@ -3582,12 +3562,11 @@
         }
       ],
       "rpcUrls": [
-        "https://rpc.lens.dev"
+        "https://rpc.lens.dev",
+        "https://rpc.lens.xyz"
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "mainnet",
       "relations": [
@@ -3640,31 +3619,19 @@
           "network": "polygon-zkevm"
         }
       ],
-      "explorerUrls": [
-        "https://cardona-zkevm.polygonscan.com"
-      ],
+      "explorerUrls": [],
       "rpcUrls": [
         "https://rpc.cardona.zkevm-rpc.com",
-        "https://cardona.rpc.service.pinax.network"
+        "https://polygon-zkevm-cardona.drpc.org"
       ],
-      "apiUrls": [
-        {
-          "url": "https://polygon-zkevm-cardona.abi.pinax.network/api",
-          "kind": "etherscan"
-        }
-      ],
+      "apiUrls": [],
       "networkType": "testnet",
       "services": {
-        "firehose": [
-          "cardona.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "cardona.substreams.pinax.network:443"
-        ]
+        "subgraphs": []
       },
       "issuanceRewards": false,
       "nativeToken": "ETH",
-      "docsUrl": "https://docs.polygon.technology/zkEVM",
+      "docsUrl": "https://polygon.technology/polygon-zkevm",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
         "evmExtendedModel": false,
@@ -3701,22 +3668,17 @@
       ],
       "rpcUrls": [
         "https://evm.cronos.org",
-        "https://cronos.rpc.service.pinax.network"
+        "https://cronos.drpc.org",
+        "https://cronos.rpc.sentio.xyz"
       ],
       "apiUrls": [
         {
           "url": "https://cronos.org/explorer/api",
           "kind": "blockscout"
-        },
-        {
-          "url": "https://cronos.abi.pinax.network/api",
-          "kind": "etherscan"
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "mainnet",
       "issuanceRewards": false,
@@ -3756,31 +3718,27 @@
         "protocol": "ethereum"
       },
       "explorerUrls": [
-        "https://ftmscan.com"
+        "https://explorer.fantom.network",
+        "https://ftmscout.com"
       ],
       "rpcUrls": [
-        "https://rpc.ftm.tools",
-        "https://fantom.rpc.service.pinax.network"
+        "https://fantom.drpc.org",
+        "https://1rpc.io/ftm",
+        "https://rpc.fantom.network"
       ],
       "apiUrls": [
         {
-          "url": "https://fantom.abi.pinax.network/api",
-          "kind": "etherscan"
+          "url": "https://ftmscout.com/api",
+          "kind": "blockscout"
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ],
-        "firehose": [
-          "fantom.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "fantom.substreams.pinax.network:443"
-        ]
+        "subgraphs": [],
+        "firehose": [],
+        "substreams": []
       },
       "networkType": "mainnet",
-      "issuanceRewards": true,
+      "issuanceRewards": false,
       "nativeToken": "FTM",
       "docsUrl": "https://docs.fantom.foundation",
       "indexerDocsUrls": [
@@ -3824,11 +3782,13 @@
         "https://fraxscan.com"
       ],
       "rpcUrls": [
-        "https://rpc.frax.com"
+        "https://rpc.frax.com",
+        "https://fraxtal.drpc.org",
+        "https://fraxtal.api.pocket.network"
       ],
       "apiUrls": [
         {
-          "url": "https://fraxtal.abi.pinax.network/api",
+          "url": "https://fraxtal.abi.thegraph.com/api",
           "kind": "etherscan"
         },
         {
@@ -3838,7 +3798,16 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "backstop",
+            "provider": "infradao",
+            "description": "InfraDAO provides backstop support for Subgraphs with 500 GRT in signal"
+          }
         ]
       },
       "networkType": "mainnet",
@@ -3849,11 +3818,11 @@
         }
       ],
       "issuanceRewards": false,
-      "nativeToken": "frxETH",
-      "docsUrl": "https://docs.mintchain.io",
+      "nativeToken": "FRAX",
+      "docsUrl": "https://docs.frax.com/fraxtal",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": true,
+        "evmExtendedModel": false,
         "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
@@ -3883,21 +3852,20 @@
         "protocol": "ethereum"
       },
       "rpcUrls": [
-        "https://api.mainnet.abs.xyz"
+        "https://api.mainnet.abs.xyz",
+        "https://abstract-mainnet.gateway.tatum.io"
       ],
       "explorerUrls": [
         "https://abscan.org"
       ],
       "apiUrls": [
         {
-          "url": "https://abstract.abi.pinax.network/api",
+          "url": "https://abstract.abi.thegraph.com/api",
           "kind": "etherscan"
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "mainnet",
       "relations": [
@@ -3945,7 +3913,8 @@
       ],
       "rpcUrls": [
         "https://mainnet.boba.network",
-        "https://boba.rpc.service.pinax.network"
+        "https://boba-eth.drpc.org",
+        "https://1rpc.io/boba/eth"
       ],
       "apiUrls": [
         {
@@ -3955,14 +3924,19 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "backstop",
+            "provider": "infradao",
+            "description": "InfraDAO provides backstop support for Subgraphs with 500 GRT in signal"
+          }
         ],
-        "firehose": [
-          "boba.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "boba.substreams.pinax.network:443"
-        ]
+        "firehose": [],
+        "substreams": []
       },
       "networkType": "mainnet",
       "relations": [
@@ -3971,7 +3945,7 @@
           "network": "mainnet"
         }
       ],
-      "issuanceRewards": true,
+      "issuanceRewards": false,
       "nativeToken": "ETH",
       "docsUrl": "https://docs.boba.network",
       "indexerDocsUrls": [
@@ -4015,8 +3989,7 @@
         "https://testnet.bobascan.com"
       ],
       "rpcUrls": [
-        "https://sepolia.boba.network",
-        "https://bobasepolia.rpc.service.pinax.network"
+        "https://sepolia.boba.network"
       ],
       "apiUrls": [
         {
@@ -4026,13 +3999,16 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ],
-        "firehose": [
-          "bobasepolia.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "bobasepolia.substreams.pinax.network:443"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "backstop",
+            "provider": "infradao",
+            "description": "InfraDAO provides backstop support for Subgraphs with 500 GRT in signal"
+          }
         ]
       },
       "networkType": "testnet",
@@ -4084,7 +4060,8 @@
       ],
       "rpcUrls": [
         "https://public-node.rsk.co",
-        "https://rootstock.rpc.service.pinax.network"
+        "https://rootstock.drpc.org",
+        "https://mycrypto.rsk.co"
       ],
       "apiUrls": [
         {
@@ -4094,7 +4071,16 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "backstop",
+            "provider": "infradao",
+            "description": "InfraDAO provides backstop support for Subgraphs with 500 GRT in signal"
+          }
         ]
       },
       "networkType": "mainnet",
@@ -4144,7 +4130,9 @@
         "https://sepolia.explorer.zksync.io"
       ],
       "rpcUrls": [
-        "https://sepolia.era.zksync.dev"
+        "https://sepolia.era.zksync.dev",
+        "https://rpc.ankr.com/zksync_era_sepolia",
+        "https://zksync-sepolia.api.onfinality.io/public"
       ],
       "apiUrls": [
         {
@@ -4154,15 +4142,20 @@
         {
           "url": "https://zksync-sepolia.blockscout.com/api",
           "kind": "blockscout"
-        },
-        {
-          "url": "https://zksync-era-sepolia.abi.pinax.network/api",
-          "kind": "etherscan"
         }
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "networkType": "testnet",
@@ -4211,7 +4204,9 @@
         "https://rootstock-testnet.blockscout.com"
       ],
       "rpcUrls": [
-        "https://public-node.testnet.rsk.co"
+        "https://public-node.testnet.rsk.co",
+        "https://rootstock-testnet.drpc.org",
+        "https://mycrypto.testnet.rsk.co"
       ],
       "apiUrls": [
         {
@@ -4221,7 +4216,16 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "backstop",
+            "provider": "infradao",
+            "description": "InfraDAO provides backstop support for Subgraphs with 500 GRT in signal"
+          }
         ]
       },
       "networkType": "testnet",
@@ -4254,62 +4258,6 @@
       }
     },
     {
-      "id": "ozean-poseidon",
-      "shortName": "Ozean",
-      "fullName": "Ozean Poseidon Testnet",
-      "aliases": [
-        "evm-31911"
-      ],
-      "caip2Id": "eip155:31911",
-      "graphNode": {
-        "protocol": "ethereum"
-      },
-      "explorerUrls": [
-        "https://poseidon-testnet.explorer.caldera.xyz"
-      ],
-      "rpcUrls": [
-        "https://poseidon-testnet.rpc.caldera.xyz/http"
-      ],
-      "apiUrls": [
-        {
-          "url": "https://poseidon-testnet.explorer.caldera.xyz/api",
-          "kind": "etherscan"
-        }
-      ],
-      "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
-      },
-      "networkType": "testnet",
-      "relations": [
-        {
-          "kind": "l2Of",
-          "network": "sepolia"
-        }
-      ],
-      "issuanceRewards": false,
-      "nativeToken": "ETH",
-      "firehose": {
-        "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": false,
-        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
-        "bytesEncoding": "hex",
-        "firstStreamableBlock": {
-          "id": "0x7ee9e9a8b75fa5f73e276e4b7f9eee22ceac26ec7516141a4ee737be1881102c",
-          "height": 0
-        },
-        "blockFeatures": [
-          "base"
-        ]
-      },
-      "icon": {
-        "web3Icons": {
-          "name": "ozean"
-        }
-      }
-    },
-    {
       "id": "zksync-era",
       "shortName": "zkSync",
       "secondName": "Era",
@@ -4328,7 +4276,8 @@
       ],
       "rpcUrls": [
         "https://mainnet.era.zksync.io",
-        "https://zksyncera.rpc.service.pinax.network"
+        "https://zksyncera.rpc.service.pinax.network",
+        "https://1rpc.io/zksync2-era"
       ],
       "apiUrls": [
         {
@@ -4338,21 +4287,20 @@
         {
           "url": "https://zksync.blockscout.com/api",
           "kind": "blockscout"
-        },
-        {
-          "url": "https://zksync-era.abi.pinax.network/api",
-          "kind": "etherscan"
         }
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ],
-        "firehose": [
-          "zksyncera.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "zksyncera.substreams.pinax.network:443"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "networkType": "mainnet",
@@ -4391,24 +4339,43 @@
       }
     },
     {
-      "id": "zilliqa-protomainnet",
+      "id": "zilliqa",
       "shortName": "Zilliqa",
-      "secondName": "Proto-Mainnet",
-      "fullName": "Zilliqa 2.0 Proto-Mainnet",
+      "fullName": "Zilliqa 2.0 Mainnet",
       "aliases": [
-        "evm-32770"
+        "evm-32769",
+        "zilliqa-mainnet"
       ],
-      "caip2Id": "eip155:32770",
+      "caip2Id": "eip155:32769",
       "graphNode": {
         "protocol": "ethereum"
       },
       "explorerUrls": [
-        "https://explorer.zq2-protomainnet.zilliqa.com"
+        "https://zilliqa.blockscout.com",
+        "https://otterscan.zilliqa.com"
       ],
-      "networkType": "testnet",
+      "apiUrls": [
+        {
+          "url": "https://zilliqa.blockscout.com/api",
+          "kind": "blockscout"
+        }
+      ],
+      "rpcUrls": [
+        "https://api.zilliqa.com"
+      ],
+      "networkType": "mainnet",
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "issuanceRewards": false,
@@ -4420,8 +4387,75 @@
         "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
-          "id": "0xaef57e820056b14dbb42e4b39d38587f727d5a7014039c44018e16db7bb05eb4",
-          "height": 3
+          "id": "0x5017b9781a87f80d89c3d65c9626dceecdbf47b7a65eb5ee5b9c8b3438a28ce5",
+          "height": 0
+        },
+        "blockFeatures": [
+          "base"
+        ]
+      },
+      "icon": {
+        "web3Icons": {
+          "name": "zilliqa"
+        }
+      }
+    },
+    {
+      "id": "zilliqa-testnet",
+      "shortName": "Zilliqa",
+      "fullName": "Zilliqa 2.0 Testnet",
+      "aliases": [
+        "evm-33101"
+      ],
+      "caip2Id": "eip155:33101",
+      "graphNode": {
+        "protocol": "ethereum"
+      },
+      "explorerUrls": [
+        "https://testnet.zilliqa.blockscout.com",
+        "https://otterscan.testnet.zilliqa.com"
+      ],
+      "apiUrls": [
+        {
+          "url": "https://testnet.zilliqa.blockscout.com/api",
+          "kind": "blockscout"
+        }
+      ],
+      "rpcUrls": [
+        "https://api.testnet.zilliqa.com"
+      ],
+      "networkType": "testnet",
+      "relations": [
+        {
+          "kind": "testnetOf",
+          "network": "zilliqa"
+        }
+      ],
+      "services": {
+        "subgraphs": [
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
+        ]
+      },
+      "issuanceRewards": false,
+      "nativeToken": "ZIL",
+      "docsUrl": "https://dev.zilliqa.com",
+      "firehose": {
+        "blockType": "sf.ethereum.type.v2.Block",
+        "evmExtendedModel": false,
+        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
+        "bytesEncoding": "hex",
+        "firstStreamableBlock": {
+          "id": "0x1947718b431d25dd65c226f79f3e0a9cc96a948899dab3422993def1494a9c95",
+          "height": 0
         },
         "blockFeatures": [
           "base"
@@ -4450,11 +4484,12 @@
         "https://curtis.apescan.io"
       ],
       "rpcUrls": [
-        "https://curtis.rpc.caldera.xyz/http"
+        "https://curtis.rpc.caldera.xyz/http",
+        "https://rpc.curtis.apechain.com"
       ],
       "apiUrls": [
         {
-          "url": "https://apechain-testnet.abi.pinax.network/api",
+          "url": "https://apechain-testnet.abi.thegraph.com/api",
           "kind": "etherscan"
         }
       ],
@@ -4470,9 +4505,7 @@
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "issuanceRewards": false,
       "nativeToken": "APE",
@@ -4512,18 +4545,17 @@
         "https://apescan.io"
       ],
       "rpcUrls": [
-        "https://rpc.apechain.com"
+        "https://rpc.apechain.com",
+        "https://apechain.drpc.org"
       ],
       "apiUrls": [
         {
-          "url": "https://apechain.abi.pinax.network/api",
+          "url": "https://apechain.abi.thegraph.com/api",
           "kind": "etherscan"
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "mainnet",
       "issuanceRewards": false,
@@ -4563,12 +4595,24 @@
       "explorerUrls": [
         "https://peaq.subscan.io"
       ],
+      "apiUrls": [],
       "rpcUrls": [
-        "https://peaq.api.onfinality.io/public"
+        "https://peaq.api.onfinality.io/public",
+        "https://quicknode1.peaq.xyz",
+        "https://quicknode2.peaq.xyz"
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "networkType": "mainnet",
@@ -4577,7 +4621,7 @@
       "docsUrl": "https://docs.peaq.network",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": true,
+        "evmExtendedModel": false,
         "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
@@ -4611,7 +4655,8 @@
       ],
       "rpcUrls": [
         "https://mainnet.mode.network",
-        "https://mode.rpc.service.pinax.network"
+        "https://1rpc.io/mode",
+        "https://mode.drpc.org"
       ],
       "apiUrls": [
         {
@@ -4624,16 +4669,7 @@
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ],
-        "sps": [],
-        "firehose": [
-          "mode.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "mode.substreams.pinax.network:443"
-        ]
+        "subgraphs": []
       },
       "networkType": "mainnet",
       "relations": [
@@ -4642,7 +4678,7 @@
           "network": "mainnet"
         }
       ],
-      "issuanceRewards": true,
+      "issuanceRewards": false,
       "nativeToken": "ETH",
       "docsUrl": "https://docs.mode.network",
       "indexerDocsUrls": [
@@ -4661,7 +4697,7 @@
           "height": 0
         },
         "blockFeatures": [
-          "base"
+          "extended"
         ]
       },
       "icon": {
@@ -4687,7 +4723,8 @@
         "https://testnet.botanixscan.io"
       ],
       "rpcUrls": [
-        "https://node.botanixlabs.dev"
+        "https://node.botanixlabs.dev",
+        "https://rpc.ankr.com/botanix_testnet"
       ],
       "apiUrls": [
         {
@@ -4696,9 +4733,7 @@
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "testnet",
       "relations": [
@@ -4742,9 +4777,7 @@
         "protocol": "ethereum"
       },
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "mainnet",
       "issuanceRewards": false,
@@ -4767,7 +4800,11 @@
         "web3Icons": {
           "name": "botanix"
         }
-      }
+      },
+      "rpcUrls": [
+        "https://rpc.ankr.com/botanix_mainnet",
+        "https://rpc.botanixlabs.com"
+      ]
     },
     {
       "id": "lens-testnet",
@@ -4785,11 +4822,12 @@
         "https://block-explorer.testnet.lens.dev"
       ],
       "rpcUrls": [
-        "https://rpc.testnet.lens.dev"
+        "https://rpc.testnet.lens.dev",
+        "https://lens-testnet.drpc.org"
       ],
       "apiUrls": [
         {
-          "url": "https://block-explorer-api.lens.dev/api",
+          "url": "https://explorer-api.testnet.lens.xyz/api",
           "kind": "etherscan"
         }
       ],
@@ -4805,9 +4843,7 @@
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "issuanceRewards": false,
       "nativeToken": "GRASS",
@@ -4843,21 +4879,14 @@
         "protocol": "ethereum"
       },
       "explorerUrls": [
-        "https://testnet.ftmscan.com"
+        "https://explorer.testnet.fantom.network"
       ],
       "rpcUrls": [
         "https://rpc.testnet.fantom.network"
       ],
-      "apiUrls": [
-        {
-          "url": "https://fantom-testnet.abi.pinax.network/api",
-          "kind": "etherscan"
-        }
-      ],
+      "apiUrls": [],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "testnet",
       "relations": [
@@ -4889,6 +4918,43 @@
       }
     },
     {
+      "id": "polkadot-testnet",
+      "shortName": "Polkadot",
+      "fullName": "Polkadot Testnet",
+      "aliases": [
+        "evm-420420417"
+      ],
+      "caip2Id": "eip155:420420417",
+      "graphNode": {
+        "protocol": "ethereum"
+      },
+      "services": {
+        "subgraphs": []
+      },
+      "networkType": "testnet",
+      "issuanceRewards": false,
+      "nativeToken": "DOT",
+      "docsUrl": "https://docs.polkadot.com",
+      "firehose": {
+        "blockType": "sf.ethereum.type.v2.Block",
+        "evmExtendedModel": false,
+        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
+        "bytesEncoding": "hex",
+        "firstStreamableBlock": {
+          "id": "0xd6eec26135305a8ad257a20d003357284c8aa03d0bdb2b357ab0a22371e11ef2",
+          "height": 0
+        },
+        "blockFeatures": [
+          "base"
+        ]
+      },
+      "icon": {
+        "web3Icons": {
+          "name": "polkadot"
+        }
+      }
+    },
+    {
       "id": "arbitrum-one",
       "shortName": "Arbitrum One",
       "fullName": "Arbitrum One Mainnet",
@@ -4912,15 +4978,13 @@
         "https://arbiscan.io"
       ],
       "rpcUrls": [
-        "https://arbitrum-one.publicnode.com",
-        "https://arb1.arbitrum.io/rpc",
-        "https://arb-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}",
-        "https://arbitrum-mainnet.infura.io/v3/${INFURA_API_KEY}",
-        "https://arbone.rpc.service.pinax.network"
+        "https://arbone.rpc.service.pinax.network",
+        "https://arbitrum.drpc.org",
+        "https://arbitrum-one.rpc.sentio.xyz"
       ],
       "apiUrls": [
         {
-          "url": "https://arbitrum-one.abi.pinax.network/api",
+          "url": "https://arbitrum-one.abi.thegraph.com/api",
           "kind": "etherscan"
         },
         {
@@ -4930,9 +4994,17 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
-        "sps": [],
         "firehose": [
           "arbone.firehose.pinax.network:443",
           "arb-one.streamingfast.io:443"
@@ -4942,7 +5014,7 @@
           "arb-one.streamingfast.io:443"
         ],
         "tokenApi": [
-          "https://token-api.thegraph.com"
+          "https://api.pinax.network"
         ]
       },
       "networkType": "mainnet",
@@ -4965,7 +5037,8 @@
           "height": 0
         },
         "blockFeatures": [
-          "hybrid"
+          "hybrid",
+          "extended@22207818"
         ]
       },
       "tokenApi": {
@@ -4989,7 +5062,8 @@
       "fullName": "Arbitrum Sepolia Testnet",
       "aliases": [
         "evm-421614",
-        "arb-sepolia"
+        "arb-sepolia",
+        "arbsepolia"
       ],
       "caip2Id": "eip155:421614",
       "networkType": "testnet",
@@ -5010,20 +5084,29 @@
         "https://sepolia.arbiscan.io"
       ],
       "rpcUrls": [
-        "https://sepolia-rollup.arbitrum.io/rpc",
-        "https://arbsepolia.rpc.service.pinax.network"
+        "https://arbsepolia.rpc.service.pinax.network",
+        "https://arbitrum-sepolia.drpc.org",
+        "https://arbitrum-sepolia-testnet.api.pocket.network"
       ],
       "apiUrls": [
         {
-          "url": "https://arbitrum-sepolia.abi.pinax.network/api",
+          "url": "https://arbitrum-sepolia.abi.thegraph.com/api",
           "kind": "etherscan"
         }
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
-        "sps": [],
         "firehose": [
           "arbsepolia.firehose.pinax.network:443"
         ],
@@ -5060,6 +5143,69 @@
       }
     },
     {
+      "id": "tempo",
+      "shortName": "Tempo",
+      "fullName": "Tempo Mainnet",
+      "aliases": [
+        "evm-4217",
+        "tempo-mainnet"
+      ],
+      "caip2Id": "eip155:4217",
+      "graphNode": {
+        "protocol": "ethereum"
+      },
+      "explorerUrls": [
+        "https://explore.tempo.xyz"
+      ],
+      "rpcUrls": [
+        "https://tempo-mainnet.drpc.org",
+        "https://tempo.rpc.service.pinax.network",
+        "https://rpc.mainnet.tempo.xyz"
+      ],
+      "services": {
+        "subgraphs": [
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
+        ],
+        "substreams": [
+          "tempo.substreams.pinax.network:443"
+        ],
+        "firehose": [
+          "tempo.firehose.pinax.network:443"
+        ]
+      },
+      "networkType": "mainnet",
+      "issuanceRewards": false,
+      "nativeToken": "USD",
+      "docsUrl": "https://docs.tempo.xyz",
+      "firehose": {
+        "blockType": "sf.ethereum.type.v2.Block",
+        "evmExtendedModel": false,
+        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
+        "bytesEncoding": "hex",
+        "firstStreamableBlock": {
+          "id": "0x49d7ec7085e77bf5a403d0fcb4cfc42a4084a89dfff60477579c5e09c9e03c54",
+          "height": 0
+        },
+        "blockFeatures": [
+          "base"
+        ]
+      },
+      "icon": {
+        "web3Icons": {
+          "name": "tempo"
+        }
+      }
+    },
+    {
       "id": "arbitrum-nova",
       "shortName": "Arbitrum Nova",
       "fullName": "Arbitrum Nova Mainnet",
@@ -5073,31 +5219,14 @@
       "graphNode": {
         "protocol": "ethereum"
       },
-      "explorerUrls": [
-        "https://nova-explorer.arbitrum.io"
-      ],
+      "explorerUrls": [],
       "rpcUrls": [
         "https://nova.arbitrum.io/rpc",
-        "https://arbitrum-nova.publicnode.com",
-        "https://arbnova.rpc.service.pinax.network"
+        "https://arbitrum-nova.publicnode.com"
       ],
-      "apiUrls": [
-        {
-          "url": "https://arbitrum-nova.abi.pinax.network/api",
-          "kind": "etherscan"
-        }
-      ],
+      "apiUrls": [],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ],
-        "sps": [],
-        "firehose": [
-          "arbnova.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "arbnova.substreams.pinax.network:443"
-        ]
+        "subgraphs": []
       },
       "networkType": "mainnet",
       "relations": [
@@ -5145,11 +5274,12 @@
       ],
       "rpcUrls": [
         "https://forno.celo.org",
-        "https://celo.rpc.service.pinax.network"
+        "https://celo.rpc.service.pinax.network",
+        "https://celo.drpc.org"
       ],
       "apiUrls": [
         {
-          "url": "https://celo.abi.pinax.network/api",
+          "url": "https://celo.abi.thegraph.com/api",
           "kind": "etherscan"
         },
         {
@@ -5159,11 +5289,32 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
+        ],
+        "firehose": [
+          "celo.firehose.pinax.network:443"
+        ],
+        "substreams": [
+          "celo.substreams.pinax.network:443"
         ]
       },
       "networkType": "mainnet",
       "issuanceRewards": true,
+      "relations": [
+        {
+          "kind": "l2Of",
+          "network": "mainnet"
+        }
+      ],
       "nativeToken": "CELO",
       "docsUrl": "https://docs.celo.org",
       "indexerDocsUrls": [
@@ -5192,6 +5343,66 @@
       }
     },
     {
+      "id": "tempo-moderato",
+      "shortName": "Tempo",
+      "fullName": "Tempo Moderato Testnet",
+      "aliases": [
+        "evm-42431"
+      ],
+      "caip2Id": "eip155:42431",
+      "graphNode": {
+        "protocol": "ethereum"
+      },
+      "explorerUrls": [
+        "https://explore.moderato.tempo.xyz"
+      ],
+      "rpcUrls": [
+        "https://rpc.moderato.tempo.xyz"
+      ],
+      "services": {
+        "subgraphs": [
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
+        ]
+      },
+      "networkType": "testnet",
+      "relations": [
+        {
+          "kind": "testnetOf",
+          "network": "tempo"
+        }
+      ],
+      "issuanceRewards": false,
+      "nativeToken": "USD",
+      "docsUrl": "https://docs.tempo.xyz",
+      "firehose": {
+        "blockType": "sf.ethereum.type.v2.Block",
+        "evmExtendedModel": false,
+        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
+        "bytesEncoding": "hex",
+        "firstStreamableBlock": {
+          "id": "0xba49153e6f3996a340f3fe3d69e7c0826b717ae672cb115cf0527cada0b78e9e",
+          "height": 0
+        },
+        "blockFeatures": [
+          "base"
+        ]
+      },
+      "icon": {
+        "web3Icons": {
+          "name": "tempo"
+        }
+      }
+    },
+    {
       "id": "etherlink-mainnet",
       "shortName": "Etherlink",
       "fullName": "Etherlink Mainnet",
@@ -5206,7 +5417,8 @@
         "https://explorer.etherlink.com"
       ],
       "rpcUrls": [
-        "https://node.mainnet.etherlink.com"
+        "https://node.mainnet.etherlink.com",
+        "https://rpc.ankr.com/etherlink_mainnet"
       ],
       "apiUrls": [
         {
@@ -5216,7 +5428,16 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "networkType": "mainnet",
@@ -5264,11 +5485,21 @@
         }
       ],
       "rpcUrls": [
-        "https://rpc.hemi.network/rpc"
+        "https://rpc.hemi.network/rpc",
+        "https://hemi.drpc.org"
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "networkType": "mainnet",
@@ -5317,11 +5548,13 @@
         "https://testnet.snowscan.xyz"
       ],
       "rpcUrls": [
-        "https://api.avax-test.network/ext/bc/C/rpc"
+        "https://api.avax-test.network/ext/bc/C/rpc",
+        "https://fuji.rpc.service.pinax.network",
+        "https://avalanche-fuji.drpc.org"
       ],
       "apiUrls": [
         {
-          "url": "https://fuji.abi.pinax.network/api",
+          "url": "https://fuji.abi.thegraph.com/api",
           "kind": "etherscan"
         },
         {
@@ -5335,7 +5568,16 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "networkType": "testnet",
@@ -5385,11 +5627,12 @@
       ],
       "rpcUrls": [
         "https://api.avax.network/ext/bc/C/rpc",
-        "https://avalanche-c-chain-rpc.publicnode.com"
+        "https://avalanche.rpc.service.pinax.network",
+        "https://1rpc.io/avax/c"
       ],
       "apiUrls": [
         {
-          "url": "https://avalanche.abi.pinax.network/api",
+          "url": "https://avalanche.abi.thegraph.com/api",
           "kind": "etherscan"
         },
         {
@@ -5403,9 +5646,17 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
-        "sps": [],
         "firehose": [
           "avalanche-mainnet.streamingfast.io:443",
           "avalanche.firehose.pinax.network:443"
@@ -5415,7 +5666,7 @@
           "avalanche.substreams.pinax.network:443"
         ],
         "tokenApi": [
-          "https://token-api.thegraph.com"
+          "https://api.pinax.network"
         ]
       },
       "networkType": "mainnet",
@@ -5456,57 +5707,60 @@
       }
     },
     {
-      "id": "celo-alfajores",
-      "shortName": "Celo",
-      "secondName": "Alfajores",
-      "fullName": "Celo Alfajores Testnet",
+      "id": "megaeth",
+      "shortName": "MegaETH",
+      "fullName": "MegaETH Mainnet",
       "aliases": [
-        "evm-44787",
-        "celo-testnet"
+        "evm-4326",
+        "megaeth-mainnet"
       ],
-      "caip2Id": "eip155:44787",
-      "networkType": "testnet",
-      "relations": [
-        {
-          "kind": "testnetOf",
-          "network": "celo"
-        }
-      ],
+      "caip2Id": "eip155:4326",
+      "networkType": "mainnet",
       "graphNode": {
         "protocol": "ethereum"
       },
+      "services": {
+        "subgraphs": [],
+        "substreams": [
+          "megaeth.substreams.pinax.network:443"
+        ],
+        "firehose": [
+          "megaeth.firehose.pinax.network:443"
+        ]
+      },
       "explorerUrls": [
-        "https://alfajores.celoscan.io"
+        "https://megaeth.blockscout.com"
       ],
       "rpcUrls": [
-        "https://alfajores-forno.celo-testnet.org",
-        "https://alfajores.rpc.service.pinax.network"
+        "https://mainnet.megaeth.com/rpc",
+        "https://megaeth.rpc.service.pinax.network",
+        "https://megaeth.drpc.org"
       ],
       "apiUrls": [
         {
-          "url": "https://celo-alfajores.abi.pinax.network/api",
-          "kind": "etherscan"
+          "url": "https://megaeth.blockscout.com/api",
+          "kind": "blockscout"
         },
         {
-          "url": "https://celo-alfajores.blockscout.com/api",
-          "kind": "blockscout"
+          "url": "https://megaeth.abi.thegraph.com/api",
+          "kind": "etherscan"
         }
       ],
-      "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
-      },
+      "relations": [
+        {
+          "kind": "l2Of",
+          "network": "mainnet"
+        }
+      ],
       "issuanceRewards": false,
-      "nativeToken": "CELO",
-      "docsUrl": "https://docs.celo.org",
+      "nativeToken": "ETH",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
         "evmExtendedModel": false,
         "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
-          "id": "0xe423b034e7f0282c1b621f7bbc1cea4316a2a80b1600490769eae77777e4b67e",
+          "id": "0x9425ed45fa0843e257166258f69bced9ef9eb2d0bb23c6b5a901fba3a07623b6",
           "height": 0
         },
         "blockFeatures": [
@@ -5515,7 +5769,143 @@
       },
       "icon": {
         "web3Icons": {
-          "name": "celo"
+          "name": "mega-eth"
+        }
+      }
+    },
+    {
+      "id": "robinhood",
+      "shortName": "Robinhood Chain",
+      "fullName": "Robinhood Chain Mainnet",
+      "aliases": [
+        "evm-4663",
+        "robinhood-mainnet",
+        "robinhood-chain"
+      ],
+      "caip2Id": "eip155:4663",
+      "networkType": "mainnet",
+      "graphNode": {
+        "protocol": "ethereum"
+      },
+      "services": {
+        "subgraphs": [],
+        "substreams": [
+          "robinhood.substreams.pinax.network:443",
+          "mainnet.robinhood.streamingfast.io:443",
+          "robinhood.substreams.data.nexus:443"
+        ],
+        "firehose": [
+          "robinhood.firehose.pinax.network:443",
+          "mainnet.robinhood.streamingfast.io:443",
+          "robinhood.firehose.data.nexus:443"
+        ]
+      },
+      "explorerUrls": [
+        "https://robinhoodchain.blockscout.com"
+      ],
+      "rpcUrls": [
+        "https://rpc.mainnet.chain.robinhood.com",
+        "https://robinhood.rpc.service.pinax.network"
+      ],
+      "apiUrls": [
+        {
+          "url": "https://robinhoodchain.blockscout.com/api",
+          "kind": "blockscout"
+        }
+      ],
+      "relations": [
+        {
+          "kind": "l2Of",
+          "network": "mainnet"
+        }
+      ],
+      "issuanceRewards": false,
+      "nativeToken": "ETH",
+      "docsUrl": "https://docs.robinhood.com/chain",
+      "firehose": {
+        "blockType": "sf.ethereum.type.v2.Block",
+        "evmExtendedModel": true,
+        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
+        "bytesEncoding": "hex",
+        "firstStreamableBlock": {
+          "id": "0xaad15f3d702aaea00caf3e9bb56395efe9127bc3b31b24921abf1eee3409305c",
+          "height": 0
+        },
+        "blockFeatures": [
+          "extended"
+        ]
+      },
+      "icon": {
+        "web3Icons": {
+          "name": "robinhood"
+        }
+      }
+    },
+    {
+      "id": "robinhood-sepolia",
+      "shortName": "Robinhood Chain",
+      "secondName": "Sepolia",
+      "fullName": "Robinhood Chain Testnet",
+      "aliases": [
+        "evm-46630",
+        "robinhood-testnet"
+      ],
+      "caip2Id": "eip155:46630",
+      "networkType": "testnet",
+      "graphNode": {
+        "protocol": "ethereum"
+      },
+      "services": {
+        "subgraphs": [],
+        "substreams": [
+          "robsepolia.substreams.pinax.network:443"
+        ],
+        "firehose": [
+          "robsepolia.firehose.pinax.network:443"
+        ]
+      },
+      "explorerUrls": [
+        "https://explorer.testnet.chain.robinhood.com"
+      ],
+      "rpcUrls": [
+        "https://rpc.testnet.chain.robinhood.com",
+        "https://robsepolia.rpc.service.pinax.network"
+      ],
+      "apiUrls": [
+        {
+          "url": "https://explorer.testnet.chain.robinhood.com/api",
+          "kind": "blockscout"
+        }
+      ],
+      "relations": [
+        {
+          "kind": "l2Of",
+          "network": "sepolia"
+        },
+        {
+          "kind": "testnetOf",
+          "network": "robinhood"
+        }
+      ],
+      "issuanceRewards": false,
+      "nativeToken": "ETH",
+      "docsUrl": "https://docs.robinhood.com/chain",
+      "firehose": {
+        "blockType": "sf.ethereum.type.v2.Block",
+        "evmExtendedModel": true,
+        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
+        "bytesEncoding": "hex",
+        "firstStreamableBlock": {
+          "id": "0x829a42e6d68c872aafcef3abb2123fe371138fc415dd8b44381bbbf23049dd32",
+          "height": 0
+        },
+        "blockFeatures": [
+          "extended"
+        ]
+      },
+      "icon": {
+        "web3Icons": {
+          "name": "robinhood"
         }
       }
     },
@@ -5535,7 +5925,9 @@
         "https://iotexscan.io"
       ],
       "rpcUrls": [
-        "https://babel-api.mainnet.iotex.io"
+        "https://babel-api.mainnet.iotex.io",
+        "https://iotex.api.onfinality.io/public",
+        "https://babel-api.mainnet.iotex.one"
       ],
       "apiUrls": [
         {
@@ -5544,9 +5936,7 @@
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "mainnet",
       "issuanceRewards": false,
@@ -5602,9 +5992,7 @@
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "testnet",
       "relations": [
@@ -5651,7 +6039,8 @@
         "https://xexplorer.neo.org"
       ],
       "rpcUrls": [
-        "https://mainnet-1.rpc.banelabs.org"
+        "https://mainnet-1.rpc.banelabs.org",
+        "https://mainnet-2.rpc.banelabs.org"
       ],
       "apiUrls": [
         {
@@ -5661,7 +6050,16 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "networkType": "mainnet",
@@ -5688,45 +6086,178 @@
       }
     },
     {
-      "id": "autonomys-taurus",
-      "shortName": "Autonomys",
-      "fullName": "Autonomys Taurus Auto EVM",
+      "id": "worldchain",
+      "shortName": "WorldChain",
+      "fullName": "World Chain Mainnet",
       "aliases": [
-        "evm-490000",
-        "autonomys-testnet"
+        "evm-480",
+        "worldchain-mainnet"
       ],
-      "caip2Id": "eip155:490000",
+      "caip2Id": "eip155:480",
       "graphNode": {
         "protocol": "ethereum"
       },
-      "explorerUrls": [
-        "https://blockscout.taurus.autonomys.xyz"
+      "services": {
+        "firehose": [
+          "mainnet.worldchain.streamingfast.io:443"
+        ],
+        "substreams": [
+          "mainnet.worldchain.streamingfast.io:443"
+        ]
+      },
+      "networkType": "mainnet",
+      "relations": [
+        {
+          "kind": "l2Of",
+          "network": "mainnet"
+        }
       ],
-      "rpcUrls": [
-        "https://auto-evm.taurus.autonomys.xyz/ws"
+      "explorerUrls": [
+        "https://worldscan.org"
       ],
       "apiUrls": [
         {
-          "url": "https://blockscout.taurus.autonomys.xyz/api",
-          "kind": "blockscout"
+          "url": "https://worldchain.abi.thegraph.com/api",
+          "kind": "etherscan"
         }
       ],
-      "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
-      },
-      "networkType": "testnet",
+      "rpcUrls": [
+        "https://480.rpc.thirdweb.com",
+        "https://worldchain-mainnet.gateway.tenderly.co",
+        "https://worldchain.drpc.org"
+      ],
       "issuanceRewards": false,
-      "nativeToken": "AI3",
-      "docsUrl": "https://docs.autonomys.xyz",
+      "nativeToken": "ETH",
+      "docsUrl": "https://docs.world.org/world-chain",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
         "evmExtendedModel": true,
         "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
-          "id": "0x085b6a1088858e39e9f26e832db9ba44e7f8ca977f363f0aff79f8bec5abb8b9",
+          "id": "0x70d316d2e0973b62332ba2e9768dd7854298d7ffe77f0409ffdb8d859f2d3fa3",
+          "height": 0
+        },
+        "blockFeatures": [
+          "extended"
+        ]
+      },
+      "icon": {
+        "web3Icons": {
+          "name": "world"
+        }
+      }
+    },
+    {
+      "id": "arc",
+      "shortName": "Arc",
+      "fullName": "Arc Mainnet",
+      "aliases": [
+        "evm-5042",
+        "arc-mainnet"
+      ],
+      "caip2Id": "eip155:5042",
+      "graphNode": {
+        "protocol": "ethereum"
+      },
+      "explorerUrls": [],
+      "rpcUrls": [
+        "https://arc.rpc.service.pinax.network"
+      ],
+      "apiUrls": [],
+      "services": {
+        "subgraphs": [
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
+        ],
+        "firehose": [
+          "arc.firehose.pinax.network:443"
+        ],
+        "substreams": [
+          "arc.substreams.pinax.network:443"
+        ]
+      },
+      "networkType": "mainnet",
+      "issuanceRewards": false,
+      "nativeToken": "USDC",
+      "docsUrl": "https://docs.arc.network",
+      "firehose": {
+        "blockType": "sf.ethereum.type.v2.Block",
+        "evmExtendedModel": true,
+        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
+        "bytesEncoding": "hex",
+        "firstStreamableBlock": {
+          "id": "0x09944e07412986bb417fd0006c89ffb71ee523d68ce2017ec2dabc944c42edad",
+          "height": 0
+        },
+        "blockFeatures": [
+          "extended"
+        ]
+      },
+      "icon": {
+        "web3Icons": {
+          "name": "arc"
+        }
+      }
+    },
+    {
+      "id": "arc-testnet",
+      "shortName": "Arc",
+      "fullName": "Arc Testnet",
+      "aliases": [
+        "evm-5042002"
+      ],
+      "caip2Id": "eip155:5042002",
+      "graphNode": {
+        "protocol": "ethereum"
+      },
+      "explorerUrls": [
+        "https://testnet.arcscan.app"
+      ],
+      "rpcUrls": [
+        "https://rpc.testnet.arc.network",
+        "https://arc-testnet.drpc.org",
+        "https://arctest.rpc.service.pinax.network"
+      ],
+      "apiUrls": [
+        {
+          "url": "https://testnet.arcscan.app/api",
+          "kind": "etherscan"
+        }
+      ],
+      "services": {
+        "subgraphs": [
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
+        ]
+      },
+      "networkType": "testnet",
+      "issuanceRewards": false,
+      "nativeToken": "USDC",
+      "docsUrl": "https://docs.arc.network",
+      "firehose": {
+        "blockType": "sf.ethereum.type.v2.Block",
+        "evmExtendedModel": false,
+        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
+        "bytesEncoding": "hex",
+        "firstStreamableBlock": {
+          "id": "0xe20e653af4441e8c6088e172b129d56420139824400477287b46e7101ae2bb1f",
           "height": 0
         },
         "blockFeatures": [
@@ -5735,7 +6266,7 @@
       },
       "icon": {
         "web3Icons": {
-          "name": "autonomys"
+          "name": "arc"
         }
       }
     },
@@ -5756,29 +6287,30 @@
         "https://sepolia.scrollscan.com"
       ],
       "rpcUrls": [
-        "https://sepolia-rpc.scroll.io",
-        "https://scrsepolia.rpc.service.pinax.network"
+        "https://scroll-sepolia.drpc.org",
+        "https://scroll-sepolia-public.nodies.app"
       ],
       "apiUrls": [
         {
-          "url": "https://scroll-sepolia.blockscout.com/api",
-          "kind": "blockscout"
-        },
-        {
-          "url": "https://scroll-sepolia.abi.pinax.network/api",
+          "url": "https://scroll-sepolia.abi.thegraph.com/api",
           "kind": "etherscan"
         }
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
-        "firehose": [
-          "scrsepolia.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "scrsepolia.substreams.pinax.network:443"
-        ]
+        "firehose": [],
+        "substreams": []
       },
       "networkType": "testnet",
       "relations": [
@@ -5830,8 +6362,8 @@
       ],
       "rpcUrls": [
         "https://rpc.scroll.io",
-        "https://scroll.rpc.service.pinax.network",
-        "https://rpc.ankr.com/scroll"
+        "https://1rpc.io/scroll",
+        "https://scroll.drpc.org"
       ],
       "apiUrls": [
         {
@@ -5839,21 +6371,25 @@
           "kind": "blockscout"
         },
         {
-          "url": "https://scroll.abi.pinax.network/api",
+          "url": "https://scroll.abi.thegraph.com/api",
           "kind": "etherscan"
         }
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
-        "sps": [],
-        "firehose": [
-          "scroll.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "scroll.substreams.pinax.network:443"
-        ]
+        "firehose": [],
+        "substreams": []
       },
       "networkType": "mainnet",
       "relations": [
@@ -5908,22 +6444,30 @@
         "https://bscscan.com"
       ],
       "rpcUrls": [
-        "https://bsc-dataseed1.binance.org",
-        "https://bsc-dataseed1.defibit.io",
-        "https://bsc.rpc.service.pinax.network"
+        "https://bsc.rpc.service.pinax.network",
+        "https://bsc.rpc.sentio.xyz",
+        "https://api.zan.top/bsc-mainnet"
       ],
       "apiUrls": [
         {
-          "url": "https://bsc.abi.pinax.network/api",
+          "url": "https://bsc.abi.thegraph.com/api",
           "kind": "etherscan"
         }
       ],
       "networkType": "mainnet",
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
-        "sps": [],
         "firehose": [
           "bsc.firehose.pinax.network:443",
           "bnb.streamingfast.io:443"
@@ -5933,7 +6477,7 @@
           "bnb.streamingfast.io:443"
         ],
         "tokenApi": [
-          "https://token-api.thegraph.com"
+          "https://api.pinax.network"
         ]
       },
       "issuanceRewards": true,
@@ -5995,24 +6539,36 @@
         "https://hoodi.etherscan.io"
       ],
       "rpcUrls": [
-        "https://0xrpc.io/hoodi",
-        "https://hoodi.rpc.service.pinax.network"
+        "https://hoodi.rpc.service.pinax.network",
+        "https://hoodi.rpc.sentio.xyz",
+        "https://rpc.hoodi.ethpandaops.io"
       ],
       "apiUrls": [
         {
-          "url": "https://hoodi.abi.pinax.network/api",
+          "url": "https://hoodi.abi.thegraph.com/api",
           "kind": "etherscan"
         }
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
         "firehose": [
-          "hoodi.firehose.pinax.network:443"
+          "hoodi.firehose.pinax.network:443",
+          "hoodi.eth.streamingfast.io:443"
         ],
         "substreams": [
-          "hoodi.substreams.pinax.network:443"
+          "hoodi.substreams.pinax.network:443",
+          "hoodi.eth.streamingfast.io:443"
         ]
       },
       "issuanceRewards": false,
@@ -6033,79 +6589,6 @@
       "icon": {
         "web3Icons": {
           "name": "ethereum"
-        }
-      }
-    },
-    {
-      "id": "boba-bnb",
-      "shortName": "Boba BNB",
-      "fullName": "Boba BNB Mainnet",
-      "aliases": [
-        "evm-56288",
-        "boba-bsc",
-        "boba-bnb-mainnet"
-      ],
-      "caip2Id": "eip155:56288",
-      "graphNode": {
-        "protocol": "ethereum"
-      },
-      "explorerUrls": [
-        "https://bnb.bobascan.com"
-      ],
-      "rpcUrls": [
-        "https://bnb.boba.network",
-        "https://boba-bnb.gateway.tenderly.co",
-        "https://bobabnb.rpc.service.pinax.network"
-      ],
-      "apiUrls": [
-        {
-          "url": "https://api.routescan.io/v2/network/mainnet/evm/56288/etherscan/api",
-          "kind": "etherscan"
-        }
-      ],
-      "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ],
-        "firehose": [
-          "bobabnb.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "bobabnb.substreams.pinax.network:443"
-        ]
-      },
-      "networkType": "mainnet",
-      "relations": [
-        {
-          "kind": "l2Of",
-          "network": "bsc"
-        }
-      ],
-      "issuanceRewards": true,
-      "nativeToken": "BOBA",
-      "docsUrl": "https://docs.boba.network",
-      "indexerDocsUrls": [
-        {
-          "url": "https://docs.infradao.com/archive-nodes-101/bobabnb",
-          "description": "Archive Nodes 101"
-        }
-      ],
-      "firehose": {
-        "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": false,
-        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
-        "bytesEncoding": "hex",
-        "firstStreamableBlock": {
-          "id": "0xf9aa25373a3cf1c3d3dcb1911093b56eb129221d203270bcdb002b3f01a120d9",
-          "height": 0
-        },
-        "blockFeatures": [
-          "base"
-        ]
-      },
-      "icon": {
-        "web3Icons": {
-          "name": "boba"
         }
       }
     },
@@ -6131,11 +6614,18 @@
         }
       ],
       "rpcUrls": [
-        "https://rpc-gel.inkonchain.com"
+        "https://rpc-gel.inkonchain.com",
+        "https://ink.rpc.service.pinax.network",
+        "https://ink.drpc.org",
+        "https://ink.api.pocket.network"
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+        "subgraphs": [],
+        "substreams": [
+          "ink.substreams.pinax.network:443"
+        ],
+        "firehose": [
+          "ink.firehose.pinax.network:443"
         ]
       },
       "networkType": "mainnet",
@@ -6152,7 +6642,7 @@
           "height": 0
         },
         "blockFeatures": [
-          "base"
+          "extended"
         ]
       },
       "icon": {
@@ -6168,7 +6658,8 @@
       "fullName": "Linea Sepolia Testnet",
       "aliases": [
         "evm-59141",
-        "linea-testnet"
+        "linea-testnet",
+        "lineasepolia"
       ],
       "caip2Id": "eip155:59141",
       "graphNode": {
@@ -6179,11 +6670,12 @@
       ],
       "rpcUrls": [
         "https://rpc.sepolia.linea.build",
-        "https://lineasepolia.rpc.service.pinax.network"
+        "https://lineasepolia.rpc.service.pinax.network",
+        "https://linea-sepolia.drpc.org"
       ],
       "apiUrls": [
         {
-          "url": "https://linea-sepolia.abi.pinax.network/api",
+          "url": "https://linea-sepolia.abi.thegraph.com/api",
           "kind": "etherscan"
         },
         {
@@ -6193,7 +6685,16 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
         "firehose": [
           "lineasepolia.firehose.pinax.network:443"
@@ -6226,7 +6727,7 @@
           "height": 0
         },
         "blockFeatures": [
-          "base"
+          "extended"
         ]
       },
       "icon": {
@@ -6253,11 +6754,11 @@
       "rpcUrls": [
         "https://rpc.linea.build",
         "https://linea.rpc.service.pinax.network",
-        "https://linea-mainnet.infura.io/v3/${INFURA_API_KEY}"
+        "https://1rpc.io/linea"
       ],
       "apiUrls": [
         {
-          "url": "https://linea.abi.pinax.network/api",
+          "url": "https://linea.abi.thegraph.com/api",
           "kind": "etherscan"
         },
         {
@@ -6267,7 +6768,16 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
         "firehose": [
           "linea.firehose.pinax.network:443"
@@ -6302,7 +6812,7 @@
           "height": 0
         },
         "blockFeatures": [
-          "base"
+          "extended"
         ]
       },
       "icon": {
@@ -6312,38 +6822,52 @@
       }
     },
     {
-      "id": "megaeth-testnet",
+      "id": "megaeth-timothy",
       "shortName": "MegaETH",
-      "secondName": "Testnet",
-      "fullName": "MegaETH Testnet",
+      "fullName": "MegaETH Testnet V2",
       "aliases": [
-        "evm-6342"
+        "evm-6343"
       ],
-      "caip2Id": "eip155:6342",
+      "caip2Id": "eip155:6343",
       "networkType": "testnet",
       "graphNode": {
         "protocol": "ethereum"
       },
       "explorerUrls": [
-        "https://www.megaexplorer.xyz"
+        "https://megaeth-testnet-v2.blockscout.com"
       ],
       "rpcUrls": [
+        "https://timothy.megaeth.com/rpc",
         "https://carrot.megaeth.com/rpc"
       ],
+      "apiUrls": [
+        {
+          "url": "https://megaeth-testnet-v2.blockscout.com/api",
+          "kind": "blockscout"
+        }
+      ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
+      "relations": [
+        {
+          "kind": "testnetOf",
+          "network": "megaeth"
+        },
+        {
+          "kind": "l2Of",
+          "network": "sepolia"
+        }
+      ],
       "issuanceRewards": false,
       "nativeToken": "ETH",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": true,
+        "evmExtendedModel": false,
         "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
-          "id": "0xe56bd7ae2a26376ed01d4775edcec3fc18817451137e4a06a5899bf478b75500",
+          "id": "0x37521b7ab268caffc10a6e23bee0ace6e53f8227b7595fff117b00ac837f29a8",
           "height": 0
         },
         "blockFeatures": [
@@ -6372,26 +6896,17 @@
         "https://explorer.xai-chain.net"
       ],
       "rpcUrls": [
-        "https://xai-chain.net/rpc",
-        "https://xai.rpc.service.pinax.network"
+        "https://rpc.ankr.com/xai"
       ],
       "apiUrls": [
         {
           "url": "https://explorer.xai-chain.net/api",
           "kind": "blockscout"
-        },
-        {
-          "url": "https://xai.abi.pinax.network/api",
-          "kind": "etherscan"
         }
       ],
       "services": {
-        "firehose": [
-          "xai.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "xai.substreams.pinax.network:443"
-        ]
+        "firehose": [],
+        "substreams": []
       },
       "networkType": "mainnet",
       "relations": [
@@ -6413,7 +6928,7 @@
           "height": 0
         },
         "blockFeatures": [
-          "base"
+          "extended"
         ]
       },
       "icon": {
@@ -6421,6 +6936,49 @@
           "name": "xai"
         }
       }
+    },
+    {
+      "id": "anubis",
+      "shortName": "Anubis",
+      "fullName": "Anubis Mainnet",
+      "aliases": [
+        "evm-6714",
+        "anubis-mainnet"
+      ],
+      "caip2Id": "eip155:6714",
+      "graphNode": {
+        "protocol": "ethereum"
+      },
+      "explorerUrls": [
+        "https://browser.anubispace.org"
+      ],
+      "rpcUrls": [
+        "https://rpc.anubispace.org"
+      ],
+      "apiUrls": [
+        {
+          "url": "https://browser.anubispace.org/api",
+          "kind": "blockscout"
+        }
+      ],
+      "networkType": "mainnet",
+      "services": {
+        "subgraphs": [
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "backstop",
+            "provider": "infradao",
+            "description": "InfraDAO provides backstop support for Subgraphs with 500 GRT in signal"
+          }
+        ]
+      },
+      "issuanceRewards": false,
+      "nativeToken": "gasDAI",
+      "docsUrl": "https://anubis-network.gitbook.io/anubis-network"
     },
     {
       "id": "zetachain",
@@ -6435,21 +6993,30 @@
         "protocol": "ethereum"
       },
       "explorerUrls": [
-        "https://zetachain.blockscout.com"
+        "https://zetascan.com"
       ],
       "apiUrls": [
         {
-          "url": "https://zetachain.blockscout.com/api",
+          "url": "https://zetascan.com/api",
           "kind": "etherscan"
         }
       ],
       "rpcUrls": [
         "https://zetachain-mainnet.g.allthatnode.com/archive/evm",
-        "https://zetachain-mainnet.public.blastapi.io"
+        "https://zeta-chain.drpc.org"
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "networkType": "mainnet",
@@ -6458,7 +7025,7 @@
       "docsUrl": "https://www.zetachain.com/docs",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": true,
+        "evmExtendedModel": false,
         "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
@@ -6493,8 +7060,7 @@
       ],
       "rpcUrls": [
         "https://api.trongrid.io/jsonrpc",
-        "https://tron.drpc.org",
-        "https://rpc.ankr.com/tron_jsonrpc"
+        "https://tron.drpc.org"
       ],
       "relations": [
         {
@@ -6502,16 +7068,10 @@
           "network": "tron"
         }
       ],
-      "apiUrls": [
-        {
-          "url": "https://apilist.tronscanapi.com/api",
-          "kind": "other"
-        }
-      ],
+      "apiUrls": [],
       "networkType": "mainnet",
       "services": {
         "subgraphs": [],
-        "sps": [],
         "firehose": [
           "mainnet-evm.tron.streamingfast.io:443"
         ],
@@ -6542,6 +7102,67 @@
       }
     },
     {
+      "id": "katana-bokuto",
+      "shortName": "Katana",
+      "fullName": "Katana Bokuto Testnet",
+      "aliases": [
+        "evm-737373"
+      ],
+      "caip2Id": "eip155:737373",
+      "graphNode": {
+        "protocol": "ethereum"
+      },
+      "explorerUrls": [
+        "https://bokuto.katanascan.com"
+      ],
+      "rpcUrls": [
+        "https://katana-bokuto.gateway.tenderly.co",
+        "https://rpc-bokuto.katanarpc.com",
+        "https://katana-testnet.drpc.org"
+      ],
+      "apiUrls": [
+        {
+          "url": "https://katana-bokuto.abi.thegraph.com/api",
+          "kind": "etherscan"
+        }
+      ],
+      "services": {
+        "subgraphs": []
+      },
+      "networkType": "testnet",
+      "relations": [
+        {
+          "kind": "l2Of",
+          "network": "sepolia"
+        },
+        {
+          "kind": "testnetOf",
+          "network": "katana"
+        }
+      ],
+      "docsUrl": "https://docs.katana.network",
+      "issuanceRewards": false,
+      "nativeToken": "ETH",
+      "firehose": {
+        "blockType": "sf.ethereum.type.v2.Block",
+        "evmExtendedModel": true,
+        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
+        "bytesEncoding": "hex",
+        "firstStreamableBlock": {
+          "id": "0x23a3f9f69af51572119a55ad6c14b65075a75b8a588933b2c4383acee63544df",
+          "height": 0
+        },
+        "blockFeatures": [
+          "extended"
+        ]
+      },
+      "icon": {
+        "web3Icons": {
+          "name": "katana"
+        }
+      }
+    },
+    {
       "id": "hemi-sepolia",
       "shortName": "Hemi",
       "secondName": "Sepolia",
@@ -6558,7 +7179,8 @@
         "https://testnet.explorer.hemi.xyz"
       ],
       "rpcUrls": [
-        "https://testnet.rpc.hemi.network/rpc"
+        "https://testnet.rpc.hemi.network/rpc",
+        "https://hemi-testnet.drpc.org"
       ],
       "apiUrls": [
         {
@@ -6568,7 +7190,16 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "networkType": "testnet",
@@ -6616,11 +7247,19 @@
       "graphNode": {
         "protocol": "ethereum"
       },
+      "explorerUrls": [
+        "https://katanascan.com"
+      ],
+      "apiUrls": [
+        {
+          "url": "https://katana.abi.thegraph.com/api",
+          "kind": "etherscan"
+        }
+      ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
+      "docsUrl": "https://docs.katana.network",
       "networkType": "mainnet",
       "relations": [
         {
@@ -6632,7 +7271,7 @@
       "nativeToken": "ETH",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": false,
+        "evmExtendedModel": true,
         "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
@@ -6640,14 +7279,19 @@
           "height": 0
         },
         "blockFeatures": [
-          "base"
+          "extended"
         ]
       },
       "icon": {
         "web3Icons": {
           "name": "katana"
         }
-      }
+      },
+      "rpcUrls": [
+        "https://katana.drpc.org",
+        "https://rpc.katanarpc.com",
+        "https://rpc.katana.network"
+      ]
     },
     {
       "id": "ink-sepolia",
@@ -6672,12 +7316,11 @@
         }
       ],
       "rpcUrls": [
-        "https://rpc-gel-sepolia.inkonchain.com"
+        "https://rpc-gel-sepolia.inkonchain.com",
+        "https://ink-sepolia.drpc.org"
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "testnet",
       "relations": [
@@ -6703,7 +7346,7 @@
           "height": 0
         },
         "blockFeatures": [
-          "base"
+          "extended"
         ]
       },
       "icon": {
@@ -6728,7 +7371,8 @@
       ],
       "rpcUrls": [
         "https://rpc.zora.energy",
-        "https://zora.rpc.service.pinax.network"
+        "https://zora.rpc.service.pinax.network",
+        "https://zora.drpc.org"
       ],
       "apiUrls": [
         {
@@ -6742,10 +7386,12 @@
       ],
       "services": {
         "firehose": [
-          "zora.firehose.pinax.network:443"
+          "zora.firehose.pinax.network:443",
+          "zora.firehose.data.nexus:443"
         ],
         "substreams": [
-          "zora.substreams.pinax.network:443"
+          "zora.substreams.pinax.network:443",
+          "zora.substreams.data.nexus:443"
         ]
       },
       "networkType": "mainnet",
@@ -6755,7 +7401,7 @@
           "network": "mainnet"
         }
       ],
-      "issuanceRewards": true,
+      "issuanceRewards": false,
       "nativeToken": "ETH",
       "docsUrl": "https://docs.zora.co",
       "indexerDocsUrls": [
@@ -6774,7 +7420,7 @@
           "height": 0
         },
         "blockFeatures": [
-          "base"
+          "extended"
         ]
       },
       "icon": {
@@ -6811,26 +7457,32 @@
         }
       ],
       "explorerUrls": [
-        "https://www.oklink.com/amoy"
+        "https://amoy.polygonscan.com"
       ],
       "rpcUrls": [
-        "https://rpc-amoy.polygon.technology",
-        "https://amoy.rpc.service.pinax.network"
+        "https://amoy.rpc.service.pinax.network",
+        "https://polygon-amoy.drpc.org",
+        "https://polygon-amoy.api.onfinality.io/public"
       ],
       "apiUrls": [
         {
-          "url": "https://polygon-amoy.abi.pinax.network/api",
-          "kind": "etherscan"
-        },
-        {
-          "url": "https://api.routescan.io/v2/network/testnet/evm/80002/etherscan/api",
+          "url": "https://polygon-amoy.abi.thegraph.com/api",
           "kind": "etherscan"
         }
       ],
       "networkType": "testnet",
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
         "firehose": [
           "amoy.firehose.pinax.network:443"
@@ -6881,6 +7533,10 @@
       ],
       "apiUrls": [
         {
+          "url": "https://berachain-bepolia.abi.thegraph.com/api",
+          "kind": "etherscan"
+        },
+        {
           "url": "https://api.routescan.io/v2/network/testnet/evm/80069/etherscan/api",
           "kind": "etherscan"
         }
@@ -6893,16 +7549,14 @@
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "issuanceRewards": false,
       "nativeToken": "BERA",
       "docsUrl": "https://docs.berachain.com",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": true,
+        "evmExtendedModel": false,
         "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
@@ -6933,14 +7587,15 @@
       },
       "rpcUrls": [
         "https://rpc.berachain.com",
-        "https://bera.rpc.service.pinax.network"
+        "https://berachain.drpc.org",
+        "https://berachain.rpc.sentio.xyz"
       ],
       "explorerUrls": [
         "https://berascan.com"
       ],
       "apiUrls": [
         {
-          "url": "https://berachain.abi.pinax.network/api",
+          "url": "https://berachain.abi.thegraph.com/api",
           "kind": "etherscan"
         },
         {
@@ -6949,15 +7604,9 @@
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ],
-        "firehose": [
-          "bera.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "bera.substreams.pinax.network:443"
-        ]
+        "subgraphs": [],
+        "firehose": [],
+        "substreams": []
       },
       "networkType": "mainnet",
       "issuanceRewards": false,
@@ -6965,7 +7614,7 @@
       "docsUrl": "https://docs.berachain.com",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": true,
+        "evmExtendedModel": false,
         "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
@@ -7010,7 +7659,16 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "networkType": "mainnet",
@@ -7054,23 +7712,16 @@
       "rpcUrls": [
         "https://rpc.blast.io",
         "https://blast.rpc.service.pinax.network",
-        "https://rpc.ankr.com/blast"
+        "https://blast.drpc.org"
       ],
       "apiUrls": [
         {
-          "url": "https://blast.abi.pinax.network/api",
+          "url": "https://blast.abi.thegraph.com/api",
           "kind": "etherscan"
-        },
-        {
-          "url": "https://blast.blockscout.com/api",
-          "kind": "blockscout"
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ],
-        "sps": [],
+        "subgraphs": [],
         "firehose": [
           "blast.firehose.pinax.network:443"
         ],
@@ -7085,7 +7736,7 @@
           "network": "mainnet"
         }
       ],
-      "issuanceRewards": true,
+      "issuanceRewards": false,
       "nativeToken": "ETH",
       "docsUrl": "https://docs.blast.io",
       "indexerDocsUrls": [
@@ -7129,17 +7780,28 @@
         "https://kaiascan.io"
       ],
       "rpcUrls": [
-        "https://public-en.node.kaia.io"
+        "https://public-en.node.kaia.io",
+        "https://klaytn.drpc.org",
+        "https://rpc.ankr.com/kaia"
       ],
       "apiUrls": [
         {
-          "url": "https://kaia.abi.pinax.network/api",
+          "url": "https://kaia.abi.thegraph.com/api",
           "kind": "etherscan"
         }
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "networkType": "mainnet",
@@ -7168,10 +7830,11 @@
     {
       "id": "base",
       "shortName": "Base",
-      "fullName": "Base Mainnet",
+      "fullName": "Base Chain",
       "aliases": [
         "evm-8453",
-        "base-mainnet"
+        "base-mainnet",
+        "base-chain"
       ],
       "caip2Id": "eip155:8453",
       "graphNode": {
@@ -7182,12 +7845,12 @@
       ],
       "rpcUrls": [
         "https://mainnet.base.org",
-        "https://base-rpc.publicnode.com",
-        "https://base.rpc.service.pinax.network"
+        "https://base.rpc.service.pinax.network",
+        "https://1rpc.io/base"
       ],
       "apiUrls": [
         {
-          "url": "https://base.abi.pinax.network/api",
+          "url": "https://base.abi.thegraph.com/api",
           "kind": "etherscan"
         },
         {
@@ -7197,9 +7860,17 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
-        "sps": [],
         "firehose": [
           "base.firehose.pinax.network:443",
           "base-mainnet.streamingfast.io:443"
@@ -7209,7 +7880,7 @@
           "base-mainnet.streamingfast.io:443"
         ],
         "tokenApi": [
-          "https://token-api.thegraph.com"
+          "https://api.pinax.network"
         ]
       },
       "networkType": "mainnet",
@@ -7273,12 +7944,12 @@
       ],
       "rpcUrls": [
         "https://sepolia.base.org",
-        "https://base-sepolia-rpc.publicnode.com",
-        "https://basesepolia.rpc.service.pinax.network"
+        "https://basesepolia.rpc.service.pinax.network",
+        "https://base-sepolia.drpc.org"
       ],
       "apiUrls": [
         {
-          "url": "https://base-sepolia.abi.pinax.network/api",
+          "url": "https://base-sepolia.abi.thegraph.com/api",
           "kind": "etherscan"
         },
         {
@@ -7288,7 +7959,16 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
         "firehose": [
           "basesepolia.firehose.pinax.network:443"
@@ -7337,6 +8017,111 @@
       }
     },
     {
+      "id": "autonomys",
+      "shortName": "Autonomys",
+      "fullName": "Autonomys Mainnet",
+      "aliases": [
+        "evm-870",
+        "autonomys-mainnet"
+      ],
+      "caip2Id": "eip155:870",
+      "graphNode": {
+        "protocol": "ethereum"
+      },
+      "explorerUrls": [
+        "https://explorer.auto-evm.mainnet.autonomys.xyz"
+      ],
+      "rpcUrls": [
+        "https://auto-evm.mainnet.autonomys.xyz/ws"
+      ],
+      "apiUrls": [
+        {
+          "url": "https://explorer.auto-evm.mainnet.autonomys.xyz/api",
+          "kind": "blockscout"
+        }
+      ],
+      "services": {
+        "subgraphs": []
+      },
+      "networkType": "mainnet",
+      "issuanceRewards": false,
+      "nativeToken": "AI3",
+      "docsUrl": "https://docs.autonomys.xyz",
+      "firehose": {
+        "blockType": "sf.ethereum.type.v2.Block",
+        "evmExtendedModel": false,
+        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
+        "bytesEncoding": "hex",
+        "firstStreamableBlock": {
+          "id": "0x085b6a1088858e39e9f26e832db9ba44e7f8ca977f363f0aff79f8bec5abb8b9",
+          "height": 0
+        },
+        "blockFeatures": [
+          "base"
+        ]
+      },
+      "icon": {
+        "web3Icons": {
+          "name": "autonomys"
+        }
+      }
+    },
+    {
+      "id": "autonomys-chronos",
+      "shortName": "Autonomys",
+      "fullName": "Autonomys Chronos Testnet",
+      "aliases": [
+        "evm-8700"
+      ],
+      "caip2Id": "eip155:8700",
+      "graphNode": {
+        "protocol": "ethereum"
+      },
+      "explorerUrls": [
+        "https://explorer.auto-evm.chronos.autonomys.xyz"
+      ],
+      "rpcUrls": [
+        "https://auto-evm.chronos.autonomys.xyz/ws"
+      ],
+      "apiUrls": [
+        {
+          "url": "https://explorer.auto-evm.chronos.autonomys.xyz/api",
+          "kind": "blockscout"
+        }
+      ],
+      "services": {
+        "subgraphs": []
+      },
+      "networkType": "testnet",
+      "relations": [
+        {
+          "kind": "testnetOf",
+          "network": "autonomys"
+        }
+      ],
+      "issuanceRewards": false,
+      "nativeToken": "AI3",
+      "docsUrl": "https://docs.autonomys.xyz",
+      "firehose": {
+        "blockType": "sf.ethereum.type.v2.Block",
+        "evmExtendedModel": false,
+        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
+        "bytesEncoding": "hex",
+        "firstStreamableBlock": {
+          "id": "0xb6dfbb865903aa8d41db9449156cb837df134bd6eceda73ccd242891f13a206d",
+          "height": 0
+        },
+        "blockFeatures": [
+          "base"
+        ]
+      },
+      "icon": {
+        "web3Icons": {
+          "name": "autonomys"
+        }
+      }
+    },
+    {
       "id": "viction",
       "shortName": "Viction",
       "fullName": "Viction Mainnet",
@@ -7352,11 +8137,21 @@
         "https://www.vicscan.xyz"
       ],
       "rpcUrls": [
-        "https://rpc.viction.xyz"
+        "https://rpc.viction.xyz",
+        "https://viction.drpc.org"
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "networkType": "mainnet",
@@ -7365,7 +8160,7 @@
       "docsUrl": "https://docs.viction.xyz",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": true,
+        "evmExtendedModel": false,
         "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
@@ -7399,14 +8194,9 @@
         "https://testnet.chiliscan.com"
       ],
       "rpcUrls": [
-        "https://spicy-rpc.chiliz.com",
-        "https://spicy.rpc.service.pinax.network"
+        "https://spicy-rpc.chiliz.com"
       ],
       "apiUrls": [
-        {
-          "url": "https://spicy-explorer.chiliz.com/api",
-          "kind": "etherscan"
-        },
         {
           "url": "https://api.routescan.io/v2/network/testnet/evm/88882/etherscan/api",
           "kind": "etherscan"
@@ -7421,13 +8211,16 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ],
-        "firehose": [
-          "spicy.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "spicy.substreams.pinax.network:443"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "issuanceRewards": false,
@@ -7469,14 +8262,9 @@
       ],
       "rpcUrls": [
         "https://rpc.chiliz.com",
-        "https://rpc.ankr.com/chiliz",
-        "https://chiliz.rpc.service.pinax.network"
+        "https://rpc.ankr.com/chiliz"
       ],
       "apiUrls": [
-        {
-          "url": "https://scan.chiliz.com/api",
-          "kind": "etherscan"
-        },
         {
           "url": "https://api.routescan.io/v2/network/mainnet/evm/88888/etherscan/api",
           "kind": "etherscan"
@@ -7485,13 +8273,16 @@
       "networkType": "mainnet",
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ],
-        "firehose": [
-          "chiliz.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "chiliz.substreams.pinax.network:443"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ]
       },
       "issuanceRewards": false,
@@ -7530,25 +8321,20 @@
         "protocol": "ethereum"
       },
       "explorerUrls": [
-        "https://sepolia.explorer.mode.network"
+        "https://testnet.modescan.io"
       ],
       "rpcUrls": [
-        "https://sepolia.mode.network"
+        "https://sepolia.mode.network",
+        "https://mode-testnet.drpc.org"
       ],
       "apiUrls": [
-        {
-          "url": "https://sepolia.explorer.mode.network/api",
-          "kind": "blockscout"
-        },
         {
           "url": "https://api.routescan.io/v2/network/testnet/evm/919/etherscan/api",
           "kind": "etherscan"
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "testnet",
       "relations": [
@@ -7574,7 +8360,7 @@
           "height": 0
         },
         "blockFeatures": [
-          "base"
+          "extended"
         ]
       },
       "icon": {
@@ -7601,12 +8387,12 @@
         "https://testnet.bscscan.com"
       ],
       "rpcUrls": [
-        "https://data-seed-prebsc-1-s1.bnbchain.org:8545",
-        "https://chapel.rpc.service.pinax.network"
+        "https://chapel.rpc.service.pinax.network",
+        "https://bsc-testnet.rpc.sentio.xyz"
       ],
       "apiUrls": [
         {
-          "url": "https://bsc-testnet.abi.pinax.network/api",
+          "url": "https://bsc-testnet.abi.thegraph.com/api",
           "kind": "etherscan"
         }
       ],
@@ -7619,7 +8405,16 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
         "firehose": [
           "chapel.firehose.pinax.network:443"
@@ -7628,7 +8423,7 @@
           "chapel.substreams.pinax.network:443"
         ]
       },
-      "issuanceRewards": false,
+      "issuanceRewards": true,
       "nativeToken": "tBNB",
       "docsUrl": "https://docs.bnbchain.org",
       "firehose": {
@@ -7641,12 +8436,72 @@
           "height": 0
         },
         "blockFeatures": [
-          "base"
+          "extended"
         ]
       },
       "icon": {
         "web3Icons": {
           "name": "binance-smart-chain"
+        }
+      }
+    },
+    {
+      "id": "stable",
+      "shortName": "Stable",
+      "fullName": "Stable",
+      "aliases": [
+        "evm-988",
+        "stable-mainnet"
+      ],
+      "caip2Id": "eip155:988",
+      "networkType": "mainnet",
+      "graphNode": {
+        "protocol": "ethereum"
+      },
+      "explorerUrls": [
+        "https://stablescan.xyz"
+      ],
+      "rpcUrls": [
+        "https://stable-mainnet.rpc.sentio.xyz"
+      ],
+      "apiUrls": [
+        {
+          "url": "https://stable.abi.thegraph.com/api",
+          "kind": "etherscan"
+        }
+      ],
+      "services": {
+        "subgraphs": [
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
+        ]
+      },
+      "issuanceRewards": false,
+      "nativeToken": "gUSDT",
+      "firehose": {
+        "blockType": "sf.ethereum.type.v2.Block",
+        "evmExtendedModel": false,
+        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
+        "bytesEncoding": "hex",
+        "firstStreamableBlock": {
+          "id": "0x5911f7cbe3a5532c100b0ba871070084c460dd9b79f3fd8f5c2c1b394948819c",
+          "height": 1
+        },
+        "blockFeatures": [
+          "base"
+        ]
+      },
+      "icon": {
+        "web3Icons": {
+          "name": "stable"
         }
       }
     },
@@ -7681,9 +8536,7 @@
         }
       ],
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ]
+        "subgraphs": []
       },
       "networkType": "mainnet",
       "issuanceRewards": false,
@@ -7705,6 +8558,75 @@
       "icon": {
         "web3Icons": {
           "name": "lumia"
+        }
+      }
+    },
+    {
+      "id": "hyper-evm",
+      "shortName": "HyperEVM",
+      "fullName": "HyperEVM Mainnet",
+      "aliases": [
+        "evm-999",
+        "hyper-evm-mainnet",
+        "hyperevm"
+      ],
+      "caip2Id": "eip155:999",
+      "networkType": "mainnet",
+      "graphNode": {
+        "protocol": "ethereum"
+      },
+      "explorerUrls": [
+        "https://hyperevmscan.io"
+      ],
+      "rpcUrls": [
+        "https://rpc.hypurrscan.io",
+        "https://rpc.hyperliquid.xyz/evm",
+        "https://hyperevm.rpc.service.pinax.network"
+      ],
+      "apiUrls": [
+        {
+          "url": "https://hyperevm.abi.thegraph.com/api",
+          "kind": "etherscan"
+        }
+      ],
+      "services": {
+        "subgraphs": [],
+        "firehose": [
+          "hyperevm.firehose.pinax.network:443"
+        ],
+        "substreams": [
+          "hyperevm.substreams.pinax.network:443"
+        ],
+        "tokenApi": [
+          "https://api.pinax.network"
+        ]
+      },
+      "issuanceRewards": false,
+      "nativeToken": "HYPE",
+      "docsUrl": "https://hyperliquid.gitbook.io/hyperliquid-docs/hyperevm",
+      "firehose": {
+        "blockType": "sf.ethereum.type.v2.Block",
+        "evmExtendedModel": true,
+        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
+        "bytesEncoding": "hex",
+        "firstStreamableBlock": {
+          "id": "0xd8fcc13b6a195b88b7b2da3722ff6cad767b13a8c1e9ffb1c73aa9d216d895f0",
+          "height": 0
+        },
+        "blockFeatures": [
+          "extended"
+        ]
+      },
+      "tokenApi": {
+        "features": [
+          "tokens",
+          "dexes"
+        ],
+        "networkId": "hyperevm"
+      },
+      "icon": {
+        "web3Icons": {
+          "name": "hyper-evm"
         }
       }
     },
@@ -7771,12 +8693,8 @@
         }
       ],
       "services": {
-        "firehose": [
-          "telostest.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "telostest.substreams.pinax.network:443"
-        ]
+        "firehose": [],
+        "substreams": []
       },
       "issuanceRewards": false,
       "nativeToken": "TELOS",
@@ -7813,12 +8731,8 @@
       "apiUrls": [],
       "networkType": "mainnet",
       "services": {
-        "firehose": [
-          "telos.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "telos.substreams.pinax.network:443"
-        ]
+        "firehose": [],
+        "substreams": []
       },
       "issuanceRewards": false,
       "nativeToken": "TELOS",
@@ -7840,11 +8754,12 @@
     },
     {
       "id": "kylin",
-      "shortName": "EOS",
+      "shortName": "Vaulta",
       "secondName": "Kylin",
-      "fullName": "EOS Kylin Testnet",
+      "fullName": "Vaulta Kylin Testnet",
       "aliases": [
-        "eos-kylin"
+        "eos-kylin",
+        "vaulta-kylin"
       ],
       "caip2Id": "antelope:5fff1dae8dc8e2fc4d5b23b2c7665c97",
       "explorerUrls": [
@@ -7861,14 +8776,7 @@
           "network": "eos"
         }
       ],
-      "services": {
-        "firehose": [
-          "kylin.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "kylin.substreams.pinax.network:443"
-        ]
-      },
+      "services": {},
       "issuanceRewards": false,
       "nativeToken": "EOS",
       "docsUrl": "https://docs.eosnetwork.com/docs/latest/quick-start/introduction",
@@ -7889,9 +8797,9 @@
     },
     {
       "id": "jungle4",
-      "shortName": "EOS",
+      "shortName": "Vaulta",
       "secondName": "Jungle4",
-      "fullName": "EOS Jungle4 Testnet",
+      "fullName": "Vaulta Jungle4 Testnet",
       "aliases": [
         "jungle"
       ],
@@ -7937,51 +8845,9 @@
       }
     },
     {
-      "id": "ultra",
-      "shortName": "Ultra",
-      "fullName": "Ultra Mainnet",
-      "aliases": [
-        "ultra-mainnet"
-      ],
-      "caip2Id": "antelope:a9c481dfbc7d9506dc7e87e9a137c931",
-      "explorerUrls": [
-        "https://explorer.mainnet.ultra.io"
-      ],
-      "rpcUrls": [
-        "https://ultra.api.eosnation.io"
-      ],
-      "apiUrls": [],
-      "networkType": "mainnet",
-      "services": {
-        "firehose": [
-          "ultra.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "ultra.substreams.pinax.network:443"
-        ]
-      },
-      "issuanceRewards": false,
-      "nativeToken": "UOS",
-      "docsUrl": "https://developers.ultra.io",
-      "firehose": {
-        "blockType": "sf.antelope.type.v1.Block",
-        "bufUrl": "https://buf.build/pinax/firehose-antelope",
-        "bytesEncoding": "hex",
-        "firstStreamableBlock": {
-          "id": "0x00000002e10cbadd0c7491064d13ae89cfbdd734e1f66726861d771af1fcd6e9",
-          "height": 2
-        }
-      },
-      "icon": {
-        "web3Icons": {
-          "name": "ultra"
-        }
-      }
-    },
-    {
       "id": "eos",
-      "shortName": "EOS",
-      "fullName": "EOS Mainnet",
+      "shortName": "Vaulta",
+      "fullName": "Vaulta Mainnet",
       "aliases": [
         "eos-mainnet",
         "vaulta"
@@ -8088,13 +8954,8 @@
         "deprecatedAt": "2025-05-28T00:00:00Z"
       },
       "services": {
-        "sps": [],
-        "firehose": [
-          "arweave.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "arweave.substreams.pinax.network:443"
-        ]
+        "firehose": [],
+        "substreams": []
       },
       "issuanceRewards": false,
       "nativeToken": "AR",
@@ -8223,12 +9084,8 @@
         }
       ],
       "services": {
-        "firehose": [
-          "chiado-cl.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "chiado-cl.substreams.pinax.network:443"
-        ]
+        "firehose": [],
+        "substreams": []
       },
       "issuanceRewards": false,
       "nativeToken": "XDAI",
@@ -8283,50 +9140,6 @@
         "bytesEncoding": "0xhex",
         "firstStreamableBlock": {
           "id": "0xfb9b64fe445f76696407e1e3cc390371edff147bf712db86db6197d4b31ede43",
-          "height": 0
-        }
-      },
-      "icon": {
-        "web3Icons": {
-          "name": "ethereum"
-        }
-      }
-    },
-    {
-      "id": "holesky-cl",
-      "shortName": "Holesky Beacon",
-      "fullName": "Ethereum Holesky Consensus Layer",
-      "aliases": [
-        "holesky-beacon"
-      ],
-      "caip2Id": "beacon:17000",
-      "explorerUrls": [],
-      "rpcUrls": [],
-      "apiUrls": [],
-      "networkType": "beacon",
-      "relations": [
-        {
-          "kind": "beaconOf",
-          "network": "holesky"
-        }
-      ],
-      "services": {
-        "firehose": [
-          "holesky-cl.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "holesky-cl.substreams.pinax.network:443"
-        ]
-      },
-      "issuanceRewards": false,
-      "nativeToken": "ETH",
-      "docsUrl": "https://ethereum.org/en/developers/docs/consensus-mechanisms",
-      "firehose": {
-        "blockType": "sf.beacon.type.v1.Block",
-        "bufUrl": "https://buf.build/pinax/firehose-beacon",
-        "bytesEncoding": "0xhex",
-        "firstStreamableBlock": {
-          "id": "0xab09edd9380f8451c3ff5c809821174a36dce606fea8b5ea35ea936915dbf889",
           "height": 0
         }
       },
@@ -8398,17 +9211,14 @@
       "apiUrls": [],
       "networkType": "mainnet",
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ],
-        "sps": [],
+        "subgraphs": [],
         "firehose": [
-          "bitcoin.firehose.pinax.network:443",
-          "mainnet.btc.streamingfast.io:443"
+          "mainnet.btc.streamingfast.io:443",
+          "bitcoin.firehose.pinax.network:443"
         ],
         "substreams": [
-          "bitcoin.substreams.pinax.network:443",
-          "mainnet.btc.streamingfast.io:443"
+          "mainnet.btc.streamingfast.io:443",
+          "bitcoin.substreams.pinax.network:443"
         ]
       },
       "issuanceRewards": false,
@@ -8588,14 +9398,7 @@
         "protocol": "cosmos",
         "deprecatedAt": "2025-04-23T00:00:00Z"
       },
-      "services": {
-        "firehose": [
-          "mainnet.mantra.streamingfast.io:443"
-        ],
-        "substreams": [
-          "mainnet.mantra.streamingfast.io:443"
-        ]
-      },
+      "services": {},
       "issuanceRewards": false,
       "nativeToken": "OM",
       "docsUrl": "https://docs.mantrachain.io",
@@ -8641,14 +9444,7 @@
         "protocol": "cosmos",
         "deprecatedAt": "2025-04-23T00:00:00Z"
       },
-      "services": {
-        "firehose": [
-          "testnet.mantra.streamingfast.io:443"
-        ],
-        "substreams": [
-          "testnet.mantra.streamingfast.io:443"
-        ]
-      },
+      "services": {},
       "issuanceRewards": false,
       "nativeToken": "OM",
       "docsUrl": "https://docs.mantrachain.io",
@@ -8688,15 +9484,21 @@
       },
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
-        "sps": [],
         "firehose": [
-          "near.firehose.pinax.network:443",
           "mainnet.near.streamingfast.io:443"
         ],
         "substreams": [
-          "near.substreams.pinax.network:443",
           "mainnet.near.streamingfast.io:443"
         ]
       },
@@ -8743,14 +9545,22 @@
       ],
       "services": {
         "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "studio",
+            "provider": "https://api.studio.thegraph.com/deploy",
+            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+          }
         ],
-        "sps": [],
         "firehose": [
-          "neartest.firehose.pinax.network:443"
+          "testnet.near.streamingfast.io:443"
         ],
         "substreams": [
-          "neartest.substreams.pinax.network:443"
+          "testnet.near.streamingfast.io:443"
         ]
       },
       "issuanceRewards": false,
@@ -8761,8 +9571,8 @@
         "bufUrl": "https://buf.build/streamingfast/firehose-near",
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
-          "id": "0xd784da5a9e5e66668516c19a8095448fc54a22a28971dc330f0099df94379410",
-          "height": 42376888
+          "id": "0x09d69c8ba4f319f8e78d0b701f0c1f763cc0d920551bfbd00072d5f56016d853",
+          "height": 42376923
         }
       },
       "icon": {
@@ -8793,7 +9603,6 @@
       "networkType": "mainnet",
       "services": {
         "subgraphs": [],
-        "sps": [],
         "firehose": [
           "mainnet.sol.streamingfast.io:443",
           "solana.firehose.pinax.network:443"
@@ -8801,6 +9610,9 @@
         "substreams": [
           "mainnet.sol.streamingfast.io:443",
           "solana.substreams.pinax.network:443"
+        ],
+        "tokenApi": [
+          "https://api.pinax.network"
         ]
       },
       "issuanceRewards": false,
@@ -8814,6 +9626,13 @@
           "id": "4sGjMW1sUnHzSxGspuhpqLDx6wiyjNtZAMdL4VZHirAn",
           "height": 0
         }
+      },
+      "tokenApi": {
+        "features": [
+          "tokens",
+          "dexes"
+        ],
+        "networkId": "solana"
       },
       "icon": {
         "web3Icons": {
@@ -8835,7 +9654,6 @@
       "networkType": "mainnet",
       "services": {
         "subgraphs": [],
-        "sps": [],
         "firehose": [],
         "substreams": [
           "accounts.mainnet.sol.streamingfast.io:443"
@@ -8862,6 +9680,7 @@
     {
       "id": "solana-devnet",
       "shortName": "Solana",
+      "secondName": "Devnet",
       "fullName": "Solana Devnet",
       "aliases": [],
       "caip2Id": "solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1",
@@ -8881,7 +9700,6 @@
       ],
       "services": {
         "subgraphs": [],
-        "sps": [],
         "firehose": [
           "devnet.sol.streamingfast.io:443",
           "soldev.firehose.pinax.network:443"
@@ -8899,8 +9717,8 @@
         "bufUrl": "https://buf.build/streamingfast/firehose-solana",
         "bytesEncoding": "base58",
         "firstStreamableBlock": {
-          "id": "B2Ano6cfDxb1ce3WXVM3VmkVGj3NPGB5ag95S46S3cpE",
-          "height": 325312361
+          "id": "Cueq98fXZELX4qTJ7gvX2m2dmWiVMh6Mvsz87n6U8uF5",
+          "height": 391843999
         }
       },
       "icon": {
@@ -8935,14 +9753,7 @@
           "network": "bsc"
         }
       ],
-      "services": {
-        "firehose": [
-          "svmbnb.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "svmbnb.substreams.pinax.network:443"
-        ]
-      },
+      "services": {},
       "issuanceRewards": false,
       "nativeToken": "BNB",
       "docsUrl": "https://docs.soo.network",
@@ -8979,24 +9790,17 @@
         }
       ],
       "explorerUrls": [
-        "https://starkscan.co"
+        "https://www.oklink.com/starknet"
       ],
       "rpcUrls": [
-        "https://starknet-mainnet.public.blastapi.io",
-        "https://starknet.rpc.service.pinax.network"
+        "https://starknet-mainnet.public.blastapi.io"
       ],
       "apiUrls": [],
       "networkType": "mainnet",
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ],
-        "sps": [],
-        "firehose": [
-          "starknet.firehose.pinax.network:443"
-        ],
+        "subgraphs": [],
+        "firehose": [],
         "substreams": [
-          "starknet.substreams.pinax.network:443",
           "mainnet.starknet.streamingfast.io:443"
         ]
       },
@@ -9046,25 +9850,16 @@
           "network": "starknet-mainnet"
         }
       ],
-      "explorerUrls": [
-        "https://sepolia.starkscan.co"
-      ],
+      "explorerUrls": [],
       "rpcUrls": [
-        "https://starknet-sepolia.public.blastapi.io",
-        "https://starksepolia.rpc.service.pinax.network"
+        "https://starknet-sepolia.public.blastapi.io"
       ],
       "apiUrls": [],
       "networkType": "testnet",
       "services": {
-        "subgraphs": [
-          "https://api.studio.thegraph.com/deploy"
-        ],
-        "sps": [],
-        "firehose": [
-          "starksepolia.firehose.pinax.network:443"
-        ],
+        "subgraphs": [],
+        "firehose": [],
         "substreams": [
-          "starksepolia.substreams.pinax.network:443",
           "testnet.starknet.streamingfast.io:443"
         ]
       },
@@ -9103,7 +9898,6 @@
       "networkType": "mainnet",
       "services": {
         "subgraphs": [],
-        "sps": [],
         "firehose": [
           "mainnet.stellar.streamingfast.io:443"
         ],
@@ -9119,8 +9913,8 @@
         "bufUrl": "https://buf.build/streamingfast/firehose-stellar",
         "bytesEncoding": "base64",
         "firstStreamableBlock": {
-          "id": "0x84e2b18c296badee2a6c30347911f2b5a4323e1ecb3c8986235e1fdc322dadbe",
-          "height": 55411000
+          "id": "0xec168d452542589dbc2d0eb6d58c74b9bb2ccb93bba879a3b3fa73fdfa730182",
+          "height": 3
         }
       },
       "icon": {
@@ -9164,8 +9958,8 @@
         "bufUrl": "https://buf.build/streamingfast/firehose-stellar",
         "bytesEncoding": "base64",
         "firstStreamableBlock": {
-          "id": "0x2ec9adddf7475dee37e8fd0cc0f07ae0893e2325db7fb25fb318e8b7a797a720",
-          "height": 200
+          "id": "0x745cccfdaaa59ee819d96a0fe098300933d948f7a1fb5027864e03b2a3466398",
+          "height": 767
         }
       },
       "icon": {
@@ -9187,19 +9981,12 @@
       ],
       "rpcUrls": [
         "https://api.trongrid.io/jsonrpc",
-        "https://tron.drpc.org",
-        "https://rpc.ankr.com/tron_jsonrpc"
+        "https://tron.drpc.org"
       ],
-      "apiUrls": [
-        {
-          "url": "https://apilist.tronscanapi.com/api",
-          "kind": "other"
-        }
-      ],
+      "apiUrls": [],
       "networkType": "mainnet",
       "services": {
         "subgraphs": [],
-        "sps": [],
         "firehose": [
           "mainnet.tron.streamingfast.io:443"
         ],
@@ -9218,6 +10005,13 @@
           "id": "0x00000000000000010ff5414c5cfbe9eae982e8cef7eb2399a39118e1206c8247",
           "height": 1
         }
+      },
+      "tokenApi": {
+        "features": [
+          "tokens",
+          "dexes"
+        ],
+        "networkId": "tron"
       },
       "icon": {
         "web3Icons": {
