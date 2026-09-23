@@ -1,6 +1,6 @@
 // To parse this data:
 //
-//   import { Convert, NetworksRegistryInner } from "./file";
+//   import { Convert, NetworksRegistryInner } from "./types";
 //
 //   const networksRegistryInner = Convert.toNetworksRegistryInner(json);
 //

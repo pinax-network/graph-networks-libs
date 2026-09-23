@@ -44,13 +44,14 @@ package registry
 const Version = "$MAJOR_MINOR_VERSION.0"
 EOF
 
-# Pin quicktype: newer versions change generated type names/enums (breaking API)
-QUICKTYPE_VERSION=23.2.6
+# Pin quicktype: other versions may change generated type names/enums (breaking API).
+# TS needs --no-prefer-unions to keep enums (unions are the default since v26)
+QUICKTYPE_VERSION=26.0.0
 GO_ENUM_VERSION=v0.9.5
 
 # Generate types for each language
 echo "Generating TypeScript types..."
-npx -y quicktype@$QUICKTYPE_VERSION -s schema sample/Network.json --lang typescript --top-level NetworksRegistryInner --out packages/typescript/src/types.ts
+npx -y quicktype@$QUICKTYPE_VERSION -s schema sample/Network.json --lang typescript --top-level NetworksRegistryInner --no-prefer-unions --out packages/typescript/src/types.ts
 
 echo "Generating Rust types..."
 npx -y quicktype@$QUICKTYPE_VERSION -s schema sample/Network.json --lang rust --top-level NetworksRegistry --density normal --visibility public --derive-debug --derive-clone --out packages/rust/src/types.rs
