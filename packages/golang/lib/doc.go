@@ -45,7 +45,7 @@
 // have type-prefixed constants (e.g. NetworkTypeMainnet) and helpers to parse, validate and list values:
 //
 //	nt, err := registry.ParseNetworkType("mainnet") // registry.NetworkTypeMainnet, or ErrInvalidNetworkType
-//	valid := network.NetworkType.IsValid()
+//	valid := registry.NetworkType("beacon").IsValid() // true
 //	all := registry.NetworkTypeValues()
 //
 // Unmarshalling JSON does not validate enum values, so registries with values added in a newer schema
