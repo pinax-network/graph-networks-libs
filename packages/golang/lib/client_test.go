@@ -7,7 +7,7 @@ import (
 func TestNetworksRegistry(t *testing.T) {
 	testRegistryJSON := `{
         "$schema": "https://networks-registry.thegraph.com/TheGraphNetworksRegistrySchema_v0_7.json",
-        "version": "0.7.0",
+        "version": "0.8.0",
         "title": "Test Registry",
         "description": "Test Registry",
         "updatedAt": "2025-01-01T00:00:00Z",
@@ -34,8 +34,8 @@ func TestNetworksRegistry(t *testing.T) {
 		t.Errorf("Expected 1 network, got %d", len(registry.Networks))
 	}
 
-	if registry.Version != "0.7.0" {
-		t.Errorf("Expected version 0.7.0, got %s", registry.Version)
+	if registry.Version != "0.8.0" {
+		t.Errorf("Expected version 0.8.0, got %s", registry.Version)
 	}
 
 	// Test network lookup with new unified method

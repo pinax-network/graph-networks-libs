@@ -1,6 +1,6 @@
 {
   "name": "@pinax/graph-networks-registry",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "description": "TypeScript types and helpers for The Graph Networks Registry",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

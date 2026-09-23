@@ -289,17 +289,38 @@ pub struct Services {
     /// Firehose gRPC URLs, e.g. eth.firehose.pinax.network:443
     pub firehose: Option<Vec<String>>,
 
-    /// Substreams-based subgraphs studio deployment URLs, e.g. https://api.thegraph.com/deploy
-    pub sps: Option<Vec<String>>,
-
-    /// Subgraph studio deployment URLs, e.g. https://api.thegraph.com/deploy
-    pub subgraphs: Option<Vec<String>>,
+    /// Subgraph service entries (gateway, studio, backstop)
+    pub subgraphs: Option<Vec<SubgraphsService>>,
 
     /// Substreams gRPC URLs, e.g. eth.substreams.pinax.network:443
     pub substreams: Option<Vec<String>>,
 
     /// Token API URLs, e.g. https://token-api.thegraph.com
     pub token_api: Option<Vec<String>>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct SubgraphsService {
+    /// [optional] Human-readable description of the entry
+    pub description: Option<String>,
+
+    /// Kind of Subgraph service entry
+    pub kind: SubgraphKind,
+
+    /// Provider identifier or URL for this entry, e.g. a gateway/studio deployment URL or a
+    /// backstop provider like infradao
+    pub provider: String,
+}
+
+/// Kind of Subgraph service entry
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum SubgraphKind {
+    Backstop,
+
+    Gateway,
+
+    Studio,
 }
 
 /// Token API specific configuration information

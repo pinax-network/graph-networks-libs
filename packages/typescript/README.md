@@ -23,8 +23,8 @@ import { NetworksRegistry } from '@pinax/graph-networks-registry';
 const registry = await NetworksRegistry.fromLatestVersion();
 
 // Load from specific version tag at networks-registry.thegraph.com
-const registry = await NetworksRegistry.fromExactVersion('0.7.0');
-const registry = await NetworksRegistry.fromExactVersion('0.7.x');
+const registry = await NetworksRegistry.fromExactVersion('0.8.0');
+const registry = await NetworksRegistry.fromExactVersion('0.8.x');
 
 // Load from URL
 const registry = await NetworksRegistry.fromUrl('https://networks-registry.thegraph.com/TheGraphNetworksRegistry.json');

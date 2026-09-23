@@ -1,1 +1,1 @@
-export const schemaVersion = "0.7";
+export const schemaVersion = "0.8";

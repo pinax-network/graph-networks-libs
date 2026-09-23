@@ -17,6 +17,9 @@ SCHEMA_URL=$(jq -r '."$schema"' sample/TheGraphNetworksRegistry.json)
 echo "Fetching schema from $SCHEMA_URL..."
 # weird name for the schema file but it's the only way to make quicktype generate acceptable type name
 curl -s "$SCHEMA_URL" > "sample/Network.json"
+# quicktype names types after $defs only if they have a title, so set it to the def key to keep names stable
+jq '."$defs" |= with_entries(.value.title //= .key)' sample/Network.json > temp.json
+mv temp.json sample/Network.json
 
 # Extract schema version from filename (e.g., TheGraphNetworksRegistrySchema_v0_5.json)
 SCHEMA_VERSION=$(echo "$SCHEMA_URL" | grep -o 'v[0-9]\+_[0-9]\+' | tr '_' '.')
@@ -41,15 +44,20 @@ package registry
 const Version = "$MAJOR_MINOR_VERSION.0"
 EOF
 
+# Pin quicktype: newer versions change generated type names/enums (breaking API)
+QUICKTYPE_VERSION=23.2.6
+
 # Generate types for each language
 echo "Generating TypeScript types..."
-npx quicktype -s schema sample/Network.json --lang typescript --top-level NetworksRegistryInner --out packages/typescript/src/types.ts
+npx -y quicktype@$QUICKTYPE_VERSION -s schema sample/Network.json --lang typescript --top-level NetworksRegistryInner --out packages/typescript/src/types.ts
 
 echo "Generating Rust types..."
-npx quicktype -s schema sample/Network.json --lang rust --top-level NetworksRegistry --density normal --visibility public --derive-debug --derive-clone --out packages/rust/src/types.rs
+npx -y quicktype@$QUICKTYPE_VERSION -s schema sample/Network.json --lang rust --top-level NetworksRegistry --density normal --visibility public --derive-debug --derive-clone --out packages/rust/src/types.rs
+(cd packages/rust && cargo fmt)
 
 echo "Generating Go types..."
-npx quicktype -s schema sample/Network.json --lang go --top-level NetworksRegistry --package registry --out packages/golang/lib/types.go
+npx -y quicktype@$QUICKTYPE_VERSION -s schema sample/Network.json --lang go --top-level NetworksRegistry --package registry --out packages/golang/lib/types.go
+gofmt -w packages/golang/lib/types.go packages/golang/lib/version.go
 
 # Run tests for each package
 echo "Running TypeScript tests..."
