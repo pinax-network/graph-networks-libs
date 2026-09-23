@@ -52,7 +52,7 @@ import (
 )
 
 func main() {
-    reg, err := registry.FromFile("TheGraphNetworksRegistry_v0_7_0.json")
+    reg, err := registry.FromFile("TheGraphNetworksRegistry_v0_8_0.json")
     if err != nil {
         log.Fatalf("Failed to load registry: %v", err)
     }

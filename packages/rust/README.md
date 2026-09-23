@@ -22,7 +22,7 @@ To read the registry from a local file
 use graph_networks_registry::NetworksRegistry;
 fn main() {
     // Parse registry from JSON file
-    let registry = NetworksRegistry::from_file("TheGraphNetworksRegistry_v0_7_0.json")
+    let registry = NetworksRegistry::from_file("TheGraphNetworksRegistry_v0_8_0.json")
         .expect("Failed to parse registry");
 
     if let Some(network) = registry.get_network_by_graph_id("mainnet") {

@@ -7,7 +7,7 @@ import { APIURLKind } from "../types";
 
 describe("NetworksRegistry", () => {
   const testRegistryJson = {
-    $schema: "https://networks-registry.thegraph.com/TheGraphNetworksRegistrySchema_v0_7.json",
+    $schema: "https://networks-registry.thegraph.com/TheGraphNetworksRegistrySchema_v0_8.json",
     version: "0.8.0",
     title: "Test Registry",
     description: "Test Registry",
