@@ -77,3 +77,19 @@ See reference on [pkg.go.dev](https://pkg.go.dev/github.com/pinax-network/graph-
 - `GetNetworkByGraphId(id string) *Network` - Finds a network by ID or alias (recommended)
 - `GetNetworkById(id string) *Network` - Finds a network by ID (deprecated)
 - `GetNetworkByAlias(alias string) *Network` - Finds a network by ID or alias (deprecated)
+
+### Enums
+
+Enum types (`NetworkType`, `Protocol`, `RelationKind`, `SubgraphKind`, `BytesEncoding`, `APIURLKind`, `Feature`) are generated with [go-enum](https://github.com/abice/go-enum):
+
+- Type-prefixed constants, e.g. `NetworkTypeMainnet`, `RelationKindTestnetOf`
+- `Parse<Type>(s string) (<Type>, error)` - Parses and validates a value, returns `ErrInvalid<Type>` on unknown values
+- `(<Type>).IsValid() bool` - Checks that a value is known
+- `<Type>Values() []<Type>` / `<Type>Names() []string` - Lists all known values
+
+```go
+nt, err := registry.ParseNetworkType("mainnet") // registry.NetworkTypeMainnet
+```
+
+Unmarshalling JSON does not validate enum values, so a registry with values added in a newer schema still loads. Use `IsValid()` to check them.
+The short constants generated previously (e.g. `Mainnet`, `PurpleOther`) are deprecated in favor of the type-prefixed ones.
