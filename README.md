@@ -21,7 +21,7 @@ This will:
 
 If there are errors when running the script, find and fix them manually.
 
-Requires `jq`, `npx`, `bun`, `cargo` and `go`. quicktype and go-enum versions are pinned in `generate.sh` (`QUICKTYPE_VERSION`, `GO_ENUM_VERSION`): newer quicktype versions change the generated type names and enums, which breaks the public API, so check the diff carefully before bumping them.
+Requires `jq`, `npm`/`npx`, `cargo` and `go`. quicktype and go-enum versions are pinned in `generate.sh` (`QUICKTYPE_VERSION`, `GO_ENUM_VERSION`): newer quicktype versions change the generated type names and enums, which breaks the public API, so check the diff carefully before bumping them.
 
 ## Versioning
 
