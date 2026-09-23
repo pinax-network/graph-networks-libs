@@ -21,14 +21,14 @@
 //
 // # Looking Up Networks
 //
-//	// By ID
-//	if mainnet := reg.GetNetworkById("mainnet"); mainnet != nil {
+//	// By ID or alias
+//	if mainnet := reg.GetNetworkByGraphId("mainnet"); mainnet != nil {
 //	    fmt.Printf("Found mainnet: %s\n", mainnet.FullName)
 //	}
 //
-//	// By alias
-//	if ethereum := reg.GetNetworkByAlias("eth"); ethereum != nil {
-//	    fmt.Printf("Found ethereum by alias: %s\n", ethereum.FullName)
+//	// By CAIP-2 ID
+//	if ethereum := reg.GetNetworkByCaip2Id("eip155:1"); ethereum != nil {
+//	    fmt.Printf("Found ethereum by CAIP-2 ID: %s\n", ethereum.FullName)
 //	}
 //
 // # Loading Methods
@@ -38,6 +38,18 @@
 //   - FromFile(path): loads from a local JSON file
 //   - FromJSON(data): parses from JSON bytes
 //   - FromURL(url): fetches from any HTTP URL
+//
+// # Enums
+//
+// Enum types (NetworkType, Protocol, RelationKind, SubgraphKind, BytesEncoding, APIURLKind, Feature)
+// have type-prefixed constants (e.g. NetworkTypeMainnet) and helpers to parse, validate and list values:
+//
+//	nt, err := registry.ParseNetworkType("mainnet") // registry.NetworkTypeMainnet, or ErrInvalidNetworkType
+//	valid := network.NetworkType.IsValid()
+//	all := registry.NetworkTypeValues()
+//
+// Unmarshalling JSON does not validate enum values, so registries with values added in a newer schema
+// still load. Use IsValid to check them.
 //
 // For more information about The Graph Networks Registry, visit:
 // https://github.com/graphprotocol/networks-registry
