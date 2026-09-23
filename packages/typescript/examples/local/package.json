@@ -4,7 +4,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "start": "tsc --noEmit *.ts && esbuild --bundle index.ts | node"
+        "start": "tsc --noEmit *.ts && esbuild --bundle --format=esm --platform=node --packages=external index.ts | node --input-type=module"
     },
     "devDependencies": {
         "@types/node": "^24.0.10",

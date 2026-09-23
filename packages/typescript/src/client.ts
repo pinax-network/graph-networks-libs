@@ -5,13 +5,22 @@ import { schemaVersion } from "./version.js";
 const REGISTRY_BASE_URL = "https://networks-registry.thegraph.com";
 const FALLBACK_BASE_URL = "https://raw.githubusercontent.com/graphprotocol/networks-registry/refs/heads/main/public";
 
-let readFileSync: ((path: string, encoding: string) => string) | undefined;
-try {
-  // Only import fs in Node.js environment
-  const fs = require("fs");
-  readFileSync = fs.readFileSync;
-} catch {
-  // Ignore error - fs is not available in browser environments
+type ReadFileSync = (path: string, encoding: "utf-8") => string;
+
+/**
+ * Lazily resolves `fs.readFileSync` in Node.js.
+ * `require` is not defined in ESM, so prefer `process.getBuiltinModule` (Node >= 20.16 / 22.3),
+ * which works in both ESM and CJS, and fall back to `require` for older Node in CJS.
+ * Returns undefined in environments without a file system (e.g. browsers).
+ */
+function getReadFileSync(): ReadFileSync | undefined {
+  try {
+    const fs =
+      globalThis.process?.getBuiltinModule?.("fs") ?? (typeof require === "function" ? require("fs") : undefined);
+    return fs?.readFileSync;
+  } catch {
+    return undefined;
+  }
 }
 
 /**
@@ -149,6 +158,7 @@ export class NetworksRegistry {
    * @throws Error if the file cannot be read or contains invalid data
    */
   static fromFile(path: string): NetworksRegistry {
+    const readFileSync = getReadFileSync();
     if (!readFileSync) {
       throw new Error("File system operations are not supported in this environment");
     }
