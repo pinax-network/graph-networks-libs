@@ -67,9 +67,9 @@ gofmt -w packages/golang/lib/types.go packages/golang/lib/version.go
 # Run tests for each package
 echo "Running TypeScript tests..."
 cd packages/typescript
-bun install
-bun run build
-bun test
+npm install --no-audit --no-fund
+npm run build
+npm test
 cd ../..
 
 echo "Running Rust tests..."
@@ -87,8 +87,8 @@ rm sample/Network.json
 
 # Run examples
 cd packages/typescript/examples/local
-bun install --no-save
-bun run start
+npm install --no-audit --no-fund
+npm start
 cd ../../../..
 
 cd packages/rust/examples/local
