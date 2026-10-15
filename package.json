@@ -1,0 +1,18 @@
+{
+  "name": "graph-networks-libs-tools",
+  "private": true,
+  "description": "Code generation tools for generate.sh, installed from bun.lock",
+  "devDependencies": {
+    "quicktype": "26.0.0"
+  },
+  "packageManager": "bun@1.4.3",
+  "engines": {
+    "bun": ">=1.4.3"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "bun",
+      "onFail": "error"
+    }
+  }
+}

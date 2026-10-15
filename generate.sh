@@ -44,21 +44,22 @@ package registry
 const Version = "$MAJOR_MINOR_VERSION.0"
 EOF
 
-# Pin quicktype: other versions may change generated type names/enums (breaking API).
+# quicktype is pinned in the root package.json and installed from bun.lock: other
+# versions may change generated type names/enums (breaking API).
 # TS needs --no-prefer-unions to keep enums (unions are the default since v26)
-QUICKTYPE_VERSION=26.0.0
 GO_ENUM_VERSION=v0.9.5
+bun install --frozen-lockfile
 
 # Generate types for each language
 echo "Generating TypeScript types..."
-npx -y quicktype@$QUICKTYPE_VERSION -s schema sample/Network.json --lang typescript --top-level NetworksRegistryInner --no-prefer-unions --out packages/typescript/src/types.ts
+bunx --no-install quicktype -s schema sample/Network.json --lang typescript --top-level NetworksRegistryInner --no-prefer-unions --out packages/typescript/src/types.ts
 
 echo "Generating Rust types..."
-npx -y quicktype@$QUICKTYPE_VERSION -s schema sample/Network.json --lang rust --top-level NetworksRegistry --density normal --visibility public --derive-debug --derive-clone --out packages/rust/src/types.rs
+bunx --no-install quicktype -s schema sample/Network.json --lang rust --top-level NetworksRegistry --density normal --visibility public --derive-debug --derive-clone --out packages/rust/src/types.rs
 (cd packages/rust && cargo fmt)
 
 echo "Generating Go types..."
-npx -y quicktype@$QUICKTYPE_VERSION -s schema sample/Network.json --lang go --top-level NetworksRegistry --package registry --out packages/golang/lib/types.go
+bunx --no-install quicktype -s schema sample/Network.json --lang go --top-level NetworksRegistry --package registry --out packages/golang/lib/types.go
 echo "Generating Go enums..."
 awk -f scripts/annotate-go-enums.awk packages/golang/lib/types.go packages/golang/lib/types.go > temp.go
 mv temp.go packages/golang/lib/types.go
@@ -68,9 +69,9 @@ gofmt -w packages/golang/lib/types.go packages/golang/lib/version.go
 # Run tests for each package
 echo "Running TypeScript tests..."
 cd packages/typescript
-npm install --no-audit --no-fund
-npm run build
-npm test
+bun install --frozen-lockfile
+bun run build
+bun run test
 cd ../..
 
 echo "Running Rust tests..."
@@ -88,8 +89,8 @@ rm sample/Network.json
 
 # Run examples
 cd packages/typescript/examples/local
-npm install --no-audit --no-fund
-npm start
+bun install --frozen-lockfile
+bun run start
 cd ../../../..
 
 cd packages/rust/examples/local
