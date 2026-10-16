@@ -28,7 +28,7 @@
     "test:watch": "vitest",
     "lint": "eslint src --ext .ts",
     "docs": "typedoc --out docs src",
-    "prepublishOnly": "npm run clean && npm run build"
+    "prepublishOnly": "bun run clean && bun run build"
   },
   "repository": {
     "type": "git",
@@ -62,5 +62,15 @@
     "tsup": "^8.0.0",
     "typedoc": "^0.26.11",
     "typescript": "^5.0.0"
+  },
+  "packageManager": "bun@1.4.3",
+  "engines": {
+    "bun": ">=1.4.3"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "bun",
+      "onFail": "error"
+    }
   }
 }

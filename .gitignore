@@ -3,7 +3,7 @@ node_modules
 dist
 *.log
 .env
-bun.lock*
+bun.lockb
 temp-schema.json
 
 packages/rust/**/target
