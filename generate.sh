@@ -90,9 +90,9 @@ rm sample/Network.json
 # Run examples
 # The local example stays on npm (#17): its dependency is file:../../, and Bun
 # copies file: dependencies, so it copies the package into its own node_modules
-# without end. npm symlinks it. --min-release-age keeps the 2-day gate.
+# without end. npm symlinks it. --min-release-age keeps the 5-day gate.
 cd packages/typescript/examples/local
-npm install --no-audit --no-fund --min-release-age=2
+npm install --no-audit --no-fund --min-release-age=5
 npm start
 cd ../../../..
 
