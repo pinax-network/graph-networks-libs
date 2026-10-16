@@ -2,6 +2,7 @@
     "name": "local-example",
     "version": "0.1.0",
     "private": true,
+    "//": "supply-chain: allow npm: generate.sh installs this example with npm, gated by --min-release-age",
     "type": "module",
     "scripts": {
         "start": "tsc --noEmit *.ts && esbuild --bundle --format=esm --platform=node --packages=external index.ts | node --input-type=module"
