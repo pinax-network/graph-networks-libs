@@ -21,7 +21,7 @@ This will:
 
 If there are errors when running the script, find and fix them manually.
 
-Requires `jq`, `npm`/`npx`, `cargo` and `go`. quicktype and go-enum versions are pinned in `generate.sh` (`QUICKTYPE_VERSION`, `GO_ENUM_VERSION`): newer quicktype versions change the generated type names and enums, which breaks the public API, so check the diff carefully before bumping them.
+Requires `jq`, Bun >= 1.4.3 (`curl -fsSL https://bun.com/install | bash -s "bun-v1.4.3"`), Node.js with `npm` (for the local TypeScript example), `cargo` and `go`. quicktype is pinned in the root `package.json` and installed from `bun.lock`, and go-enum in `generate.sh` (`GO_ENUM_VERSION`): newer quicktype versions change the generated type names and enums, which breaks the public API, so check the diff carefully before bumping them.
 
 ## Versioning
 
@@ -33,6 +33,6 @@ Requires `jq`, `npm`/`npx`, `cargo` and `go`. quicktype and go-enum versions are
 
 ## Publishing new versions
 
-- `npm publish` for TypeScript
+- `npm publish --force` for TypeScript (`--force` because `package.json` requires Bun)
 - `cargo publish` for Rust
 - `./release.sh` for Go
