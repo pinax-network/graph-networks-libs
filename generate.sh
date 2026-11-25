@@ -88,14 +88,13 @@ echo "Cleaning up..."
 rm sample/Network.json
 
 # Run examples
-# The local example stays on npm (#17): its dependency is file:../../, and Bun
-# copies file: dependencies, so it copies the package into its own node_modules
-# without end. npm symlinks it. --min-release-age keeps the 5-day gate.
-# supply-chain: allow npm for this example.
-cd packages/typescript/examples/local
-npm install --no-audit --no-fund --min-release-age=5
-npm start
-cd ../../../..
+# The TypeScript examples live outside packages/typescript: Bun copies file:
+# dependencies, so an example inside the package gets the package copied into
+# its own node_modules, examples included, without end.
+cd packages/typescript-examples/local
+bun install --frozen-lockfile
+bun run start
+cd ../../..
 
 cd packages/rust/examples/local
 cargo run
