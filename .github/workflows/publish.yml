@@ -1,0 +1,164 @@
+name: Publish
+
+# Publishing a GitHub release tagged vX.Y.Z publishes every package whose version
+# is X.Y.Z and is not on its registry yet. A package at another version is skipped,
+# not failed: patch versions may differ per language (see README, Versioning).
+#
+# npm and crates.io authenticate with trusted publishing (OIDC), so there are no
+# registry tokens in this repository. Both registries are configured to trust this
+# workflow by its filename: renaming this file breaks publishing until they are updated.
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  ci:
+    name: CI
+    uses: ./.github/workflows/ci.yml
+
+  npm:
+    name: npm
+    needs: ci
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # OIDC token for npm trusted publishing
+    defaults:
+      run:
+        working-directory: packages/typescript
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Decide whether to publish
+        id: guard
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          name=$(jq -r .name package.json)
+          version=$(jq -r .version package.json)
+          if [ "v$version" != "$TAG" ]; then
+            echo "$name is at $version, the release is $TAG: skipping"
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          status=$(curl -s -o /dev/null -w '%{http_code}' "https://registry.npmjs.org/$name/$version")
+          case "$status" in
+            200) echo "$name@$version is already on npm: skipping"
+                 echo "publish=false" >> "$GITHUB_OUTPUT" ;;
+            404) echo "publish=true" >> "$GITHUB_OUTPUT" ;;
+            *)   echo "Unexpected HTTP $status from the npm registry"; exit 1 ;;
+          esac
+
+      - uses: actions/setup-node@v4
+        if: steps.guard.outputs.publish == 'true'
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+
+      - uses: oven-sh/setup-bun@v2
+        if: steps.guard.outputs.publish == 'true'
+        with:
+          bun-version-file: packages/typescript/package.json
+
+      - name: Check npm supports trusted publishing
+        if: steps.guard.outputs.publish == 'true'
+        run: |
+          required=11.5.1
+          current=$(npm --version)
+          if [ "$(printf '%s\n' "$required" "$current" | sort -V | head -n1)" != "$required" ]; then
+            echo "npm $current is too old: trusted publishing needs npm >= $required"
+            exit 1
+          fi
+
+      - name: Install dependencies
+        if: steps.guard.outputs.publish == 'true'
+        run: bun install --frozen-lockfile
+
+      # prepublishOnly builds the package with Bun. --force because package.json
+      # only allows Bun as package manager, and npm is used here just to publish.
+      - name: Publish
+        if: steps.guard.outputs.publish == 'true'
+        run: npm publish --force
+
+  crates:
+    name: crates.io
+    needs: ci
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # OIDC token for crates.io trusted publishing
+    defaults:
+      run:
+        working-directory: packages/rust
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Decide whether to publish
+        id: guard
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          name=$(sed -n 's/^name = "\(.*\)"/\1/p' Cargo.toml | head -n1)
+          version=$(sed -n 's/^version = "\(.*\)"/\1/p' Cargo.toml | head -n1)
+          if [ "v$version" != "$TAG" ]; then
+            echo "$name is at $version, the release is $TAG: skipping"
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          status=$(curl -s -o /dev/null -w '%{http_code}' \
+            -A "$GITHUB_REPOSITORY publish workflow" \
+            "https://crates.io/api/v1/crates/$name/$version")
+          case "$status" in
+            200) echo "$name $version is already on crates.io: skipping"
+                 echo "publish=false" >> "$GITHUB_OUTPUT" ;;
+            404) echo "publish=true" >> "$GITHUB_OUTPUT" ;;
+            *)   echo "Unexpected HTTP $status from crates.io"; exit 1 ;;
+          esac
+
+      - name: Get a crates.io token
+        id: auth
+        if: steps.guard.outputs.publish == 'true'
+        uses: rust-lang/crates-io-auth-action@v1
+
+      - name: Publish
+        if: steps.guard.outputs.publish == 'true'
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ steps.auth.outputs.token }}
+        run: cargo publish
+
+  golang:
+    name: Go module tag
+    needs: ci
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # to push the module tag
+    steps:
+      - uses: actions/checkout@v4
+
+      # A Go module in a subdirectory is released by a tag prefixed with its path
+      - name: Tag the module
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(sed -n 's/^const Version = "\(.*\)"/\1/p' packages/golang/lib/version.go)
+          module_tag="packages/golang/v$version"
+          if [ "v$version" != "$TAG" ]; then
+            echo "Go module is at $version, the release is $TAG: skipping"
+            exit 0
+          fi
+          if git ls-remote --exit-code --tags origin "refs/tags/$module_tag" >/dev/null; then
+            echo "$module_tag already exists: skipping"
+            exit 0
+          fi
+          gh api "repos/$GITHUB_REPOSITORY/git/refs" \
+            -f ref="refs/tags/$module_tag" -f sha="$GITHUB_SHA"
+          echo "Created $module_tag at $GITHUB_SHA"
