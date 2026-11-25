@@ -12,7 +12,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@pinax/graph-networks-registry": "file:../.."
+    "@pinax/graph-networks-registry": "file:../../typescript"
   },
   "packageManager": "bun@1.4.3",
   "engines": {

@@ -5,7 +5,7 @@
     "": {
       "name": "commonjs-usage-example",
       "dependencies": {
-        "@pinax/graph-networks-registry": "file:../../",
+        "@pinax/graph-networks-registry": "file:../../typescript",
       },
       "devDependencies": {
         "@types/node": "^20.19.4",
@@ -106,7 +106,7 @@
 
     "@napi-rs/lzma-linux-x64-gnu": ["@napi-rs/lzma-linux-x64-gnu@1.5.1", "", { "os": "linux", "cpu": "x64" }, "sha512-oTXEIha4SsuXdTA4Iyskj0kpdx2yVXdhd75c2v3xGrHFfVMsbhTPZU/nMPL4sWKo4pBHm3aucLaqGlF696dTyQ=="],
 
-    "@pinax/graph-networks-registry": ["@pinax/graph-networks-registry@file:../..", { "devDependencies": { "@eslint/js": "^9.30.1", "@types/node": "^20.11.24", "@typescript-eslint/eslint-plugin": "^8.35.1", "@typescript-eslint/parser": "^8.35.1", "eslint": "^9.30.1", "tsup": "^8.0.0", "typedoc": "^0.26.11", "typescript": "^5.0.0", "vitest": "^1.2.2" } }],
+    "@pinax/graph-networks-registry": ["@pinax/graph-networks-registry@file:../../typescript", { "devDependencies": { "@eslint/js": "^9.30.1", "@types/node": "^20.11.24", "@typescript-eslint/eslint-plugin": "^8.35.1", "@typescript-eslint/parser": "^8.35.1", "eslint": "^9.30.1", "tsup": "^8.0.0", "typedoc": "^0.26.11", "typescript": "^5.0.0", "vitest": "^1.2.2" } }],
 
     "@rollup/rollup-android-arm-eabi": ["@rollup/rollup-android-arm-eabi@4.64.5", "", { "os": "android", "cpu": "arm" }, "sha512-MrfgRQSpD5hkkRg6XI16B6EDLb+6+xp8xje6bpdSwkYw+qxrBKbUVrRAQu9h82UT+QumSIVQ8HXsXjPd2dlhqw=="],
 
