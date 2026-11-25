@@ -33,6 +33,18 @@ Requires `jq`, Bun >= 1.4.3 (`curl -fsSL https://bun.com/install | bash -s "bun-
 
 ## Publishing new versions
 
+Publish a GitHub release tagged `vX.Y.Z`. The [Publish](./.github/workflows/publish.yml) workflow runs the CI checks, then publishes every package whose version is `X.Y.Z` and is not released yet:
+
+- TypeScript to npm
+- Rust to crates.io
+- Go by pushing the tag `packages/golang/vX.Y.Z`
+
+A package at a different version is skipped, so a release can publish one library on its own after a patch bump.
+
+npm and crates.io trust this workflow by its filename (trusted publishing), so the repository holds no registry tokens. Renaming `publish.yml` breaks publishing until both registries are updated.
+
+To publish by hand instead:
+
 - `npm publish --force` for TypeScript (`--force` because `package.json` requires Bun)
 - `cargo publish` for Rust
 - `./release.sh` for Go
