@@ -152,7 +152,7 @@ type Relation struct {
 type Services struct {
 	// Firehose gRPC URLs, e.g. eth.firehose.pinax.network:443
 	Firehose []string `json:"firehose,omitempty"`
-	// Subgraph service entries (gateway, studio, backstop)
+	// Subgraph service entries (gateway, studio, backstop, curation)
 	Subgraphs []SubgraphsService `json:"subgraphs,omitempty"`
 	// Substreams gRPC URLs, e.g. eth.substreams.pinax.network:443
 	Substreams []string `json:"substreams,omitempty"`
@@ -160,14 +160,28 @@ type Services struct {
 	TokenAPI []string `json:"tokenApi,omitempty"`
 }
 
+// Subgraph service entry. Gateway entries must carry queryUrls; other kinds must not
 type SubgraphsService struct {
 	// [optional] Human-readable description of the entry
 	Description *string `json:"description,omitempty"`
 	// Kind of Subgraph service entry
 	Kind SubgraphKind `json:"kind"`
-	// Provider identifier or URL for this entry, e.g. a gateway/studio deployment URL or a
-	// backstop provider like infradao
-	Provider string `json:"provider"`
+	// Provider identifier or URL for this entry, e.g. a gateway base URL, a studio deployment
+	// URL, a backstop provider like infradao or a curation provider like the-graph-foundation
+	Provider  string             `json:"provider"`
+	QueryUrls *SubgraphQueryUrls `json:"queryUrls,omitempty"`
+}
+
+// Gateway query URL templates. Replace each placeholder with its value to get the GraphQL
+// endpoint
+type SubgraphQueryUrls struct {
+	// Query URL for a Subgraph deployment ID (IPFS CID), with {DEPLOYMENT_ID} and {API_KEY}
+	// placeholders, e.g.
+	// https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}
+	DeploymentID string `json:"deploymentId"`
+	// Query URL for a Subgraph ID on The Graph Network, with {SUBGRAPH_ID} and {API_KEY}
+	// placeholders, e.g. https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}
+	SubgraphID string `json:"subgraphId"`
 }
 
 // Token API specific configuration information
@@ -267,12 +281,14 @@ const (
 )
 
 // Kind of Subgraph service entry
-// ENUM(backstop, gateway, studio)
+// ENUM(backstop, curation, gateway, studio)
 type SubgraphKind string
 
 const (
 	// Deprecated: use SubgraphKindBackstop instead.
 	Backstop SubgraphKind = "backstop"
+	// Deprecated: use SubgraphKindCuration instead.
+	Curation SubgraphKind = "curation"
 	// Deprecated: use SubgraphKindGateway instead.
 	Gateway SubgraphKind = "gateway"
 	// Deprecated: use SubgraphKindStudio instead.

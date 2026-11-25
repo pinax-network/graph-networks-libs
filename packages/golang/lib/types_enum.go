@@ -437,6 +437,8 @@ func ParseRelationKind(name string) (RelationKind, error) {
 const (
 	// SubgraphKindBackstop is a SubgraphKind of type backstop.
 	SubgraphKindBackstop SubgraphKind = "backstop"
+	// SubgraphKindCuration is a SubgraphKind of type curation.
+	SubgraphKindCuration SubgraphKind = "curation"
 	// SubgraphKindGateway is a SubgraphKind of type gateway.
 	SubgraphKindGateway SubgraphKind = "gateway"
 	// SubgraphKindStudio is a SubgraphKind of type studio.
@@ -447,6 +449,7 @@ var ErrInvalidSubgraphKind = fmt.Errorf("not a valid SubgraphKind, try [%s]", st
 
 var _SubgraphKindNames = []string{
 	string(SubgraphKindBackstop),
+	string(SubgraphKindCuration),
 	string(SubgraphKindGateway),
 	string(SubgraphKindStudio),
 }
@@ -462,6 +465,7 @@ func SubgraphKindNames() []string {
 func SubgraphKindValues() []SubgraphKind {
 	return []SubgraphKind{
 		SubgraphKindBackstop,
+		SubgraphKindCuration,
 		SubgraphKindGateway,
 		SubgraphKindStudio,
 	}
@@ -481,6 +485,7 @@ func (x SubgraphKind) IsValid() bool {
 
 var _SubgraphKindValue = map[string]SubgraphKind{
 	"backstop": SubgraphKindBackstop,
+	"curation": SubgraphKindCuration,
 	"gateway":  SubgraphKindGateway,
 	"studio":   SubgraphKindStudio,
 }

@@ -298,7 +298,7 @@ export interface Services {
      */
     firehose?: string[];
     /**
-     * Subgraph service entries (gateway, studio, backstop)
+     * Subgraph service entries (gateway, studio, backstop, curation)
      */
     subgraphs?: SubgraphsService[];
     /**
@@ -311,6 +311,9 @@ export interface Services {
     tokenApi?: string[];
 }
 
+/**
+ * Subgraph service entry. Gateway entries must carry queryUrls; other kinds must not
+ */
 export interface SubgraphsService {
     /**
      * [optional] Human-readable description of the entry
@@ -321,10 +324,11 @@ export interface SubgraphsService {
      */
     kind: SubgraphKind;
     /**
-     * Provider identifier or URL for this entry, e.g. a gateway/studio deployment URL or a
-     * backstop provider like infradao
+     * Provider identifier or URL for this entry, e.g. a gateway base URL, a studio deployment
+     * URL, a backstop provider like infradao or a curation provider like the-graph-foundation
      */
-    provider: string;
+    provider:   string;
+    queryUrls?: SubgraphQueryUrls;
 }
 
 /**
@@ -332,8 +336,27 @@ export interface SubgraphsService {
  */
 export enum SubgraphKind {
     Backstop = "backstop",
+    Curation = "curation",
     Gateway = "gateway",
     Studio = "studio",
+}
+
+/**
+ * Gateway query URL templates. Replace each placeholder with its value to get the GraphQL
+ * endpoint
+ */
+export interface SubgraphQueryUrls {
+    /**
+     * Query URL for a Subgraph deployment ID (IPFS CID), with {DEPLOYMENT_ID} and {API_KEY}
+     * placeholders, e.g.
+     * https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}
+     */
+    deploymentId: string;
+    /**
+     * Query URL for a Subgraph ID on The Graph Network, with {SUBGRAPH_ID} and {API_KEY}
+     * placeholders, e.g. https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}
+     */
+    subgraphId: string;
 }
 
 /**
@@ -602,6 +625,11 @@ const typeMap: any = {
         { json: "description", js: "description", typ: u(undefined, "") },
         { json: "kind", js: "kind", typ: r("SubgraphKind") },
         { json: "provider", js: "provider", typ: "" },
+        { json: "queryUrls", js: "queryUrls", typ: u(undefined, r("SubgraphQueryUrls")) },
+    ], false),
+    "SubgraphQueryUrls": o([
+        { json: "deploymentId", js: "deploymentId", typ: "" },
+        { json: "subgraphId", js: "subgraphId", typ: "" },
     ], false),
     "TokenAPI": o([
         { json: "deprecatedAt", js: "deprecatedAt", typ: u(undefined, Date) },
@@ -648,6 +676,7 @@ const typeMap: any = {
     ],
     "SubgraphKind": [
         "backstop",
+        "curation",
         "gateway",
         "studio",
     ],
