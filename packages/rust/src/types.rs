@@ -289,7 +289,7 @@ pub struct Services {
     /// Firehose gRPC URLs, e.g. eth.firehose.pinax.network:443
     pub firehose: Option<Vec<String>>,
 
-    /// Subgraph service entries (gateway, studio, backstop)
+    /// Subgraph service entries (gateway, studio, backstop, curation)
     pub subgraphs: Option<Vec<SubgraphsService>>,
 
     /// Substreams gRPC URLs, e.g. eth.substreams.pinax.network:443
@@ -299,7 +299,9 @@ pub struct Services {
     pub token_api: Option<Vec<String>>,
 }
 
+/// Subgraph service entry. Gateway entries must carry queryUrls; other kinds must not
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct SubgraphsService {
     /// [optional] Human-readable description of the entry
     pub description: Option<String>,
@@ -307,9 +309,11 @@ pub struct SubgraphsService {
     /// Kind of Subgraph service entry
     pub kind: SubgraphKind,
 
-    /// Provider identifier or URL for this entry, e.g. a gateway/studio deployment URL or a
-    /// backstop provider like infradao
+    /// Provider identifier or URL for this entry, e.g. a gateway base URL, a studio deployment
+    /// URL, a backstop provider like infradao or a curation provider like the-graph-foundation
     pub provider: String,
+
+    pub query_urls: Option<SubgraphQueryUrls>,
 }
 
 /// Kind of Subgraph service entry
@@ -318,9 +322,26 @@ pub struct SubgraphsService {
 pub enum SubgraphKind {
     Backstop,
 
+    Curation,
+
     Gateway,
 
     Studio,
+}
+
+/// Gateway query URL templates. Replace each placeholder with its value to get the GraphQL
+/// endpoint
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct SubgraphQueryUrls {
+    /// Query URL for a Subgraph deployment ID (IPFS CID), with {DEPLOYMENT_ID} and {API_KEY}
+    /// placeholders, e.g.
+    /// https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}
+    pub deployment_id: String,
+
+    /// Query URL for a Subgraph ID on The Graph Network, with {SUBGRAPH_ID} and {API_KEY}
+    /// placeholders, e.g. https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}
+    pub subgraph_id: String,
 }
 
 /// Token API specific configuration information

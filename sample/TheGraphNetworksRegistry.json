@@ -1,9 +1,9 @@
 {
-  "$schema": "https://networks-registry.thegraph.com/TheGraphNetworksRegistrySchema_v0_8.json",
-  "version": "0.8.2",
+  "$schema": "https://networks-registry.thegraph.com/TheGraphNetworksRegistrySchema_v0_9.json",
+  "version": "0.9.0",
   "title": "The Graph networks registry",
   "description": "This registry was generated and validated at https://github.com/graphprotocol/networks-registry",
-  "updatedAt": "2026-09-22T19:54:19.515Z",
+  "updatedAt": "2026-11-25T14:37:09.541Z",
   "networks": [
     {
       "id": "mainnet",
@@ -24,8 +24,9 @@
       ],
       "rpcUrls": [
         "https://mainnet.gateway.tenderly.co",
-        "https://eth.rpc.service.pinax.network",
-        "https://eth.drpc.org"
+        "https://eth.rpc.pinax.network",
+        "https://eth.drpc.org",
+        "https://rpc.graphops.xyz/v1/evm/1/{GRAPHOPS_API_KEY}"
       ],
       "apiUrls": [
         {
@@ -47,7 +48,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -129,7 +143,7 @@
       ],
       "rpcUrls": [
         "https://mainnet.optimism.io",
-        "https://optimism.rpc.service.pinax.network",
+        "https://optimism.rpc.pinax.network",
         "https://optimism.drpc.org"
       ],
       "apiUrls": [
@@ -147,7 +161,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -226,17 +253,14 @@
       ],
       "rpcUrls": [
         "https://rpc.gnosischain.com",
-        "https://gnosis.rpc.service.pinax.network",
-        "https://rpc.gnosis.gateway.fm"
+        "https://gnosis.rpc.pinax.network",
+        "https://rpc.gnosis.gateway.fm",
+        "https://rpc.graphops.xyz/v1/evm/100/{GRAPHOPS_API_KEY}"
       ],
       "apiUrls": [
         {
           "url": "https://gnosis.abi.thegraph.com/api",
           "kind": "etherscan"
-        },
-        {
-          "url": "https://gnosis.blockscout.com/api",
-          "kind": "blockscout"
         }
       ],
       "services": {
@@ -244,7 +268,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -299,8 +336,8 @@
       ],
       "rpcUrls": [
         "https://public-en-kairos.node.kaia.io",
-        "https://klaytn-baobab.drpc.org",
-        "https://responsive-green-emerald.kaia-kairos.quiknode.pro"
+        "https://responsive-green-emerald.kaia-kairos.quiknode.pro",
+        "https://kaia-kairos.gateway.tatum.io"
       ],
       "apiUrls": [
         {
@@ -313,12 +350,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
           },
           {
-            "kind": "studio",
-            "provider": "https://api.studio.thegraph.com/deploy",
-            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           }
         ]
       },
@@ -381,7 +426,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -434,7 +492,8 @@
         "https://testnet.monadexplorer.com"
       ],
       "rpcUrls": [
-        "https://testnet-rpc.monad.xyz"
+        "https://testnet-rpc.monad.xyz",
+        "https://rpc-testnet.monadinfra.com"
       ],
       "apiUrls": [
         {
@@ -491,21 +550,29 @@
       ],
       "rpcUrls": [
         "https://rpc.chiadochain.net",
-        "https://chiado.rpc.service.pinax.network",
+        "https://chiado.rpc.pinax.network",
         "https://gnosis-chiado.drpc.org"
       ],
-      "apiUrls": [
-        {
-          "url": "https://gnosis-chiado.blockscout.com/api",
-          "kind": "blockscout"
-        }
-      ],
+      "apiUrls": [],
       "services": {
         "subgraphs": [
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -563,8 +630,8 @@
       ],
       "apiUrls": [
         {
-          "url": "https://api.routescan.io/v2/network/mainnet/evm/1088/etherscan/api",
-          "kind": "etherscan"
+          "url": "https://andromeda-explorer.metis.io/api",
+          "kind": "blockscout"
         }
       ],
       "rpcUrls": [
@@ -622,13 +689,10 @@
           "network": "mainnet"
         }
       ],
-      "explorerUrls": [
-        "https://www.oklink.com/polygon-zkevm"
-      ],
+      "explorerUrls": [],
       "rpcUrls": [
         "https://zkevm-rpc.com",
-        "https://polygon-zkevm.drpc.org",
-        "https://1rpc.io/polygon/zkevm"
+        "https://polygon-zkevm.drpc.org"
       ],
       "apiUrls": [],
       "networkType": "mainnet",
@@ -757,8 +821,9 @@
         "https://celo-sepolia.blockscout.com"
       ],
       "rpcUrls": [
-        "https://celosepolia.rpc.service.pinax.network",
-        "https://rpc.ankr.com/celo_sepolia"
+        "https://celosepolia.rpc.pinax.network",
+        "https://rpc.ankr.com/celo_sepolia",
+        "https://celo-sepolia.drpc.org"
       ],
       "apiUrls": [
         {
@@ -775,7 +840,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -831,8 +909,9 @@
       ],
       "rpcUrls": [
         "https://sepolia.gateway.tenderly.co",
-        "https://sepolia.rpc.service.pinax.network",
-        "https://eth-sepolia-testnet.api.pocket.network"
+        "https://sepolia.rpc.pinax.network",
+        "https://eth-sepolia-testnet.api.pocket.network",
+        "https://rpc.graphops.xyz/v1/evm/11155111/{GRAPHOPS_API_KEY}"
       ],
       "apiUrls": [
         {
@@ -853,7 +932,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -920,7 +1012,7 @@
       ],
       "rpcUrls": [
         "https://sepolia.optimism.io",
-        "https://opsepolia.rpc.service.pinax.network",
+        "https://opsepolia.rpc.pinax.network",
         "https://optimism-sepolia.api.onfinality.io/public"
       ],
       "apiUrls": [
@@ -938,7 +1030,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -977,72 +1082,6 @@
       }
     },
     {
-      "id": "fuse-testnet",
-      "shortName": "Fuse",
-      "fullName": "Fuse Testnet",
-      "aliases": [
-        "evm-12001"
-      ],
-      "caip2Id": "eip155:12001",
-      "graphNode": {
-        "protocol": "ethereum"
-      },
-      "explorerUrls": [
-        "https://explorer.fusespark.io"
-      ],
-      "rpcUrls": [
-        "https://rpc.fusespark.io"
-      ],
-      "apiUrls": [
-        {
-          "url": "https://explorer.fusespark.io/api",
-          "kind": "blockscout"
-        }
-      ],
-      "services": {
-        "subgraphs": [
-          {
-            "kind": "gateway",
-            "provider": "https://gateway.thegraph.com/api",
-            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
-          },
-          {
-            "kind": "backstop",
-            "provider": "infradao",
-            "description": "InfraDAO provides backstop support for Subgraphs with 500 GRT in signal"
-          }
-        ]
-      },
-      "networkType": "testnet",
-      "relations": [
-        {
-          "kind": "testnetOf",
-          "network": "fuse"
-        }
-      ],
-      "issuanceRewards": false,
-      "nativeToken": "ETH",
-      "docsUrl": "https://docs.fuse.io",
-      "firehose": {
-        "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": false,
-        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
-        "bytesEncoding": "hex",
-        "firstStreamableBlock": {
-          "id": "0xfd643f387cd7386d21e8d34f8762188865789196dee77c98f8210dbbc15616ae",
-          "height": 0
-        },
-        "blockFeatures": [
-          "base"
-        ]
-      },
-      "icon": {
-        "web3Icons": {
-          "name": "fuse"
-        }
-      }
-    },
-    {
       "id": "fuse",
       "shortName": "Fuse",
       "fullName": "Fuse Mainnet",
@@ -1073,12 +1112,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
           },
           {
-            "kind": "backstop",
-            "provider": "infradao",
-            "description": "InfraDAO provides backstop support for Subgraphs with 500 GRT in signal"
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           }
         ]
       },
@@ -1139,7 +1186,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -1178,6 +1238,80 @@
       }
     },
     {
+      "id": "fuse-testnet",
+      "shortName": "Fuse",
+      "fullName": "Fuse Testnet",
+      "aliases": [
+        "evm-123"
+      ],
+      "caip2Id": "eip155:123",
+      "graphNode": {
+        "protocol": "ethereum"
+      },
+      "explorerUrls": [
+        "https://explorer.fusespark.io"
+      ],
+      "rpcUrls": [
+        "https://rpc.fusespark.io"
+      ],
+      "apiUrls": [
+        {
+          "url": "https://explorer.fusespark.io/api",
+          "kind": "blockscout"
+        }
+      ],
+      "services": {
+        "subgraphs": [
+          {
+            "kind": "gateway",
+            "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
+            "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
+          }
+        ]
+      },
+      "networkType": "testnet",
+      "relations": [
+        {
+          "kind": "testnetOf",
+          "network": "fuse"
+        }
+      ],
+      "issuanceRewards": false,
+      "nativeToken": "SPARK",
+      "docsUrl": "https://docs.fuse.io",
+      "firehose": {
+        "blockType": "sf.ethereum.type.v2.Block",
+        "evmExtendedModel": false,
+        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
+        "bytesEncoding": "hex",
+        "firstStreamableBlock": {
+          "id": "0xfd643f387cd7386d21e8d34f8762188865789196dee77c98f8210dbbc15616ae",
+          "height": 0
+        },
+        "blockFeatures": [
+          "base"
+        ]
+      },
+      "icon": {
+        "web3Icons": {
+          "name": "fuse"
+        }
+      }
+    },
+    {
       "id": "etherlink-shadownet",
       "shortName": "Etherlink",
       "fullName": "Etherlink Shadownet Testnet",
@@ -1205,7 +1339,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -1257,12 +1404,12 @@
         "protocol": "ethereum"
       },
       "explorerUrls": [
-        "https://moonbeam.moonscan.io"
+        "https://moonbeam.subscan.io"
       ],
       "rpcUrls": [
-        "https://rpc.api.moonbeam.network",
-        "https://1rpc.io/glmr",
-        "https://moonbeam.drpc.org"
+        "https://moonbeam.api.pocket.network",
+        "https://moonbeam.api.onfinality.io/public",
+        "https://lb.routeme.sh/rpc/evm/1284"
       ],
       "apiUrls": [
         {
@@ -1278,7 +1425,7 @@
       "networkType": "mainnet",
       "issuanceRewards": false,
       "nativeToken": "GLMR",
-      "docsUrl": "https://docs.moonbeam.network",
+      "docsUrl": "https://moonbeam.network/docs",
       "indexerDocsUrls": [
         {
           "url": "https://docs.infradao.com/archive-nodes-101/moonbeam",
@@ -1318,19 +1465,13 @@
         "protocol": "ethereum"
       },
       "explorerUrls": [
-        "https://moonriver.moonscan.io"
+        "https://moonriver.subscan.io"
       ],
       "rpcUrls": [
-        "https://rpc.api.moonriver.moonbeam.network",
         "https://moonriver.api.onfinality.io/public",
-        "https://moonriver.unitedbloc.com"
+        "https://moonriver.api.pocket.network"
       ],
-      "apiUrls": [
-        {
-          "url": "https://moonriver.abi.thegraph.com/api",
-          "kind": "etherscan"
-        }
-      ],
+      "apiUrls": [],
       "services": {
         "subgraphs": [],
         "firehose": [],
@@ -1345,7 +1486,7 @@
       ],
       "issuanceRewards": false,
       "nativeToken": "MOVR",
-      "docsUrl": "https://docs.moonbeam.network",
+      "docsUrl": "https://moonbeam.network/docs",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
         "evmExtendedModel": false,
@@ -1379,11 +1520,9 @@
         "protocol": "ethereum"
       },
       "explorerUrls": [
-        "https://moonbase.moonscan.io"
+        "https://moonbase.subscan.io"
       ],
       "rpcUrls": [
-        "https://rpc.api.moonbase.moonbeam.network",
-        "https://moonbase-alpha.drpc.org",
         "https://moonbeam-alpha.api.onfinality.io/public"
       ],
       "apiUrls": [
@@ -1404,7 +1543,7 @@
       ],
       "issuanceRewards": false,
       "nativeToken": "DEV",
-      "docsUrl": "https://docs.moonbeam.network/learn/platform/networks/moonbase",
+      "docsUrl": "https://moonbeam.network/docs",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
         "evmExtendedModel": false,
@@ -1441,7 +1580,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -1486,8 +1638,9 @@
       ],
       "rpcUrls": [
         "https://mainnet.unichain.org",
-        "https://unichain.rpc.service.pinax.network",
-        "https://unichain.drpc.org"
+        "https://unichain.rpc.pinax.network",
+        "https://unichain.drpc.org",
+        "https://rpc.graphops.xyz/v1/evm/130/{GRAPHOPS_API_KEY}"
       ],
       "issuanceRewards": true,
       "nativeToken": "ETH",
@@ -1526,7 +1679,8 @@
       "fullName": "Unichain Sepolia Testnet",
       "aliases": [
         "evm-1301",
-        "unichain-sepolia"
+        "unichain-sepolia",
+        "unisepolia"
       ],
       "caip2Id": "eip155:1301",
       "networkType": "testnet",
@@ -1548,17 +1702,13 @@
       ],
       "rpcUrls": [
         "https://sepolia.unichain.org",
-        "https://unisepolia.rpc.service.pinax.network",
+        "https://unisepolia.rpc.pinax.network",
         "https://unichain-sepolia.drpc.org"
       ],
       "apiUrls": [
         {
           "url": "https://unichain-sepolia.blockscout.com/api",
           "kind": "blockscout"
-        },
-        {
-          "url": "https://api.routescan.io/v2/network/testnet/evm/1301/etherscan/api",
-          "kind": "etherscan"
         },
         {
           "url": "https://unichain-testnet.abi.thegraph.com/api",
@@ -1570,7 +1720,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -1674,10 +1837,14 @@
         "https://explorer.testnet.aurora.dev"
       ],
       "rpcUrls": [
-        "https://testnet.aurora.dev",
-        "https://aurora-testnet.drpc.org"
+        "https://testnet.aurora.dev"
       ],
-      "apiUrls": [],
+      "apiUrls": [
+        {
+          "url": "https://explorer.testnet.aurora.dev/api/",
+          "kind": "blockscout"
+        }
+      ],
       "services": {
         "subgraphs": []
       },
@@ -1733,10 +1900,6 @@
         {
           "url": "https://sei-atlantic.abi.thegraph.com/api",
           "kind": "etherscan"
-        },
-        {
-          "url": "https://seitrace.com/atlantic-2/api",
-          "kind": "etherscan"
         }
       ],
       "services": {
@@ -1744,7 +1907,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -1762,7 +1938,7 @@
       ],
       "issuanceRewards": false,
       "nativeToken": "SEI",
-      "docsUrl": "https://docs.seitrace.com",
+      "docsUrl": "https://docs.sei.io",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
         "evmExtendedModel": true,
@@ -1798,15 +1974,11 @@
         "https://seitrace.com"
       ],
       "rpcUrls": [
-        "https://sei-evm-rpc.stakeme.pro"
+        "https://1329.rpc.thirdweb.com"
       ],
       "apiUrls": [
         {
           "url": "https://sei-mainnet.abi.thegraph.com/api",
-          "kind": "etherscan"
-        },
-        {
-          "url": "https://seitrace.com/pacific-1/api",
           "kind": "etherscan"
         }
       ],
@@ -1815,7 +1987,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -1861,11 +2046,11 @@
         "protocol": "ethereum"
       },
       "explorerUrls": [
-        "https://testnet-explorer.hsk.xyz"
+        "https://testnet-explorer.hskchain.net"
       ],
       "apiUrls": [
         {
-          "url": "https://testnet-explorer.hsk.xyz/api",
+          "url": "https://testnet-explorer.hskchain.net/api",
           "kind": "blockscout"
         }
       ],
@@ -1920,19 +2105,9 @@
       "graphNode": {
         "protocol": "ethereum"
       },
-      "explorerUrls": [
-        "https://explorer-sepolia.gravity.xyz"
-      ],
-      "rpcUrls": [
-        "https://rpc-sepolia.gravity.xyz",
-        "https://gravity-alpha-sepolia.drpc.org"
-      ],
-      "apiUrls": [
-        {
-          "url": "https://explorer-sepolia.gravity.xyz/api",
-          "kind": "etherscan"
-        }
-      ],
+      "explorerUrls": [],
+      "rpcUrls": [],
+      "apiUrls": [],
       "services": {
         "subgraphs": []
       },
@@ -1991,18 +2166,15 @@
         "https://polygonscan.com"
       ],
       "rpcUrls": [
-        "https://polygon.rpc.service.pinax.network",
+        "https://polygon.rpc.pinax.network",
         "https://polygon.drpc.org",
-        "https://rpc.satelink.network/rpc/polygon"
+        "https://matic.rpc.sentio.xyz",
+        "https://rpc.graphops.xyz/v1/evm/137/{GRAPHOPS_API_KEY}"
       ],
       "apiUrls": [
         {
           "url": "https://polygon.abi.thegraph.com/api",
           "kind": "etherscan"
-        },
-        {
-          "url": "https://polygon.blockscout.com/api",
-          "kind": "blockscout"
         }
       ],
       "networkType": "mainnet",
@@ -2011,12 +2183,25 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
           },
           {
-            "kind": "studio",
-            "provider": "https://api.studio.thegraph.com/deploy",
-            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
+          },
+          {
+            "kind": "curation",
+            "provider": "the-graph-foundation",
+            "description": "The Graph Foundation will provide curation support for all published Subgraphs on Polygon Mainnet until October 8, 2026."
           }
         ],
         "firehose": [
@@ -2141,11 +2326,11 @@
       ],
       "rpcUrls": [
         "https://k8s.testnet.json-rpc.injective.network",
-        "https://injectiveevm-testnet-rpc.polkachu.com"
+        "https://testnet.sentry.chain.json-rpc.injective.network"
       ],
       "apiUrls": [
         {
-          "url": "https://testnet.blockscout-api.injective.network/api",
+          "url": "https://testnet.blockscout.injective.network/api",
           "kind": "blockscout"
         }
       ],
@@ -2154,12 +2339,25 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
           },
           {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
+          },
+          {
             "kind": "backstop",
-            "provider": "https://streamingfast.io",
-            "description": "StreamingFast provides backstop support for all InjectiveEVM Subgraphs"
+            "provider": "streamingfast",
+            "description": "StreamingFast provides indexing support for all published Subgraphs on Injective EVM Testnet."
           }
         ],
         "substreams": [
@@ -2229,7 +2427,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -2283,7 +2494,8 @@
       ],
       "rpcUrls": [
         "https://rpc.testnet.soniclabs.com",
-        "https://sonic-testnet-v2.drpc.org"
+        "https://sonic-testnet-v2.drpc.org",
+        "https://lb.routeme.sh/rpc/evm/14601"
       ],
       "apiUrls": [
         {
@@ -2296,7 +2508,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -2457,14 +2682,9 @@
       ],
       "rpcUrls": [
         "https://rpc.gravity.xyz",
-        "https://rpc.ankr.com/gravity"
+        "https://1625.rpc.thirdweb.com"
       ],
-      "apiUrls": [
-        {
-          "url": "https://explorer.gravity.xyz/api",
-          "kind": "etherscan"
-        }
-      ],
+      "apiUrls": [],
       "relations": [
         {
           "kind": "l2Of",
@@ -2498,63 +2718,6 @@
       }
     },
     {
-      "id": "status-sepolia",
-      "shortName": "Status",
-      "secondName": "Sepolia",
-      "fullName": "Status Network Sepolia",
-      "aliases": [
-        "status-testnet",
-        "evm-1660990954"
-      ],
-      "caip2Id": "eip155:1660990954",
-      "graphNode": {
-        "protocol": "ethereum"
-      },
-      "explorerUrls": [
-        "https://sepoliascan.status.network"
-      ],
-      "rpcUrls": [
-        "https://public.sepolia.rpc.status.network"
-      ],
-      "apiUrls": [
-        {
-          "url": "https://sepoliascan.status.network/api",
-          "kind": "etherscan"
-        }
-      ],
-      "services": {
-        "subgraphs": []
-      },
-      "networkType": "testnet",
-      "relations": [
-        {
-          "kind": "l2Of",
-          "network": "sepolia"
-        }
-      ],
-      "issuanceRewards": false,
-      "nativeToken": "ETH",
-      "docsUrl": "https://docs.status.network",
-      "firehose": {
-        "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": false,
-        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
-        "bytesEncoding": "hex",
-        "firstStreamableBlock": {
-          "id": "0x8f6889114bdfdb70c73fb33765df93a99816db0ad942bbcee71cd5d7a39e11c2",
-          "height": 0
-        },
-        "blockFeatures": [
-          "base"
-        ]
-      },
-      "icon": {
-        "web3Icons": {
-          "name": "status"
-        }
-      }
-    },
-    {
       "id": "harmony",
       "shortName": "Harmony",
       "fullName": "Harmony Mainnet Shard 0",
@@ -2569,11 +2732,7 @@
       "explorerUrls": [
         "https://explorer.harmony.one/?shard=0"
       ],
-      "rpcUrls": [
-        "https://api.harmony.one/?shard=0",
-        "https://1rpc.io/one",
-        "https://harmony-0.drpc.org"
-      ],
+      "rpcUrls": [],
       "apiUrls": [
         {
           "url": "https://explorer.harmony.one/api",
@@ -2619,14 +2778,8 @@
       "graphNode": {
         "protocol": "ethereum"
       },
-      "explorerUrls": [
-        "https://sepolia.blastscan.io"
-      ],
-      "rpcUrls": [
-        "https://sepolia.blast.io",
-        "https://blast-testnet-public.nodies.app",
-        "https://blast-sepolia.drpc.org"
-      ],
+      "explorerUrls": [],
+      "rpcUrls": [],
       "apiUrls": [
         {
           "url": "https://blast-testnet.abi.thegraph.com/api",
@@ -2649,7 +2802,7 @@
       ],
       "issuanceRewards": false,
       "nativeToken": "ETH",
-      "docsUrl": "https://docs.blast.io",
+      "docsUrl": "https://blast.io",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
         "evmExtendedModel": false,
@@ -2750,7 +2903,8 @@
       ],
       "rpcUrls": [
         "https://mainnet.hsk.xyz",
-        "https://hashkey.drpc.org"
+        "https://hashkey.drpc.org",
+        "https://177.rpc.thirdweb.com"
       ],
       "networkType": "mainnet",
       "relations": [
@@ -2804,7 +2958,7 @@
       ],
       "apiUrls": [
         {
-          "url": "https://blockscout-api.injective.network/api",
+          "url": "https://blockscout.injective.network/api",
           "kind": "blockscout"
         }
       ],
@@ -2813,12 +2967,25 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
           },
           {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
+          },
+          {
             "kind": "backstop",
-            "provider": "https://streamingfast.io",
-            "description": "StreamingFast provides backstop support for all InjectiveEVM Subgraphs"
+            "provider": "streamingfast",
+            "description": "StreamingFast provides indexing support for all published Subgraphs on Injective EVM Mainnet."
           }
         ],
         "substreams": [
@@ -2868,7 +3035,7 @@
       ],
       "rpcUrls": [
         "https://rpc.soneium.org",
-        "https://soneium.rpc.service.pinax.network",
+        "https://soneium.rpc.pinax.network",
         "https://soneium.drpc.org"
       ],
       "apiUrls": [
@@ -2888,12 +3055,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
           },
           {
-            "kind": "studio",
-            "provider": "https://api.studio.thegraph.com/deploy",
-            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           }
         ],
         "firehose": [
@@ -2940,24 +3115,9 @@
       "graphNode": {
         "protocol": "ethereum"
       },
-      "explorerUrls": [
-        "https://explorer.swellnetwork.io"
-      ],
-      "rpcUrls": [
-        "https://rpc.ankr.com/swell",
-        "https://swell-mainnet.rpc.sentio.xyz",
-        "https://swell-mainnet.alt.technology"
-      ],
-      "apiUrls": [
-        {
-          "url": "https://explorer.swellnetwork.io/api",
-          "kind": "blockscout"
-        },
-        {
-          "url": "https://swellchain.abi.thegraph.com/api",
-          "kind": "etherscan"
-        }
-      ],
+      "explorerUrls": [],
+      "rpcUrls": [],
+      "apiUrls": [],
       "services": {
         "subgraphs": []
       },
@@ -2998,21 +3158,9 @@
       "graphNode": {
         "protocol": "ethereum"
       },
-      "explorerUrls": [
-        "https://swell-testnet-explorer.alt.technology"
-      ],
-      "apiUrls": [
-        {
-          "url": "https://swell-testnet-explorer.alt.technology/api",
-          "kind": "blockscout"
-        },
-        {
-          "url": "https://swellchain-sepolia.abi.thegraph.com/api",
-          "kind": "etherscan"
-        }
-      ],
+      "explorerUrls": [],
+      "apiUrls": [],
       "rpcUrls": [
-        "https://rpc.ankr.com/swell_sepolia",
         "https://swell-testnet.drpc.org"
       ],
       "networkType": "testnet",
@@ -3070,7 +3218,7 @@
       ],
       "rpcUrls": [
         "https://rpc.minato.soneium.org",
-        "https://minato.rpc.service.pinax.network",
+        "https://minato.rpc.pinax.network",
         "https://soneium-minato.drpc.org"
       ],
       "apiUrls": [
@@ -3095,12 +3243,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
           },
           {
-            "kind": "studio",
-            "provider": "https://api.studio.thegraph.com/deploy",
-            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           }
         ],
         "firehose": [
@@ -3153,7 +3309,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -3213,14 +3382,27 @@
       "rpcUrls": [
         "https://rpc.xlayer.tech",
         "https://xlayerrpc.okx.com",
-        "https://xlayer.rpc.service.pinax.network"
+        "https://xlayer.rpc.pinax.network"
       ],
       "services": {
         "subgraphs": [
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -3285,8 +3467,9 @@
         "https://app.roninchain.com"
       ],
       "rpcUrls": [
-        "https://ronin.drpc.org",
-        "https://ronin-mainnet.gateway.tatum.io"
+        "https://ronin-mainnet.gateway.tatum.io",
+        "https://2020.rpc.thirdweb.com",
+        "https://ronin.gateway.tenderly.co"
       ],
       "issuanceRewards": false,
       "nativeToken": "RON",
@@ -3341,7 +3524,8 @@
       ],
       "rpcUrls": [
         "https://1rpc.io/opbnb",
-        "https://opbnb.drpc.org"
+        "https://opbnb.drpc.org",
+        "https://opbnb-rpc.publicnode.com"
       ],
       "apiUrls": [
         {
@@ -3385,22 +3569,9 @@
       "graphNode": {
         "protocol": "ethereum"
       },
-      "explorerUrls": [
-        "https://maizenet-explorer.usecorn.com"
-      ],
-      "rpcUrls": [
-        "https://maizenet-rpc.usecorn.com"
-      ],
-      "apiUrls": [
-        {
-          "url": "https://maizenet-explorer.usecorn.com/api",
-          "kind": "etherscan"
-        },
-        {
-          "url": "https://api.routescan.io/v2/network/mainnet/evm/21000000/etherscan/api",
-          "kind": "etherscan"
-        }
-      ],
+      "explorerUrls": [],
+      "rpcUrls": [],
+      "apiUrls": [],
       "services": {
         "subgraphs": []
       },
@@ -3444,22 +3615,9 @@
       "graphNode": {
         "protocol": "ethereum"
       },
-      "explorerUrls": [
-        "https://testnet-explorer.usecorn.com"
-      ],
-      "rpcUrls": [
-        "https://testnet-rpc.usecorn.com"
-      ],
-      "apiUrls": [
-        {
-          "url": "https://testnet-explorer.usecorn.com/api",
-          "kind": "etherscan"
-        },
-        {
-          "url": "https://api.routescan.io/v2/network/testnet/evm/21000001/etherscan/api",
-          "kind": "etherscan"
-        }
-      ],
+      "explorerUrls": [],
+      "rpcUrls": [],
+      "apiUrls": [],
       "services": {
         "subgraphs": []
       },
@@ -3509,7 +3667,7 @@
         "protocol": "ethereum"
       },
       "explorerUrls": [
-        "https://kavascan.io"
+        "https://kavascan.com"
       ],
       "rpcUrls": [
         "https://rpc.ankr.com/kava_evm",
@@ -3562,8 +3720,8 @@
         }
       ],
       "rpcUrls": [
-        "https://rpc.lens.dev",
-        "https://rpc.lens.xyz"
+        "https://rpc.lens.xyz",
+        "https://232.rpc.thirdweb.com"
       ],
       "services": {
         "subgraphs": []
@@ -3621,8 +3779,7 @@
       ],
       "explorerUrls": [],
       "rpcUrls": [
-        "https://rpc.cardona.zkevm-rpc.com",
-        "https://polygon-zkevm-cardona.drpc.org"
+        "https://rpc.cardona.zkevm-rpc.com"
       ],
       "apiUrls": [],
       "networkType": "testnet",
@@ -3664,19 +3821,14 @@
         "protocol": "ethereum"
       },
       "explorerUrls": [
-        "https://explorer.cronos.org"
+        "https://explorer.cronos.com"
       ],
       "rpcUrls": [
         "https://evm.cronos.org",
         "https://cronos.drpc.org",
         "https://cronos.rpc.sentio.xyz"
       ],
-      "apiUrls": [
-        {
-          "url": "https://cronos.org/explorer/api",
-          "kind": "blockscout"
-        }
-      ],
+      "apiUrls": [],
       "services": {
         "subgraphs": []
       },
@@ -3718,20 +3870,14 @@
         "protocol": "ethereum"
       },
       "explorerUrls": [
-        "https://explorer.fantom.network",
-        "https://ftmscout.com"
+        "https://explorer.fantom.network"
       ],
       "rpcUrls": [
         "https://fantom.drpc.org",
         "https://1rpc.io/ftm",
         "https://rpc.fantom.network"
       ],
-      "apiUrls": [
-        {
-          "url": "https://ftmscout.com/api",
-          "kind": "blockscout"
-        }
-      ],
+      "apiUrls": [],
       "services": {
         "subgraphs": [],
         "firehose": [],
@@ -3790,10 +3936,6 @@
         {
           "url": "https://fraxtal.abi.thegraph.com/api",
           "kind": "etherscan"
-        },
-        {
-          "url": "https://api.routescan.io/v2/network/mainnet/evm/252/etherscan/api",
-          "kind": "etherscan"
         }
       ],
       "services": {
@@ -3801,12 +3943,25 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "backstop",
             "provider": "infradao",
-            "description": "InfraDAO provides backstop support for Subgraphs with 500 GRT in signal"
+            "description": "InfraDAO provides indexing support for all published Subgraphs with 500+ GRT in signal on Fraxtal Mainnet."
           }
         ]
       },
@@ -3853,7 +4008,8 @@
       },
       "rpcUrls": [
         "https://api.mainnet.abs.xyz",
-        "https://abstract-mainnet.gateway.tatum.io"
+        "https://abstract-mainnet.gateway.tatum.io",
+        "https://abstract.drpc.org"
       ],
       "explorerUrls": [
         "https://abscan.org"
@@ -3927,12 +4083,25 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "backstop",
             "provider": "infradao",
-            "description": "InfraDAO provides backstop support for Subgraphs with 500 GRT in signal"
+            "description": "InfraDAO provides indexing support for all published Subgraphs with 500+ GRT in signal on Boba Network."
           }
         ],
         "firehose": [],
@@ -4002,12 +4171,25 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "backstop",
             "provider": "infradao",
-            "description": "InfraDAO provides backstop support for Subgraphs with 500 GRT in signal"
+            "description": "InfraDAO provides indexing support for all published Subgraphs with 500+ GRT in signal on Boba Sepolia Testnet."
           }
         ]
       },
@@ -4031,7 +4213,7 @@
         "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
-          "id": "0xc6171953a6a376ece6e33149686044f24f58a387ce2636a54e391d330b2326b5",
+          "id": "0xde2596646c293bc0ca1b150336f8038897874e3ad295322f392414dda9af1d05",
           "height": 0
         },
         "blockFeatures": [
@@ -4074,12 +4256,25 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "backstop",
             "provider": "infradao",
-            "description": "InfraDAO provides backstop support for Subgraphs with 500 GRT in signal"
+            "description": "InfraDAO provides indexing support for all published Subgraphs with 500+ GRT in signal on Rootstock Mainnet."
           }
         ]
       },
@@ -4131,8 +4326,8 @@
       ],
       "rpcUrls": [
         "https://sepolia.era.zksync.dev",
-        "https://rpc.ankr.com/zksync_era_sepolia",
-        "https://zksync-sepolia.api.onfinality.io/public"
+        "https://zksync-sepolia.api.onfinality.io/public",
+        "https://zksync-sepolia.drpc.org"
       ],
       "apiUrls": [
         {
@@ -4149,12 +4344,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
           },
           {
-            "kind": "studio",
-            "provider": "https://api.studio.thegraph.com/deploy",
-            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           }
         ]
       },
@@ -4219,12 +4422,25 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "backstop",
             "provider": "infradao",
-            "description": "InfraDAO provides backstop support for Subgraphs with 500 GRT in signal"
+            "description": "InfraDAO provides indexing support for all published Subgraphs with 500+ GRT in signal on Rootstock Testnet."
           }
         ]
       },
@@ -4265,7 +4481,8 @@
       "aliases": [
         "evm-324",
         "zksync",
-        "zksync-era-mainnet"
+        "zksync-era-mainnet",
+        "zksyncera"
       ],
       "caip2Id": "eip155:324",
       "graphNode": {
@@ -4276,7 +4493,7 @@
       ],
       "rpcUrls": [
         "https://mainnet.era.zksync.io",
-        "https://zksyncera.rpc.service.pinax.network",
+        "https://zksyncera.rpc.pinax.network",
         "https://1rpc.io/zksync2-era"
       ],
       "apiUrls": [
@@ -4290,11 +4507,30 @@
         }
       ],
       "services": {
+        "firehose": [
+          "zksyncera.firehose.pinax.network:443"
+        ],
+        "substreams": [
+          "zksyncera.substreams.pinax.network:443"
+        ],
         "subgraphs": [
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -4369,7 +4605,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -4436,7 +4685,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -4485,7 +4747,8 @@
       ],
       "rpcUrls": [
         "https://curtis.rpc.caldera.xyz/http",
-        "https://rpc.curtis.apechain.com"
+        "https://rpc.curtis.apechain.com",
+        "https://apechain-curtis.drpc.org"
       ],
       "apiUrls": [
         {
@@ -4546,7 +4809,8 @@
       ],
       "rpcUrls": [
         "https://rpc.apechain.com",
-        "https://apechain.drpc.org"
+        "https://apechain.drpc.org",
+        "https://33139.rpc.thirdweb.com"
       ],
       "apiUrls": [
         {
@@ -4606,7 +4870,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -4662,10 +4939,6 @@
         {
           "url": "https://explorer.mode.network/api",
           "kind": "blockscout"
-        },
-        {
-          "url": "https://api.routescan.io/v2/network/mainnet/evm/34443/etherscan/api",
-          "kind": "etherscan"
         }
       ],
       "services": {
@@ -4719,19 +4992,9 @@
       "graphNode": {
         "protocol": "ethereum"
       },
-      "explorerUrls": [
-        "https://testnet.botanixscan.io"
-      ],
-      "rpcUrls": [
-        "https://node.botanixlabs.dev",
-        "https://rpc.ankr.com/botanix_testnet"
-      ],
-      "apiUrls": [
-        {
-          "url": "https://api.routescan.io/v2/network/testnet/evm/3636/etherscan/api",
-          "kind": "etherscan"
-        }
-      ],
+      "explorerUrls": [],
+      "rpcUrls": [],
+      "apiUrls": [],
       "services": {
         "subgraphs": []
       },
@@ -4801,10 +5064,7 @@
           "name": "botanix"
         }
       },
-      "rpcUrls": [
-        "https://rpc.ankr.com/botanix_mainnet",
-        "https://rpc.botanixlabs.com"
-      ]
+      "rpcUrls": []
     },
     {
       "id": "lens-testnet",
@@ -4819,10 +5079,9 @@
         "protocol": "ethereum"
       },
       "explorerUrls": [
-        "https://block-explorer.testnet.lens.dev"
+        "https://explorer.testnet.lens.xyz"
       ],
       "rpcUrls": [
-        "https://rpc.testnet.lens.dev",
         "https://lens-testnet.drpc.org"
       ],
       "apiUrls": [
@@ -4878,12 +5137,8 @@
       "graphNode": {
         "protocol": "ethereum"
       },
-      "explorerUrls": [
-        "https://explorer.testnet.fantom.network"
-      ],
-      "rpcUrls": [
-        "https://rpc.testnet.fantom.network"
-      ],
+      "explorerUrls": [],
+      "rpcUrls": [],
       "apiUrls": [],
       "services": {
         "subgraphs": []
@@ -4933,7 +5188,7 @@
       },
       "networkType": "testnet",
       "issuanceRewards": false,
-      "nativeToken": "DOT",
+      "nativeToken": "PAS",
       "docsUrl": "https://docs.polkadot.com",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
@@ -4978,18 +5233,15 @@
         "https://arbiscan.io"
       ],
       "rpcUrls": [
-        "https://arbone.rpc.service.pinax.network",
+        "https://arbone.rpc.pinax.network",
         "https://arbitrum.drpc.org",
-        "https://arbitrum-one.rpc.sentio.xyz"
+        "https://arbitrum-one.rpc.sentio.xyz",
+        "https://rpc.graphops.xyz/v1/evm/42161/{GRAPHOPS_API_KEY}"
       ],
       "apiUrls": [
         {
           "url": "https://arbitrum-one.abi.thegraph.com/api",
           "kind": "etherscan"
-        },
-        {
-          "url": "https://arbitrum.blockscout.com/api",
-          "kind": "blockscout"
         }
       ],
       "services": {
@@ -4997,7 +5249,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -5084,9 +5349,10 @@
         "https://sepolia.arbiscan.io"
       ],
       "rpcUrls": [
-        "https://arbsepolia.rpc.service.pinax.network",
+        "https://arbsepolia.rpc.pinax.network",
         "https://arbitrum-sepolia.drpc.org",
-        "https://arbitrum-sepolia-testnet.api.pocket.network"
+        "https://arbitrum-sepolia-testnet.api.pocket.network",
+        "https://rpc.graphops.xyz/v1/evm/421614/{GRAPHOPS_API_KEY}"
       ],
       "apiUrls": [
         {
@@ -5099,7 +5365,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -5159,15 +5438,29 @@
       ],
       "rpcUrls": [
         "https://tempo-mainnet.drpc.org",
-        "https://tempo.rpc.service.pinax.network",
-        "https://rpc.mainnet.tempo.xyz"
+        "https://tempo.rpc.pinax.network",
+        "https://rpc.mainnet.tempo.xyz",
+        "https://rpc.graphops.xyz/v1/evm/4217/{GRAPHOPS_API_KEY}"
       ],
       "services": {
         "subgraphs": [
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -5222,9 +5515,15 @@
       "explorerUrls": [],
       "rpcUrls": [
         "https://nova.arbitrum.io/rpc",
-        "https://arbitrum-nova.publicnode.com"
+        "https://arbitrum-nova.publicnode.com",
+        "https://42170.rpc.thirdweb.com"
       ],
-      "apiUrls": [],
+      "apiUrls": [
+        {
+          "url": "https://arbitrum-nova.blockscout.com/api",
+          "kind": "blockscout"
+        }
+      ],
       "services": {
         "subgraphs": []
       },
@@ -5274,8 +5573,9 @@
       ],
       "rpcUrls": [
         "https://forno.celo.org",
-        "https://celo.rpc.service.pinax.network",
-        "https://celo.drpc.org"
+        "https://celo.rpc.pinax.network",
+        "https://celo.drpc.org",
+        "https://rpc.graphops.xyz/v1/evm/42220/{GRAPHOPS_API_KEY}"
       ],
       "apiUrls": [
         {
@@ -5292,7 +5592,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -5357,14 +5670,28 @@
         "https://explore.moderato.tempo.xyz"
       ],
       "rpcUrls": [
-        "https://rpc.moderato.tempo.xyz"
+        "https://rpc.moderato.tempo.xyz",
+        "https://rpc.testnet.tempo.xyz"
       ],
       "services": {
         "subgraphs": [
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -5418,7 +5745,8 @@
       ],
       "rpcUrls": [
         "https://node.mainnet.etherlink.com",
-        "https://rpc.ankr.com/etherlink_mainnet"
+        "https://rpc.ankr.com/etherlink_mainnet",
+        "https://42793.rpc.thirdweb.com"
       ],
       "apiUrls": [
         {
@@ -5431,7 +5759,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -5486,14 +5827,28 @@
       ],
       "rpcUrls": [
         "https://rpc.hemi.network/rpc",
-        "https://hemi.drpc.org"
+        "https://hemi.drpc.org",
+        "https://43111.rpc.thirdweb.com"
       ],
       "services": {
         "subgraphs": [
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -5549,8 +5904,8 @@
       ],
       "rpcUrls": [
         "https://api.avax-test.network/ext/bc/C/rpc",
-        "https://fuji.rpc.service.pinax.network",
-        "https://avalanche-fuji.drpc.org"
+        "https://fuji.rpc.pinax.network",
+        "https://avalanche-fuji-c-chain-rpc.publicnode.com"
       ],
       "apiUrls": [
         {
@@ -5571,7 +5926,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -5627,7 +5995,7 @@
       ],
       "rpcUrls": [
         "https://api.avax.network/ext/bc/C/rpc",
-        "https://avalanche.rpc.service.pinax.network",
+        "https://avalanche.rpc.pinax.network",
         "https://1rpc.io/avax/c"
       ],
       "apiUrls": [
@@ -5649,7 +6017,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -5733,17 +6114,13 @@
       ],
       "rpcUrls": [
         "https://mainnet.megaeth.com/rpc",
-        "https://megaeth.rpc.service.pinax.network",
+        "https://megaeth.rpc.pinax.network",
         "https://megaeth.drpc.org"
       ],
       "apiUrls": [
         {
           "url": "https://megaeth.blockscout.com/api",
           "kind": "blockscout"
-        },
-        {
-          "url": "https://megaeth.abi.thegraph.com/api",
-          "kind": "etherscan"
         }
       ],
       "relations": [
@@ -5805,14 +6182,11 @@
       ],
       "rpcUrls": [
         "https://rpc.mainnet.chain.robinhood.com",
-        "https://robinhood.rpc.service.pinax.network"
+        "https://robinhood.rpc.pinax.network",
+        "https://robinhood.api.pocket.network",
+        "https://rpc.graphops.xyz/v1/evm/4663/{GRAPHOPS_API_KEY}"
       ],
-      "apiUrls": [
-        {
-          "url": "https://robinhoodchain.blockscout.com/api",
-          "kind": "blockscout"
-        }
-      ],
+      "apiUrls": [],
       "relations": [
         {
           "kind": "l2Of",
@@ -5856,20 +6230,15 @@
         "protocol": "ethereum"
       },
       "services": {
-        "subgraphs": [],
-        "substreams": [
-          "robsepolia.substreams.pinax.network:443"
-        ],
-        "firehose": [
-          "robsepolia.firehose.pinax.network:443"
-        ]
+        "subgraphs": []
       },
       "explorerUrls": [
         "https://explorer.testnet.chain.robinhood.com"
       ],
       "rpcUrls": [
         "https://rpc.testnet.chain.robinhood.com",
-        "https://robsepolia.rpc.service.pinax.network"
+        "https://robsepolia.rpc.pinax.network",
+        "https://robinhood-sepolia-rpc.publicnode.com"
       ],
       "apiUrls": [
         {
@@ -5931,7 +6300,7 @@
       ],
       "apiUrls": [
         {
-          "url": "https://index.iotexscan.io/api",
+          "url": "https://iotexscan.io/api",
           "kind": "etherscan"
         }
       ],
@@ -5987,7 +6356,7 @@
       ],
       "apiUrls": [
         {
-          "url": "https://testnet.index.iotexscan.io/api",
+          "url": "https://testnet.iotexscan.io/api",
           "kind": "etherscan"
         }
       ],
@@ -6040,7 +6409,8 @@
       ],
       "rpcUrls": [
         "https://mainnet-1.rpc.banelabs.org",
-        "https://mainnet-2.rpc.banelabs.org"
+        "https://mainnet-2.rpc.banelabs.org",
+        "https://47763.rpc.thirdweb.com"
       ],
       "apiUrls": [
         {
@@ -6053,7 +6423,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -6123,8 +6506,8 @@
       ],
       "rpcUrls": [
         "https://480.rpc.thirdweb.com",
-        "https://worldchain-mainnet.gateway.tenderly.co",
-        "https://worldchain.drpc.org"
+        "https://worldchain.drpc.org",
+        "https://worldchain-mainnet.g.alchemy.com/public"
       ],
       "issuanceRewards": false,
       "nativeToken": "ETH",
@@ -6162,7 +6545,10 @@
       },
       "explorerUrls": [],
       "rpcUrls": [
-        "https://arc.rpc.service.pinax.network"
+        "https://arc.rpc.pinax.network",
+        "https://rpc.mainnet.arc.io",
+        "https://rpc.drpc.mainnet.arc.io",
+        "https://rpc.graphops.xyz/v1/evm/5042/{GRAPHOPS_API_KEY}"
       ],
       "apiUrls": [],
       "services": {
@@ -6170,7 +6556,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -6179,9 +6578,11 @@
           }
         ],
         "firehose": [
+          "mainnet.arc.streamingfast.io:443",
           "arc.firehose.pinax.network:443"
         ],
         "substreams": [
+          "mainnet.arc.streamingfast.io:443",
           "arc.substreams.pinax.network:443"
         ]
       },
@@ -6213,7 +6614,8 @@
       "shortName": "Arc",
       "fullName": "Arc Testnet",
       "aliases": [
-        "evm-5042002"
+        "evm-5042002",
+        "arctest"
       ],
       "caip2Id": "eip155:5042002",
       "graphNode": {
@@ -6225,7 +6627,7 @@
       "rpcUrls": [
         "https://rpc.testnet.arc.network",
         "https://arc-testnet.drpc.org",
-        "https://arctest.rpc.service.pinax.network"
+        "https://arctest.rpc.pinax.network"
       ],
       "apiUrls": [
         {
@@ -6238,7 +6640,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -6248,12 +6663,18 @@
         ]
       },
       "networkType": "testnet",
+      "relations": [
+        {
+          "kind": "testnetOf",
+          "network": "arc"
+        }
+      ],
       "issuanceRewards": false,
       "nativeToken": "USDC",
       "docsUrl": "https://docs.arc.network",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
-        "evmExtendedModel": false,
+        "evmExtendedModel": true,
         "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
         "bytesEncoding": "hex",
         "firstStreamableBlock": {
@@ -6261,7 +6682,7 @@
           "height": 0
         },
         "blockFeatures": [
-          "base"
+          "extended"
         ]
       },
       "icon": {
@@ -6286,10 +6707,7 @@
       "explorerUrls": [
         "https://sepolia.scrollscan.com"
       ],
-      "rpcUrls": [
-        "https://scroll-sepolia.drpc.org",
-        "https://scroll-sepolia-public.nodies.app"
-      ],
+      "rpcUrls": [],
       "apiUrls": [
         {
           "url": "https://scroll-sepolia.abi.thegraph.com/api",
@@ -6301,7 +6719,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -6380,7 +6811,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -6444,9 +6888,10 @@
         "https://bscscan.com"
       ],
       "rpcUrls": [
-        "https://bsc.rpc.service.pinax.network",
+        "https://bsc.rpc.pinax.network",
         "https://bsc.rpc.sentio.xyz",
-        "https://api.zan.top/bsc-mainnet"
+        "https://api.zan.top/bsc-mainnet",
+        "https://rpc.graphops.xyz/v1/evm/56/{GRAPHOPS_API_KEY}"
       ],
       "apiUrls": [
         {
@@ -6460,12 +6905,25 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
           },
           {
-            "kind": "studio",
-            "provider": "https://api.studio.thegraph.com/deploy",
-            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
+          },
+          {
+            "kind": "curation",
+            "provider": "the-graph-foundation",
+            "description": "The Graph Foundation will provide curation support for all published Subgraphs on BNB Smart Chain Mainnet until October 8, 2026."
           }
         ],
         "firehose": [
@@ -6539,7 +6997,7 @@
         "https://hoodi.etherscan.io"
       ],
       "rpcUrls": [
-        "https://hoodi.rpc.service.pinax.network",
+        "https://hoodi.rpc.pinax.network",
         "https://hoodi.rpc.sentio.xyz",
         "https://rpc.hoodi.ethpandaops.io"
       ],
@@ -6554,7 +7012,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -6615,9 +7086,10 @@
       ],
       "rpcUrls": [
         "https://rpc-gel.inkonchain.com",
-        "https://ink.rpc.service.pinax.network",
+        "https://ink.rpc.pinax.network",
         "https://ink.drpc.org",
-        "https://ink.api.pocket.network"
+        "https://ink.api.pocket.network",
+        "https://rpc.graphops.xyz/v1/evm/57073/{GRAPHOPS_API_KEY}"
       ],
       "services": {
         "subgraphs": [],
@@ -6670,17 +7142,13 @@
       ],
       "rpcUrls": [
         "https://rpc.sepolia.linea.build",
-        "https://lineasepolia.rpc.service.pinax.network",
+        "https://lineasepolia.rpc.pinax.network",
         "https://linea-sepolia.drpc.org"
       ],
       "apiUrls": [
         {
           "url": "https://linea-sepolia.abi.thegraph.com/api",
           "kind": "etherscan"
-        },
-        {
-          "url": "https://api-explorer.sepolia.linea.build/api",
-          "kind": "blockscout"
         }
       ],
       "services": {
@@ -6688,7 +7156,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -6753,17 +7234,13 @@
       ],
       "rpcUrls": [
         "https://rpc.linea.build",
-        "https://linea.rpc.service.pinax.network",
+        "https://linea.rpc.pinax.network",
         "https://1rpc.io/linea"
       ],
       "apiUrls": [
         {
           "url": "https://linea.abi.thegraph.com/api",
           "kind": "etherscan"
-        },
-        {
-          "url": "https://api-explorer.linea.build/api",
-          "kind": "blockscout"
         }
       ],
       "services": {
@@ -6771,7 +7248,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -6840,12 +7330,7 @@
         "https://timothy.megaeth.com/rpc",
         "https://carrot.megaeth.com/rpc"
       ],
-      "apiUrls": [
-        {
-          "url": "https://megaeth-testnet-v2.blockscout.com/api",
-          "kind": "blockscout"
-        }
-      ],
+      "apiUrls": [],
       "services": {
         "subgraphs": []
       },
@@ -6896,7 +7381,8 @@
         "https://explorer.xai-chain.net"
       ],
       "rpcUrls": [
-        "https://rpc.ankr.com/xai"
+        "https://xai-chain.net/rpc",
+        "https://660279.rpc.thirdweb.com"
       ],
       "apiUrls": [
         {
@@ -6967,18 +7453,36 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "backstop",
             "provider": "infradao",
-            "description": "InfraDAO provides backstop support for Subgraphs with 500 GRT in signal"
+            "description": "InfraDAO provides indexing support for all published Subgraphs with 500+ GRT in signal on Anubis Mainnet."
           }
         ]
       },
       "issuanceRewards": false,
       "nativeToken": "gasDAI",
-      "docsUrl": "https://anubis-network.gitbook.io/anubis-network"
+      "docsUrl": "https://anubis-network.gitbook.io/anubis-network",
+      "icon": {
+        "web3Icons": {
+          "name": "anubis"
+        }
+      }
     },
     {
       "id": "zetachain",
@@ -7003,14 +7507,28 @@
       ],
       "rpcUrls": [
         "https://zetachain-mainnet.g.allthatnode.com/archive/evm",
-        "https://zeta-chain.drpc.org"
+        "https://zeta-chain.drpc.org",
+        "https://7000.rpc.thirdweb.com"
       ],
       "services": {
         "subgraphs": [
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -7060,7 +7578,8 @@
       ],
       "rpcUrls": [
         "https://api.trongrid.io/jsonrpc",
-        "https://tron.drpc.org"
+        "https://tron.api.pocket.network",
+        "https://tron.rpc.sentio.xyz"
       ],
       "relations": [
         {
@@ -7116,7 +7635,6 @@
         "https://bokuto.katanascan.com"
       ],
       "rpcUrls": [
-        "https://katana-bokuto.gateway.tenderly.co",
         "https://rpc-bokuto.katanarpc.com",
         "https://katana-testnet.drpc.org"
       ],
@@ -7193,7 +7711,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -7317,7 +7848,8 @@
       ],
       "rpcUrls": [
         "https://rpc-gel-sepolia.inkonchain.com",
-        "https://ink-sepolia.drpc.org"
+        "https://ink-sepolia.drpc.org",
+        "https://ink-sepolia-rpc.publicnode.com"
       ],
       "services": {
         "subgraphs": []
@@ -7371,19 +7903,10 @@
       ],
       "rpcUrls": [
         "https://rpc.zora.energy",
-        "https://zora.rpc.service.pinax.network",
+        "https://zora.rpc.pinax.network",
         "https://zora.drpc.org"
       ],
-      "apiUrls": [
-        {
-          "url": "https://explorer.zora.energy/api",
-          "kind": "blockscout"
-        },
-        {
-          "url": "https://api.routescan.io/v2/network/mainnet/evm/7777777/etherscan/api",
-          "kind": "etherscan"
-        }
-      ],
+      "apiUrls": [],
       "services": {
         "firehose": [
           "zora.firehose.pinax.network:443",
@@ -7460,7 +7983,7 @@
         "https://amoy.polygonscan.com"
       ],
       "rpcUrls": [
-        "https://amoy.rpc.service.pinax.network",
+        "https://amoy.rpc.pinax.network",
         "https://polygon-amoy.drpc.org",
         "https://polygon-amoy.api.onfinality.io/public"
       ],
@@ -7476,7 +7999,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -7535,10 +8071,6 @@
         {
           "url": "https://berachain-bepolia.abi.thegraph.com/api",
           "kind": "etherscan"
-        },
-        {
-          "url": "https://api.routescan.io/v2/network/testnet/evm/80069/etherscan/api",
-          "kind": "etherscan"
         }
       ],
       "networkType": "testnet",
@@ -7596,10 +8128,6 @@
       "apiUrls": [
         {
           "url": "https://berachain.abi.thegraph.com/api",
-          "kind": "etherscan"
-        },
-        {
-          "url": "https://api.routescan.io/v2/network/mainnet/evm/80094/etherscan/api",
           "kind": "etherscan"
         }
       ],
@@ -7662,7 +8190,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -7710,9 +8251,7 @@
         "https://blastscan.io"
       ],
       "rpcUrls": [
-        "https://rpc.blast.io",
-        "https://blast.rpc.service.pinax.network",
-        "https://blast.drpc.org"
+        "https://blast.api.pocket.network"
       ],
       "apiUrls": [
         {
@@ -7722,12 +8261,8 @@
       ],
       "services": {
         "subgraphs": [],
-        "firehose": [
-          "blast.firehose.pinax.network:443"
-        ],
-        "substreams": [
-          "blast.substreams.pinax.network:443"
-        ]
+        "firehose": [],
+        "substreams": []
       },
       "networkType": "mainnet",
       "relations": [
@@ -7738,7 +8273,7 @@
       ],
       "issuanceRewards": false,
       "nativeToken": "ETH",
-      "docsUrl": "https://docs.blast.io",
+      "docsUrl": "https://blast.io",
       "indexerDocsUrls": [
         {
           "url": "https://docs.infradao.com/archive-nodes-101/blast",
@@ -7781,26 +8316,29 @@
       ],
       "rpcUrls": [
         "https://public-en.node.kaia.io",
-        "https://klaytn.drpc.org",
-        "https://rpc.ankr.com/kaia"
+        "https://kaia.api.pocket.network",
+        "https://8217.rpc.thirdweb.com"
       ],
-      "apiUrls": [
-        {
-          "url": "https://kaia.abi.thegraph.com/api",
-          "kind": "etherscan"
-        }
-      ],
+      "apiUrls": [],
       "services": {
         "subgraphs": [
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
           },
           {
-            "kind": "studio",
-            "provider": "https://api.studio.thegraph.com/deploy",
-            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           }
         ]
       },
@@ -7845,17 +8383,14 @@
       ],
       "rpcUrls": [
         "https://mainnet.base.org",
-        "https://base.rpc.service.pinax.network",
-        "https://1rpc.io/base"
+        "https://base.rpc.pinax.network",
+        "https://1rpc.io/base",
+        "https://rpc.graphops.xyz/v1/evm/8453/{GRAPHOPS_API_KEY}"
       ],
       "apiUrls": [
         {
           "url": "https://base.abi.thegraph.com/api",
           "kind": "etherscan"
-        },
-        {
-          "url": "https://base.blockscout.com/api",
-          "kind": "blockscout"
         }
       ],
       "services": {
@@ -7863,7 +8398,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -7933,7 +8481,8 @@
       "fullName": "Base Sepolia Testnet",
       "aliases": [
         "evm-84532",
-        "base-testnet"
+        "base-testnet",
+        "basesepolia"
       ],
       "caip2Id": "eip155:84532",
       "graphNode": {
@@ -7943,9 +8492,10 @@
         "https://sepolia.basescan.org"
       ],
       "rpcUrls": [
-        "https://sepolia.base.org",
-        "https://basesepolia.rpc.service.pinax.network",
-        "https://base-sepolia.drpc.org"
+        "https://basesepolia.rpc.pinax.network",
+        "https://base-sepolia.rpc.sentio.xyz",
+        "https://base-testnet.api.pocket.network",
+        "https://rpc.graphops.xyz/v1/evm/84532/{GRAPHOPS_API_KEY}"
       ],
       "apiUrls": [
         {
@@ -7962,7 +8512,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -8138,19 +8701,28 @@
       ],
       "rpcUrls": [
         "https://rpc.viction.xyz",
-        "https://viction.drpc.org"
+        "https://viction.drpc.org",
+        "https://88.rpc.thirdweb.com"
       ],
       "services": {
         "subgraphs": [
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
           },
           {
-            "kind": "studio",
-            "provider": "https://api.studio.thegraph.com/deploy",
-            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           }
         ]
       },
@@ -8214,7 +8786,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -8262,7 +8847,8 @@
       ],
       "rpcUrls": [
         "https://rpc.chiliz.com",
-        "https://rpc.ankr.com/chiliz"
+        "https://rpc.ankr.com/chiliz",
+        "https://88888.rpc.thirdweb.com"
       ],
       "apiUrls": [
         {
@@ -8276,7 +8862,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -8321,18 +8920,13 @@
         "protocol": "ethereum"
       },
       "explorerUrls": [
-        "https://testnet.modescan.io"
+        "https://sepolia.explorer.mode.network"
       ],
       "rpcUrls": [
         "https://sepolia.mode.network",
         "https://mode-testnet.drpc.org"
       ],
-      "apiUrls": [
-        {
-          "url": "https://api.routescan.io/v2/network/testnet/evm/919/etherscan/api",
-          "kind": "etherscan"
-        }
-      ],
+      "apiUrls": [],
       "services": {
         "subgraphs": []
       },
@@ -8387,8 +8981,9 @@
         "https://testnet.bscscan.com"
       ],
       "rpcUrls": [
-        "https://chapel.rpc.service.pinax.network",
-        "https://bsc-testnet.rpc.sentio.xyz"
+        "https://chapel.rpc.pinax.network",
+        "https://bsc-testnet.rpc.sentio.xyz",
+        "https://bsc-testnet.drpc.org"
       ],
       "apiUrls": [
         {
@@ -8408,7 +9003,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -8475,7 +9083,20 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
+          },
+          {
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           },
           {
             "kind": "studio",
@@ -8485,7 +9106,7 @@
         ]
       },
       "issuanceRewards": false,
-      "nativeToken": "gUSDT",
+      "nativeToken": "USDT0",
       "firehose": {
         "blockType": "sf.ethereum.type.v2.Block",
         "evmExtendedModel": false,
@@ -8521,7 +9142,8 @@
         "https://lens.lumia.org"
       ],
       "rpcUrls": [
-        "https://mainnet-rpc.lumia.org"
+        "https://mainnet-rpc.lumia.org",
+        "https://994873017.rpc.thirdweb.com"
       ],
       "apiUrls": [
         {
@@ -8579,9 +9201,10 @@
         "https://hyperevmscan.io"
       ],
       "rpcUrls": [
-        "https://rpc.hypurrscan.io",
-        "https://rpc.hyperliquid.xyz/evm",
-        "https://hyperevm.rpc.service.pinax.network"
+        "https://hyperevm.rpc.pinax.network",
+        "https://hyperevm.rpc.sentio.xyz",
+        "https://hyperliquid.drpc.org",
+        "https://rpc.graphops.xyz/v1/evm/999/{GRAPHOPS_API_KEY}"
       ],
       "apiUrls": [
         {
@@ -8629,6 +9252,54 @@
           "name": "hyper-evm"
         }
       }
+    },
+    {
+      "id": "elysium",
+      "shortName": "Elysium",
+      "fullName": "Elysium Mainnet",
+      "aliases": [
+        "elysium-mainnet",
+        "evm-99901"
+      ],
+      "caip2Id": "eip155:99901",
+      "graphNode": {
+        "protocol": "ethereum"
+      },
+      "relations": [
+        {
+          "kind": "l2Of",
+          "network": "hyper-evm"
+        }
+      ],
+      "services": {
+        "subgraphs": [],
+        "firehose": [
+          "mainnet.elysium.streamingfast.io:443"
+        ],
+        "substreams": [
+          "mainnet.elysium.streamingfast.io:443"
+        ]
+      },
+      "networkType": "mainnet",
+      "issuanceRewards": false,
+      "nativeToken": "HYPE",
+      "docsUrl": "https://elysium.kinetiq.xyz/docs",
+      "firehose": {
+        "blockType": "sf.ethereum.type.v2.Block",
+        "evmExtendedModel": true,
+        "bufUrl": "https://buf.build/streamingfast/firehose-ethereum",
+        "bytesEncoding": "hex",
+        "firstStreamableBlock": {
+          "id": "0x14cd46a8e7cfd201c7a79d307c320213f984e7a2b3297cd4e2c4b514538db600",
+          "height": 0
+        },
+        "blockFeatures": [
+          "extended"
+        ]
+      },
+      "rpcUrls": [
+        "https://rpc.elysium.kinetiq.xyz"
+      ]
     },
     {
       "id": "wax",
@@ -8779,7 +9450,7 @@
       "services": {},
       "issuanceRewards": false,
       "nativeToken": "EOS",
-      "docsUrl": "https://docs.eosnetwork.com/docs/latest/quick-start/introduction",
+      "docsUrl": "https://docs.vaulta.com",
       "firehose": {
         "blockType": "sf.antelope.type.v1.Block",
         "bufUrl": "https://buf.build/pinax/firehose-antelope",
@@ -8871,7 +9542,7 @@
       },
       "issuanceRewards": false,
       "nativeToken": "EOS",
-      "docsUrl": "https://docs.eosnetwork.com/docs/latest/quick-start/introduction",
+      "docsUrl": "https://docs.vaulta.com",
       "firehose": {
         "blockType": "sf.antelope.type.v1.Block",
         "bufUrl": "https://buf.build/pinax/firehose-antelope",
@@ -9206,7 +9877,8 @@
         "https://btcscan.org"
       ],
       "rpcUrls": [
-        "https://bitcoin-mainnet.gateway.tatum.io"
+        "https://bitcoin-mainnet.gateway.tatum.io",
+        "https://rpc.graphops.xyz/v1/bitcoin/mainnet/{GRAPHOPS_API_KEY}"
       ],
       "apiUrls": [],
       "networkType": "mainnet",
@@ -9487,19 +10159,21 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
           },
           {
-            "kind": "studio",
-            "provider": "https://api.studio.thegraph.com/deploy",
-            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           }
-        ],
-        "firehose": [
-          "mainnet.near.streamingfast.io:443"
-        ],
-        "substreams": [
-          "mainnet.near.streamingfast.io:443"
         ]
       },
       "issuanceRewards": false,
@@ -9548,19 +10222,21 @@
           {
             "kind": "gateway",
             "provider": "https://gateway.thegraph.com/api",
+            "queryUrls": {
+              "subgraphId": "https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}",
+              "deploymentId": "https://gateway.thegraph.com/api/{API_KEY}/deployments/id/{DEPLOYMENT_ID}"
+            },
             "description": "The Graph's canonical Subgraph gateway under www.thegraph.com routes data consumers' GraphQL queries to the Indexers on The Graph Network."
           },
           {
-            "kind": "studio",
-            "provider": "https://api.studio.thegraph.com/deploy",
-            "description": "Subgraph Studio is The Graph's developer portal for managing API keys and usage-based billing (via card or GRT) as well as deploying, testing, and publishing Subgraphs to The Graph Network."
+            "kind": "gateway",
+            "provider": "https://subgraphs.graphops.xyz/v1",
+            "queryUrls": {
+              "subgraphId": "https://subgraphs.graphops.xyz/v1/subgraphId/{SUBGRAPH_ID}/{API_KEY}",
+              "deploymentId": "https://subgraphs.graphops.xyz/v1/deploymentCID/{DEPLOYMENT_ID}/{API_KEY}"
+            },
+            "description": "GraphOps routes GraphQL queries for any Subgraph on The Graph Network, authenticated with a GraphOps API key."
           }
-        ],
-        "firehose": [
-          "testnet.near.streamingfast.io:443"
-        ],
-        "substreams": [
-          "testnet.near.streamingfast.io:443"
         ]
       },
       "issuanceRewards": false,
@@ -9593,8 +10269,8 @@
       ],
       "caip2Id": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
       "explorerUrls": [
-        "http://explorer.solana.com",
-        "http://solana.fm"
+        "https://explorer.solana.com",
+        "https://solana.fm"
       ],
       "rpcUrls": [
         "https://api.mainnet-beta.solana.com"
@@ -9682,7 +10358,9 @@
       "shortName": "Solana",
       "secondName": "Devnet",
       "fullName": "Solana Devnet",
-      "aliases": [],
+      "aliases": [
+        "soldev"
+      ],
       "caip2Id": "solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1",
       "explorerUrls": [
         "https://explorer.solana.com/?cluster=devnet"
@@ -9800,9 +10478,7 @@
       "services": {
         "subgraphs": [],
         "firehose": [],
-        "substreams": [
-          "mainnet.starknet.streamingfast.io:443"
-        ]
+        "substreams": []
       },
       "issuanceRewards": false,
       "nativeToken": "ETH",
@@ -9859,9 +10535,7 @@
       "services": {
         "subgraphs": [],
         "firehose": [],
-        "substreams": [
-          "testnet.starknet.streamingfast.io:443"
-        ]
+        "substreams": []
       },
       "issuanceRewards": false,
       "nativeToken": "STRK",
