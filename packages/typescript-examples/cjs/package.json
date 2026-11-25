@@ -9,7 +9,7 @@
         "start": "bun run build && node dist/index.js"
     },
     "dependencies": {
-        "@pinax/graph-networks-registry": "file:../../"
+        "@pinax/graph-networks-registry": "file:../../typescript"
     },
     "devDependencies": {
         "@types/node": "^20.19.4",

@@ -21,7 +21,7 @@ This will:
 
 If there are errors when running the script, find and fix them manually.
 
-Requires `jq`, Bun >= 1.4.3 (`curl -fsSL https://bun.com/install | bash -s "bun-v1.4.3"`), Node.js with `npm` (for the local TypeScript example), `cargo` and `go`. quicktype is pinned in the root `package.json` and installed from `bun.lock`, and go-enum in `generate.sh` (`GO_ENUM_VERSION`): newer quicktype versions change the generated type names and enums, which breaks the public API, so check the diff carefully before bumping them.
+Requires `jq`, Bun >= 1.4.3 (`curl -fsSL https://bun.com/install | bash -s "bun-v1.4.3"`), Node.js, `cargo` and `go`. quicktype is pinned in the root `package.json` and installed from `bun.lock`, and go-enum in `generate.sh` (`GO_ENUM_VERSION`): newer quicktype versions change the generated type names and enums, which breaks the public API, so check the diff carefully before bumping them.
 
 ## Versioning
 
