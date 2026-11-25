@@ -33,18 +33,41 @@ Requires `jq`, Bun >= 1.4.3 (`curl -fsSL https://bun.com/install | bash -s "bun-
 
 ## Publishing new versions
 
-Publish a GitHub release tagged `vX.Y.Z`. The [Publish](./.github/workflows/publish.yml) workflow runs the CI checks, then publishes every package whose version is `X.Y.Z` and is not released yet:
+Publish a GitHub release tagged `vX.Y.Z` from `main`. The [Publish](./.github/workflows/publish.yml) workflow runs the CI checks, then releases every package whose version is exactly `X.Y.Z` and is not released yet:
 
 - TypeScript to npm
 - Rust to crates.io
 - Go by pushing the tag `packages/golang/vX.Y.Z`
 
-A package at a different version is skipped, so a release can publish one library on its own after a patch bump.
+A package at a different version, or one already released, is skipped. One release can therefore publish all three libraries or just one.
 
 npm and crates.io trust this workflow by its filename (trusted publishing), so the repository holds no registry tokens. Renaming `publish.yml` breaks publishing until both registries are updated.
 
-To publish by hand instead:
+### Releasing a schema update
 
-- `npm publish --force` for TypeScript (`--force` because `package.json` requires Bun)
-- `cargo publish` for Rust
-- `./release.sh` for Go
+1. Run `./generate.sh` (see [Updating the schema](#updating-the-schema)). It sets all three packages to `X.Y.0`.
+2. Update the hand-written version references: the three package READMEs, the two Go example `go.mod` files, and the TypeScript and Go test fixtures.
+3. Merge the pull request, then publish a release tagged `vX.Y.0`.
+
+### Releasing a fix for one library
+
+1. Make the fix and bump only that library's version to the next patch:
+   - TypeScript: `version` in `packages/typescript/package.json`
+   - Rust: `version` in `packages/rust/Cargo.toml`
+   - Go: `Version` in `packages/golang/lib/version.go`
+2. Do not run `./generate.sh`: it resets every package to `X.Y.0`.
+3. Merge the pull request, then publish a release tagged with that version. The other two libraries are skipped.
+
+Release tags are shared by the three libraries, and a tag can only be used once. Take the next patch number above the latest release tag, whichever library that release was for: if TypeScript released `v0.9.1`, a later Rust-only fix is `0.9.2`. Per-library versions can therefore have gaps.
+
+A released Go version cannot be replaced. Once the Go module proxy has served it, moving the tag does not change what users get, so fix a bad release with the next patch.
+
+### Publishing by hand
+
+The manual route still works, for example when GitHub Actions is unavailable. Run each command in that package's directory:
+
+- TypeScript: `npm publish --force` (`--force` because `package.json` requires Bun)
+- Rust: `cargo publish`
+- Go: `./release.sh`
+
+The workflow skips versions that are already released, so publishing a GitHub release afterwards is safe. Publishing to crates.io by hand needs "Require trusted publishing for all new versions" to stay off in the crate's settings.
